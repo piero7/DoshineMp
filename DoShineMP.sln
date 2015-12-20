@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoShineMP", "DoShineMP\DoSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoShineMP.Tests", "DoShineMP.Tests\DoShineMP.Tests.csproj", "{7942034D-5A28-44B7-AE0E-E9C408D04FC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiXInWeb", "WeiXInWeb\WeiXInWeb.csproj", "{962AD202-A1F2-4BC1-B15C-C1A8AE9E4B54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962AD202-A1F2-4BC1-B15C-C1A8AE9E4B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962AD202-A1F2-4BC1-B15C-C1A8AE9E4B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962AD202-A1F2-4BC1-B15C-C1A8AE9E4B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962AD202-A1F2-4BC1-B15C-C1A8AE9E4B54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
