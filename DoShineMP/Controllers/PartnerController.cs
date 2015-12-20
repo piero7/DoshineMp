@@ -45,6 +45,7 @@ namespace DoShineMP.Controllers
                 Type = type,
             };
             db.PartnerSet.Add(pat);
+            wuser.PartnerInfo = pat;
             db.SaveChanges();
             LogController.AddLog("Regist as a patner.", pat.PartnerId.ToString(), openid);
 
@@ -55,6 +56,27 @@ namespace DoShineMP.Controllers
         public Partner EditPartnerInfo(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
         {
             var db = new ModelContext();
+            var wuser = db.WechatUserSet.Include("PartnerInfo").FirstOrDefault(item => item.OpenId == openid);
+            if (wuser == null)
+            {
+                return null;
+            }
+            if (wuser.PartnerId == null)
+            {
+                return null;
+            }
+
+            wuser.PartnerInfo.RealName = realname;
+            wuser.PartnerInfo.CompanyName = comName;
+            wuser.PartnerInfo.Type = type;
+            wuser.PartnerInfo.Address = address;
+            wuser.PartnerInfo.CompanyPhone = comPhone;
+
+            db.SaveChanges();
+
+            LogController.AddLog("Edit patner info .", wuser.PartnerId.ToString(), openid);
+
+            return wuser.PartnerInfo;
 
         }
     }
