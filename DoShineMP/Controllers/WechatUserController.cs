@@ -10,6 +10,7 @@ namespace DoShineMP.Controllers
 {
     public class WechatUserController : ApiController
     {
+
         [HttpGet]
         public WechatUser Regiet(string realName, string phoneNumber, string openid)
         {
@@ -36,6 +37,7 @@ namespace DoShineMP.Controllers
             //    TerminalId = temn.TerminalId,
             //    UserId = ui.UserInfoId,
             //});
+
 
             user.UserInfo = ui;
 
