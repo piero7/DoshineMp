@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "PersonalCenter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="~/Styles/PersonalCenter.css" rel="stylesheet" />
+}
+
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">头像</div>
+            <div class="pull-right">
+                <img src="~/Images/touxiang.jpg" class="img-rounded" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">昵称</div>
+            <div class="pull-right ">
+                昵称内容斯蒂芬
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">性别</div>
+            <div class="pull-right">
+                男
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">姓</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="xing" id="xing" value="" placeholder="请输入您的姓" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">手机号</div>
+            <div class="pull-right phone panelbody">
+                <input type="text" name="phone" id="phone" value="" placeholder="请输入您的手机号" />
+                <button type="button" class="btn btn-success">验证码</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">验证码</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="yzm" id="yzm" value="" placeholder="请输入您手机获取到的验证码" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-xs-12">
+    <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
+</div>

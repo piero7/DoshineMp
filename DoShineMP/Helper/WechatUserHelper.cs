@@ -10,6 +10,7 @@ namespace DoShineMP.Helper
 {
     public class WechatUserHelper
     {
+
         [HttpGet]
         public WechatUser Regiet(string realName, string phoneNumber, string openid)
         {
@@ -36,6 +37,7 @@ namespace DoShineMP.Helper
             //    TerminalId = temn.TerminalId,
             //    UserId = ui.UserInfoId,
             //});
+
 
             user.UserInfo = ui;
 

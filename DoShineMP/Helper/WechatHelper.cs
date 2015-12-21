@@ -11,8 +11,9 @@ using System.Web.Script.Serialization;
 
 namespace DoShineMP.Helper
 {
-    class WechatHelper
+    public class WechatHelper
     {
+
         /// <summary>
         /// 发送POST包，获得回复。
         /// </summary>
