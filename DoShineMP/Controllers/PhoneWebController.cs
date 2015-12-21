@@ -1,6 +1,7 @@
 ﻿using DoShineMP.Helper;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,13 +40,27 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult PersonalCenter(string code)
         {
-            if (!string.IsNullOrEmpty(code))
+            try
             {
-                openid = WechatHelper.GetOpenidByCode(code);
-
-
+                if (!string.IsNullOrEmpty(code))
+                {
+                    openid = WechatHelper.GetOpenidByCode(code);
+                    var user = WechatHelper.CheckOpenid(openid);
+                    if (WechatHelper.CheckUser(user) == null)
+                    {
+                        Response.Redirect(ConfigurationManager.AppSettings["registerweb"]);
+                    }
+                    else
+                    {
+                        ViewBag.user = user;
+                    }
+                }
             }
-            //提取我的资料
+            catch (Exception e)
+            {
+                throw;
+            }
+
             ViewBag.Title = "个人中心";
             return View();
         }

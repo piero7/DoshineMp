@@ -252,6 +252,7 @@
     <Content Include="Styles\rest.css" />
     <Content Include="Styles\sign-in.css" />
     <Content Include="Views\PhoneWeb\PersonalCenter.cshtml" />
+    <Content Include="Views\PhoneWeb\Register.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -286,7 +287,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\PhoneWeb\Register.cshtml" />
     <Content Include="Views\PhoneWeb\Repair.cshtml" />
     <Content Include="Views\PhoneWeb\HomePage.cshtml" />
   </ItemGroup>
