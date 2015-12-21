@@ -113,8 +113,10 @@
             }
             $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: code }, function (data, status) {
                 if (status === 'success') {
-                    if (data.msg == 'Y')
+                    if (data.msg == 'Y') {
                         alert("注册成功!");
+                        window.location.href = "@Url.Action("HomePage","PhoneWeb")";
+                    }
                     else
                         alert("注册失败！");
                 }

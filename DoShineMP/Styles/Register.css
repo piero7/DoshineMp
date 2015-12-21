@@ -10,6 +10,18 @@
     width: 20vw;
 }
 
+.media-left {
+    width: 20%;
+    display: inline-block;
+}
+
+.media-body {
+    padding-top: 3%;
+    padding-left: 5%;
+    width: 70%;
+    display: inline-block;
+}
+
 .col-xs-12 {
     background-color: white;
     margin-bottom: 5%;
@@ -43,6 +55,10 @@ h4 {
 }
 
 .list-group-item {
-    padding-top: 4vw;
-    padding-bottom: 4vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
 }
+
+    .list-group-item span {
+        margin-right: 3vw;
+    }

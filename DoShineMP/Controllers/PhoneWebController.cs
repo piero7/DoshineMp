@@ -10,9 +10,8 @@ namespace DoShineMP.Controllers
 {
     public class PhoneWebController : Controller
     {
+
         #region 参数
-
-
         private WechatUserHelper wuser = new WechatUserHelper();
         private WechatHelper wh = new WechatHelper();
         private PartnerHelper partner = new PartnerHelper();
@@ -45,10 +44,10 @@ namespace DoShineMP.Controllers
                 if (!string.IsNullOrEmpty(code))
                 {
                     openid = WechatHelper.GetOpenidByCode(code);
-                    var user = WechatHelper.CheckOpenid(openid);
-                    if (WechatHelper.CheckUser(user) == null)
+                    var user = wuser.GetUserInfo(openid);
+                    if (user.UserInfo == null)
                     {
-                        Response.Redirect(ConfigurationManager.AppSettings["registerweb"]);
+                        WechatHelper.BackForCode("PhoneWeb", "Register", "");
                     }
                     else
                     {
@@ -64,6 +63,7 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "个人中心";
             return View();
         }
+
 
 
 
