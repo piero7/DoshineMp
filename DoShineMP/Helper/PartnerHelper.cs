@@ -20,7 +20,6 @@ namespace DoShineMP.Helper
         /// <param name="address">公司地址</param>
         /// <param name="comPhone">公司电话</param>
         /// <returns></returns>
-        [HttpGet]
         public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
         {
             var db = new ModelContext();
@@ -74,7 +73,7 @@ namespace DoShineMP.Helper
 
             db.SaveChanges();
 
-            LogController.AddLog("Edit patner info .", wuser.PartnerId.ToString(), openid);
+            LogHelper.AddLog("Edit patner info .", wuser.PartnerId.ToString(), openid);
 
             return wuser.PartnerInfo;
 

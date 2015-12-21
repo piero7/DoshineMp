@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoShineMP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,7 +10,11 @@ namespace DoShineMP.Helper
 {
     public class MessageHelper
     {
-        //[HttpGet]
-        
+        public Message AddCustomMessage(string openid, string content, bool isNew, MessageType type, string detailInfo)
+        {
+            var wuser = WechatHelper.CheckOpenid(openid);
+
+            return null;
+        }
     }
 }

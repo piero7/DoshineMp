@@ -104,6 +104,22 @@ namespace DoShineMP.Helper
                      state ?? "");
         }
 
+        /// <summary>
+        /// 获取跳转链接，重新获取Code。一般用于没有获取到用户Code。
+        /// </summary>
+        /// <param name="controllerName">控制器名</param>
+        /// <param name="actionName">方法名</param>
+        /// <param name="state">需要添加的参数</param>
+        /// <returns></returns>
+        public static string BackForCode(string controllerName, string actionName, string state)
+        {
+            string url = "/" + controllerName + "/" + actionName;
+            return string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri=P{1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect",
+                     System.Configuration.ConfigurationManager.AppSettings["appid"],
+                     System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + url,
+                     state ?? "");
+        }
+
 
         /// <summary>
         /// 获取AccessToken
@@ -291,7 +307,7 @@ namespace DoShineMP.Helper
         /// 检查用户的openid，若不存在则添加并获取用户信息。
         /// </summary>
         /// <param name="openid"></param>
-        /// <returns></returns>
+        /// <returns>111</returns>
         public static WechatUser CheckOpenid(string openid)
         {
             var db = new ModelContext();

@@ -10,7 +10,6 @@ namespace DoShineMP.Helper
 {
     public class LogHelper
     {
-        //[HttpGet]
         public static ActiveLog AddLog(string option, string remaeks, string openid)
         {
             var db = new ModelContext();

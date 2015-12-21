@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201512201156262_create.Designer.cs">
       <DependentUpon>201512201156262_create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512210757081_addmsgContent.cs" />
+    <Compile Include="Migrations\201512210757081_addmsgContent.Designer.cs">
+      <DependentUpon>201512210757081_addmsgContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
@@ -283,6 +287,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201512201156262_create.resx">
       <DependentUpon>201512201156262_create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512210757081_addmsgContent.resx">
+      <DependentUpon>201512210757081_addmsgContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

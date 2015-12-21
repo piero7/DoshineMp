@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DoShineMP.Models
 {
-    class Message
+    public class Message
     {
         [Key]
         public int MessageId { get; set; }
@@ -36,6 +36,7 @@ namespace DoShineMP.Models
         public string IsReply { get; set; }
 
         public int? ReplyMessageId { get; set; }
+
         public Message()
         {
             this.CreateDate = DateTime.Now;
