@@ -37,6 +37,8 @@ namespace DoShineMP.Models
 
         public int? ReplyMessageId { get; set; }
 
+        public string IpStr { get; set; }
+
         public Message()
         {
             this.CreateDate = DateTime.Now;

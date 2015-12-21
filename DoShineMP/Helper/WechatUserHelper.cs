@@ -15,11 +15,8 @@ namespace DoShineMP.Helper
         {
             var db = new ModelContext();
             //var temn = db.TerminalSet.FirstOrDefault(item => item.Name == System.Configuration.ConfigurationManager.AppSettings["termailname"]);
-            var user = db.WechatUserSet.FirstOrDefault(item => item.OpenId == openid);
-            if (user == null)
-            {
-                return null;
-            }
+            var usr = WechatHelper.CheckOpenid(openid);
+
 
             UserInfo ui = new UserInfo
             {
@@ -38,33 +35,30 @@ namespace DoShineMP.Helper
             //});
 
 
-            user.UserInfo = ui;
+            usr.UserInfo = ui;
 
             db.SaveChanges();
             LogHelper.AddLog("Regist in Doshine wechat service", "", openid);
-            return user;
+            return usr;
         }
 
         public WechatUser EditUserInfo(string openid, string realName, string phoneNumber)
         {
             var db = new ModelContext();
-            var wusr = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.OpenId == openid);
-            if (wusr == null)
+            var usr = WechatHelper.CheckOpenid(openid);
+            usr = WechatHelper.CheckUser(usr);
+            if (usr.UserInfoId == null || usr.UserInfoId == 0 || usr.UserInfo == null)
             {
                 return null;
             }
 
-            if (wusr.UserInfo == null)
-            {
-                return null;
-            }
 
-            wusr.UserInfo.Name = realName;
-            wusr.UserInfo.PhoneNumber = phoneNumber;
+            usr.UserInfo.Name = realName;
+            usr.UserInfo.PhoneNumber = phoneNumber;
             db.SaveChanges();
 
             LogHelper.AddLog("Edit infomation ", "", openid);
-            return wusr;
+            return usr;
         }
 
         /// <summary>
