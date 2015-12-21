@@ -6,124 +6,124 @@
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/sign-in.css" rel="stylesheet" />
 }
-<div class="signin">
-    <div class="signin-content">
-        <h1 class='signin-title'>注册桑田账号</h1>
-        <ul class="sigin-play">
-            <li>
-                <input type="text" class="signin-tel" id="RealName" placeholder="请输入姓名">
-                <span class='Error'>请输入姓名</span>
-            </li>
-            <li>
-                <input type="text" class="signin-tel" id="PhoneName" placeholder="请输入手机号">
-                <span class='Error'>请输入手机号码</span>
-            </li>
-            <li style="overflow:hidden;">
-                <input type="text" class="signin-werfy" id="code2" placeholder='图片验证码'>
-                <span class='Error'>请输入图片验证码</span>
-                <div class="werfy-img">
-                    <div id="vCode2" style="width:100px; height: 40px; border: 0px solid #ccc; display: inline-block;"></div>
-                </div>
-            </li>
-            <li>
-                <div class="signin-btn" id="signin-btn">立即注册</div>
-            </li>
-        </ul>
-        <p class="msg">点击“立即注册”，表示您同意并愿意遵守</p>
-        <p class="msg">桑田<a href="#">用户协议</a> 和 <a href="#">隐私政策</a></p>
+    <div class="signin">
+        <div class="signin-content">
+            <h1 class='signin-title'>注册桑田账号</h1>
+            <ul class="sigin-play">
+                <li>
+                    <input type="text" class="signin-tel" id="RealName" placeholder="请输入姓名">
+                    <span class='Error'>请输入姓名</span>
+                </li>
+                <li>
+                    <input type="text" class="signin-tel" id="PhoneName" placeholder="请输入手机号">
+                    <span class='Error'>请输入手机号码</span>
+                </li>
+                <li style="overflow:hidden;">
+                    <input type="text" class="signin-werfy" id="code2" placeholder='图片验证码'>
+                    <span class='Error'>请输入图片验证码</span>
+                    <div class="werfy-img">
+                        <div id="vCode2" style="width:100px; height: 40px; border: 0px solid #ccc; display: inline-block;"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="signin-btn" id="signin-btn">立即注册</div>
+                </li>
+            </ul>
+            <p class="msg">点击“立即注册”，表示您同意并愿意遵守</p>
+            <p class="msg">桑田<a href="#">用户协议</a> 和 <a href="#">隐私政策</a></p>
 
+        </div>
     </div>
-</div>
 
 
 
-@section scripts{
-    <script src="~/Scripts/Commons.js"></script>
-    <!-- //  图片验证码 js -->
-    @*<script type="text/javascript" src="js/code.js"></script>*@
-    <script type="text/javascript">
-        window.onload = function () {
-            // 正则验证
-            var Play = document.getElementById('PhoneName');
-            var Ipu = Play.getElementsByTagName('input');
-            var Ipulength = Ipu.length;
-            console.log(Ipu)
-            for (var i = 0; i < Ipulength; i++) {
-                // Ipu[0].addEventListener('onfocus', werfyhanlder)  这样绑定没有
-                Ipu[i].index = i;
-                Ipu[i].onblur = function () {
-                    console.log(this.index)
-                    if (this.index == 0) {
-                        checkMobile(this.value, this)
+    @section scripts{
+        <script src="~/Scripts/Commons.js"></script>
+        <!-- //  图片验证码 js -->
+        @*<script type="text/javascript" src="js/code.js"></script>*@
+        <script type="text/javascript">
+            window.onload = function () {
+                // 正则验证
+                var Play = document.getElementById('PhoneName');
+                var Ipu = Play.getElementsByTagName('input');
+                var Ipulength = Ipu.length;
+                console.log(Ipu)
+                for (var i = 0; i < Ipulength; i++) {
+                    // Ipu[0].addEventListener('onfocus', werfyhanlder)  这样绑定没有
+                    Ipu[i].index = i;
+                    Ipu[i].onblur = function () {
+                        console.log(this.index)
+                        if (this.index == 0) {
+                            checkMobile(this.value, this)
+                        }
                     }
                 }
+
+                var werfyhanlder = function () {
+                    console.log(1)
+
+
+                }
+
+                var checkMobile = function (s, b) {
+                    var regu = /^[1][0-9]{10}$/;
+                    var re = new RegExp(regu);
+                    if (re.test(s)) {
+                        b.className = 'signin-tel'
+                        b.nextElementSibling.style.display = 'none'
+                        return true;
+                    } else {
+                        b.className = 'signin-tel current'
+                        b.nextElementSibling.style.display = 'block'
+                        return false;
+                    }
+                }
+
+                //  图片验证码
+                //var container1 = document.getElementById("vCode1");
+                //var code1 = new vCode(container1);
+                //document.getElementById("btn1").addEventListener("click", function () {
+                //    alert(code1.verify(document.getElementById("code1").value));
+                //}, false);
+                //var container2 = document.getElementById("vCode2");
+                //var code2 = new vCode(container2, {
+                //    len: 5,
+                //    bgColor: "#444444",
+                //    colors: [
+                //        "#DDDDDD",
+                //        "#DDFF77",
+                //        "#77DDFF",
+                //        "#99BBFF",
+                //        //"#7700BB",
+                //        "#EEEE00"
+                //    ]
+                //});
+                //document.getElementById("btn2").addEventListener("click", function () {
+                //    alert(code2.verify(document.getElementById("code2").value));
+                //}, false);
             }
 
-            var werfyhanlder = function () {
-                console.log(1)
-
-
-            }
-
-            var checkMobile = function (s, b) {
-                var regu = /^[1][0-9]{10}$/;
-                var re = new RegExp(regu);
-                if (re.test(s)) {
-                    b.className = 'signin-tel'
-                    b.nextElementSibling.style.display = 'none'
-                    return true;
-                } else {
-                    b.className = 'signin-tel current'
-                    b.nextElementSibling.style.display = 'block'
+            $('#signin-btn').click(function () {
+                var code = $.getUrlParam('code');
+                var RealName = $('#RealName').val();
+                var PhoneNumber = $('#PhoneName').val();
+                if (RealName == null || PhoneName == null) {
+                    alert('姓名、手机号必填！')
                     return false;
                 }
-            }
-
-            //  图片验证码
-            //var container1 = document.getElementById("vCode1");
-            //var code1 = new vCode(container1);
-            //document.getElementById("btn1").addEventListener("click", function () {
-            //    alert(code1.verify(document.getElementById("code1").value));
-            //}, false);
-            //var container2 = document.getElementById("vCode2");
-            //var code2 = new vCode(container2, {
-            //    len: 5,
-            //    bgColor: "#444444",
-            //    colors: [
-            //        "#DDDDDD",
-            //        "#DDFF77",
-            //        "#77DDFF",
-            //        "#99BBFF",
-            //        //"#7700BB",
-            //        "#EEEE00"
-            //    ]
-            //});
-            //document.getElementById("btn2").addEventListener("click", function () {
-            //    alert(code2.verify(document.getElementById("code2").value));
-            //}, false);
-        }
-
-        $('#signin-btn').click(function () {
-            var code = $.getUrlParam('code');
-            var RealName = $('#RealName').val();
-            var PhoneNumber = $('#PhoneName').val();
-            if (RealName == null || PhoneName == null) {
-                alert('姓名、手机号必填！')
-                return false;
-            }
-            $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: code }, function (data, status) {
-                if (status === 'success') {
-                    if (data.msg == 'Y') {
-                        alert("注册成功!");
-                        window.location.href = "@Url.Action("HomePage","PhoneWeb")";
+                $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: code }, function (data, status) {
+                    if (status === 'success') {
+                        if (data.msg == 'Y') {
+                            alert("注册成功!");
+                            window.location.href = "@Url.Action("HomePage","PhoneWeb")";
+                        }
+                        else
+                            alert("注册失败！");
                     }
-                    else
-                        alert("注册失败！");
-                }
+                })
             })
-        })
 
 
 
-    </script>
-}
+        </script>
+    }

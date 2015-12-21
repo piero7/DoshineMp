@@ -26,9 +26,9 @@ namespace DoShineMP.Controllers
         /// 注册
         /// </summary>
         /// <returns></returns>
-        public ActionResult Register()
+        public ActionResult Register(string code)
         {
-
+            //ViewBag.openid = WechatHelper.GetOpenidByCode(code);
             ViewBag.Title = "桑田账号-注册";
             return View();
         }
@@ -128,10 +128,11 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                if (!(string.IsNullOrEmpty(RealName) && string.IsNullOrEmpty(PhoneNumber)))
+                if (!string.IsNullOrEmpty(RealName) && !string.IsNullOrEmpty(PhoneNumber))
                 {
+                    string openid = "sdjisjdijsdsijd";
                     //逻辑代码
-                    if (wuser.Regiet(RealName, PhoneNumber, WechatHelper.GetOpenidByCode(code)) != null)
+                    if (wuser.Regiet(RealName, PhoneNumber, openid) != null)
                     {
                         return Json(new { msg = "Y" });
                     }
