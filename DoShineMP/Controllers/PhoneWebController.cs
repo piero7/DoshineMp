@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoShineMP.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,9 @@ namespace DoShineMP.Controllers
         #region 参数
 
 
-        private WechatUserController wuser = new WechatUserController();
-        private PartnerController partner = new PartnerController();
+        private WechatUserHelper wuser = new WechatUserHelper();
+        private WechatHelper wh = new WechatHelper();
+        private PartnerHelper partner = new PartnerHelper();
         private string openid = string.Empty;
 
         #endregion
@@ -63,12 +65,12 @@ namespace DoShineMP.Controllers
         #region JsonResult功能块组
 
         /// <summary>
-        /// 个人注册
+        /// 个人信息注册
         /// </summary>
         /// <param name="RealName">姓名</param>
-        /// <param name="PhoneNumber"></param>
-        /// <param name="code"></param>
-        /// <returns></returns>
+        /// <param name="PhoneNumber">手机号</param>
+        /// <param name="code">微信CODE</param>
+        /// <returns>Y：修改成功；N：修改失败</returns>
         public JsonResult RegisterJson(string RealName, string PhoneNumber, string code)
         {
             try
@@ -97,19 +99,28 @@ namespace DoShineMP.Controllers
         }
 
 
-        /// <summary>
-        /// 个人中心更新
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult CenterUpdateJson(string code, string Phone, string Pwd)
+       /// <summary>
+       /// 个人信息修改
+       /// </summary>
+       /// <param name="RealName">姓名</param>
+       /// <param name="PhoneNumber">手机号</param>
+       /// <param name="code">微信code</param>
+       /// <returns>Y：修改成功；N：修改失败</returns>
+        public JsonResult CenterUpdateJson(string RealName, string PhoneNumber, string code)
         {
             try
             {
-                if (!(string.IsNullOrEmpty(Phone) && string.IsNullOrEmpty(Pwd)))
+                if (!(string.IsNullOrEmpty(RealName) && string.IsNullOrEmpty(PhoneNumber)))
                 {
                     //逻辑代码
-
-                    return Json(new { msg = "Y" });
+                    if (wuser.EditUserInfo(WechatHelper.GetOpenidByCode(code), RealName, PhoneNumber) != null)
+                    {
+                        return Json(new { msg = "Y" });
+                    }
+                    else
+                    {
+                        return Json(new { msg = "N" });
+                    }
                 }
                 else
                 {
@@ -191,7 +202,6 @@ namespace DoShineMP.Controllers
 
 
         #endregion
-
 
         #endregion
 

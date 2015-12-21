@@ -76,7 +76,7 @@ namespace DoShineMP.Helper
 
             db.SaveChanges();
 
-            LogController.AddLog("Edit patner info .", wuser.PartnerId.ToString(), openid);
+            LogHelper.AddLog("Edit patner info .", wuser.PartnerId.ToString(), openid);
 
             return wuser.PartnerInfo;
 
