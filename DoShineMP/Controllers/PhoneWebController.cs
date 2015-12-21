@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DoShineMP.Controllers;
 
-namespace WeiXInWeb.Controllers
+namespace DoShineMP.Controllers
 {
     public class PhoneWebController : Controller
     {
@@ -24,32 +23,11 @@ namespace WeiXInWeb.Controllers
         /// 注册
         /// </summary>
         /// <returns></returns>
-        public ActionResult Register(string code, string userName, string userPhone, string userPwd)
+        public ActionResult Register()
         {
-
-            openid = WechatHelper.GetOpenidByCode(code);
-
-            if (!(string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(userPhone) && string.IsNullOrEmpty(userPwd)))
-            {
-                var WechatUser = wuser.Regiet(userName, userPhone, openid);
-                ViewBag.Text = WechatUser != null ? "添加成功！" : "添加失败！";
-            }
             ViewBag.Title = "注册";
             return View();
         }
-
-
-        /// <summary>
-        /// 登录（先忽略）
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Login(string userPhone, string userPwd)
-        {
-
-            ViewBag.Title = "登录";
-            return View();
-        }
-
 
         /// <summary>
         /// 个人中心

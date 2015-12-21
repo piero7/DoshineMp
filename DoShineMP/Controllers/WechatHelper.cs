@@ -13,6 +13,7 @@ namespace DoShineMP.Controllers
 {
     public class WechatHelper
     {
+
         /// <summary>
         /// 发送POST包，获得回复。
         /// </summary>
