@@ -221,11 +221,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\codeIcon.png" />
+    <Content Include="Images\error.png" />
+    <Content Include="Images\icodepic.PNG" />
+    <Content Include="Images\icode_bg.PNG" />
+    <Content Include="Images\regsiter_bg.PNG" />
     <Content Include="Images\touxiang.jpg" />
+    <Content Include="Images\userIcon.png" />
+    <Content Include="Images\user_bg.PNG" />
+    <Content Include="Images\user_phonebg.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\DoShineMP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Commons.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -239,6 +249,8 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\PersonalCenter.css" />
     <Content Include="Styles\Register.css" />
+    <Content Include="Styles\rest.css" />
+    <Content Include="Styles\sign-in.css" />
     <Content Include="Views\PhoneWeb\PersonalCenter.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -276,6 +288,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PhoneWeb\Register.cshtml" />
     <Content Include="Views\PhoneWeb\Repair.cshtml" />
+    <Content Include="Views\PhoneWeb\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

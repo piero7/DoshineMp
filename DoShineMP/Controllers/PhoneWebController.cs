@@ -28,7 +28,8 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Register()
         {
-            ViewBag.Title = "注册";
+
+            ViewBag.Title = "桑田账号-注册";
             return View();
         }
 
@@ -38,8 +39,12 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult PersonalCenter(string code)
         {
+            if (!string.IsNullOrEmpty(code))
+            {
+                openid = WechatHelper.GetOpenidByCode(code);
 
-            openid = WechatHelper.GetOpenidByCode(code);
+
+            }
             //提取我的资料
             ViewBag.Title = "个人中心";
             return View();
@@ -55,8 +60,11 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                openid = WechatHelper.GetOpenidByCode(code);
-                ViewBag.User = WechatHelper.CheckOpenid(openid);
+                if (!string.IsNullOrEmpty(code))
+                {
+                    openid = WechatHelper.GetOpenidByCode(code);
+                    ViewBag.User = WechatHelper.CheckOpenid(openid);
+                }
             }
             catch (Exception e)
             {
@@ -77,8 +85,9 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                //历史保修记录
-                ViewBag.RepairList = repairHelper.GetHistoryRepair(WechatHelper.GetOpenidByCode(code));
+                if (!string.IsNullOrEmpty(code))
+                    //历史保修记录
+                    ViewBag.RepairList = repairHelper.GetHistoryRepair(WechatHelper.GetOpenidByCode(code));
             }
             catch (Exception e)
             {

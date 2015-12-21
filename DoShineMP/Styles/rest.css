@@ -1,0 +1,56 @@
+/* 
+* @Author: 晴
+* @Date:   2015-12-15 10:47:00
+* @Last Modified by:   晴
+* @Last Modified time: 2015-12-21 11:40:34
+*/
+@charset "utf-8";  
+* { -webkit-text-size-adjust:none; }  
+/*html4 reset*/  
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {  
+    margin:0;  
+    padding:0;   
+}
+body{
+    font-family:Arial,Verdana,"微软雅黑","宋体","Lucida Grande"5; 
+}  
+fieldset, img {  
+    border:0 none;  
+}  
+address, caption, cite, code, dfn, em, th, var, b,h1,h2,h3 {  
+    font-style:normal;  
+    font-weight:normal;  
+}  
+ol, ul, li {  
+    list-style-type:none  
+}  
+q:before, q:after {  
+    content:'';  
+}  
+abbr, acronym {  
+    border:0;  
+    font-variant:normal;  
+}  
+/*html5 reset*/  
+header, footer, section, nav, menu, details, hgroup, figure, figcaption, article, aside {  
+    margin:0;  
+    padding:0;  
+    display:block;  
+}  
+
+/* 去除iPhone中默认的input样式 */
+input[type="submit"],
+
+input[type="reset"],
+
+input[type="button"],
+
+input{-webkit-appearance:none; resize: none;}
+.clear {clear:both;font-size:0;height:0;line-height:0;overflow:hidden;}  
+.clearfix:after {clear:both;content:" ";display:block;font-size:0;height:0;visibility:hidden;}  
+.clearfix{zoom:1;}  
+html,
+body{
+    width:100%;
+    height:100%;
+}

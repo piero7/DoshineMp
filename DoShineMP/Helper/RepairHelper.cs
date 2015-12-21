@@ -47,7 +47,6 @@ namespace DoShineMP.Helper
             var wuser = WechatHelper.CheckOpenid(openid);
             return null;
 
-
         }
     }
 }
