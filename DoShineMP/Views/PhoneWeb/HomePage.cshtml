@@ -14,8 +14,8 @@
             </a>
         </div>
         <div class="media-body">
-            <h4 class="media-heading">昵称昵称</h4>
-            <span>手机号:13911111111</span>
+            <h4 class="media-heading">@ViewBag.User.UserInfo.Name</h4>
+            <span>手机号:@ViewBag.User.UserInfo.PhoneNumber</span>
         </div>
     </div>
 </div>
@@ -25,17 +25,17 @@
     <ul class="list-group">
         <li class="list-group-item">
             <span class="glyphicon  glyphicon-star-empty"></span>
-            个人信息
+            <a href="@Url.Action("PersonalCenter","Home")">个人信息</a>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
         <li class="list-group-item">
             <span class="glyphicon  glyphicon-thumbs-up"></span>
-            我的保修
+            <a href="@Url.Action("Repair", "Home")">我的报修</a>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
         <li class="list-group-item">
             <span class="glyphicon  glyphicon-star-empty"></span>
-            我要留言
+            <a href="#">我要留言</a>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
     </ul>
@@ -45,7 +45,7 @@
     <ul class="list-group">
         <li class="list-group-item">
             <span class="glyphicon  glyphicon-warning-sign"></span>
-            我的公司
+            <a href="#">公司介绍</a>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
     </ul>

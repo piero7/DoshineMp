@@ -1,0 +1,123 @@
+/* 
+* @Author: 晴
+* @Date:   2015-12-21 15:16:44
+* @Last Modified by:   晴
+* @Last Modified time: 2015-12-21 17:25:29
+*/
+body{
+	font-family: 'Microsoft YaHei';
+	background-color:white;
+}
+/*.keep-content-t{
+	padding-top:40px;
+
+}*/
+.keep-title{
+	font-size: 30px;
+	color:block;
+	width:100%;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.keep-textarea{
+    padding: 10px 10px 0 10px;
+}
+.keep-textarea textarea{
+	width: 100%;
+	height:160px;
+	background-color: white;
+	border-radius: 5px;
+	border-color:#bdbdbd;
+	resize:none;
+	border:0;
+}
+.operate{
+	border-top:1px solid #bdbdbd;
+	border-bottom:1px solid #bdbdbd;
+	height:42px;
+	padding-top: 5px;
+	overflow: hidden;
+	/*display: table;*/
+}
+.operate button{
+	margin-left:20px;
+	padding: 4px 8px;
+	border:none;
+	border-radius: 2px;
+	outline: none;
+}
+.commit{
+	color: white;
+	/*display: table-cell;*/
+	background: #FFC63C;
+	vertical-align: middle;
+}
+.operate .countermand{
+	border:1px solid #bdbdbd;
+	background: white;
+}
+.go-photo{
+	overflow: hidden;
+	padding:10px 10px 10px 20px;
+}
+.add-photo{
+	width:60px;
+	height:60px;
+	background: white;
+	border:1px dashed #ccc;
+}
+/*new keep css*/
+.keep-content-b{
+	/*padding-top:30px;*/
+}
+.new-title {
+	position: relative;
+	/*margin-top:40px;*/
+	height:55px;
+	margin-bottom:0px;
+	border-top:1px solid #aaa;
+	border-bottom:1px solid #aaa;
+}
+.new-title span{
+	position: absolute;
+	left:0;
+	bottom:-1px;
+	display: block;
+	padding:10px 0px;
+	font-size: 18px;
+	text-align: center;
+	width:130px;
+	border-bottom:2px solid #4ca329;
+}
+.logo{
+	width:80px;
+	height:80px;
+	background-color:#ccc;
+}
+.content-title-t{
+	overflow: hidden;
+}
+.new-keep ul{
+	background-color: #ececec;
+}
+.new-keep ul li{
+	padding:20px;
+	border-bottom: 1px solid #bdbdbd;
+	margin-bottom:20px;
+	background-color: white;
+}
+.content-title-t .w8{
+	/*width: 70%;*/
+	padding-top:10px;
+	padding-left: 20px;
+}
+.content-title-b{
+	padding-top:20px;
+}
+.content-title-b p{
+	width:100%;
+	white-space:nowrap;
+	 text-overflow:ellipsis; 
+	 -o-text-overflow:ellipsis; 
+	 overflow:hidden;
+}

@@ -19,14 +19,16 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="pull-left paneltitle">昵称</div>
-            <div class="pull-right ">昵称内容斯蒂芬</div>
+            <div class="pull-right ">@ViewBag.user.NickName</div>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="pull-left paneltitle">性别</div>
-            <div class="pull-right">男</div>
+            <div class="pull-right">
+                @ViewBag.user.Sex
+            </div>
         </div>
     </div>
 </div>
@@ -81,9 +83,6 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 <div class="col-xs-12 marginB">
@@ -108,8 +107,10 @@
 
             $.post('@Url.Action("ReginPartnerJson","PhoneWeb")', { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
                 if (status == 'success') {
-                    if (data.msg == 'Y')
-                        alert('提交成功!')
+                    if (data.msg == 'Y') {
+                        alert('提交成功!');
+                        window.location.href = "@Url.Action("HomePage","Home")";
+                    }
                     else
                         alert('提交失败!')
                 }

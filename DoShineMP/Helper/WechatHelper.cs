@@ -314,7 +314,7 @@ namespace DoShineMP.Helper
             var db = new ModelContext();
             var user = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.OpenId == openid);
 
-            if (user == null)
+            if (user == null || string.IsNullOrEmpty(user.OpenId))
             {
                 user = new WechatUser { OpenId = openid };
                 db.WechatUserSet.Add(user);

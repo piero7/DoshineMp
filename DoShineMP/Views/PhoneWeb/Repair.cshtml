@@ -2,6 +2,89 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section styles{
+    <link href="~/Styles/rest.css" rel="stylesheet" />
+    <link href="~/Styles/Repair.css" rel="stylesheet" />
+}
 
-<h2>Repair</h2>
+<div class="keep">
+    <div class="keep-in">
+        <div class="keep-content-t clearfix">
+            <div class="keep-textarea">
+                <textarea placeholder="请输入您要保修的内容" id="keep"></textarea>
+            </div>
+            <div class="col-xs-12 operate ">
+                <button type="button" class="commit pull-right" id="btn">提交</button>
+                <button type="button" class="countermand pull-right" id="btnqx">取消</button>
+            </div>
 
+            <div class="go-photo">
+                <input type="button" class="add-photo">
+            </div>
+        </div>
+        <div class="keep-content-b">
+            <p class="panel panel-default new-title">
+                <span>最新报修消息</span>
+            </p>
+            <div class="panel panel-default new-keep">
+                <ul>
+                    <li>
+                        <div class="content-title-t">
+                            <div class="pull-left logo"></div>
+                            <div class="pull-left w8">
+                                <p>XXXXXXXXXX公司</p>
+                                <b>2015-11-16</b>
+                            </div>
+                        </div>
+                        <div class="content-title-b">
+                            <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-title-t">
+                            <div class="pull-left logo"></div>
+                            <div class="pull-left w8">
+                                <p>XXXXXXXXXX公司</p>
+                                <b>2015-11-16</b>
+                            </div>
+                        </div>
+                        <div class="content-title-b">
+                            <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-title-t">
+                            <div class="pull-left logo"></div>
+                            <div class="pull-left w8">
+                                <p>XXXXXXXXXX公司</p>
+                                <b>2015-11-16</b>
+                            </div>
+                        </div>
+                        <div class="content-title-b">
+                            <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Commons.js"></script>
+    <script type="text/javascript">
+        $('#btn').click(function () {
+            var keeptext = $('#keep').val();
+            var code = $.getUrlParam('code');
+
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext }, function (data, status) {
+                if (status == 'success') {
+                    if (data.msg == 'Y') {
+                        alert("提交成功！");
+                    }
+                }
+            })
+        })
+
+    </script>
+}

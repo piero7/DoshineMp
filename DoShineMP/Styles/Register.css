@@ -1,25 +1,17 @@
-﻿body {
+body {
     font-family: 'Microsoft YaHei';
     font-size: 16px;
     font-weight: normal;
-    background-color: #ccc;
-    padding-top: 0;
+    background-color: #eee;
 }
 
+a{
+    color:#ccc;
+    font-family:'Microsoft YaHei';
+    font-weight:600;
+}
 .media-object {
-    width: 20vw;
-}
-
-.media-left {
-    width: 20%;
-    display: inline-block;
-}
-
-.media-body {
-    padding-top: 3%;
-    padding-left: 5%;
-    width: 70%;
-    display: inline-block;
+    width: 80px;
 }
 
 .col-xs-12 {
@@ -53,12 +45,7 @@ h4 {
 .list-group {
     margin-bottom: 0;
 }
-
-.list-group-item {
-    padding-top: 5vw;
-    padding-bottom: 5vw;
+.list-group-item{
+    padding-top:4vw;
+    padding-bottom:4vw;
 }
-
-    .list-group-item span {
-        margin-right: 3vw;
-    }

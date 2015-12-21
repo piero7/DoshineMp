@@ -39,7 +39,7 @@ namespace DoShineMP.Helper
             //usr.UserInfoId = ui.UserInfoId;
 
             db.SaveChanges();
-            db.WechatUserSet.Find(usr.WechatUserId).UserInfoId =ui.UserInfoId;
+            db.WechatUserSet.Find(usr.WechatUserId).UserInfoId = ui.UserInfoId;
             db.SaveChanges();
 
             LogHelper.AddLog("Regist in Doshine wechat service", "", openid);

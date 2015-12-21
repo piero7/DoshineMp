@@ -1,0 +1,96 @@
+/* 
+* @Author: 晴
+* @Date:   2015-12-21 17:46:12
+* @Last Modified by:   晴
+* @Last Modified time: 2015-12-21 21:41:50
+*/
+body{
+	font-family: 'Microsoft YaHei';
+	background-color:#ececec;
+}
+.Mymessage{
+	overflow: hidden;
+	padding: 10px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+.Mymessage .logo{
+	display: block;
+	width: 60px;
+    height: 60px;
+    background-color: green;
+    border-radius: 50%;
+    margin-top:5%;
+}
+.Mymessage-name{
+	padding:10px 0px 20px 10px;
+}
+.Mymessage-name p{
+	font-size: 18px;
+	margin:0;
+}
+.Mymessage-name .tel{
+	font-size: 14px;
+	color:#898989;
+}
+.andmi{
+	position: relative;
+}
+.samil{
+	/*display: block;*/
+	position: absolute;
+	top:10px;
+	right:22%;
+	width:28px;
+	height:28px;
+	background: url(../Images/xing.png) no-repeat;
+}
+.andmi b{
+	display: block;
+	padding-top:55px;
+}
+/**/
+.Mymessage-list li{
+	/*margin-bottom:20px;*/
+	/*line-height: 28px;*/
+}
+.icon{
+	position: absolute;
+    top: 8px;
+    display: inline-block;
+    /*font-family: 'Glyphicons Halflings';*/
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    width:28px;
+    height:28px;
+}
+.Mymessage-list p{
+	padding-left:50px;
+	padding-top:5px;
+	margin: 0 0 5px;
+}
+.Mymessage-icon1{
+	background: url(../Images/usertwo.png) no-repeat;
+}.Mymessage-icon2{
+	background: url(../Images/bx.png) no-repeat;
+}.Mymessage-icon3{
+	background: url(../Images/information.png) no-repeat;
+}.Mymessage-icon4{
+	background: url(../Images/por.png) no-repeat;
+}.Mymessage-icon5{
+	background: url(../Images/grade.png) no-repeat;
+}.Mymessage-icon6{
+	background: url(../Images/location.png) no-repeat;
+}.Mymessage-icon7{
+	background: url(../Images/qiu.png) no-repeat;
+}
+/*覆盖 bootstart*/
+.glyphicon{
+	position: absolute;
+	right:0px;
+	top:20px;
+}
+.marginB{
+	margin-bottom: 20px;
+}
