@@ -45,8 +45,34 @@ namespace DoShineMP.Helper
         public IEnumerable<Repair> GetHistoryRepair(string openid)
         {
             var wuser = WechatHelper.CheckOpenid(openid);
+            var user = WechatHelper.CheckUser(wuser);
+            //获取config中记录的需要现实的历史纪录数量。
+            int tCount = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["historyrepaircount"]);
+            if (user == null)
+            {
             return null;
+            }
 
+            var db = new ModelContext();
+
+            var ownhis = (
+                          from r in db.RepairSet
+                          where r.UserId == user.UserInfoId
+                          orderby r.CreateDate
+                          select r).ToList();
+
+            var rCount = tCount - ownhis.Count();
+            if (rCount > 0)
+            {
+                ownhis.AddRange(
+                    (
+                    from r in db.RepairSet
+                    orderby r.RepairId descending
+                    select r).Take(rCount).ToList()
+                    );
+            }
+
+            return ownhis;
         }
     }
 }
