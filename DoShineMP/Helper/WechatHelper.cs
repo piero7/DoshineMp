@@ -99,7 +99,7 @@ namespace DoShineMP.Helper
         public static string BackForCode(System.Web.Routing.RouteValueDictionary data, string state)
         {
             string url = "/" + data["controller"] + "/" + data["action"];
-            return string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri=P{1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect",
+            return string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect",
                      System.Configuration.ConfigurationManager.AppSettings["appid"],
                      System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + url,
                      state ?? "");
@@ -115,7 +115,7 @@ namespace DoShineMP.Helper
         public static string BackForCode(string controllerName, string actionName, string state)
         {
             string url = "/" + controllerName + "/" + actionName;
-            return string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri=P{1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect",
+            return string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect",
                      System.Configuration.ConfigurationManager.AppSettings["appid"],
                      System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + url,
                      state ?? "");

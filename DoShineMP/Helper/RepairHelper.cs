@@ -13,22 +13,20 @@ namespace DoShineMP.Helper
         public Repair AddRepair(string openid, string content)
         {
             var db = new ModelContext();
-            var wuser = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.OpenId == openid);
-            if (wuser == null)
+            var usr = WechatHelper.CheckOpenid(openid);
+            usr = WechatHelper.CheckUser(usr);
+            if (usr.UserInfoId == null || usr.UserInfoId == 0 || usr.UserInfo == null)
             {
                 return null;
             }
-            if (wuser.UserInfo == null)
-            {
-                return null;
-            }
+
 
             var rep = new Repair
             {
                 Contenet = content,
                 CreateDate = DateTime.Now,
                 Status = RepairStatus.Apply,
-                UserId = wuser.UserInfoId,
+                UserId = usr.UserInfoId,
             };
 
             db.RepairSet.Add(rep);

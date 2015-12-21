@@ -13,11 +13,9 @@ namespace DoShineMP.Helper
         public static ActiveLog AddLog(string option, string remaeks, string openid)
         {
             var db = new ModelContext();
-            var usr = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.OpenId == openid);
-            if (usr == null)
-            {
-                return null;
-            }
+
+            var usr = WechatHelper.CheckOpenid(openid);
+            usr = WechatHelper.CheckUser(usr);
             if (usr.UserInfoId == null || usr.UserInfoId == 0 || usr.UserInfo == null)
             {
                 return null;

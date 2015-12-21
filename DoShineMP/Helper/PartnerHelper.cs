@@ -23,28 +23,26 @@ namespace DoShineMP.Helper
         public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
         {
             var db = new ModelContext();
-            var wuser = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.OpenId == openid);
-            if (wuser == null)
+            var usr = WechatHelper.CheckOpenid(openid);
+            usr = WechatHelper.CheckUser(usr);
+            if (usr.UserInfoId == null || usr.UserInfoId == 0 || usr.UserInfo == null)
             {
                 return null;
             }
-            if (wuser.UserInfo == null)
-            {
-                return null;
-            }
+
 
             var pat = new Partner
             {
                 Address = address,
                 CompanyName = comName,
                 CreateDate = DateTime.Now,
-                UserId = wuser.UserInfoId,
+                UserId = usr.UserInfoId,
                 CompanyPhone = comPhone,
                 Point = 0,
                 Type = type,
             };
             db.PartnerSet.Add(pat);
-            wuser.PartnerInfo = pat;
+            usr.PartnerInfo = pat;
             db.SaveChanges();
             LogHelper.AddLog("Regist as a patner.", pat.PartnerId.ToString(), openid);
 
@@ -57,27 +55,25 @@ namespace DoShineMP.Helper
         public Partner EditPartnerInfo(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
         {
             var db = new ModelContext();
-            var wuser = db.WechatUserSet.Include("PartnerInfo").FirstOrDefault(item => item.OpenId == openid);
-            if (wuser == null)
-            {
-                return null;
-            }
-            if (wuser.PartnerId == null)
+            var usr = WechatHelper.CheckOpenid(openid);
+            usr = WechatHelper.CheckUser(usr);
+            if (usr.UserInfoId == null || usr.UserInfoId == 0 || usr.UserInfo == null)
             {
                 return null;
             }
 
-            wuser.PartnerInfo.RealName = realname;
-            wuser.PartnerInfo.CompanyName = comName;
-            wuser.PartnerInfo.Type = type;
-            wuser.PartnerInfo.Address = address;
-            wuser.PartnerInfo.CompanyPhone = comPhone;
+
+            usr.PartnerInfo.RealName = realname;
+            usr.PartnerInfo.CompanyName = comName;
+            usr.PartnerInfo.Type = type;
+            usr.PartnerInfo.Address = address;
+            usr.PartnerInfo.CompanyPhone = comPhone;
 
             db.SaveChanges();
 
-            LogHelper.AddLog("Edit patner info .", wuser.PartnerId.ToString(), openid);
+            LogHelper.AddLog("Edit patner info .", usr.PartnerId.ToString(), openid);
 
-            return wuser.PartnerInfo;
+            return usr.PartnerInfo;
 
         }
     }
