@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="~/Styles/PersonalCenter.css" rel="stylesheet" />
+}
+<div class="col-xs-12 marginB">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle" style="padding-top: 9%;">头像</div>
+            <div class="pull-right ">
+                <img src="~/Images/touxiang.jpg" class="img-rounded" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">昵称</div>
+            <div class="pull-right ">昵称内容斯蒂芬</div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">性别</div>
+            <div class="pull-right">男</div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 marginB">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">类型</div>
+            <div class="pull-right panelbody">
+                <select class="form-control" id="type">
+                    <option value="Sub_contractor">经销商</option>
+                    <option value="Supplier">供应商</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">公司名</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="comName" id="comName" value="" placeholder="请输入公司名" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">姓名</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">公司地址</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="comAddress" id="comAddress" value="" placeholder="请输入公司地址" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">公司电话</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="comPhone" id="comPhone" value="" placeholder="请输入公司电话" />
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="col-xs-12 marginB">
+    <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Commons.js"></script>
+    <script type="text/javascript">
+        $('#tijiao').click(function () {
+            var type = $('#type').val();
+            var comName = $('#comName').val();
+            var realName = $('#realName').val();
+            var comAddress = $('#comAddress').val();
+            var comPhone = $('#comPhone').val();
+            var code = $.getUrlParam('code');
+            if (comName == null && realName == null && phoneNumber && null) {
+                alert('没有数据修改！');
+                return false;
+            }
+
+
+            $.post('@Url.Action("ReginPartnerJson","PhoneWeb")', { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
+                if (status == 'success') {
+                    if (data.msg == 'Y')
+                        alert('提交成功!')
+                    else
+                        alert('提交失败!')
+                }
+            })
+        })
+    </script>
+}

@@ -1,0 +1,93 @@
+﻿body {
+    font-family: 'Microsoft YaHei';
+    font-size: 16px;
+    color: #3e3e3e;
+    font-weight: 500;
+    background-color: #eee;
+    padding-top: 0;
+}
+
+.col-xs-12 {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    /*margin-bottom:10%;*/
+}
+
+.panel {
+    margin: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+input {
+    border: none;
+    outline: none;
+    overflow:hidden;
+}
+
+select {
+    border: none;
+    outline:none;
+    font-size:16px;
+    color:#3e3e3e;
+}
+
+.form-control{
+    border:none;
+}
+.form-control option{
+    font-size:16px;
+    color:#3e3e3e;
+}
+
+.img-rounded {
+    width: 20vw;
+}
+
+.paneltitle {
+    width: 25%;
+}
+
+.panelbody {
+    text-align: right;
+    width: 70%;
+}
+
+    .panelbody input {
+        width: 100%;
+    }
+
+.panel-body {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.phone {
+    text-align: left;
+}
+
+    .phone > input {
+        width: 65%;
+    }
+
+    .phone > button {
+        width: 30%;
+        text-align: center;
+    }
+
+#tijiao {
+    font-size: 7vw;
+    line-height: 14vw;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.marginB {
+    margin-bottom: 5%;
+}

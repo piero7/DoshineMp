@@ -1,0 +1,48 @@
+﻿body {
+    font-family: 'Microsoft YaHei';
+    font-size: 16px;
+    font-weight: normal;
+    background-color: #ccc;
+    padding-top: 0;
+}
+
+.media-object {
+    width: 20vw;
+}
+
+.col-xs-12 {
+    background-color: white;
+    margin-bottom: 5%;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.touxiag {
+    padding-top: 5vw;
+}
+
+.media {
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+span {
+    font-weight: 500;
+    color: #ccc;
+}
+
+h4 {
+    font-weight: 900;
+}
+
+.list-group {
+    margin-bottom: 0;
+}
+
+.list-group-item {
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+}

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DoShineMP
+namespace WeiXInWeb
 {
     public class BundleConfig
     {

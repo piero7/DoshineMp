@@ -51,6 +51,8 @@ namespace DoShineMP.Helper
             return pat;
         }
 
+
+
         [HttpGet]
         public Partner EditPartnerInfo(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
         {

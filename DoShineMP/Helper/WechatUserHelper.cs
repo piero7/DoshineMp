@@ -11,6 +11,7 @@ namespace DoShineMP.Helper
     public class WechatUserHelper
     {
 
+        [HttpGet]
         public WechatUser Regiet(string realName, string phoneNumber, string openid)
         {
             var db = new ModelContext();
@@ -37,6 +38,7 @@ namespace DoShineMP.Helper
             //    UserId = ui.UserInfoId,
             //});
 
+
             user.UserInfo = ui;
 
             db.SaveChanges();
@@ -44,6 +46,7 @@ namespace DoShineMP.Helper
             return user;
         }
 
+        [HttpGet]
         public WechatUser EditUserInfo(string openid, string realName, string phoneNumber)
         {
             var db = new ModelContext();
@@ -64,22 +67,6 @@ namespace DoShineMP.Helper
 
             LogHelper.AddLog("Edit infomation ", "", openid);
             return wusr;
-        }
-
-        /// <summary>
-        /// 获取用户信息,返回值的UserInfo字段为null则表示用户未注册
-        /// </summary>
-        /// <param name="openid">openid</param>
-        /// <returns>若</returns>
-        public WechatUser GetUserInfo(string openid)
-        {
-            var wuser = WechatHelper.CheckOpenid(openid);
-            var user = WechatHelper.CheckUser(wuser);
-            if (user == null || user.UserInfoId == null)
-            {
-                return wuser;
-            }
-            return user;
         }
 
     }
