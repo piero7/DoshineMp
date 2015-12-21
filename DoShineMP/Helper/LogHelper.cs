@@ -16,12 +16,14 @@ namespace DoShineMP.Helper
 
             var usr = WechatHelper.CheckOpenid(openid);
             usr = WechatHelper.CheckUser(usr);
+            //usr = WechatHelper.CheckUser(usr);
             if (usr.UserInfoId == null || usr.UserInfoId == 0 || usr.UserInfo == null)
             {
                 return null;
             }
 
-            var tmn = db.TerminalSet.FirstOrDefault(item => item.Name == System.Configuration.ConfigurationManager.AppSettings["termailname"]);
+            var tname = System.Configuration.ConfigurationManager.AppSettings["termailname"];
+            var tmn = db.TerminalSet.FirstOrDefault(item => item.Name ==tname);
             usr.UserInfo.LastLoginTerminalId = tmn.TerminalId;
             usr.UserInfo.LastLoginTime = DateTime.Now;
 

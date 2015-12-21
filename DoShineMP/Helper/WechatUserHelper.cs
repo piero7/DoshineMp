@@ -23,7 +23,8 @@ namespace DoShineMP.Helper
                 Name = realName,
                 PhoneNumber = phoneNumber,
                 //LastLoginTerminalId = temn.TerminalId,
-                //LastLoginTime = DateTime.Now
+                LastLoginTime = DateTime.Now,
+                CreateDate = DateTime.Now,
             };
 
             //db.ActiveLogSet.Add(new ActiveLog
@@ -34,10 +35,13 @@ namespace DoShineMP.Helper
             //    UserId = ui.UserInfoId,
             //});
 
-
-            usr.UserInfo = ui;
+            db.UserInfo.Add(ui);
+            //usr.UserInfoId = ui.UserInfoId;
 
             db.SaveChanges();
+            db.WechatUserSet.Find(usr.WechatUserId).UserInfoId =ui.UserInfoId;
+            db.SaveChanges();
+
             LogHelper.AddLog("Regist in Doshine wechat service", "", openid);
             return usr;
         }

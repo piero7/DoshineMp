@@ -316,7 +316,8 @@ namespace DoShineMP.Helper
 
             if (user == null)
             {
-                db.WechatUserSet.Add(new WechatUser { OpenId = openid });
+                user = new WechatUser { OpenId = openid };
+                db.WechatUserSet.Add(user);
                 db.SaveChanges();
                 WechatHelper.GetUserInfo(user);
             }

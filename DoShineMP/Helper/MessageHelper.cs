@@ -28,8 +28,9 @@ namespace DoShineMP.Helper
                 return null;
             }
             //var tmnName = type == MessageType.Service ? System.Configuration.ConfigurationManager.AppSettings["ServerService"] : System.Configuration.ConfigurationManager.AppSettings["DoshineWechatService"];
+            var tmnName =  System.Configuration.ConfigurationManager.AppSettings["DoshineWechatService"];
             var db = new ModelContext();
-            var tmn = db.TerminalSet.FirstOrDefault(item => item.Name == System.Configuration.ConfigurationManager.AppSettings["DoshineWechatService"]);
+            var tmn = db.TerminalSet.FirstOrDefault(item => item.Name == tmnName);
             var msg = new Message
             {
                 Content = content,
@@ -58,7 +59,8 @@ namespace DoShineMP.Helper
         public Message AddServerMessage(string content, string detailInfo, string ipStr)
         {
             var db = new ModelContext();
-            var tmn = db.TerminalSet.FirstOrDefault(item => item.Name == System.Configuration.ConfigurationManager.AppSettings["ServerService"]);
+            var tmnName =  System.Configuration.ConfigurationManager.AppSettings["ServerService"];
+            var tmn = db.TerminalSet.FirstOrDefault(item => item.Name == tmnName);
 
             var msg = new Message
             {

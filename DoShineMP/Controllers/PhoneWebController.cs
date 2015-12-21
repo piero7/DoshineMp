@@ -28,7 +28,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Register(string code)
         {
-            //ViewBag.openid = WechatHelper.GetOpenidByCode(code);
+            ViewBag.openid = WechatHelper.GetOpenidByCode(code);
             ViewBag.Title = "桑田账号-注册";
             return View();
         }
@@ -78,7 +78,8 @@ namespace DoShineMP.Controllers
                 if (!string.IsNullOrEmpty(code))
                 {
                     openid = WechatHelper.GetOpenidByCode(code);
-                    ViewBag.User = WechatHelper.CheckOpenid(openid);
+                    //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                    ViewBag.User = wuser.GetUserInfo(openid);
                 }
             }
             catch (Exception e)
@@ -130,7 +131,8 @@ namespace DoShineMP.Controllers
             {
                 if (!string.IsNullOrEmpty(RealName) && !string.IsNullOrEmpty(PhoneNumber))
                 {
-                    string openid = "sdjisjdijsdsijd";
+                    //string openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                    string openid = WechatHelper.GetOpenidByCode(code);
                     //逻辑代码
                     if (wuser.Regiet(RealName, PhoneNumber, openid) != null)
                     {
