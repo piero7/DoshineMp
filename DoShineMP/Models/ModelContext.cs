@@ -30,5 +30,7 @@ namespace DoShineMP.Models
         public DbSet<Terminal> TerminalSet { get; set; }
 
         public DbSet<ActiveLog> ActiveLogSet { get; set; }
+
+        public DbSet<DebugInfo> DebugInfoSet { get; set; }
     }
 }
