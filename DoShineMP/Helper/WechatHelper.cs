@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace DoShineMP.Controllers
+namespace DoShineMP.Helper
 {
     class WechatHelper
     {
@@ -283,6 +283,45 @@ namespace DoShineMP.Controllers
             db.SaveChanges();
 
             return user;
+        }
+
+
+
+        /// <summary>
+        /// 检查用户的openid，若不存在则添加并获取用户信息。
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <returns></returns>
+        public static WechatUser CheckOpenid(string openid)
+        {
+            var db = new ModelContext();
+            var user = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.OpenId == openid);
+
+            if (user == null)
+            {
+                db.WechatUserSet.Add(new WechatUser { OpenId = openid });
+                db.SaveChanges();
+                WechatHelper.GetUserInfo(user);
+            }
+
+            return user;
+        }
+
+        /// <summary>
+        /// 检查用户是否注册
+        /// </summary>
+        /// <param name="wuser">微信用户信息</param>
+        /// <returns>若已经注册则封装，若没有注册则返回null</returns>
+        public static WechatUser CheckUser(WechatUser wuser)
+        {
+            var db = new ModelContext();
+            wuser = db.WechatUserSet.Include("UserInfo").FirstOrDefault(item => item.WechatUserId == wuser.WechatUserId);
+            if (wuser == null || wuser.UserInfo == null)
+            {
+                return null;
+            }
+
+            return wuser;
         }
     }
 }

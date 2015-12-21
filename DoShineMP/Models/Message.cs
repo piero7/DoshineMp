@@ -17,12 +17,16 @@ namespace DoShineMP.Models
 
         public string Content { get; set; }
 
-        public int? WechatUserId { get; set; }
+        public int? UserId { get; set; }
 
-        [ForeignKey("WechatUserId")]
-        public virtual WechatUser WechatUser { get; set; }
+        [ForeignKey("UserId")]
+        public virtual UserInfo User { get; set; }
 
         public MessageType Type { get; set; }
+
+        public int? TerminalId { get; set; }
+
+        public virtual Terminal Terminal { get; set; }
 
         /// <summary>
         /// 是否收到

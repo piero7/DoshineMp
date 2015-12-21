@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace DoShineMP.Models
 {
     class Administrator
     {
+        [Key]
         public int AdminId { get; set; }
 
         public string RealName { get; set; }

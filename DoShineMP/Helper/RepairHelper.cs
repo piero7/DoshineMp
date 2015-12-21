@@ -6,9 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DoShineMP.Controllers
+namespace DoShineMP.Helper
 {
-    public class RepairController : ApiController
+    public class RepairHelper
     {
         public Repair AddRepair(string openid, string content)
         {
@@ -33,8 +33,21 @@ namespace DoShineMP.Controllers
 
             db.RepairSet.Add(rep);
             db.SaveChanges();
-            LogController.AddLog("Apply a new repair", rep.RepairId.ToString(), openid);
+            LogHelper.AddLog("Apply a new repair", rep.RepairId.ToString(), openid);
             return rep;
+        }
+
+        /// <summary>
+        /// 获得历史报修记录，若有则显示，若没有则显示默认
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <returns></returns>
+        public IEnumerable<Repair> GetHistoryRepair(string openid)
+        {
+            var wuser = WechatHelper.CheckOpenid(openid);
+            return null;
+
+
         }
     }
 }

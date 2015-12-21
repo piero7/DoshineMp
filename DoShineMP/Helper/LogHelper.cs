@@ -6,9 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DoShineMP.Controllers
+namespace DoShineMP.Helper
 {
-    public class LogController : ApiController
+    public class LogHelper
     {
         //[HttpGet]
         public static ActiveLog AddLog(string option, string remaeks, string openid)

@@ -6,9 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DoShineMP.Controllers
+namespace DoShineMP.Helper
 {
-    public class WechatUserController : ApiController
+    public class WechatUserHelper
     {
         [HttpGet]
         public WechatUser Regiet(string realName, string phoneNumber, string openid)
@@ -40,7 +40,7 @@ namespace DoShineMP.Controllers
             user.UserInfo = ui;
 
             db.SaveChanges();
-            LogController.AddLog("Regist in Doshine wechat service", "", openid);
+            LogHelper.AddLog("Regist in Doshine wechat service", "", openid);
             return user;
         }
 
@@ -63,7 +63,7 @@ namespace DoShineMP.Controllers
             wusr.UserInfo.PhoneNumber = phoneNumber;
             db.SaveChanges();
 
-            LogController.AddLog("Edit infomation ", "", openid);
+            LogHelper.AddLog("Edit infomation ", "", openid);
             return wusr;
         }
 

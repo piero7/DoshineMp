@@ -6,9 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DoShineMP.Controllers
+namespace DoShineMP.Helper
 {
-    public class PartnerController : ApiController
+    public class PartnerHelper
     {
         /// <summary>
         /// 合作伙伴注册
@@ -47,7 +47,7 @@ namespace DoShineMP.Controllers
             db.PartnerSet.Add(pat);
             wuser.PartnerInfo = pat;
             db.SaveChanges();
-            LogController.AddLog("Regist as a patner.", pat.PartnerId.ToString(), openid);
+            LogHelper.AddLog("Regist as a patner.", pat.PartnerId.ToString(), openid);
 
             return pat;
         }

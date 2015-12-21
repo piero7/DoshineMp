@@ -20,7 +20,7 @@ namespace DoShineMP.Models
         [ForeignKey("UserId")]
         public virtual UserInfo User { get; set; }
 
-        public int TerminalId { get; set; }
+        public int? TerminalId { get; set; }
 
         [ForeignKey("TerminalId")]
         public virtual Terminal Terminal { get; set; }
