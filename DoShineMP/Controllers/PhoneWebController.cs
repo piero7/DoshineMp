@@ -15,6 +15,7 @@ namespace DoShineMP.Controllers
         private WechatUserHelper wuser = new WechatUserHelper();
         private WechatHelper wh = new WechatHelper();
         private PartnerHelper partner = new PartnerHelper();
+        private RepairHelper repairHelper = new RepairHelper();
         private string openid = string.Empty;
 
         #endregion
@@ -52,18 +53,46 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult HomePage(string code)
         {
-            openid = WechatHelper.GetOpenidByCode(code);
+            try
+            {
+                openid = WechatHelper.GetOpenidByCode(code);
+                ViewBag.User = WechatHelper.CheckOpenid(openid);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
             //提取我的资料
             ViewBag.Title = "我的主页";
             return View();
         }
 
 
+        /// <summary>
+        /// 保修
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Repair(string code)
+        {
+            try
+            {
+                //历史保修记录
+                ViewBag.RepairList = repairHelper.GetHistoryRepair(WechatHelper.GetOpenidByCode(code));
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return View();
+        }
+
 
         #endregion
 
         #region JsonResult功能块组
 
+        #region 个人信息
         /// <summary>
         /// 个人信息注册
         /// </summary>
@@ -99,13 +128,13 @@ namespace DoShineMP.Controllers
         }
 
 
-       /// <summary>
-       /// 个人信息修改
-       /// </summary>
-       /// <param name="RealName">姓名</param>
-       /// <param name="PhoneNumber">手机号</param>
-       /// <param name="code">微信code</param>
-       /// <returns>Y：修改成功；N：修改失败</returns>
+        /// <summary>
+        /// 个人信息修改
+        /// </summary>
+        /// <param name="RealName">姓名</param>
+        /// <param name="PhoneNumber">手机号</param>
+        /// <param name="code">微信code</param>
+        /// <returns>Y：修改成功；N：修改失败</returns>
         public JsonResult CenterUpdateJson(string RealName, string PhoneNumber, string code)
         {
             try
@@ -133,6 +162,7 @@ namespace DoShineMP.Controllers
             }
         }
 
+        #endregion
 
         #region 合作伙伴
 
@@ -200,6 +230,35 @@ namespace DoShineMP.Controllers
             }
         }
 
+
+        #endregion
+
+        #region 杂项功能
+
+        /// <summary>
+        /// 添加保修记录
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public JsonResult RepairJson(string code, string content)
+        {
+            try
+            {
+                if (repairHelper.AddRepair(WechatHelper.GetOpenidByCode(code), content) != null)
+                {
+                    return Json(new { msg = "Y" });
+                }
+                else
+                {
+                    return Json(new { msg = "N" });
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { msg = "N" });
+            }
+        }
 
         #endregion
 
