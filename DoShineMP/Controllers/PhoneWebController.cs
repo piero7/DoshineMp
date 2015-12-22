@@ -179,7 +179,6 @@ namespace DoShineMP.Controllers
                 {
                     ViewBag.wuser = wuser;
                 }
-
             }
             else
             {
@@ -188,9 +187,7 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "公司信息";
             return View();
         }
-
-
-
+        
         /// <summary>
         /// 个人详细信息页面
         /// </summary>
@@ -217,8 +214,7 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "个人信息";
             return View();
         }
-
-
+        
         /// <summary>
         /// 在线留言
         /// </summary>
@@ -239,6 +235,8 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "即时交流";
             return View();
         }
+
+
         #endregion
 
         #region JsonResult功能块组
