@@ -2,11 +2,11 @@
 * @Author: 晴
 * @Date:   2015-12-21 15:16:44
 * @Last Modified by:   晴
-* @Last Modified time: 2015-12-21 17:25:29
+* @Last Modified time: 2015-12-22 11:03:33
 */
 body{
 	font-family: 'Microsoft YaHei';
-	background-color:white;
+	background-color:#ececec;
 }
 /*.keep-content-t{
 	padding-top:40px;
@@ -21,6 +21,7 @@ body{
 }
 .keep-textarea{
     padding: 10px 10px 0 10px;
+    background: white;
 }
 .keep-textarea textarea{
 	width: 100%;
@@ -109,7 +110,7 @@ body{
 .content-title-t .w8{
 	/*width: 70%;*/
 	padding-top:10px;
-	padding-left: 20px;
+	/*padding-left: 20px;*/
 }
 .content-title-b{
 	padding-top:20px;
@@ -120,4 +121,8 @@ body{
 	 text-overflow:ellipsis; 
 	 -o-text-overflow:ellipsis; 
 	 overflow:hidden;
+}
+.marginB{
+	margin-bottom: 20px;
+	background: white;
 }

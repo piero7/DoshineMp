@@ -9,7 +9,7 @@
 
 <div class="keep">
     <div class="keep-in">
-        <div class="keep-content-t clearfix">
+        <div class="keep-content-t clearfix marginB">
             <div class="keep-textarea">
                 <textarea placeholder="请输入您要保修的内容" id="keep"></textarea>
             </div>
@@ -23,47 +23,28 @@
             </div>
         </div>
         <div class="keep-content-b">
-            <p class="panel panel-default new-title">
+            <p class="panel panel-default new-title" style="margin-bottom:3vw;">
                 <span>最新报修消息</span>
             </p>
             <div class="panel panel-default new-keep">
                 <ul>
-                    <li>
-                        <div class="content-title-t">
-                            <div class="pull-left logo"></div>
-                            <div class="pull-left w8">
-                                <p>XXXXXXXXXX公司</p>
-                                <b>2015-11-16</b>
-                            </div>
-                        </div>
-                        <div class="content-title-b">
-                            <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-title-t">
-                            <div class="pull-left logo"></div>
-                            <div class="pull-left w8">
-                                <p>XXXXXXXXXX公司</p>
-                                <b>2015-11-16</b>
-                            </div>
-                        </div>
-                        <div class="content-title-b">
-                            <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-title-t">
-                            <div class="pull-left logo"></div>
-                            <div class="pull-left w8">
-                                <p>XXXXXXXXXX公司</p>
-                                <b>2015-11-16</b>
-                            </div>
-                        </div>
-                        <div class="content-title-b">
-                            <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-                        </div>
-                    </li>
+                    @if (ViewBag.RepairList != null)
+                    {
+                        foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
+                        {
+                            <li>
+                                <div class="content-title-t">
+                                    <div class="pull-left w8">
+                                        <p>@r.User.Name</p>
+                                        <b>@r.CreateDate</b>
+                                    </div>
+                                </div>
+                                <div class="content-title-b">
+                                    <p>@r.Contenet</p>
+                                </div>
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

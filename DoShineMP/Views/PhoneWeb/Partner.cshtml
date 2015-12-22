@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link href="~/Styles/partner.css" rel="stylesheet" />
+}
+
+<!-- 用户信息  -->
+<div class="Mymessage">
+    <div class="pull-left logo">
+        <img src="@ViewBag.user.Headimgurl" class="img-circle" alt="Alternate Text" />
+    </div>
+    <div class="pull-left Mymessage-name">
+        <p>个人昵称</p>
+        <P>公司名称</P>
+        <div class="tel">
+            手机号：<span>1234567892</span>
+        </div>
+    </div>
+    <div class="pull-right andmi">
+        <ins class="samil"></ins>
+        <b>普通合作伙伴</b>
+    </div>
+</div>
+
+
+<!-- 导航 -->
+<div class="marginB Mymessage-list">
+    <ul class="list-group">
+        <li class="list-group-item marginB">
+            <span class="Mymessage-icon1 icon"></span>
+            <p>公司信息</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+        <li class="list-group-item">
+            <span class="Mymessage-icon2 icon"></span>
+            <p>历史订单</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+        <li class="list-group-item">
+            <span class="Mymessage-icon3 icon"></span>
+            <p>我要留言</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+        <li class="list-group-item">
+            <span class="Mymessage-icon4 icon"></span>
+            <p>优秀伙伴</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+        <li class="list-group-item marginB">
+            <span class="Mymessage-icon5 icon"></span>
+            <p> 评级规则</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+        <li class="list-group-item">
+            <span class="Mymessage-icon6 icon"></span>
+            <p>桑田地址</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+        <li class="list-group-item">
+            <span class="Mymessage-icon7 icon"></span>
+            <p>公司介绍</p>
+            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+        </li>
+    </ul>
+</div>
+
+
+@section scripts{
+
+}
