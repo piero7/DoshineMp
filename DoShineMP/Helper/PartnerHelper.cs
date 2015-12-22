@@ -63,12 +63,12 @@ namespace DoShineMP.Helper
                 return null;
             }
 
-
-            usr.PartnerInfo.RealName = realname;
-            usr.PartnerInfo.CompanyName = comName;
-            usr.PartnerInfo.Type = type;
-            usr.PartnerInfo.Address = address;
-            usr.PartnerInfo.CompanyPhone = comPhone;
+            var pat = db.PartnerSet.Find(usr.PartnerId);
+            pat.RealName = realname;
+            pat.CompanyName = comName;
+            pat.Type = type;
+            pat.Address = address;
+            pat.CompanyPhone = comPhone;
 
             db.SaveChanges();
 
