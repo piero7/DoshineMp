@@ -60,6 +60,7 @@ namespace DoShineMP.Controllers
                         else
                         {
                             ViewBag.user = user;
+                            ViewBag.parnter = partner.GetPartnerInfo(openid);
                         }
                     }
                     else
@@ -171,7 +172,8 @@ namespace DoShineMP.Controllers
                 var wuser = partner.GetPartnerInfo(openid);
                 if (wuser == null)
                 {
-                    WechatHelper.BackForCode("PhoneWeb", "PerconalCenter", "");
+                    Response.Redirect(Url.Action("PersonalCenter", "PhoneWeb") + "?code=" + code);
+                    //WechatHelper.BackForCode("PhoneWeb", "PerconalCenter", "");
                 }
                 else
                 {
@@ -200,12 +202,13 @@ namespace DoShineMP.Controllers
             {
                 //openid = WechatHelper.GetOpenidByCode(code);
                 openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                var user= wuser.GetUserInfo(openid);
-                ViewBag.user = user;
-                if (user == null)
+                var user = wuser.GetUserInfo(openid);
+                if (user.UserInfo == null)
                 {
-                    WechatHelper.BackForCode("PhoneWeb", "Register", "code=1");
+                    Response.Redirect(Url.Action("Register", "PhoneWeb") + "?code=" + code);
+                    //WechatHelper.BackForCode("PhoneWeb", "Register", "");
                 }
+                ViewBag.user = user;
             }
             else
             {
@@ -367,7 +370,9 @@ namespace DoShineMP.Controllers
             {
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
-                if (partner.ReginPartner(WechatHelper.GetOpenidByCode(code), comName, p, realName, Address, comPhone) != null)
+                //openid = WechatHelper.GetOpenidByCode(code);
+                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                if (partner.EditPartnerInfo(openid, comName, p, realName, Address, comPhone) != null)
                 {
                     return Json(new { msg = "Y" });
                 }

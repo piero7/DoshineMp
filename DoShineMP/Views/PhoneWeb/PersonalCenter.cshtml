@@ -33,59 +33,112 @@
         </div>
     </div>
 </div>
+@if (ViewBag.parnter == null)
+{
+    <div class="col-xs-12 marginB">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">类型</div>
+                <div class="pull-right panelbody">
+                    <select class="form-control" id="type">
+                        <option value="Sub_contractor">经销商</option>
+                        <option value="Supplier">供应商</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-<div class="col-xs-12 marginB">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">公司名</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="comName" id="comName" value="" placeholder="请输入公司名" />
+                </div>
+            </div>
+        </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="pull-left paneltitle">类型</div>
-            <div class="pull-right panelbody">
-                <select class="form-control" id="type">
-                    <option value="Sub_contractor">经销商</option>
-                    <option value="Supplier">供应商</option>
-                </select>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">姓名</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">公司地址</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="comAddress" id="comAddress" value="" placeholder="请输入公司地址" />
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">公司电话</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="comPhone" id="comPhone" value="" placeholder="请输入公司电话" />
+                </div>
             </div>
         </div>
     </div>
+}
+else
+{
+    <div class="col-xs-12 marginB">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">类型</div>
+                <div class="pull-right panelbody">
+                    <select class="form-control" id="type">
+                        <option value="Sub_contractor">经销商</option>
+                        <option value="Supplier">供应商</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="pull-left paneltitle">公司名</div>
-            <div class="pull-right panelbody">
-                <input type="text" name="comName" id="comName" value="" placeholder="请输入公司名" />
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">公司名</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="comName" id="comName" value="@ViewBag.parnter.PartnerInfo.CompanyName" placeholder="请输入公司名" />
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">姓名</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="realName" id="realName" value="@ViewBag.parnter.PartnerInfo.RealName" placeholder="请输入姓名" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">公司地址</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="comAddress" id="comAddress" value="@ViewBag.parnter.PartnerInfo.Address" placeholder="请输入公司地址" />
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">公司电话</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="comPhone" id="comPhone" value="@ViewBag.parnter.PartnerInfo.PhoneNumber" placeholder="请输入公司电话" />
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="pull-left paneltitle">姓名</div>
-            <div class="pull-right panelbody">
-                <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
-            </div>
-        </div>
-    </div>
-
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="pull-left paneltitle">公司地址</div>
-            <div class="pull-right panelbody">
-                <input type="text" name="comAddress" id="comAddress" value="" placeholder="请输入公司地址" />
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="pull-left paneltitle">公司电话</div>
-            <div class="pull-right panelbody">
-                <input type="text" name="comPhone" id="comPhone" value="" placeholder="请输入公司电话" />
-            </div>
-        </div>
-    </div>
-</div>
-
+}
 <div class="col-xs-12 marginB">
     <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
 </div>
@@ -103,16 +156,20 @@
             var comAddress = $('#comAddress').val();
             var comPhone = $('#comPhone').val();
             var code = $.getUrlParam('code');
+            var url = '@Url.Action("ReginPartnerJson", "PhoneWeb")';
             if (comName == null && realName == null && phoneNumber && null) {
                 alert('没有数据修改！');
                 return false;
             }
+            if ($.getUrlParam('type') == 'update') {
+                url = '@Url.Action("EditPartnerInfoJson", "PhoneWeb")';
+            }
 
-            $.post('@Url.Action("ReginPartnerJson","PhoneWeb")', { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
+            $.post(url, { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         alert('提交成功!');
-                        window.location.href = "@Url.Action("HomePage","PhoneWeb")";
+                        window.location.href = "@Url.Action("Partner","PhoneWeb")?code=" + code;
                     }
                     else
                         alert('提交失败!')
