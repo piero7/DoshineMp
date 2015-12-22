@@ -200,7 +200,12 @@ namespace DoShineMP.Controllers
             {
                 //openid = WechatHelper.GetOpenidByCode(code);
                 openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                ViewBag.user = wuser.GetUserInfo(openid);
+                var user= wuser.GetUserInfo(openid);
+                ViewBag.user = user;
+                if (user == null)
+                {
+                    WechatHelper.BackForCode("PhoneWeb", "Register", "code=1");
+                }
             }
             else
             {
