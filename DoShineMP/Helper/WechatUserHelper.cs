@@ -55,10 +55,10 @@ namespace DoShineMP.Helper
             {
                 return null;
             }
+            var ui = db.UserInfo.Find(usr.UserInfoId);
 
-
-            usr.UserInfo.Name = realName;
-            usr.UserInfo.PhoneNumber = phoneNumber;
+            ui.Name = realName;
+            ui.PhoneNumber = phoneNumber;
             db.SaveChanges();
 
             LogHelper.AddLog("Edit infomation ", "", openid);

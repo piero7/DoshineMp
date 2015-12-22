@@ -34,11 +34,19 @@ namespace DoShineMP.Controllers
         /// <param name="detailInfo">消息体完成内容</param>
         /// <param name="ipStr">操作端的详细地址字符串</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         public Message AddServerMessage(string content, string detailInfo, string ipStr)
         {
             MessageHelper mh = new MessageHelper();
             return mh.AddServerMessage(content, detailInfo, ipStr);
         }
+
+        //[HttpGet]
+        //public Partner Test(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
+        //{
+        //    var ph = new PartnerHelper();
+        //    return ph.EditPartnerInfo(openid, comName, type, realname, address, comName);
+
+        //}
     }
 }
