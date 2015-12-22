@@ -14,7 +14,7 @@ body{
 }*/
 .keep-title{
 	font-size: 30px;
-	color:block;
+	color:black;
 	width:100%;
 	padding-bottom: 20px;
 	text-align: center;
@@ -107,13 +107,17 @@ body{
 	margin-bottom:20px;
 	background-color: white;
 }
+.new-keep >ul>li{
+    padding-top:4px;
+    padding-bottom:4px;
+}
 .content-title-t .w8{
 	/*width: 70%;*/
 	padding-top:10px;
 	/*padding-left: 20px;*/
 }
 .content-title-b{
-	padding-top:20px;
+	padding-top:5px;
 }
 .content-title-b p{
 	width:100%;
