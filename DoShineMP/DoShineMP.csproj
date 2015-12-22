@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201512211003269_addDebugInfo.Designer.cs">
       <DependentUpon>201512211003269_addDebugInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512220642583_20151222.cs" />
+    <Compile Include="Migrations\201512220642583_20151222.Designer.cs">
+      <DependentUpon>201512220642583_20151222.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
@@ -348,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512211003269_addDebugInfo.resx">
       <DependentUpon>201512211003269_addDebugInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512220642583_20151222.resx">
+      <DependentUpon>201512220642583_20151222.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
