@@ -14,8 +14,18 @@ namespace DoShineMP.Models
 
         public string Info { get; set; }
 
-        public DateTime Create { get; set; }
+        public DateTime CreateDate { get; set; }
 
-        public string Remarls { get; set; }
+        public string Remarks { get; set; }
+
+        public DebugInfo(string info, string remarks)
+        {
+            this.CreateDate = DateTime.Now;
+            this.Info = info;
+            this.Remarks = remarks;
+            var db = new ModelContext();
+            db.DebugInfoSet.Add(this);
+            db.SaveChanges();
+        }
     }
 }

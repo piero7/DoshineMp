@@ -342,5 +342,21 @@ namespace DoShineMP.Helper
             return wuser;
         }
 
+        /// <summary>
+        /// 检查用户时候注册为经销商
+        /// </summary>
+        /// <param name="wuser">微信用户信息</param>
+        /// <returns></returns>
+        public static WechatUser CheckPartner(WechatUser wuser)
+        {
+            var db = new ModelContext();
+            wuser = db.WechatUserSet.Include("PartnerInfo").Include("UserInfo").FirstOrDefault(item => item.WechatUserId == wuser.WechatUserId);
+            if (wuser == null || wuser.PartnerInfo == null || wuser.UserInfo == null)
+            {
+                return null;
+            }
+            return wuser;
+        }
+
     }
 }

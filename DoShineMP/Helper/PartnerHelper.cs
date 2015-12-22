@@ -42,7 +42,8 @@ namespace DoShineMP.Helper
                 Type = type,
             };
             db.PartnerSet.Add(pat);
-            usr.PartnerInfo = pat;
+            db.SaveChanges();
+            db.WechatUserSet.Find(usr.WechatUserId).PartnerId = pat.PartnerId;
             db.SaveChanges();
             LogHelper.AddLog("Regist as a patner.", pat.PartnerId.ToString(), openid);
 
@@ -51,7 +52,7 @@ namespace DoShineMP.Helper
 
 
 
-        [HttpGet]
+        //[HttpGet]
         public Partner EditPartnerInfo(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
         {
             var db = new ModelContext();
@@ -78,5 +79,16 @@ namespace DoShineMP.Helper
         }
 
 
+        /// <summary>
+        /// 获取经销商信息
+        /// </summary>
+        /// <param name="openid">用户openid</param>
+        /// <returns></returns>
+        public WechatUser GetPartnerInfo(string openid)
+        {
+            WechatUser wuser = WechatHelper.CheckOpenid(openid);
+            wuser = WechatHelper.CheckPartner(wuser);
+            return wuser;
+        }
     }
 }
