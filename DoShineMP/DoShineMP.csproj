@@ -280,16 +280,14 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Styles\bootstrap-theme.css" />
-    <Content Include="Styles\bootstrap-theme.min.css" />
-    <Content Include="Styles\bootstrap.css" />
-    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\MyMessage.css" />
     <Content Include="Styles\partner.css" />
     <Content Include="Styles\PersonalCenter.css" />
     <Content Include="Styles\Register.css" />
     <Content Include="Styles\Repair.css" />
     <Content Include="Styles\rest.css" />
     <Content Include="Styles\sign-in.css" />
+    <Content Include="Views\PhoneWeb\Partner.cshtml" />
     <Content Include="Views\PhoneWeb\PersonalCenter.cshtml" />
     <Content Include="Views\PhoneWeb\Register.cshtml" />
     <Content Include="Web.config" />
@@ -328,9 +326,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PhoneWeb\Repair.cshtml" />
     <Content Include="Views\PhoneWeb\HomePage.cshtml" />
-    <Content Include="Styles\bootstrap-theme.css.map" />
-    <Content Include="Styles\bootstrap.css.map" />
-    <Content Include="Views\PhoneWeb\Partner.cshtml" />
+    <Content Include="Views\PhoneWeb\MyMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
