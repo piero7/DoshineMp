@@ -101,6 +101,10 @@ namespace DoShineMP.Models
         /// 供应商
         /// </summary>
         Supplier = 2,
-        Both = 3,
+        /// <summary>
+        /// 经销商
+        /// </summary>
+        Dealer = 3,
+        Both = 9,
     }
 }
