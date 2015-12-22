@@ -108,12 +108,11 @@
                 return false;
             }
 
-
             $.post('@Url.Action("ReginPartnerJson","PhoneWeb")', { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         alert('提交成功!');
-                        window.location.href = "@Url.Action("HomePage","Home")";
+                        window.location.href = "@Url.Action("HomePage","PhoneWeb")";
                     }
                     else
                         alert('提交失败!')

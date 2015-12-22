@@ -168,6 +168,15 @@ namespace DoShineMP.Controllers
             {
                 //openid = WechatHelper.GetOpenidByCode(code);
                 openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                var wuser = partner.GetPartnerInfo(openid);
+                if (wuser == null)
+                {
+                    WechatHelper.BackForCode("PhoneWeb", "PerconalCenter", "");
+                }
+                else
+                {
+                    ViewBag.wuser = wuser;
+                }
 
             }
             else
@@ -201,6 +210,27 @@ namespace DoShineMP.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// 在线留言
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult Messages(string code)
+        {
+            if (!string.IsNullOrEmpty(code))
+            {
+                //openid = WechatHelper.GetOpenidByCode(code);
+                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                ViewBag.user = wuser.GetUserInfo(openid);
+            }
+            else
+            {
+                WechatHelper.BackForCode("PhoneWeb", "Messages", "");
+            }
+            ViewBag.Title = "即时交流";
+            return View();
+        }
         #endregion
 
         #region JsonResult功能块组

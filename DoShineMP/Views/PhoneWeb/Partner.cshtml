@@ -9,13 +9,13 @@
 <!-- 用户信息  -->
 <div class="Mymessage">
     <div class="pull-left logo">
-        <img src="@ViewBag.user.Headimgurl" class="img-circle" alt="Alternate Text" />
+        <img src="@ViewBag.wuser.Headimgurl" class="img-circle" alt="Alternate Text" />
     </div>
     <div class="pull-left Mymessage-name">
-        <p>个人昵称</p>
-        <P>公司名称</P>
+        <p>@ViewBag.wuser.UserInfo.Name</p>
+        <P>@ViewBag.wuser.PartnerInfo.CompanyName</P>
         <div class="tel">
-            手机号：<span>1234567892</span>
+            <span>@ViewBag.wuser.UserInfo.PhoneNumber</span>
         </div>
     </div>
     <div class="pull-right andmi">
@@ -65,6 +65,7 @@
         </li>
     </ul>
 </div>
+
 
 
 @section scripts{
