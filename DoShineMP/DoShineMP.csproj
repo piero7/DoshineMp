@@ -175,6 +175,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PhoneWebController.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Controllers\ManageController.cs" />
