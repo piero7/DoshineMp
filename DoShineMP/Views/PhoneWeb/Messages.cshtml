@@ -71,6 +71,7 @@
 <input type="hidden" id="username" value="@ViewBag.user.UserInfo.Name" />
 <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
 <input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
+<input type="hidden" id="openid" value="@ViewBag.user.OpenId" />
 
 @section scripts{
     <script src="~/Scripts/Models.js"></script>
@@ -78,9 +79,11 @@
         var username = document.getElementById('username').value;
         var userid = document.getElementById('userid').value;
         var userimg = document.getElementById('userimg').value;
-        var NewNickIp = new NickIp(userid, username, '', true, true, '100001', '0000000001', '', '', userimg);
+        var openid = document.getElementById('openid').value;
+        //var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
+        var NewNickIp = new NickIp('11111', '2', '', true, true, '100001', '0000000001', '', '', userimg);
         var socket;
-        var serverIP = '192.168.1.151';//服务器IP
+        var serverIP = '192.168.1.152';//服务器IP
         var serverPort = '9000';//服务器端口
 
 

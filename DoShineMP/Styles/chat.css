@@ -1,0 +1,240 @@
+/* 
+* @Author: 晴
+* @Date:   2015-12-21 15:16:44
+* @Last Modified by:   晴
+* @Last Modified time: 2015-12-23 09:59:04
+*/
+body{
+	font-family: 'Microsoft YaHei';
+	background-color:#ececec;
+}
+.chat{
+	padding-top:60px;
+	padding-bottom:60px;
+	height: 100%;
+}
+.chat-nav-l,
+.chat-r-in,
+.tab-content,
+.tab-content-scroll{
+	height: 100%;
+}
+.chat-nav-l .chat-scroll{
+	width:300px;
+	height:100%;
+	background-color: #3a3a3a;
+	overflow: scroll;
+	overflow-x: hidden;
+	-ms-overflow-x: hidden;
+
+}
+.chat-nav-content{
+	height:800px;
+}
+.chat-nav-content b{
+	font-weight:normal;
+}
+.chat-nav-content{
+	padding:5px;
+}
+.chat-nav-content li{
+	padding:5px 10px 5px;
+	height:45px;
+	background-color:#3a3a3a);
+	cursor: pointer;
+	margin-bottom:5px;
+	color:#fff;
+}
+.chat-content-r{
+	background: #fff;
+	padding-left:300px;
+	height:100%;
+}
+.hander-img,
+.user-name,
+.hander-delete{
+	float: left;
+}
+.hander-delete{
+	float: right
+}
+.hander-img{
+	width:35px;
+	height:35px;
+}
+.user-name{
+	line-height: 30px;
+	padding-left:5px;
+
+}
+.hander-delete{
+	width:25px;
+	text-align: center;
+	line-height: 25px;
+	color: white;
+	background-color: rgba(0,0,0,.4);
+	border-radius: 50%;
+	margin-top:3px;
+	display: none;
+	transition: display .6s linear 0s;
+	-webkit-transition: display .6s linear 0s;
+	-moz-transition: display .6s linear 0s;
+	-o-transition: display .6s linear 0s;
+}
+.chat-nav-content li:hover .hander-delete{
+	display: block;
+}	
+
+/* right content css  */
+.tab-title ul{
+	overflow: hidden;
+}
+.tab-title li{
+	float: left;
+	padding:0 10px;
+	width:80px;
+	height:25px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	background: #2F2F2F;
+	cursor: pointer;
+}
+.tab-title li.current{
+	background:#f40;
+}
+.tab-title li p{
+	white-space:nowrap;
+	 text-overflow:ellipsis; 
+	 -o-text-overflow:ellipsis;
+	  overflow:hidden;
+	  color: white;
+	  text-align: center;
+	  line-height: 25px;
+}
+.tab-content{
+	/*padding:20px;*/
+}
+.tab-content-scroll{
+	height:80%;
+	background-color: #f3f3f3;
+	overflow: scroll;
+	overflow-x: hidden;
+	-ms-overflow-x: hidden;
+}
+/* ul */
+.tab-title ul{
+	margin:0;
+}
+.nav-current-content{
+	width:100%;
+	min-height:575px;
+	display: none;
+}
+.tab-content-scroll .down{
+	display: block;
+}
+.this-content-in{
+	padding-top: 10px;
+}
+.this-img{
+	width:60px;
+	height:60px;
+	background-color:white;
+	border-radius: 50%;
+	overflow:hidden;
+}
+.this-content-in dl{
+	overflow: hidden;
+	padding:5px 10px;
+}
+.this-content-in dl dd{
+	padding:5px 10px;
+}
+.this-img img{
+	width: 100%;
+	height:100%;
+}
+.this-bg{
+	border-radius: 5px;
+	height:auto;
+	padding:5px 10px;
+	background-color: #b5eb7c;
+	/*打乱英文字体*/
+	word-wrap:break-word;
+	word-break:break-all;
+	max-width: 50%;
+
+
+}
+.this-bg em{
+
+}
+.tab-p{
+	/*padding-left:60px;*/
+	display: inline-block;
+}
+.this-name{
+	display: block;
+	margin-bottom: 10px;
+}
+.chat-nav-content li.current{
+	background-color: #505050;
+}
+.go-play {
+	width: 100%;
+	height:20%;
+	background-color:white;
+	border-top:1px solid #e7e6e6;
+}
+.go-play textarea{
+	/*display: block;*/
+	width: 100%;
+	height:100%;
+	border:0;
+	outline: none;
+	resize: none;
+}
+.go-play .sublimt{
+	position: absolute;
+	right:20px;
+	bottom:20px;
+	width: 80px;
+	height:38px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #ececec;
+	border:1px solid #ccc;
+	cursor: pointer;
+}
+.tab-content {
+	position:relative;
+}
+.go-play{
+	position:absolute;
+	left:0;
+	bottom: 0;
+}
+.this-bg .position-r{
+	position: relative;
+	left:95%;
+	top:-15px;
+	display: block;
+	 width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 15px solid #b5eb7c;
+    /*border-bottom: 15px solid red;*/
+}
+.this-bg .position-l {
+	position: relative;
+	left:5%;
+	top:-15px;
+	display: block;
+	 width: 0;
+    height: 0;
+    border-left: 0px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid #b5eb7c;
+    /*border-bottom: 15px solid red;*/
+}

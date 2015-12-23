@@ -27,6 +27,7 @@ namespace DoShineMP.Controllers
             return mh.AddCustomMessage(openid, content, isNew, type, detailInfo);
         }
 
+
         /// <summary>
         /// 添加客服端消息记录
         /// </summary>
@@ -41,12 +42,5 @@ namespace DoShineMP.Controllers
             return mh.AddServerMessage(content, detailInfo, ipStr);
         }
 
-        //[HttpGet]
-        //public Partner Test(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
-        //{
-        //    var ph = new PartnerHelper();
-        //    return ph.EditPartnerInfo(openid, comName, type, realname, address, comName);
-
-        //}
     }
 }

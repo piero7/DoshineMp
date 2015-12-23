@@ -67,12 +67,13 @@ namespace DoShineMP.Helper
                 Content = content,
                 CreateDate = DateTime.Now,
                 TerminalId = tmn.TerminalId,
-                Type = MessageType.Customer,
+                Type = MessageType.Service,
                 IpStr = ipStr,
             };
 
             db.SaveChanges();
             return msg;
         }
+
     }
 }

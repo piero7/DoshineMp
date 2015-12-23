@@ -56,11 +56,13 @@
     <script type="text/javascript">
         $('#btn').click(function () {
             var keeptext = $('#keep').val();
-            var code = $.getUrlParam('code');
-
+            var code = $('#openid').val();
+            //alert(code);
+            //alert(keeptext);
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
+                        $('#keep').val('');
                         alert("提交成功！");
                     }
                 }

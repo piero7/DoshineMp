@@ -283,6 +283,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\chat.css" />
     <Content Include="Styles\MyMessage.css" />
     <Content Include="Styles\partner.css" />
     <Content Include="Styles\PersonalCenter.css" />
@@ -331,6 +332,7 @@
     <Content Include="Views\PhoneWeb\HomePage.cshtml" />
     <Content Include="Views\PhoneWeb\MyMessage.cshtml" />
     <Content Include="Views\PhoneWeb\Messages.cshtml" />
+    <Content Include="Views\PhoneWeb\ServerMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

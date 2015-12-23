@@ -136,7 +136,7 @@ namespace DoShineMP.Helper
                 var token = context.TokenSet.First(item => item.Type == AccountType.Service);
 
                 //现有token是否可用
-                if (DateTime.Now.Subtract(token.GetTime.Value).TotalSeconds < 7000)
+                if (DateTime.Now.Subtract(token.GetTime.Value).TotalSeconds < 3000)
                 {
                     return token.TokenStr;
                 }
@@ -299,7 +299,7 @@ namespace DoShineMP.Helper
             nUser.Headimgurl = dic["headimgurl"];
             db.SaveChanges();
 
-            return user;
+               return user;
         }
 
 
@@ -323,7 +323,7 @@ namespace DoShineMP.Helper
             }
 
             return user;
-        }
+        }      
 
         /// <summary>
         /// 检查用户是否注册

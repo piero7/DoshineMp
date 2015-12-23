@@ -11,7 +11,7 @@
         <h1 class='signin-title'>注册桑田账号</h1>
         <ul class="sigin-play">
             <li>
-                <input type="text" class="signin-tel" id="RealName" placeholder="请输入姓名">
+                <input type="text" class="signin-tel" id="RealName"  placeholder="请输入姓名">
                 <span class='Error'>请输入姓名</span>
             </li>
             <li>
@@ -111,11 +111,12 @@
                 alert('姓名、手机号必填！')
                 return false;
             }
+
             $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: code }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
                         alert("注册成功!");
-                        window.location.href = "@Url.Action("MyMessage","PhoneWeb")?code=" + code;
+                        window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
                     }
                     else
                         alert("注册失败！");

@@ -31,7 +31,7 @@
             <p> 个人信息</p>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" style="margin-bottom:-2px;">
             <span class="Mymessage-icon2 icon"></span>
             <p>我的报修</p>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
@@ -48,17 +48,16 @@
         </li>
     </ul>
 </div>
+
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
-
-        $('.list-group-item').click(function () {
-            var code = $.getUrlParam('code');
+        $(document).on('click', '.list-group-item', function () {
             switch ($(this).children().eq(0).attr("class")) {
-                case 'Mymessage-icon1 icon': window.location.href = '@Url.Action("","")?code=' + code; break;
-                case 'Mymessage-icon2 icon': window.location.href = '@Url.Action("Repair","PhoneWeb")?code=' + code; break;
-                case 'Mymessage-icon3 icon': window.location.href = '@Url.Action("Messages","PhoneWeb")?code=' + code; break;
-                case 'Mymessage-icon4 icon': window.location.href = 'http://mp.weixin.qq.com/s?__biz=MjM5MTI4MDAyMQ==&mid=416121858&idx=1&sn=1a37a4e8295c88930e43eec998a2e904&scene=18#wechat_redirect'; break;
+                case 'Mymessage-icon1 icon':; break;
+                case 'Mymessage-icon2 icon': window.location.href = '@Url.Action("Repair","PhoneWeb")') break;
+                case 'Mymessage-icon3 icon': window.location.href = '@Url.Action("Messages","PhoneWeb")'; break;
+                case 'Mymessage-icon4 icon': window.location.href = 'http://mp.weixin.qq.com/s?__biz=MjM5MTI4MDAyMQ==&mid=416121858&idx=1&sn=1a37a4e8295c88930e43eec998a2e904&scene=18#wechat_redirect'); break;
             }
         })
 

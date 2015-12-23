@@ -1,0 +1,317 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link href="~/Styles/rest.css" rel="stylesheet" />
+    <link href="~/Styles/chat.css" rel="stylesheet" />
+    <style type="text/css">
+        .media .media-object {
+            width: 40px;
+        }
+
+        .media .media-heading {
+            font-weight: 400;
+        }
+
+        .media .media-body > div {
+            max-width: 90%;
+            display: inline-block;
+            padding: 2vw;
+            background-color: white;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+        }
+
+        .titleimg {
+            width: 35px;
+        }
+        #tab-tou{
+            padding-top:10px;
+        }
+    </style>
+}
+
+
+
+@*<div class="row">
+        <div class="col-lg-2 col-md-2"></div>
+        <div class="col-lg-8 col-md-8 col-xs-12">
+
+            <ul class="nav nav-tabs" role="tablist" id="tab-tou">
+
+            </ul>
+            <div class="tab-content" id="tab-body">
+
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2"></div>
+    </div>*@
+
+@*<div class="col-xs-12" id="bodycontent00000001">
+        <div class="jumbotron" id="messages00000001">
+        </div>
+    </div>
+    <div class="input-group" id="foottext00000001">
+        <input type="text" class="form-control" id="sendText00000001" placeholder="输入信息">
+        <input type="hidden" id="msgstr00000001" />
+        <span class="input-group-btn">
+            <button class="btn btn-default" onclick="send()" id="00000001" type="button">提交</button>
+        </span>
+    </div>*@
+
+
+
+@*<div class="container chat">
+        <div class="pull-left chat-nav-l">
+            <div class="chat-scroll">
+                <ul class="chat-nav-content" id="tab-tou"></ul>
+            </div>
+        </div>
+        <div class="chat-content-r">
+            <div class="chat-r-in">
+                <div class="tab-content">
+                    <div class="tab-content-scroll" id="tab-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+<div class="container chat">
+    <div class="pull-left chat-nav-l">
+        <div class="chat-scroll">
+            <ul class="chat-nav-content" id="tab-tou"></ul>
+        </div>
+    </div>
+    <div class="chat-content-r">
+        <div class="chat-r-in">
+            <div class="tab-content">
+                <div class="tab-content-scroll" id="tab-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/Models.js"></script>
+    <script type="text/javascript">
+        var NewNickIp = new NickIp('00000001', '客服', '', true, false, '100001', '0000000001', '', '');
+        var socket;
+        var serverIP = '115.159.71.54';//服务器IP
+        var serverPort = '9000';//服务器端口
+
+
+        window.onload = function () {
+            connect();
+        }
+
+        function connect() {
+            var host = "ws://" + serverIP + ":" + serverPort + "/"
+            socket = new WebSocket(host);
+
+            try {
+                socket.onopen = function (msg) {
+                    //$("btnConnect").disabled = true;
+                    //alert("连接成功！");
+                    socket.send(JSON.stringify(NewNickIp) + ' ');
+
+                    //var str = '<div id="alertmess" class="text-center">'
+                    //         + '<span>连接成功！</span>'
+                    //         + '</div>';
+                    //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                };
+
+                socket.onmessage = function (msg) {
+                    if (typeof msg.data == "string") {
+                        displayContent(msg.data);
+                    }
+                    else {
+                        var str = '<div id="alertmess" class="text-center">'
+                             + '<span>非文本信息！</span>'
+                             + '</div>';
+                        //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                    }
+                };
+
+                socket.onclose = function (msg) { alert("socket closed!") };
+            }
+            catch (ex) {
+                var str = '<div id="alertmess" class="text-center">'
+                             + '<span>网络错误，连接失败！</span>'
+                             + '</div>';
+                //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                log(ex);
+            }
+        }
+
+
+
+
+        function send(e) {
+            var e = window.event || e;
+            var o = e.srcElement || e.target;
+            var msg = document.getElementById('sendText' + o.id).value + ' ';
+            var msgsss = JSON.parse(document.getElementById('msgstr' + o.id).value);
+
+            if (msg == ' ' || msg == null) {
+                return;
+            } else {
+                msgsss.Msg = msg;
+                msgsss.IsFirst = false;
+                msgsss.IsUser = false;
+                socket.send(JSON.stringify(msgsss) + ' ');
+                var mes = document.getElementById("messages" + o.id);
+                var last = mes.lastChild;
+                if (last.className === 'media mediaright') {
+                    var textcontent = last.firstChild.getElementsByTagName('div')[0].innerHTML;
+                    textcontent = textcontent + '<br>' + msg;
+                    last.firstChild.getElementsByTagName('div')[0].innerHTML = textcontent;
+                } else {
+                    var str = '<div class="media mediaright">'
+                           + '<div class="media-body">'
+                               + '<h5 class="media-heading text-right">我</h5>'
+                               + '<div class="pull-right mediacontent">' + msg + '</div>'
+                           + '</div>'
+                           + '<div class="media-right">'
+                               + '<a href="#">'
+                                   + '<img class="media-object img-circle" src="../../Images/touxiang.jpg" alt="...">'
+                               + '</a>'
+                           + '</div>'
+                       + '</div>';
+                    var html = document.getElementById("messages" + o.id).innerHTML + str;
+                    document.getElementById("messages" + o.id).innerHTML = html;
+                }
+                var div = document.getElementById('messages' + o.id);
+                window.scrollTo(0, div.scrollHeight);
+                document.getElementById('sendText' + o.id).value = '';
+            }
+
+        }
+
+        window.onbeforeunload = function () {
+            try {
+                socket.close();
+                socket = null;
+            }
+            catch (ex) {
+            }
+        };
+
+        function $(id) { return document.getElementById(id); }
+
+        Date.prototype.Format = function (fmt) { //author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+
+        function displayContent(msg) {
+            var msgsss = JSON.parse(msg);
+
+
+            if (document.getElementById("messages" + msgsss.NickID) == null) {
+                var tabtitle = '';
+                var tabbody = '';
+                var tabconteng = '';
+                //添加左侧人员列表
+                //tabtitle = '<li role="presentation" ><a href="#' + msgsss.NickID + '" aria-controls="' + msgsss.NickID + '" role="tab" data-toggle="tab">' + msgsss.NickName + '</a></li>';
+                tabtitle = ' <li class="current">'
+                            + '<ins class="hander-img">'
+                            + '<img class="img-circle titleimg" src="' + msgsss.Headimgurl + '" alt="...">'
+                            + '</ins>'
+                            + '<b class="user-name">' + msgsss.NickName + '</b>'
+                            + '<span class="hander-delete">X</span>'
+                            + '</li>';
+                document.getElementById("tab-tou").innerHTML = document.getElementById("tab-tou").innerHTML + tabtitle;
+
+
+                //添加右侧聊天详情页主体框架
+
+                if (document.getElementById("tab-body").innerHTML.length < 100) {
+                    tabconteng = '<div class="nav-current-content down" id="bodycontent' + msgsss.NickID + '">'
+                            + '<div class="this-content-in" id="messages' + msgsss.NickID + '">'
+                            + '</div>'
+                            + '<div class="go-play " id="foottext' + msgsss.NickID + '">'
+                            + '<textarea class="pull-lef" id="sendText' + msgsss.NickID + '" placeholder="输入信息"></textarea>'
+                            + '<input type="hidden" id="msgstr' + msgsss.NickID + '" />'
+                            + '<span class="sublimt" onclick="send()" id="' + msgsss.NickID + '">提交</span>'
+                            + '</div>'
+                            + '</div>';
+                } else {
+                    tabconteng = '<div class="nav-current-content" id="bodycontent' + msgsss.NickID + '">'
+                              + '<div class="this-content-in" id="messages' + msgsss.NickID + '">'
+                              + '</div>'
+                              + '<div class="go-play " id="foottext' + msgsss.NickID + '">'
+                              + '<textarea class="pull-lef" id="sendText' + msgsss.NickID + '" placeholder="输入信息"></textarea>'
+                              + '<input type="hidden" id="msgstr' + msgsss.NickID + '" />'
+                              + '<span class="sublimt" onclick="send()" id="' + msgsss.NickID + '">提交</span>'
+                              + '</div>'
+                              + '</div>';
+                }
+
+                document.getElementById("tab-body").innerHTML = document.getElementById("tab-body").innerHTML + tabconteng;
+            }
+
+
+
+
+
+            //处理接收到的json
+            var mes = document.getElementById("messages" + msgsss.NickID);
+            var last = mes.lastChild;
+            document.getElementById('msgstr' + msgsss.NickID).value = msg;
+
+            if (last != null && last.className === 'media medialeft') {
+
+                var textcontent = last.lastChild.getElementsByTagName('div')[0].innerHTML;
+                textcontent = textcontent + '<br>' + msgsss.Msg;
+                last.lastChild.getElementsByTagName('div')[0].innerHTML = textcontent;
+
+            } else {
+                var str = '<div class="media medialeft">'
+                     + '<div class="media-left">'
+                         + '<a href="#">'
+                         + '<img class="media-object img-circle" src="' + msgsss.Headimgurl + '" alt="...">'
+                         + '</a>'
+                     + '</div>'
+                     + '<div class="media-body">'
+                         + '<h5 class="media-heading">' + msgsss.NickName + '</h5>'
+                         + '<div class="mediacontent">' + msgsss.Msg + '</div>'
+                     + '</div>'
+                     + '</div>';
+
+                var html = document.getElementById("messages" + msgsss.NickID).innerHTML + str;
+                document.getElementById("messages" + msgsss.NickID).innerHTML = html;
+            }
+            var div = document.getElementById('messages' + msgsss.NickID);
+            window.scrollTo(0, div.scrollHeight);
+        }
+
+        function onkey(event) { if (event.keyCode == 13) { send(); } }
+
+    </script>
+}
+

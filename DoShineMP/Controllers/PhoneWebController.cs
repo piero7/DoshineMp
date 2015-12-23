@@ -10,7 +10,6 @@ namespace DoShineMP.Controllers
 {
     public class PhoneWebController : Controller
     {
-
         #region 参数
         private WechatUserHelper wuser = new WechatUserHelper();
         private WechatHelper wh = new WechatHelper();
@@ -30,9 +29,9 @@ namespace DoShineMP.Controllers
         {
             if (string.IsNullOrEmpty(code))
             {
-                WechatHelper.BackForCode("PhoneWeb", "Register", "");
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
             }
-            ViewBag.openid = WechatHelper.GetOpenidByCode(code);
+            ViewBag.code = code;
             ViewBag.Title = "桑田账号-注册";
             return View();
         }
@@ -48,14 +47,15 @@ namespace DoShineMP.Controllers
             {
                 if (!string.IsNullOrEmpty(code))
                 {
-                    //openid = WechatHelper.GetOpenidByCode(code);
-                    openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                    openid = WechatHelper.GetOpenidByCode(code);
+                    ViewBag.openid = openid;
+                    //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
                     if (WechatHelper.CheckOpenid(openid) != null)
                     {
                         var user = wuser.GetUserInfo(openid);
                         if (user.UserInfo == null)
                         {
-                            WechatHelper.BackForCode("PhoneWeb", "Register", "");
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
                         }
                         else
                         {
@@ -65,13 +65,13 @@ namespace DoShineMP.Controllers
                     }
                     else
                     {
-                        WechatHelper.BackForCode("PhoneWeb", "Register", "");
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
                     }
 
                 }
                 else
                 {
-                    WechatHelper.BackForCode("PhoneWeb", "PersonalCenter", "");
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "PersonalCenter", ""));
                 }
             }
             catch (Exception e)
@@ -93,8 +93,8 @@ namespace DoShineMP.Controllers
             {
                 if (!string.IsNullOrEmpty(code))
                 {
-                    //openid = WechatHelper.GetOpenidByCode(code);
-                    openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                    openid = WechatHelper.GetOpenidByCode(code);
+                    //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
 
                     if (WechatHelper.CheckOpenid(openid) != null)
                     {
@@ -102,12 +102,15 @@ namespace DoShineMP.Controllers
                     }
                     else
                     {
-                        WechatHelper.BackForCode("PhoneWeb", "Register", "");
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        //Response.Redirect(Url.Action("Register", "PhoneWeb") + "?code=" + code);
+                        //WechatHelper.BackForCode("PhoneWeb", "Register", "");
                     }
                 }
                 else
                 {
-                    WechatHelper.BackForCode("PhoneWeb", "HomePage", "");
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "HomePage", ""));
+                    //WechatHelper.BackForCode("PhoneWeb", "HomePage", "");
                 }
             }
             catch (Exception e)
@@ -131,8 +134,8 @@ namespace DoShineMP.Controllers
             {
                 if (!string.IsNullOrEmpty(code))
                 {
-                    //openid = WechatHelper.GetOpenidByCode(code);
-                    openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                    openid = WechatHelper.GetOpenidByCode(code);
+                    ViewBag.openid = openid;
 
                     if (WechatHelper.CheckOpenid(openid) != null)
                     {
@@ -141,12 +144,12 @@ namespace DoShineMP.Controllers
                     }
                     else
                     {
-                        WechatHelper.BackForCode("PhoneWeb", "Register", "");
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
                     }
                 }
                 else
                 {
-                    WechatHelper.BackForCode("PhoneWeb", "Repair", "");
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
                 }
             }
             catch (Exception e)
@@ -167,12 +170,13 @@ namespace DoShineMP.Controllers
         {
             if (!string.IsNullOrEmpty(code))
             {
-                //openid = WechatHelper.GetOpenidByCode(code);
-                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                openid = WechatHelper.GetOpenidByCode(code);
+                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
                 var wuser = partner.GetPartnerInfo(openid);
                 if (wuser == null)
                 {
-                    Response.Redirect(Url.Action("PersonalCenter", "PhoneWeb") + "?code=" + code);
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "PersonalCenter", ""));
+                    //Response.Redirect(Url.Action("PersonalCenter", "PhoneWeb") + "?code=" + code);
                     //WechatHelper.BackForCode("PhoneWeb", "PerconalCenter", "");
                 }
                 else
@@ -182,12 +186,13 @@ namespace DoShineMP.Controllers
             }
             else
             {
-                WechatHelper.BackForCode("PhoneWeb", "Partner", "");
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Partner", ""));
+                //WechatHelper.BackForCode("PhoneWeb", "Partner", "");
             }
             ViewBag.Title = "公司信息";
             return View();
         }
-        
+
         /// <summary>
         /// 个人详细信息页面
         /// </summary>
@@ -197,24 +202,24 @@ namespace DoShineMP.Controllers
         {
             if (!string.IsNullOrEmpty(code))
             {
-                //openid = WechatHelper.GetOpenidByCode(code);
-                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                openid = WechatHelper.GetOpenidByCode(code);
+                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
                 var user = wuser.GetUserInfo(openid);
                 if (user.UserInfo == null)
                 {
-                    Response.Redirect(Url.Action("Register", "PhoneWeb") + "?code=" + code);
-                    //WechatHelper.BackForCode("PhoneWeb", "Register", "");
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
                 }
                 ViewBag.user = user;
             }
             else
             {
-                WechatHelper.BackForCode("PhoneWeb", "MyMessage", "");
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+                //WechatHelper.BackForCode("PhoneWeb", "MyMessage", "");
             }
             ViewBag.Title = "个人信息";
             return View();
         }
-        
+
         /// <summary>
         /// 在线留言
         /// </summary>
@@ -224,18 +229,32 @@ namespace DoShineMP.Controllers
         {
             if (!string.IsNullOrEmpty(code))
             {
-                //openid = WechatHelper.GetOpenidByCode(code);
-                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                openid = WechatHelper.GetOpenidByCode(code);
+                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
                 ViewBag.user = wuser.GetUserInfo(openid);
             }
             else
             {
-                WechatHelper.BackForCode("PhoneWeb", "Messages", "");
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+                //WechatHelper.BackForCode("PhoneWeb", "Messages", "");
             }
             ViewBag.Title = "即时交流";
             return View();
+
+
         }
 
+
+        /// <summary>
+        ///客服聊天系统客服版
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult ServerMessages(string code)
+        {
+            ViewBag.Title = "客服系统";
+            return View();
+        }
 
         #endregion
 
@@ -255,8 +274,8 @@ namespace DoShineMP.Controllers
             {
                 if (!string.IsNullOrEmpty(RealName) && !string.IsNullOrEmpty(PhoneNumber))
                 {
-                    string openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                    //string openid = WechatHelper.GetOpenidByCode(code);
+                    //string openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                    string openid = WechatHelper.GetOpenidByCode(code);
                     //逻辑代码
                     if (wuser.Regiet(RealName, PhoneNumber, openid) != null)
                     {
@@ -335,8 +354,8 @@ namespace DoShineMP.Controllers
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
                 //openid = WechatHelper.GetOpenidByCode(code);
-                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                if (partner.ReginPartner(openid, comName, p, realName, Address, comPhone) != null)
+                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone) != null)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -369,8 +388,8 @@ namespace DoShineMP.Controllers
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
                 //openid = WechatHelper.GetOpenidByCode(code);
-                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                if (partner.EditPartnerInfo(openid, comName, p, realName, Address, comPhone) != null)
+                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                if (partner.EditPartnerInfo(code, comName, p, realName, Address, comPhone) != null)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -401,8 +420,8 @@ namespace DoShineMP.Controllers
             try
             {
                 //openid = WechatHelper.GetOpenidByCode(code);
-                openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                if (repairHelper.AddRepair(openid, content) != null)
+                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+                if (repairHelper.AddRepair(code, content) != null)
                 {
                     return Json(new { msg = "Y" });
                 }

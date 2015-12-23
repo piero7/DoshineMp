@@ -12,7 +12,7 @@
         <div class="panel-body">
             <div class="pull-left paneltitle" style="padding-top: 9%;">头像</div>
             <div class="pull-right ">
-                <img src="~/Images/touxiang.jpg" class="img-rounded" />
+                <img src="@ViewBag.user.Headimgurl" class="img-rounded" />
             </div>
         </div>
     </div>
@@ -143,6 +143,7 @@ else
     <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
 </div>
 
+<input type="hidden" id="openid" name="name" value="@ViewBag.openid" />
 
 
 
@@ -155,7 +156,7 @@ else
             var realName = $('#realName').val();
             var comAddress = $('#comAddress').val();
             var comPhone = $('#comPhone').val();
-            var code = $.getUrlParam('code');
+            var code = $('#openid').val();
             var url = '@Url.Action("ReginPartnerJson", "PhoneWeb")';
             if (comName == null && realName == null && phoneNumber && null) {
                 alert('没有数据修改！');
@@ -169,7 +170,7 @@ else
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         alert('提交成功!');
-                        window.location.href = "@Url.Action("Partner","PhoneWeb")?code=" + code;
+                        window.location.href = "@Url.Action("Partner","PhoneWeb")" ;
                     }
                     else
                         alert('提交失败!')
