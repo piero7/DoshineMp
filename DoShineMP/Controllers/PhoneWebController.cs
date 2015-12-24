@@ -415,7 +415,7 @@ namespace DoShineMP.Controllers
         #region 杂项功能
 
         /// <summary>
-        /// 添加保修记录
+        /// 添加保修记录返回数据
         /// </summary>
         /// <param name="code"></param>
         /// <param name="content"></param>
@@ -424,11 +424,9 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                //openid = WechatHelper.GetOpenidByCode(code);
-                //openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
                 if (repairHelper.AddRepair(code, content) != null)
                 {
-                    return Json(new { msg = "Y" });
+                    return Json(repairHelper.GetHistoryRepair(code));
                 }
                 else
                 {
@@ -440,6 +438,7 @@ namespace DoShineMP.Controllers
                 return Json(new { msg = "N" });
             }
         }
+
 
 
         #endregion
