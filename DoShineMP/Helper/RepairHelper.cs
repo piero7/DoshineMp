@@ -48,7 +48,7 @@ namespace DoShineMP.Helper
             int tCount = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["historyrepaircount"]);
             if (user == null)
             {
-            return null;
+                return null;
             }
 
             var db = new ModelContext();
@@ -56,7 +56,7 @@ namespace DoShineMP.Helper
             var ownhis = (
                           from r in db.RepairSet
                           where r.UserId == user.UserInfoId
-                          orderby r.CreateDate
+                          orderby r.CreateDate descending
                           select r).ToList();
 
             var rCount = tCount - ownhis.Count();
