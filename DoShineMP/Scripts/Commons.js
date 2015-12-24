@@ -6,3 +6,8 @@
         if (r != null) return unescape(r[2]); return null;
     }
 })(jQuery);
+
+
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('closeWindow');
+});

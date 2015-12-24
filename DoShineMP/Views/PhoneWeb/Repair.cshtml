@@ -14,7 +14,7 @@
                 <textarea placeholder="请输入您要保修的内容" id="keep"></textarea>
             </div>
             <div class="col-xs-12 operate ">
-                <button type="button" class="commit pull-right" id="btn">提交</button>
+                <button type="button" class="commit pull-right" id="btn" onclick="btn()">提交</button>
                 <button type="button" class="countermand pull-right" id="btnqx">取消</button>
             </div>
 
@@ -26,7 +26,7 @@
             <p class="panel panel-default new-title" style="margin-bottom:3vw;">
                 <span>最新报修消息</span>
             </p>
-            <div class="panel panel-default new-keep">
+            <div class="panel panel-default new-keep" id="messagenew">
                 <ul>
                     @if (ViewBag.RepairList != null)
                     {
@@ -50,24 +50,29 @@
         </div>
     </div>
 </div>
-
+<input type="hidden" value="@ViewBag.openid" id="openid" />
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
-        $('#btn').click(function () {
+         function btn(){
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
-            //alert(code);
-            //alert(keeptext);
+             if(keeptext==''||keeptext==null)
+             {
+                 alert('内容不得为空!')
+                 return false;
+             }
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         $('#keep').val('');
                         alert("提交成功！");
+                        //$("#messagenew").load(location.href + " #messagenew>*", "");
+                        window.location.href = '@Url.Action("Repair","PhoneWeb")';
                     }
                 }
             })
-        })
+        }
 
     </script>
 }

@@ -33,6 +33,7 @@ namespace DoShineMP.Helper
 
             var pat = new Partner
             {
+                RealName=realname,
                 Address = address,
                 CompanyName = comName,
                 CreateDate = DateTime.Now,
