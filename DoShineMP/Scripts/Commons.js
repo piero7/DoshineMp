@@ -8,6 +8,6 @@
 })(jQuery);
 
 
-document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-    WeixinJSBridge.call('closeWindow');
-});
+//document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+//    WeixinJSBridge.call('closeWindow');
+//});
