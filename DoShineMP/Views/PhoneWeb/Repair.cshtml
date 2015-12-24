@@ -15,7 +15,7 @@
             </div>
             <div class="col-xs-12 operate ">
                 <button type="button" class="commit pull-right" id="btn" onclick="btn()">提交</button>
-                <button type="button" class="countermand pull-right" id="btnqx">取消</button>
+                <button type="button" class="countermand pull-right" id="btnqx" onclick="quxiao()">取消</button>
             </div>
 
             <div class="go-photo">
@@ -85,6 +85,10 @@
                     }
                 }
             })
+        }
+
+        function quxiao() {
+            $('#keep').val('');
         }
 
     </script>
