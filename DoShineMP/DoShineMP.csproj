@@ -177,7 +177,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PhoneWebController.cs" />
-    <Compile Include="Controllers\ShortMessageController.cs" />
+    <Compile Include="Controllers\IdentifyingCodeController.cs" />
     <Compile Include="Helper\IdentifyingCodeHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Controllers\ManageController.cs" />
