@@ -177,6 +177,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PhoneWebController.cs" />
+    <Compile Include="Controllers\ShortMessageController.cs" />
+    <Compile Include="Helper\IdentifyingCodeHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
@@ -203,6 +205,14 @@
     <Compile Include="Migrations\201512220642583_20151222.cs" />
     <Compile Include="Migrations\201512220642583_20151222.Designer.cs">
       <DependentUpon>201512220642583_20151222.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512250551151_addIdentifyingCode.cs" />
+    <Compile Include="Migrations\201512250551151_addIdentifyingCode.Designer.cs">
+      <DependentUpon>201512250551151_addIdentifyingCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512250658088_addFlgsForIdentifyingCode.cs" />
+    <Compile Include="Migrations\201512250658088_addFlgsForIdentifyingCode.Designer.cs">
+      <DependentUpon>201512250658088_addFlgsForIdentifyingCode.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -361,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512220642583_20151222.resx">
       <DependentUpon>201512220642583_20151222.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512250551151_addIdentifyingCode.resx">
+      <DependentUpon>201512250551151_addIdentifyingCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512250658088_addFlgsForIdentifyingCode.resx">
+      <DependentUpon>201512250658088_addFlgsForIdentifyingCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
