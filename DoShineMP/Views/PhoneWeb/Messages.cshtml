@@ -55,6 +55,14 @@
             -webkit-border-radius: 15px;
             -moz-border-radius: 15px;
         }
+        #foottext .form-control{
+            height:4em;
+            padding-left:2%;
+        }
+        #foottext .btn-default{
+            height:4em;
+            
+        }
     </style>
 }
 <div id="bk"></div>
@@ -65,7 +73,7 @@
 <div class="input-group" id="foottext">
     <input type="text" class="form-control" id="sendText" placeholder="输入信息">
     <span class="input-group-btn">
-        <button class="btn btn-default" onclick="send()" id="btnSend" type="button">提交</button>
+        <input class="btn btn-default"  onclick="send()" id="btnSend" type="button" value="提交" />
     </span>
 </div>
 <input type="hidden" id="username" value="@ViewBag.user.NickName" />

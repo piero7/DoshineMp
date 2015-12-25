@@ -15,6 +15,7 @@ namespace DoShineMP.Controllers
         private WechatHelper wh = new WechatHelper();
         private PartnerHelper partner = new PartnerHelper();
         private RepairHelper repairHelper = new RepairHelper();
+        private IdentifyingCodeController identifyingcode = new IdentifyingCodeController();
         private string openid = string.Empty;
 
         #endregion
@@ -31,7 +32,19 @@ namespace DoShineMP.Controllers
             {
                 Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
             }
-            ViewBag.code = code;
+            else
+            {
+                ViewBag.code = code;
+                this.openid = CodeJjudgeByOpenid(code);
+                if (!string.IsNullOrEmpty(this.openid))
+                {
+                    ViewBag.openid = this.openid;
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                }
+            }
             ViewBag.Title = "桑田账号-注册";
             return View();
         }
@@ -233,7 +246,15 @@ namespace DoShineMP.Controllers
             {
                 if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
                 {
-                    ViewBag.user = wuser.GetUserInfo(CodeJjudgeByOpenid(code));
+                    var uuu = wuser.GetUserInfo(this.openid);
+                    if (uuu.UserInfo != null)
+                    {
+                        ViewBag.user = wuser.GetUserInfo(this.openid);
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                    }
                 }
                 else
                 {
@@ -244,7 +265,7 @@ namespace DoShineMP.Controllers
             {
                 Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
             }
-            ViewBag.Title = "即时交流";
+            ViewBag.Title = "在线客服";
             return View();
 
 
@@ -273,16 +294,18 @@ namespace DoShineMP.Controllers
         /// <param name="PhoneNumber">手机号</param>
         /// <param name="code">微信CODE</param>
         /// <returns>Y：修改成功；N：修改失败</returns>
-        public JsonResult RegisterJson(string RealName, string PhoneNumber, string code)
+        public JsonResult RegisterJson(string RealName, string PhoneNumber, string code, int sendid, string sendcode)
         {
             try
             {
                 if (!string.IsNullOrEmpty(PhoneNumber))
                 {
-                    //string openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-                    string openid = WechatHelper.GetOpenidByCode(code);
-                    //逻辑代码
-                    if (!string.IsNullOrEmpty(openid) && wuser.Regiet(RealName, PhoneNumber, openid) != null)
+                    //判断手机验证码
+                    if (!IdentifyingCodeHelper.CheckCode(sendid, sendcode, code, PhoneNumber))
+                    {
+                        return Json(new { msg = "验证码输入错误" });
+                    }
+                    else if (!string.IsNullOrEmpty(code) && wuser.Regiet(RealName, PhoneNumber, code) != null)
                     {
                         return Json(new { msg = "Y" });
                     }
@@ -440,6 +463,32 @@ namespace DoShineMP.Controllers
         }
 
 
+
+        /// <summary>
+        /// 发送短信
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="PhoneNumber"></param>
+        /// <returns></returns>
+        public JsonResult Send(string openid, string PhoneNumber)
+        {
+            try
+            {
+                int sendid = identifyingcode.GetIndentifyingCode(openid, PhoneNumber);
+                if (sendid == 0)
+                {
+                    return Json(new { msg = "N" });
+                }
+                else
+                {
+                    return Json(new { sendid = sendid });
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { msg = "N" });
+            }
+        }
 
         #endregion
 

@@ -34,10 +34,13 @@
         <p class="msg">桑田<a href="#">用户协议</a> 和 <a href="#">隐私政策</a></p>
     </div>
 </div>
+<input type="hidden" value="@ViewBag.openid" id="openid" />
 
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
+        var openid = $('#openid').val();
+        var sendid;
         window.onload = function () {
             // 正则验证
             var Play = document.getElementById('PhoneName');
@@ -83,6 +86,21 @@
             var down = null;
             var timer;
             GoBtn.onclick = function () {
+                var PhoneNumber = $('#PhoneName').val();
+                if (PhoneNumber == null || PhoneNumber == '') {
+                    alert('请输入手机号')
+                    return false;
+                }
+                $.post('@Url.Action("Send","PhoneWeb")', { openid: openid, PhoneNumber: PhoneNumber }, function (data, status) {
+                    if (status === 'success') {
+                        if (data.msg == 'N') {
+                            alert('短信发送失败')
+                        } else {
+                            sendid = data.sendid;
+                        }
+                    }
+                })
+
                 GoBtntext.innerHTML = oldTime + '秒重新获取';
                 console.log(GoBtn);
                 this.className = 'go-btn current';
@@ -107,27 +125,35 @@
         }
 
         $('#signin-btn').click(function () {
-            var code = $.getUrlParam('code');
             var RealName = '';
             var PhoneNumber = $('#PhoneName').val();
-            var PhoneYZM = '';
+            var PhoneYZM = $('#code2').val();
             if (PhoneName == null) {
                 alert('手机号必填！')
                 return false;
             }
-
-            $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: code }, function (data, status) {
+            alert(PhoneNumber)
+            alert(openid)
+            alert(sendid)
+            alert(PhoneYZM)
+            $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: openid, sendid: sendid, sendcode: PhoneYZM }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
                         alert("注册成功!");
                         //window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
                         WeixinJSBridge.call('closeWindow');
                     }
-                    else
+                    else if (data.msg == 'N') {
                         alert("注册失败！");
+                    } else {
+                        alert(data.msg);
+                    }
+
                 }
             })
         })
+
+
 
 
 
