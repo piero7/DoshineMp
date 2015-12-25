@@ -32,5 +32,7 @@ namespace DoShineMP.Models
         public DbSet<ActiveLog> ActiveLogSet { get; set; }
 
         public DbSet<DebugInfo> DebugInfoSet { get; set; }
+
+        public DbSet <IdentifyingCode> IdentifyingCodeSet { get; set; }
     }
 }

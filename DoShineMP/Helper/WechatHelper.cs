@@ -289,6 +289,7 @@ namespace DoShineMP.Helper
             user.Province = dic["province"];
             user.Language = dic["language"];
             user.Headimgurl = dic["headimgurl"];
+            user.SubscribeTime = new DateTime(long.Parse(dic["subscribe_time"]));
 
             nUser.NickName = dic["nickname"];
             nUser.Sex = dic["sex"] == "1" ? Sex.Man : dic["sex"] == "2" ? Sex.Female : Sex.Unknown;
@@ -297,9 +298,10 @@ namespace DoShineMP.Helper
             nUser.Province = dic["province"];
             nUser.Language = dic["language"];
             nUser.Headimgurl = dic["headimgurl"];
+            nUser.SubscribeTime = new DateTime(long.Parse(dic["subscribe_time"]));
             db.SaveChanges();
 
-               return user;
+            return user;
         }
 
 
@@ -323,7 +325,7 @@ namespace DoShineMP.Helper
             }
 
             return user;
-        }      
+        }
 
         /// <summary>
         /// 检查用户是否注册

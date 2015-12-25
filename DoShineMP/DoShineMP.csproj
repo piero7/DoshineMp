@@ -182,6 +182,7 @@
     <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Helper\PartnerHelper.cs" />
     <Compile Include="Helper\RepairHelper.cs" />
+    <Compile Include="Helper\ShortMessageHelper.cs" />
     <Compile Include="Helper\WechatHelper.cs" />
     <Compile Include="Helper\WechatUserHelper.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +210,7 @@
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\DebugInfo.cs" />
     <Compile Include="Models\File.cs" />
+    <Compile Include="Models\IdentifyingCode.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
