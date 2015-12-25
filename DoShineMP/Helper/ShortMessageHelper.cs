@@ -11,8 +11,8 @@ namespace DoShineMP.Helper
 
     public class ShortMessageHelper
     {
-         public 
-        
+         
+                
         /// <summary>
         /// 以 HTTP 的 POST 提交方式 发送短信(ASP.NET的网页或是C#的窗体，均可使用该方法)
         /// </summary>
