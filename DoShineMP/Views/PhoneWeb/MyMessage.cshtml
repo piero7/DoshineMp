@@ -5,13 +5,14 @@
 @section styles{
     <link href="~/Styles/MyMessage.css" rel="stylesheet" />
 }
+
 <!-- 用户信息  -->
 <div class="Mymessage">
     <div class="pull-left logo">
         <img src="@ViewBag.user.Headimgurl" class="img-circle" alt="Alternate Text" />
     </div>
     <div class="pull-left Mymessage-name">
-        <p>@ViewBag.user.UserInfo.Name</p>
+        <p>@ViewBag.user.NickName</p>
         <div class="tel">
             手机号：<span>@ViewBag.user.UserInfo.PhoneNumber</span>
         </div>
@@ -54,13 +55,16 @@
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         $(document).on('click', '.list-group-item', function () {
-            alert($(this).children().eq(0).attr("class"));
             switch ($(this).children().eq(0).attr("class")) {
                 case 'Mymessage-icon1 icon':; break;
                 case 'Mymessage-icon2 icon': window.location.href = '@Url.Action("Repair","PhoneWeb")'; break;
                 case 'Mymessage-icon3 icon': window.location.href = '@Url.Action("Messages","PhoneWeb")'; break;
                 case 'Mymessage-icon4 icon': window.location.href = 'http://mp.weixin.qq.com/s?__biz=MjM5MTI4MDAyMQ==&mid=416121858&idx=1&sn=1a37a4e8295c88930e43eec998a2e904&scene=18#wechat_redirect'; break;
             }
+        })
+
+        $('.list-group-item').click(function () {
+
         })
 
     </script>

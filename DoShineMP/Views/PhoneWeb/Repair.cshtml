@@ -15,19 +15,20 @@
             </div>
             <div class="col-xs-12 operate ">
                 <button type="button" class="commit pull-right" id="btn" onclick="btn()">提交</button>
-                <button type="button" class="countermand pull-right" id="btnqx">取消</button>
+                <button type="button" class="countermand pull-right" id="btnqx" onclick="quxiao()">取消</button>
             </div>
 
             <div class="go-photo">
                 <input type="button" class="add-photo">
             </div>
         </div>
+
         <div class="keep-content-b">
             <p class="panel panel-default new-title" style="margin-bottom:3vw;">
                 <span>最新报修消息</span>
             </p>
-            <div class="panel panel-default new-keep" id="messagenew">
-                <ul>
+            <div class="panel panel-default new-keep">
+                <ul id="messagenew">
                     @if (ViewBag.RepairList != null)
                     {
                         foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
@@ -54,24 +55,41 @@
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
-         function btn(){
+        function btn() {
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
-             if(keeptext==''||keeptext==null)
-             {
-                 alert('内容不得为空!')
-                 return false;
-             }
+            if (keeptext == '' || keeptext == null) {
+                alert('内容不得为空!')
+                return false;
+            }
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext }, function (data, status) {
                 if (status == 'success') {
-                    if (data.msg == 'Y') {
+                    if (data.msg != 'N') {
                         $('#keep').val('');
                         alert("提交成功！");
-                        //$("#messagenew").load(location.href + " #messagenew>*", "");
-                        window.location.href = '@Url.Action("Repair","PhoneWeb")';
+                        var str = '';
+                        $.each(data, function (i, item) {
+                            var time = $.timeStamp2String(item.CreateDate)
+                            str += '<li>'
+                                    + '<div class="content-title-t">'
+                                        + '<div class="pull-left w8">'
+                                            + '<p>' + item.User.Name + '</p>'
+                                            + '<b>' + time + '</b>'
+                                        + '</div>'
+                                    + '</div>'
+                                    + '<div class="content-title-b">'
+                                        + '<p>' + item.Contenet + '</p>'
+                                    + '</div>'
+                                + '</li>';
+                        })
+                        $('#messagenew').html(str);
                     }
                 }
             })
+        }
+
+        function quxiao() {
+            $('#keep').val('');
         }
 
     </script>

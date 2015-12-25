@@ -6,13 +6,14 @@
     <link href="~/Styles/partner.css" rel="stylesheet" />
 }
 
+
 <!-- 用户信息  -->
 <div class="Mymessage">
     <div class="pull-left logo">
         <img src="@ViewBag.wuser.Headimgurl" class="img-circle" alt="Alternate Text" />
     </div>
     <div class="pull-left Mymessage-name">
-        <p>@ViewBag.wuser.UserInfo.Name</p>
+        <p>@ViewBag.wuser.NickName</p>
         <P>@ViewBag.wuser.PartnerInfo.CompanyName</P>
         <div class="tel">
             <span>@ViewBag.wuser.UserInfo.PhoneNumber</span>
@@ -23,6 +24,7 @@
         <b>普通合作伙伴</b>
     </div>
 </div>
+
 
 
 <!-- 导航 -->
@@ -66,10 +68,8 @@
     </ul>
 </div>
 
-
-
 @section scripts{
-<script src="~/Scripts/Commons.js"></script>
+    <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         $('.list-group-item').click(function () {
             switch ($(this).children().eq(0).attr("class")) {

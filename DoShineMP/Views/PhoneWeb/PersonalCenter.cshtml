@@ -28,11 +28,11 @@
         <div class="panel-body">
             <div class="pull-left paneltitle">性别</div>
             <div class="pull-right">
-                @if (ViewBag.user.Sex == "Unknown")
+                @if (ViewBag.user.Sex == DoShineMP.Models.Sex.Unknown)
                 {
                     <span>未知</span>
                 }
-                else if (ViewBag.user.Sex == "Man")
+                else if (ViewBag.user.Sex == DoShineMP.Models.Sex.Man)
                 {
                     <span>男</span>
                 }
@@ -44,6 +44,7 @@
         </div>
     </div>
 </div>
+
 @if (ViewBag.parnter == null)
 {
     <div class="col-xs-12 marginB">
