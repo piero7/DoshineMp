@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace DoShineMP.Controllers
 {
-    public class ShortMessageController : ApiController
+    public class IdentifyingCodeController : ApiController
     {
         /// <summary>
         /// 发送验证码，若成功则返回ID后续一并提交，若未成功则返回0
@@ -51,5 +51,20 @@ namespace DoShineMP.Controllers
                 return 0;
             }
         }
+
+        /// <summary>
+        /// 测试方法，请勿调用！！！
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="phone"></param>
+        /// <param name="code"></param>
+        /// <param name="codeid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        private bool TestCheckIdentifyingCode(string openid, string phone, string code, int codeid)
+        {
+            return IdentifyingCodeHelper.CheckCode(codeid, code, openid, phone);
+        }
+
     }
 }
