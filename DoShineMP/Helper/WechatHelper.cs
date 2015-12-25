@@ -289,7 +289,7 @@ namespace DoShineMP.Helper
             user.Province = dic["province"];
             user.Language = dic["language"];
             user.Headimgurl = dic["headimgurl"];
-            user.SubscribeTime = new DateTime(long.Parse(dic["subscribe_time"]));
+            user.SubscribeTime = UnixTimestampToDateTime(long.Parse(dic["subscribe_time"]));
 
             nUser.NickName = dic["nickname"];
             nUser.Sex = dic["sex"] == "1" ? Sex.Man : dic["sex"] == "2" ? Sex.Female : Sex.Unknown;
@@ -298,7 +298,7 @@ namespace DoShineMP.Helper
             nUser.Province = dic["province"];
             nUser.Language = dic["language"];
             nUser.Headimgurl = dic["headimgurl"];
-            nUser.SubscribeTime = new DateTime(long.Parse(dic["subscribe_time"]));
+            nUser.SubscribeTime = UnixTimestampToDateTime(long.Parse(dic["subscribe_time"]));
             db.SaveChanges();
 
             return user;
@@ -345,7 +345,7 @@ namespace DoShineMP.Helper
         }
 
         /// <summary>
-        /// 检查用户时候注册为经销商
+        /// 检查用户是否注册为经销商
         /// </summary>
         /// <param name="wuser">微信用户信息</param>
         /// <returns></returns>
@@ -358,6 +358,17 @@ namespace DoShineMP.Helper
                 return null;
             }
             return wuser;
+        }
+
+        /// <summary>
+        /// unix时间戳转换成日期
+        /// </summary>
+        /// <param name="unixTimeStamp">时间戳（秒）</param>
+        /// <returns></returns>
+        public static DateTime UnixTimestampToDateTime(long timestamp)
+        {
+            var start = new DateTime(1970, 1, 1, 0, 0, 0);
+            return start.AddSeconds(timestamp);
         }
 
     }
