@@ -277,7 +277,7 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                if (!string.IsNullOrEmpty(RealName) && !string.IsNullOrEmpty(PhoneNumber))
+                if (!string.IsNullOrEmpty(PhoneNumber))
                 {
                     //string openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
                     string openid = WechatHelper.GetOpenidByCode(code);

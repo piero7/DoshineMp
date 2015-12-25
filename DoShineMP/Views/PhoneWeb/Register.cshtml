@@ -10,17 +10,17 @@
     <div class="signin-content">
         <h1 class='signin-title'>注册桑田账号</h1>
         <ul class="sigin-play">
-            <li>
-                <input type="text" class="signin-tel" id="RealName" placeholder="请输入姓名">
-                <span class='Error'>请输入姓名</span>
-            </li>
+            @*<li>
+                    <input type="text" class="signin-tel" id="RealName" placeholder="请输入姓名">
+                    <span class='Error'>请输入姓名</span>
+                </li>*@
             <li>
                 <input type="text" class="signin-tel" id="PhoneName" placeholder="请输入手机号">
                 <span class='Error'>请输入手机号码</span>
             </li>
             <li style="overflow:hidden;">
                 <input type="text" class="signin-werfy" id="code2" placeholder="验证码">
-                <span class='Error'>请输入图片验证码</span>
+                <span class='Error'>请输入手机验证码</span>
                 <div class="werfy-img">
                     <p class="go-btn" id="gian">获取验证码</p>
                     <p class="go-btn" id="giantext"></p>
@@ -108,10 +108,11 @@
 
         $('#signin-btn').click(function () {
             var code = $.getUrlParam('code');
-            var RealName = $('#RealName').val();
+            var RealName = '';
             var PhoneNumber = $('#PhoneName').val();
-            if (RealName == null || PhoneName == null) {
-                alert('姓名、手机号必填！')
+            var PhoneYZM = '';
+            if (PhoneName == null) {
+                alert('手机号必填！')
                 return false;
             }
 
@@ -119,7 +120,8 @@
                 if (status === 'success') {
                     if (data.msg == 'Y') {
                         alert("注册成功!");
-                        window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
+                        //window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
+                        WeixinJSBridge.call('closeWindow');
                     }
                     else
                         alert("注册失败！");
