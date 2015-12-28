@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link href="~/Styles/PersonalCenter.css" rel="stylesheet" />
+}
+
+<div class="col-xs-12 marginB">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle" style="padding-top: 9%;width:40px;">头像</div>
+            <div class="pull-right ">
+                <img src="@ViewBag.user.Headimgurl" class="img-rounded" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">昵称</div>
+            <div class="pull-right ">@ViewBag.user.NickName</div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">性别</div>
+            <div class="pull-right">
+                @if (ViewBag.user.Sex == DoShineMP.Models.Sex.Unknown)
+                {
+                    <span>未知</span>
+                }
+                else if (ViewBag.user.Sex == DoShineMP.Models.Sex.Man)
+                {
+                    <span>男</span>
+                }
+                else
+                {
+                    <span>女</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 marginB">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">姓名</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="realName" id="realName" value="@ViewBag.user.UserInfo.Name" placeholder="请输入姓名" />
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left paneltitle">公司电话</div>
+            <div class="pull-right panelbody">
+                <input type="text" name="comPhone" id="Phone" value="@ViewBag.user.UserInfo.PhoneNumber" placeholder="请输入手机号" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 marginB">
+    <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
+</div>
+
+<input type="hidden" id="openid" name="name" value="@ViewBag.openid" />
+
+@section scripts{
+    <script src="~/Scripts/Commons.js"></script>
+    <script type="text/javascript">
+        $('#tijiao').click(function () {
+            var realName = $('#realName').val();
+            var PhoneNumber = $('#Phone').val();
+            var openid = $('#openid').val();
+
+            $.post('@Url.Action("CenterUpdateJson","PhoneWeb")', { RealName: realName, PhoneNumber: PhoneNumber, code: openid }, function (data, status) {
+                if (status == 'success') {
+                    if (data.msg == 'Y') {
+                        alert('提交成功!');
+                        window.location.href = "@Url.Action("MyMessage","PhoneWeb")";
+                    } else {
+                        alert('提交失败!');
+                    }
+                }
+            })
+        })
+    </script>
+}

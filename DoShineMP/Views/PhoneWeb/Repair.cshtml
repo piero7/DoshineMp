@@ -12,20 +12,19 @@
         <div class="keep-content-t clearfix marginB">
             <div class="keep-textarea">
                 <textarea placeholder="请输入您要保修的内容" id="keep"></textarea>
-            </div>
-            <div class="col-xs-12 operate ">
-                <button type="button" class="commit pull-right" id="btn" onclick="btn()">提交</button>
-                <button type="button" class="countermand pull-right" id="btnqx" onclick="quxiao()">取消</button>
+                <em class="br"></em>
             </div>
 
-            <div class="go-photo">
+            <div class="col-xs-12 operate ">
                 <input type="button" class="add-photo">
+                <span class="commit pull-right" id="btn" onclick="btn()">提交</span>
             </div>
         </div>
 
         <div class="keep-content-b">
-            <p class="panel panel-default new-title" style="margin-bottom:3vw;">
+            <p class="panel panel-default new-title" >
                 <span>最新报修消息</span>
+                <ins></ins>
             </p>
             <div class="panel panel-default new-keep">
                 <ul id="messagenew">
@@ -33,15 +32,30 @@
                     {
                         foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
                         {
+                            @*<li>
+                                    <div class="content-title-t">
+                                        <div class="pull-left w8">
+                                            <p>@r.User.Name</p>
+                                            <b>@r.CreateDate</b>
+                                        </div>
+                                    </div>
+                                    <div class="content-title-b">
+                                        <p>@r.Contenet</p>
+                                    </div>
+                                </li>*@
+
                             <li>
                                 <div class="content-title-t">
                                     <div class="pull-left w8">
-                                        <p>@r.User.Name</p>
-                                        <b>@r.CreateDate</b>
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img"></div>
                                     </div>
                                 </div>
                                 <div class="content-title-b">
-                                    <p>@r.Contenet</p>
+                                    <ins class="check check1 pull-left">已提交</ins>
+                                    <span class="time pull-right">@r.CreateDate</span>
                                 </div>
                             </li>
                         }
@@ -71,16 +85,19 @@
                         $.each(data, function (i, item) {
                             var time = $.timeStamp2String(item.CreateDate)
                             str += '<li>'
-                                    + '<div class="content-title-t">'
-                                        + '<div class="pull-left w8">'
-                                            + '<p>' + item.User.Name + '</p>'
-                                            + '<b>' + time + '</b>'
-                                        + '</div>'
+                                + '<div class="content-title-t">'
+                                    + '<div class="pull-left w8">'
+                                        + '<p class="wr-content">' + data.Contenet + '</p>'
                                     + '</div>'
-                                    + '<div class="content-title-b">'
-                                        + '<p>' + item.Contenet + '</p>'
-                                    + '</div>'
-                                + '</li>';
+                                    + '<div class="pull-right w2">'
+                                       + ' <div class="img"></div>'
+                                   + ' </div>'
+                               + ' </div>'
+                               + ' <div class="content-title-b">'
+                                    + '<ins class="check check1 pull-left">已提交</ins>'
+                                    + '<span class="time pull-right">' + time + '</span>'
+                               + ' </div>'
+                            + '</li>';
                         })
                         $('#messagenew').html(str);
                     }

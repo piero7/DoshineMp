@@ -8,13 +8,13 @@
 
 
 <!-- 用户信息  -->
-<div class="Mymessage">
+<div class="Mymessage" style="padding-top:5px;padding-bottom:5px;">
     <div class="pull-left logo">
         <img src="@ViewBag.wuser.Headimgurl" class="img-circle" alt="Alternate Text" />
     </div>
     <div class="pull-left Mymessage-name">
         <p>@ViewBag.wuser.NickName</p>
-        <P>@ViewBag.wuser.PartnerInfo.CompanyName</P>
+        <span class="tel">@ViewBag.wuser.PartnerInfo.CompanyName</span>
         <div class="tel">
             <span>@ViewBag.wuser.UserInfo.PhoneNumber</span>
         </div>
@@ -26,7 +26,6 @@
 </div>
 
 
-
 <!-- 导航 -->
 <div class="marginB Mymessage-list">
     <ul class="list-group">
@@ -35,11 +34,11 @@
             <p>公司信息</p>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
-        <li class="list-group-item">
-            <span class="Mymessage-icon2 icon"></span>
-            <p>历史订单</p>
-            <span class="glyphicon  glyphicon-menu-right pull-right"></span>
-        </li>
+        @*<li class="list-group-item">
+                <span class="Mymessage-icon2 icon"></span>
+                <p>历史订单</p>
+                <span class="glyphicon  glyphicon-menu-right pull-right"></span>
+            </li>*@
         <li class="list-group-item">
             <span class="Mymessage-icon3 icon"></span>
             <p>我要留言</p>
@@ -69,6 +68,7 @@
 </div>
 
 @section scripts{
+    <script src="~/Scripts/partner.js"></script>
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         $('.list-group-item').click(function () {

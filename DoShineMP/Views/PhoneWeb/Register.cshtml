@@ -36,6 +36,7 @@
 </div>
 <input type="hidden" value="@ViewBag.openid" id="openid" />
 
+
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
@@ -140,8 +141,8 @@
                 if (status === 'success') {
                     if (data.msg == 'Y') {
                         alert("注册成功!");
-                        //window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
-                        WeixinJSBridge.call('closeWindow');
+                        window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
+                        //WeixinJSBridge.call('closeWindow');
                     }
                     else if (data.msg == 'N') {
                         alert("注册失败！");
@@ -152,10 +153,6 @@
                 }
             })
         })
-
-
-
-
 
     </script>
 }

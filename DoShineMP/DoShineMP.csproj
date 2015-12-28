@@ -245,17 +245,24 @@
     <Content Include="Images\123.png" />
     <Content Include="Images\bx.png" />
     <Content Include="Images\codeIcon.png" />
+    <Content Include="Images\dingdan.png" />
     <Content Include="Images\error.png" />
     <Content Include="Images\grade.png" />
+    <Content Include="Images\grade3x.png" />
     <Content Include="Images\icodepic.PNG" />
     <Content Include="Images\icode_bg.PNG" />
     <Content Include="Images\information.png" />
+    <Content Include="Images\information3x.png" />
     <Content Include="Images\introduces.png" />
     <Content Include="Images\iphone3x.png" />
+    <Content Include="Images\jiantou.png" />
     <Content Include="Images\location.png" />
+    <Content Include="Images\location3x.png" />
     <Content Include="Images\more.png" />
     <Content Include="Images\por.png" />
+    <Content Include="Images\por3x.png" />
     <Content Include="Images\qiu.png" />
+    <Content Include="Images\qiu3x.png" />
     <Content Include="Images\regsiter_bg.PNG" />
     <Content Include="Images\shape-214%402x.png" />
     <Content Include="Images\shape-214.png" />
@@ -271,9 +278,11 @@
     <Content Include="Images\shape-40%402x.png" />
     <Content Include="Images\shape-40.png" />
     <Content Include="Images\shape-6%402x.png" />
+    <Content Include="Images\tianjia2x.png" />
     <Content Include="Images\touxiang.jpg" />
     <Content Include="Images\uesr.png" />
     <Content Include="Images\uesr2x.png" />
+    <Content Include="Images\user.png" />
     <Content Include="Images\userIcon.png" />
     <Content Include="Images\usertwo.png" />
     <Content Include="Images\user_bg.PNG" />
@@ -294,6 +303,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Models.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\partner.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -347,6 +357,7 @@
     <Content Include="Views\PhoneWeb\MyMessage.cshtml" />
     <Content Include="Views\PhoneWeb\Messages.cshtml" />
     <Content Include="Views\PhoneWeb\ServerMessages.cshtml" />
+    <Content Include="Views\PhoneWeb\UserUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -51,10 +51,10 @@ namespace DoShineMP.Controllers
 
 
         /// <summary>
-        /// 经销商注册
+        /// 经销商注册及信息修改
         /// </summary>
         /// <returns></returns>
-        public ActionResult PersonalCenter(string code)
+        public ActionResult PersonalCenter(string code, string type)
         {
             try
             {
@@ -90,10 +90,57 @@ namespace DoShineMP.Controllers
             }
 
             ViewBag.Title = "经销商注册";
+            if (ViewBag.parnter != null)
+            {
+                ViewBag.Title = "经销商修改";
+            }
             ViewBag.openid = this.openid;
             return View();
         }
 
+        /// <summary>
+        /// 个人信息修改
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult UserUpdate(string code)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(code))
+                {
+                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                    {
+                        var user = wuser.GetUserInfo(this.openid);
+
+                        if (user.UserInfo == null)
+                        {
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        }
+                        else
+                        {
+                            ViewBag.user = user;
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "UserUpdate", ""));
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+            ViewBag.Title = "个人信息";
+            ViewBag.openid = this.openid;
+            return View();
+        }
 
 
         /// <summary>
@@ -198,9 +245,10 @@ namespace DoShineMP.Controllers
             {
                 Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Partner", ""));
             }
-            ViewBag.Title = "公司信息";
+            ViewBag.Title = "经销商中心";
             return View();
         }
+
 
         /// <summary>
         /// 个人详细信息页面
@@ -234,7 +282,6 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
         /// <summary>
         /// 在线留言
         /// </summary>
@@ -267,8 +314,6 @@ namespace DoShineMP.Controllers
             }
             ViewBag.Title = "在线客服";
             return View();
-
-
         }
 
         /// <summary>
@@ -339,8 +384,9 @@ namespace DoShineMP.Controllers
             {
                 if (!(string.IsNullOrEmpty(RealName) && string.IsNullOrEmpty(PhoneNumber)))
                 {
+
                     //逻辑代码
-                    if (wuser.EditUserInfo(WechatHelper.GetOpenidByCode(code), RealName, PhoneNumber) != null)
+                    if (wuser.EditUserInfo(code, RealName, PhoneNumber) != null)
                     {
                         return Json(new { msg = "Y" });
                     }

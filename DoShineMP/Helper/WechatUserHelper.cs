@@ -46,6 +46,7 @@ namespace DoShineMP.Helper
             return usr;
         }
 
+
         public WechatUser EditUserInfo(string openid, string realName, string phoneNumber)
         {
             var db = new ModelContext();
