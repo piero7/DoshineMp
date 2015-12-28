@@ -38,7 +38,14 @@ namespace DoShineMP.Controllers
                 this.openid = CodeJjudgeByOpenid(code);
                 if (!string.IsNullOrEmpty(this.openid))
                 {
-                    ViewBag.openid = this.openid;
+                    if (wuser.GetUserInfo(this.openid).UserInfo != null)
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+                    }
+                    else
+                    {
+                        ViewBag.openid = this.openid;
+                    }
                 }
                 else
                 {

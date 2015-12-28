@@ -154,7 +154,7 @@ else
     </div>
 }
 <div class="col-xs-12 marginB">
-    <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
+    <button type="button" id="tijiao" class="btn btn-success btn-block" >提交</button>
 </div>
 
 <input type="hidden" id="openid" name="name" value="@ViewBag.openid" />
@@ -163,6 +163,7 @@ else
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         $('#tijiao').click(function () {
+            $(this).attr('disabled', true);
             var type = $('#type').val();
             var comName = $('#comName').val();
             var realName = $('#realName').val();
