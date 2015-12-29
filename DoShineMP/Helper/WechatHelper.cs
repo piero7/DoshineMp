@@ -520,8 +520,9 @@ namespace DoShineMP.Helper
                 //WriteLog("接收类别://" + myResponse.ContentType);
                 WebClient mywebclient = new WebClient();
                 //生成文件名
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + (new Random(99999999)).Next().ToString().PadRight(7,'0').Substring(0, 4) + ".jpg";
-                savepath = System.Configuration.ConfigurationManager.AppSettings["downimgpath"]+fileName;
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + (new Random(99999999)).Next().ToString().PadRight(7, '0').Substring(0, 4) + ".jpg";
+
+                savepath = System.Web.Hosting.HostingEnvironment.MapPath(System.Configuration.ConfigurationManager.AppSettings["downimgpath"]) + fileName;
                 //WriteLog("路径://" + savepath);
                 try
                 {
