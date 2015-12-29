@@ -11,21 +11,20 @@
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
             <div class="keep-textarea">
-                <textarea placeholder="请输入您要保修的内容" id="keep"></textarea>
-            </div>
-            <div class="col-xs-12 operate ">
-                <button type="button" class="commit pull-right" id="btn" onclick="btn()">提交</button>
-                <button type="button" class="countermand pull-right" id="btnqx" onclick="quxiao()">取消</button>
+                <textarea placeholder="请输入您要报修的内容..." id="keep"></textarea>
+                <em class="br"></em>
             </div>
 
-            <div class="go-photo">
+            <div class="col-xs-12 operate ">
                 <input type="button" class="add-photo">
+                <span class="commit pull-right" id="btn" onclick="btn()">提交</span>
             </div>
         </div>
 
         <div class="keep-content-b">
-            <p class="panel panel-default new-title" style="margin-bottom:3vw;">
+            <p class="panel panel-default new-title">
                 <span>最新报修消息</span>
+                <ins></ins>
             </p>
             <div class="panel panel-default new-keep">
                 <ul id="messagenew">
@@ -36,12 +35,32 @@
                             <li>
                                 <div class="content-title-t">
                                     <div class="pull-left w8">
-                                        <p>@r.User.Name</p>
-                                        <b>@r.CreateDate</b>
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img"></div>
                                     </div>
                                 </div>
                                 <div class="content-title-b">
-                                    <p>@r.Contenet</p>
+                                    @switch (r.Status)
+                                    {
+                                        case DoShineMP.Models.RepairStatus.Apply:
+                                            <ins class="check check1 pull-left">已提交</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Accept:
+                                            <ins class="check check2 pull-left">已受理</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Handle:
+                                            <ins class="check check3 pull-left">处理中</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.FinishHandle:
+                                            <ins class="check check4 pull-left">已完成</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Finish:
+                                            <ins class="check check4 pull-left">待确认</ins>;
+                                            break;
+                                    }
+                                    <span class="time pull-right">@r.CreateDate</span>
                                 </div>
                             </li>
                         }
@@ -66,23 +85,37 @@
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
-                        alert("提交成功！");
+                        //alert("提交成功！");
                         var str = '';
                         $.each(data, function (i, item) {
                             var time = $.timeStamp2String(item.CreateDate)
+                            alert(item.Status);
+                            var statusstr = '';
+                            switch (item.Status) {
+                                case 5: statusstr = '<ins class="check check1 pull-left">已提交</ins>'; break;
+                                case 10: statusstr = '<ins class="check check2 pull-left">已受理</ins>'; break;
+                                case 15: statusstr = '<ins class="check check3 pull-left">处理中</ins>'; break;
+                                case 20: statusstr = '<ins class="check check4 pull-left">已完成</ins>'; break;
+                                case 99: statusstr = '<ins class="check check4 pull-left">待确认</ins>'; break;
+                            }
                             str += '<li>'
-                                    + '<div class="content-title-t">'
-                                        + '<div class="pull-left w8">'
-                                            + '<p>' + item.User.Name + '</p>'
-                                            + '<b>' + time + '</b>'
-                                        + '</div>'
+                                + '<div class="content-title-t">'
+                                    + '<div class="pull-left w8">'
+                                        + '<p class="wr-content">' + item.Contenet + '</p>'
                                     + '</div>'
-                                    + '<div class="content-title-b">'
-                                        + '<p>' + item.Contenet + '</p>'
-                                    + '</div>'
-                                + '</li>';
+                                    + '<div class="pull-right w2">'
+                                       + ' <div class="img"></div>'
+                                   + ' </div>'
+                               + ' </div>'
+                               + ' <div class="content-title-b">'
+                                    + statusstr
+                                    + '<span class="time pull-right">' + time + '</span>'
+                               + ' </div>'
+                            + '</li>';
                         })
                         $('#messagenew').html(str);
+                        document.getElementById('btn').style.borderColor = '#4ca329';
+                        document.getElementById('btn').style.color = '#4ca329';
                     }
                 }
             })

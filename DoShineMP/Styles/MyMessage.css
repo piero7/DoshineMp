@@ -1,105 +1,111 @@
-﻿/* 
+/* 
 * @Author: 晴
 * @Date:   2015-12-21 17:46:12
 * @Last Modified by:   晴
-* @Last Modified time: 2015-12-21 18:48:08
+* @Last Modified time: 2015-12-28 13:14:09
 */
-body {
-    font-family: 'Microsoft YaHei';
-    background-color: #ececec;
+body{
+	font-family: 'Microsoft YaHei';
+	background-color:#ececec;
 }
-
-.Mymessage {
-    overflow: hidden;
-    padding: 10px;
-    margin-bottom: 20px;
+.Mymessage{
+	overflow: hidden;
+	padding: 10px;
+    margin-bottom: 15px;
     background-color: white;
 }
-
-    .Mymessage .logo {
-        display: block;
-        width: 80px;
-        height: 80px;
-        background-color: green;
-        border-radius: 50%;
-    }
-    .Mymessage .logo img{
-        width:100%;
-    }
-
-.Mymessage-name {
-    padding: 10px 0px 20px 10px;
+.Mymessage .logo{
+	display: block;
+	width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
 }
-
-    .Mymessage-name p {
-        font-size: 18px;
-    }
-
-    .Mymessage-name .tel {
-        font-size: 14px;
-        color: #898989;
-    }
-
-.andmi {
-    position: relative;
+.Mymessage .logo img{
+	width: 100%;
+	height:100%;
 }
-
-.samil {
-    /*display: block;*/
-    position: absolute;
-    top: 10px;
-    right: 22%;
-    width: 28px;
-    height: 28px;
-    background: url(../Images/xing.png) no-repeat;
+.Mymessage-name{
+	padding:10px 0px 20px 10px;
 }
-
-.andmi b {
-    display: block;
-    padding-top: 55px;
+.Mymessage-name p{
+	font-size: 18px;
+}
+.Mymessage-name .tel{
+	font-size: 14px;
+	color:#898989;
+}
+.andmi{
+	position: relative;
+}
+.samil{
+	/*display: block;*/
+	position: absolute;
+	top:10px;
+	right:-3%;
+	width:23px;
+	height:23px;
+	background: url(../Images/xing.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+}
+.andmi b{
+	display: block;
+	padding-top:45px;
+	color: #d4a300;
+	font-weight: normal;
 }
 /**/
-.Mymessage-list li {
-    margin-bottom: 20px;
-    /*line-height: 28px;*/
+.Mymessage-list li{
+	margin-bottom:15px;
+	/*line-height: 28px;*/
+	border-radius:0 !important;
 }
-
-.icon {
-    position: absolute;
-    top: 8px;
+.icon{
+	position: absolute;
+    top: 14px;
     display: inline-block;
     /*font-family: 'Glyphicons Halflings';*/
     font-style: normal;
     font-weight: normal;
     line-height: 1;
-    width: 28px;
-    height: 28px;
+    width:22px;
+    height:22px;
 }
-
-.Mymessage-list p {
-    padding-left: 50px;
-    padding-top: 5px;
-    margin: 0 0 5px;
+.Mymessage-list p{
+	padding-left:30px;
+	padding-top:5px;
+	margin: 0 0 5px;
 }
-
-.Mymessage-icon1 {
-    background: url(../Images/uesr.png) no-repeat;
-}
-
-.Mymessage-icon2 {
-    background: url(../Images/bx.png) no-repeat;
-}
-
-.Mymessage-icon3 {
-    background: url(../Images/information.png) no-repeat;
-}
-
-.Mymessage-icon4 {
-    background: url(../Images/introduces.png) no-repeat;
+.Mymessage-icon1{
+	background: url(../Images/user.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+}.Mymessage-icon2{
+	background: url(../Images/bx.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+}.Mymessage-icon3{
+	background: url(../Images/information.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+}.Mymessage-icon4{
+	background: url(../Images/usertwo.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
 }
 /*覆盖 bootstart*/
-.glyphicon {
-    position: absolute;
-    right: 0px;
-    top: 20px;
+.glyphicon{
+	position: absolute;
+	right:10px;
+	top:18px;
+}
+.glyphicon-menu-right:before{
+	content: "";
+	width: 15px;
+	height:15px;
+	background: url(../Images/more.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	display: block;
 }

@@ -39,7 +39,7 @@
         </li>
         <li class="list-group-item">
             <span class="Mymessage-icon3 icon"></span>
-            <p>我的留言</p>
+            <p>我要留言</p>
             <span class="glyphicon  glyphicon-menu-right pull-right"></span>
         </li>
         <li class="list-group-item">
@@ -52,11 +52,12 @@
 
 
 @section scripts{
+    <script src="~/Scripts/partner.js"></script>
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         $(document).on('click', '.list-group-item', function () {
             switch ($(this).children().eq(0).attr("class")) {
-                case 'Mymessage-icon1 icon':; break;
+                case 'Mymessage-icon1 icon': window.location.href = '@Url.Action("UserUpdate","PhoneWeb")'; break;
                 case 'Mymessage-icon2 icon': window.location.href = '@Url.Action("Repair","PhoneWeb")'; break;
                 case 'Mymessage-icon3 icon': window.location.href = '@Url.Action("Messages","PhoneWeb")'; break;
                 case 'Mymessage-icon4 icon': window.location.href = 'http://mp.weixin.qq.com/s?__biz=MjM5MTI4MDAyMQ==&mid=416121858&idx=1&sn=1a37a4e8295c88930e43eec998a2e904&scene=18#wechat_redirect'; break;

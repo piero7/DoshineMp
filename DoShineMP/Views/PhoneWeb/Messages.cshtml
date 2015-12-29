@@ -55,6 +55,15 @@
             -webkit-border-radius: 15px;
             -moz-border-radius: 15px;
         }
+
+        #foottext .form-control {
+            height: 4em;
+            padding-left: 2%;
+        }
+
+        #foottext .btn-default {
+            height: 4em;
+        }
     </style>
 }
 <div id="bk"></div>
@@ -65,7 +74,7 @@
 <div class="input-group" id="foottext">
     <input type="text" class="form-control" id="sendText" placeholder="输入信息">
     <span class="input-group-btn">
-        <button class="btn btn-default" onclick="send()" id="btnSend" type="button">提交</button>
+        <input class="btn btn-default" onclick="send()" id="btnSend" type="button" value="提交" />
     </span>
 </div>
 <input type="hidden" id="username" value="@ViewBag.user.NickName" />
@@ -81,9 +90,9 @@
         var userimg = document.getElementById('userimg').value;
         var openid = document.getElementById('openid').value;
         var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
-        //var NewNickIp = new NickIp('11111', '2', '', true, true, '100001', '0000000001', '', '', userimg);
+        //var NewNickIp = new NickIp('o-1oAwYL8h056l2g1Q2xi5P8-YkU', '2', '', true, true, '100001', '0000000001', '', '', "");
         var socket;
-        var serverIP = '115.159.71.54';//服务器IP
+        var serverIP = '192.168.1.143';//服务器IP
         var serverPort = '9000';//服务器端口
 
 
@@ -118,7 +127,12 @@
                     }
                 };
 
-                socket.onclose = function (msg) { alert("socket closed!") };
+                socket.onclose = function (msg) {
+                    var str = '<div id="alertmess" class="text-center" style="margin-top:15px;">'
+                             + '<span>连接断开！</span>'
+                             + '</div>';
+                    document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                };
             }
             catch (ex) {
                 var str = '<div id="alertmess" class="text-center">'
