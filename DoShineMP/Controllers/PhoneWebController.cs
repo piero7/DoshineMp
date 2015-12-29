@@ -391,10 +391,9 @@ namespace DoShineMP.Controllers
             {
                 if (!(string.IsNullOrEmpty(RealName) && string.IsNullOrEmpty(PhoneNumber)))
                 {
-
                     //逻辑代码
-                    if (wuser.EditUserInfo(WechatHelper.GetOpenidByCode(code), RealName, PhoneNumber, address) != null)
-                    if (wuser.EditUserInfo(code, RealName, PhoneNumber) != null)
+                    //if (wuser.EditUserInfo(WechatHelper.GetOpenidByCode(code), RealName, PhoneNumber, address) != null)
+                    if (wuser.EditUserInfo(code, RealName, PhoneNumber,address) != null)
                     {
                         return Json(new { msg = "Y" });
                     }
