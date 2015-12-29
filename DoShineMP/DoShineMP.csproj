@@ -253,8 +253,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\123.png" />
+    <Content Include="Images\accept3x.png" />
     <Content Include="Images\bx.png" />
     <Content Include="Images\codeIcon.png" />
+    <Content Include="Images\complete3x.png" />
+    <Content Include="Images\daiqueren2x3x.png" />
     <Content Include="Images\dingdan.png" />
     <Content Include="Images\error.png" />
     <Content Include="Images\grade.png" />
@@ -288,6 +291,7 @@
     <Content Include="Images\shape-40%402x.png" />
     <Content Include="Images\shape-40.png" />
     <Content Include="Images\shape-6%402x.png" />
+    <Content Include="Images\submitIcon3x.png" />
     <Content Include="Images\tianjia2x.png" />
     <Content Include="Images\touxiang.jpg" />
     <Content Include="Images\uesr.png" />

@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-xs-12 operate ">
-                <input type="button" class="add-photo">
+                <input type="button" class="add-photo" id="chooseImage">
                 <span class="commit pull-right" id="btn" onclick="btn()">提交</span>
             </div>
         </div>
@@ -71,17 +71,133 @@
     </div>
 </div>
 <input type="hidden" value="@ViewBag.openid" id="openid" />
+<input type="hidden" value="" id="serviceid" />
+
+
 @section scripts{
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
+        var token;
+
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        $(function () {
+            $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
+                var debug = data.debug;
+                var appId = data.appId;
+                var timestamp = data.timestamp;
+                var nonceStr = data.nonceStr;
+                var signature = data.signature
+
+                wx.config({
+                    debug: debug,
+                    appId: appId,
+                    timestamp: timestamp,
+                    nonceStr: nonceStr,
+                    signature: signature,
+                    jsApiList: [
+                        'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                    ]
+                });
+            })
+        })
+
+
+        // 微信
+        wx.error(function (res) {
+            console.log('验证失败');
+        });
+        wx.ready(function () {
+            // 5 图片接口
+            // 5.1 拍照、本地选图
+            var images = {
+                localId: [],
+                serverId: []
+            };
+            document.querySelector('#chooseImage').onclick = function () {
+                wx.chooseImage({
+                    success: function (res) {
+                        images.localId = res.localIds;
+
+                        if (images.localId.length == 0) {
+                            alert('请先使用 chooseImage 接口选择图片');
+                            return;
+                        }
+                        var i = 0, length = 0;
+                        images.serverId = [];
+                        function upload() {
+                            wx.uploadImage({
+                                localId: images.localId[i],
+                                success: function (res) {
+                                    //alert(res.localId[i])
+                                    i++;
+                                    alert('已上传：' + i + '张');
+                                    images.serverId.push(res.serverId);
+                                    $("#serviceid").val(res.serverId);
+                                    alert($("#serviceid").val())
+                                },
+                                fail: function (res) {
+                                    alert(JSON.stringify(res));
+                                }
+                            });
+                        }
+                        upload();
+
+                    }
+                });
+            };
+
+        });
+
+
+
+
         function btn() {
+            var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
             if (keeptext == '' || keeptext == null) {
                 alert('内容不得为空!')
                 return false;
             }
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext }, function (data, status) {
+            alert(serviceid);
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
@@ -124,6 +240,12 @@
         function quxiao() {
             $('#keep').val('');
         }
+
+
+        $('#addimage').click(function () {
+            alert(1);
+        })
+
 
     </script>
 }
