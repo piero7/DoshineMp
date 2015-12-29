@@ -539,4 +539,36 @@ namespace DoShineMP.Helper
         }
 
     }
+
+    /// <summary>
+    /// 微信网页js导入使用config
+    /// </summary>
+    public class WechatJsConfig
+    {
+        public bool debug { get; set; } = false;
+
+        public string appId { get; set; }
+
+        public string timestamp { get; set; }
+
+        public string nonceStr { get; set; }
+
+        public string signature { get; set; }
+
+        public WechatJsConfig(string url)
+        {
+            string ticke = Helper.WechatHelper.GetToken(AccountType.JsTicket);
+
+            string nonceStr = Helper.WechatHelper.GetMD5(DateTime.Now.ToString());
+            string appid = System.Configuration.ConfigurationManager.AppSettings["appid"];
+            string times = Helper.WechatHelper.GetTimestamp();
+            string singature = Helper.WechatHelper.GetSha1(nonceStr, ticke, times, url);
+
+            this.debug = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["isjsdebug"]);
+            this.appId = appid;
+            this.timestamp = times;
+            this.nonceStr = nonceStr;
+            this.signature = singature;
+        }
+    }
 }
