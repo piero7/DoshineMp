@@ -87,7 +87,7 @@ namespace DoShineMP.Helper
                 ownhis.AddRange(
                     (
                     from r in db.RepairSet
-                    select r).Take(rCount).OrderByDescending(item => item.RepairId).ToList()
+                    select r).Take(rCount).OrderBy(item => item.RepairId).ToList()
                     );
             }
 

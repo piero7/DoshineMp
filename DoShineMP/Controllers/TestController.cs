@@ -26,5 +26,12 @@ namespace DoShineMP.Controllers
 
             return Helper.WechatHelper.DownloadImgFile(dlog.MediaNumber);
         }
+
+        [HttpGet]
+        public IEnumerable<Models.Repair> GetHistory(string openid)
+        {
+            Helper.RepairHelper rp = new Helper.RepairHelper();
+            return rp.GetHistoryRepair(openid);
+        }
     }
 }
