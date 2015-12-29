@@ -4,181 +4,221 @@
 * @Last Modified by:   晴
 * @Last Modified time: 2015-12-29 16:01:00
 */
-body{
-	font-family: 'Microsoft YaHei';
-	background-color:#ececec;
+body {
+    font-family: 'Microsoft YaHei';
+    background-color: #ececec;
 }
 /*.keep-content-t{
 	padding-top:40px;
 
 }*/
-.keep-content-t{
-	box-shadow:0px 5px 5px #ccc;
-	-webkit-box-shadow:0px 5px 5px #ccc;
+.keep-content-t {
+    box-shadow: 0px 5px 5px #ccc;
+    -webkit-box-shadow: 0px 5px 5px #ccc;
 }
-.keep-title{
-	font-size: 30px;
-	color:block;
-	width:100%;
-	padding-bottom: 20px;
-	text-align: center;
+
+.keep-title {
+    font-size: 30px;
+    color: block;
+    width: 100%;
+    padding-bottom: 20px;
+    text-align: center;
 }
-.keep-textarea{
+
+.keep-textarea {
     padding: 15px 15px 0 15px;
     background: white;
 }
-.keep-textarea textarea{
-	width: 100%;
-	height:160px;
-	background-color: white;
-	border-radius: 5px;
-	border-color:#bdbdbd;
-	resize:none;
-	border:0;
-	font-size:16px;
-}
-.operate{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	/*display: table;*/
-}
-.operate span{
-	margin-left:20px;
-	margin-top:15px;
-	border-radius:10px;
-}
-.br{
-	display: block;
-	border-top:1px solid #d1d1d1;
-}
-.commit{
-	width: 85px;
-	display: block;
-	border:1px solid #4ca329;
-	font-size: 16px;
-	text-align: center;
-	line-height:38px;
-	/*display: table-cell;*/
-	color:#4ca329; 
-}
-.operate .countermand{
-	border:1px solid #bdbdbd;
-	background: white;
-}
-.go-photo{
-	overflow: hidden;
-	padding:10px 10px 10px 20px;
-}
-.add-photo{
-	width:60px;
-	height:60px;
-	background: white;
-	border:1px dashed #ccc;
-	background: url(../Images/tianjia2x.png) no-repeat 5px 5px;
-	outline: none;
-}
-/*new keep css*/
-.keep-content-b{
-	/*padding:0 30px;*/
-}
-.new-title {
-	padding:15px 15px 0px 15px;
-	border-bottom:1px solid #aaa;
-	background: white;
-	margin-bottom:0;
-}
-.new-title ins{
-	display: block;
-	border-bottom:1px dashed #ccc;
+
+    .keep-textarea textarea {
+        width: 100%;
+        height: 160px;
+        background-color: white;
+        border-radius: 5px;
+        border-color: #bdbdbd;
+        resize: none;
+        border: 0;
+        font-size: 16px;
+    }
+
+.operate {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*display: table;*/
 }
 
-.new-title span{
-	display: block;
-	padding:10px 0px 5px;
-	font-size: 18px;
+    .operate span {
+        margin-left: 20px;
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+
+.br {
+    display: block;
+    border-top: 1px solid #d1d1d1;
 }
-.logo{
-	width:80px;
-	height:80px;
-	background-color:#ccc;
+
+.commit {
+    width: 85px;
+    display: block;
+    border: 1px solid #4ca329;
+    font-size: 16px;
+    text-align: center;
+    line-height: 38px;
+    /*display: table-cell;*/
+    color: #4ca329;
 }
-.content-title-t{
-	overflow: hidden;
+
+.operate .countermand {
+    border: 1px solid #bdbdbd;
+    background: white;
 }
-.new-keep ul{
-	background-color: #fff;
-	padding:0 20px;
+
+.go-photo {
+    overflow: hidden;
+    padding: 10px 10px 10px 20px;
 }
-.new-keep ul li{
-	padding:18px 0;
-	border-bottom: 1px solid #d1d1d1;
-	background-color: white;
+
+.add-photo {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 1px dashed #ccc;
+    background: url(../Images/tianjia2x.png) no-repeat 5px 5px;
+    outline: none;
 }
-.content-title-t .w8{
-	width: 65%;
-	/*padding-top:10px;*/
-	/*padding-left: 20px;*/
+
+#add-phoneimg {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 1px dashed #ccc;
+    background: url(../Images/tianjia2x.png) no-repeat 5px 5px;
+    outline: none;
 }
-.content-title-b{
-	/*padding-top:10px;*/
-	overflow: hidden;
+
+
+/*new keep css*/
+.keep-content-b {
+    /*padding:0 30px;*/
 }
-.content-title-b p{
-	width:100%;
-	white-space:nowrap;
-	 text-overflow:ellipsis; 
-	 -o-text-overflow:ellipsis; 
-	 overflow:hidden;
+
+.new-title {
+    padding: 15px 15px 0px 15px;
+    border-bottom: 1px solid #aaa;
+    background: white;
+    margin-bottom: 0;
 }
-.marginB{
-	margin-bottom: 20px;
-	background: white;
+
+    .new-title ins {
+        display: block;
+        border-bottom: 1px dashed #ccc;
+    }
+
+    .new-title span {
+        display: block;
+        padding: 10px 0px 5px;
+        font-size: 18px;
+    }
+
+.logo {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
 }
-.panel{
-	border:0;
+
+.content-title-t {
+    overflow: hidden;
 }
-.w8 p{
-	/*font-weight: bold ;*/
+
+.new-keep ul {
+    background-color: #fff;
+    padding: 0 20px;
 }
-.w8 b{
-	font-weight: normal;
+
+    .new-keep ul li {
+        padding: 18px 0;
+        border-bottom: 1px solid #d1d1d1;
+        background-color: white;
+    }
+
+.content-title-t .w8 {
+    width: 65%;
+    /*padding-top:10px;*/
+    /*padding-left: 20px;*/
 }
+
+.content-title-b {
+    /*padding-top:10px;*/
+    overflow: hidden;
+}
+
+    .content-title-b p {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+.marginB {
+    margin-bottom: 20px;
+    background: white;
+}
+
+.panel {
+    border: 0;
+}
+
+.w8 p {
+    /*font-weight: bold ;*/
+}
+
+.w8 b {
+    font-weight: normal;
+}
+
 .w2 {
-	/*width: 30%;*/
+    /*width: 30%;*/
 }
-.w2 .img{
-	width:75px;
-	height:75px;
-	background-color: #ccc;
+
+    .w2 .img {
+        width: 75px;
+        height: 75px;
+        background-color: #ccc;
+    }
+
+        .w2 .img img {
+            width: 100%;
+            height: 100%;
+        }
+
+.time {
+    display: block;
+    color: #a8a8a8;
 }
-.w2 .img img{
-	width: 100%;
-	height:100%;
-}
-.time{
-	display: block;
-	color: #a8a8a8;
-}
-.w8 .wr-content{
-	width: 100%;
-	height:55px;
-	text-overflow:ellipsis;
-	-o-text-overflow:ellipsis;
-	overflow:hidden;
-	color: #626262;
-	margin-bottom:0;
+
+.w8 .wr-content {
+    width: 100%;
+    height: 55px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+    color: #626262;
+    margin-bottom: 0;
 }
 /*.commit:hover{
 	color:#f06343;
 	border-color:  #f06343;
 }*/
-.content-title-b .check{
-	text-decoration: none;
+.content-title-b .check {
+    text-decoration: none;
 }
-.content-title-b{
-	padding-top:13px;
+
+.content-title-b {
+    padding-top: 13px;
 }
-/*.content-title-b ins:before{
+    /*.content-title-b ins:before{
 	content: "";
 	width:16px;
 	height:16px;
@@ -186,36 +226,40 @@ body{
 	margin-top:2px;
 	vertical-align: middle;
 }*/
-.content-title-b .check{
-	height:18px;
-	padding-left:20px;
-}
+    .content-title-b .check {
+        height: 18px;
+        padding-left: 20px;
+    }
 
-.content-title-b .check1{
-	background:url(../Images/submitIcon3x.png) no-repeat 0 1px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #ffc600;
-}
-.content-title-b .check2{
-	background:url(../Images/accept3x.png) no-repeat 0 1px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #ffc600;
-}
-.content-title-b .check3{
-	background:url(../Images/daiqueren2x3x.png) no-repeat 0 1px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #1ec462;
-}
-.content-title-b .check4{
-	background:url(../Images/complete3x.png) no-repeat 0 1px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #1ec462;
-}
-.operate span.current{
-	color:#f06343;
-	border-color:  #f06343;
+    .content-title-b .check1 {
+        background: url(../Images/submitIcon3x.png) no-repeat 0 1px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #ffc600;
+    }
+
+    .content-title-b .check2 {
+        background: url(../Images/accept3x.png) no-repeat 0 1px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #ffc600;
+    }
+
+    .content-title-b .check3 {
+        background: url(../Images/daiqueren2x3x.png) no-repeat 0 1px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #1ec462;
+    }
+
+    .content-title-b .check4 {
+        background: url(../Images/complete3x.png) no-repeat 0 1px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #1ec462;
+    }
+
+.operate span.current {
+    color: #f06343;
+    border-color: #f06343;
 }

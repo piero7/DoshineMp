@@ -16,7 +16,7 @@ namespace DoShineMP.Helper
         /// <param name="repairid">报修记录id</param>
         /// <param name="openid">用户openid</param>
         /// <returns></returns>
-         public static Task<ImageDownloadLog> AddNewImageForRepair(string mediaid, int repairid, string openid)
+         public static ImageDownloadLog AddNewImageForRepair(string mediaid, int repairid, string openid)
         {
             var db = new ModelContext();
             var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairid);

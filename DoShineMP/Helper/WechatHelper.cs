@@ -526,7 +526,7 @@ namespace DoShineMP.Helper
                 try
                 {
                     mywebclient.DownloadFile(strpath, savepath);
-                    file = savepath;
+                    file = fileName;
                 }
                 catch (Exception ex)
                 {

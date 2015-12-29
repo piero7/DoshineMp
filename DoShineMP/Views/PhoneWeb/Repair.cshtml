@@ -16,7 +16,8 @@
             </div>
 
             <div class="col-xs-12 operate ">
-                <input type="button" class="add-photo" id="chooseImage">
+                @*<input type="button" class="add-photo addimages" id="chooseImage">*@
+                <img src="#" class="addimages" id="add-phoneimg" />
                 <span class="commit pull-right" id="btn" onclick="btn()">提交</span>
             </div>
         </div>
@@ -38,7 +39,9 @@
                                         <p class="wr-content">@r.Contenet</p>
                                     </div>
                                     <div class="pull-right w2">
-                                        <div class="img"></div>
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.Image.FileName" class="imgyulan" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="content-title-b">
@@ -150,7 +153,7 @@
                 localId: [],
                 serverId: []
             };
-            document.querySelector('#chooseImage').onclick = function () {
+            document.querySelector('.addimages').onclick = function () {
                 wx.chooseImage({
                     success: function (res) {
                         images.localId = res.localIds;
@@ -165,12 +168,12 @@
                             wx.uploadImage({
                                 localId: images.localId[i],
                                 success: function (res) {
-                                    //alert(res.localId[i])
                                     i++;
                                     alert('已上传：' + i + '张');
                                     images.serverId.push(res.serverId);
                                     $("#serviceid").val(res.serverId);
-                                    alert($("#serviceid").val())
+                                    //alert($("#serviceid").val())
+                                    document.getElementById('add-phoneimg').src = res.localId;
                                 },
                                 fail: function (res) {
                                     alert(JSON.stringify(res));
@@ -188,6 +191,8 @@
 
 
 
+
+
         function btn() {
             var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
@@ -196,7 +201,7 @@
                 alert('内容不得为空!')
                 return false;
             }
-            alert(serviceid);
+            //alert(serviceid);
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
@@ -220,7 +225,9 @@
                                         + '<p class="wr-content">' + item.Contenet + '</p>'
                                     + '</div>'
                                     + '<div class="pull-right w2">'
-                                       + ' <div class="img"></div>'
+                                       + ' <div class="img">'
+                                       + '<img src="http://115.159.71.54/DoShineMP/Uploadimgs/' + item.Image.FileName + '" class="imgyulan"/>'
+                                       + '</div>'
                                    + ' </div>'
                                + ' </div>'
                                + ' <div class="content-title-b">'
@@ -232,19 +239,24 @@
                         $('#messagenew').html(str);
                         document.getElementById('btn').style.borderColor = '#4ca329';
                         document.getElementById('btn').style.color = '#4ca329';
+                        document.getElementById('add-phoneimg').src = '';
                     }
                 }
             })
         }
 
-        function quxiao() {
-            $('#keep').val('');
-        }
-
-
-        $('#addimage').click(function () {
-            alert(1);
+        $(document).on('click', '.imgyulan', function () {
+            var imgurl = $(this).attr('src');
+            //alert(imgurl)
+            wx.previewImage({
+                current: imgurl,
+                urls: [
+                 imgurl
+                ]
+            });
         })
+
+
 
 
     </script>

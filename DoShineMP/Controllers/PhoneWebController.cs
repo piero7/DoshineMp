@@ -28,30 +28,30 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Register(string code)
         {
-            //if (string.IsNullOrEmpty(code))
-            //{
-            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //}
-            //else
-            //{
-            //    ViewBag.code = code;
-            //    this.openid = CodeJjudgeByOpenid(code);
-            //    if (!string.IsNullOrEmpty(this.openid))
-            //    {
-            //        if (wuser.GetUserInfo(this.openid).UserInfo != null)
-            //        {
-            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
-            //        }
-            //        else
-            //        {
-            //            ViewBag.openid = this.openid;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //    }
-            //}
+            if (string.IsNullOrEmpty(code))
+            {
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            }
+            else
+            {
+                ViewBag.code = code;
+                this.openid = CodeJjudgeByOpenid(code);
+                if (!string.IsNullOrEmpty(this.openid))
+                {
+                    if (wuser.GetUserInfo(this.openid).UserInfo != null)
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+                    }
+                    else
+                    {
+                        ViewBag.openid = this.openid;
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                }
+            }
             ViewBag.code = code;
             ViewBag.Title = "桑田账号-注册";
             return View();
