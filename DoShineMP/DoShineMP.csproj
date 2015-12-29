@@ -186,6 +186,7 @@
     <Compile Include="Helper\RepairHelper.cs" />
     <Compile Include="Helper\ShortMessageHelper.cs" />
     <Compile Include="Helper\WechatHelper.cs" />
+    <Compile Include="Helper\WechatImageHelper.cs" />
     <Compile Include="Helper\WechatUserHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +215,10 @@
     <Compile Include="Migrations\201512250658088_addFlgsForIdentifyingCode.Designer.cs">
       <DependentUpon>201512250658088_addFlgsForIdentifyingCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512290423247_addWechatImage.cs" />
+    <Compile Include="Migrations\201512290423247_addWechatImage.Designer.cs">
+      <DependentUpon>201512290423247_addWechatImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
@@ -222,7 +227,8 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IdentifyingCode.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\keyAttribute.cs" />
+    <Compile Include="Models\ImageDownloadLog.cs" />
+    <Compile Include="Models\ImageFile.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\ModelContext.cs" />
@@ -308,7 +314,9 @@
     <Content Include="Views\PhoneWeb\Partner.cshtml" />
     <Content Include="Views\PhoneWeb\PersonalCenter.cshtml" />
     <Content Include="Views\PhoneWeb\Register.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -377,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512250658088_addFlgsForIdentifyingCode.resx">
       <DependentUpon>201512250658088_addFlgsForIdentifyingCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512290423247_addWechatImage.resx">
+      <DependentUpon>201512290423247_addWechatImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

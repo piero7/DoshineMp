@@ -10,7 +10,13 @@ namespace DoShineMP.Helper
 {
     public class RepairHelper
     {
-        public Repair AddRepair(string openid, string content)
+        /// <summary>
+        /// 提交一个新的报修申请
+        /// </summary>
+        /// <param name="openid">用户op</param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public Repair AddRepair(string openid, string content, string mediaid)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -31,7 +37,21 @@ namespace DoShineMP.Helper
 
             db.RepairSet.Add(rep);
             db.SaveChanges();
+            WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid).Start();
+
             LogHelper.AddLog("Apply a new repair", rep.RepairId.ToString(), openid);
+            return rep;
+        }
+
+        /// <summary>
+        /// 获得一个维修记录的详细情况
+        /// </summary>
+        /// <param name="id">维修记录id</param>
+        /// <returns></returns>
+        public Repair GetDetail(int id)
+        {
+            var db = new ModelContext();
+            Repair rep = db.RepairSet.FirstOrDefault(item => item.RepairId == id);
             return rep;
         }
 
@@ -65,12 +85,83 @@ namespace DoShineMP.Helper
                 ownhis.AddRange(
                     (
                     from r in db.RepairSet
-                    orderby r.RepairId descending
-                    select r).Take(rCount).ToList()
+                    select r).Take(rCount).OrderByDescending(item => item.RepairId).ToList()
                     );
             }
 
             return ownhis;
+        }
+
+        /// <summary>
+        /// 受理报修
+        /// </summary>
+        /// <param name="repairId">保修记录id</param>
+        /// <param name="exceptDate">预计上门时间</param>
+        /// <returns></returns>
+        public Repair Accept(int repairId, DateTime exceptDate, string innderNumber)
+        {
+            var db = new ModelContext();
+            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+
+            if (rep == null)
+            {
+                return null;
+            }
+
+            rep.Status = RepairStatus.Accept;
+            rep.AccepDate = DateTime.Now;
+            rep.ExceptHandleDate = DateTime.Now;
+            rep.InnerNumber = innderNumber;
+
+            db.SaveChanges();
+
+            return rep;
+        }
+
+        /// <summary>
+        /// 完成处理
+        /// </summary>
+        /// <param name="repairId">报修记录id</param>
+        /// <returns></returns>
+        public Repair FinishHandlen(int repairId)
+        {
+            var db = new ModelContext();
+            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+
+            if (rep == null)
+            {
+                return null;
+            }
+
+            rep.Status = RepairStatus.FinishHandle;
+            rep.FinishHandlendDate = DateTime.Now;
+
+            db.SaveChanges();
+            return rep;
+        }
+
+        /// <summary>
+        /// 评价报修
+        /// </summary>
+        /// <param name="repairId">报修id</param>
+        /// <param name="response">评价内容</param>
+        /// <param name="score">分数（预留，若无则填0）</param>
+        /// <returns></returns>
+        public Repair Response(int repairId, string response, double score)
+        {
+            var db = new ModelContext();
+            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+            if (rep == null)
+            {
+                return null;
+            }
+
+            rep.Score = score;
+            rep.ResponeDate = DateTime.Now;
+            rep.Response = response;
+
+            db.SaveChanges();
+            return rep;
         }
     }
 }

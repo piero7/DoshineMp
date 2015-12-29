@@ -24,8 +24,41 @@ namespace DoShineMP.Models
 
         public RepairStatus Status { get; set; }
 
+        public int? ImageFileId { get; set; }
+
+        [ForeignKey("ImageFileId")]
+        public virtual ImageFile Image { get; set; }
+
+        public DateTime? AccepDate { get; set; }
+
+        public string InnerNumber { get; set; }
+
+        /// <summary>
+        /// 处理完成时间
+        /// </summary>
+        public DateTime? FinishHandlendDate { get; set; }
+
+        /// <summary>
+        /// 用户反馈
+        /// </summary>
+        public string Response { get; set; }
+
+        public DateTime? ResponeDate { get; set; }
+
+        public double Score { get; set; } = 0;
+
         public string Remarks { get; set; }
 
+        /// <summary>
+        /// 与客户商议后的上门时间
+        /// </summary>
+        public DateTime? ExceptHandleDate { get; set; }
+
+        /// <summary>
+        /// 用于在显示的时候标识为用户自身记录还是公共显示记录
+        /// </summary>
+        [NotMapped]
+        public bool? IsUserself { get; set; }
     }
 
     public enum RepairStatus

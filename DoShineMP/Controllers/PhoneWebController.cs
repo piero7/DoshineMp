@@ -310,14 +310,14 @@ namespace DoShineMP.Controllers
         /// <param name="PhoneNumber">手机号</param>
         /// <param name="code">微信code</param>
         /// <returns>Y：修改成功；N：修改失败</returns>
-        public JsonResult CenterUpdateJson(string RealName, string PhoneNumber, string code)
+        public JsonResult CenterUpdateJson(string RealName, string PhoneNumber, string code, string address)
         {
             try
             {
                 if (!(string.IsNullOrEmpty(RealName) && string.IsNullOrEmpty(PhoneNumber)))
                 {
                     //逻辑代码
-                    if (wuser.EditUserInfo(WechatHelper.GetOpenidByCode(code), RealName, PhoneNumber) != null)
+                    if (wuser.EditUserInfo(WechatHelper.GetOpenidByCode(code), RealName, PhoneNumber, address) != null)
                     {
                         return Json(new { msg = "Y" });
                     }
@@ -420,11 +420,12 @@ namespace DoShineMP.Controllers
         /// <param name="code"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public JsonResult RepairJson(string code, string content)
+        public JsonResult RepairJson(string code, string content, string mediaid)
         {
             try
             {
-                if (repairHelper.AddRepair(code, content) != null)
+                //TODO: 添加mediaid
+                if (repairHelper.AddRepair(code, content, mediaid) != null)
                 {
                     return Json(repairHelper.GetHistoryRepair(code));
                 }

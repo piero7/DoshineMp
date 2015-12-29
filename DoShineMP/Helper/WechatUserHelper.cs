@@ -46,7 +46,7 @@ namespace DoShineMP.Helper
             return usr;
         }
 
-        public WechatUser EditUserInfo(string openid, string realName, string phoneNumber)
+        public WechatUser EditUserInfo(string openid, string realName, string phoneNumber, string address)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -59,9 +59,10 @@ namespace DoShineMP.Helper
 
             ui.Name = realName;
             ui.PhoneNumber = phoneNumber;
+            ui.Address = address;
             db.SaveChanges();
 
-            LogHelper.AddLog("Edit infomation ", "", openid);
+            LogHelper.AddLog("Edit infomation", "", openid);
             return usr;
         }
 
@@ -80,6 +81,7 @@ namespace DoShineMP.Helper
             }
             return user;
         }
+
 
     }
 }

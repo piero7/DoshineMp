@@ -33,6 +33,8 @@ namespace DoShineMP.Models
         [ForeignKey("LastLoginTerminalId")]
         public virtual Terminal LastLoginTerminal { get; set; }
 
+        public string Address { get; set; }
+
     }
 
 }

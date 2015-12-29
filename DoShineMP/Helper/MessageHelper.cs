@@ -71,6 +71,8 @@ namespace DoShineMP.Helper
                 IpStr = ipStr,
             };
 
+            db.MessageSet.Add(msg);
+
             db.SaveChanges();
             return msg;
         }

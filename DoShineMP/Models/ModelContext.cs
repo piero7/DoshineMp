@@ -13,7 +13,7 @@ namespace DoShineMP.Models
 
         public DbSet<Administrator> AdministratorSet { get; set; }
 
-        public DbSet<File> FileSet { get; set; }
+        //public DbSet<File> FileSet { get; set; }
 
         public DbSet<Message> MessageSet { get; set; }
 
@@ -33,6 +33,10 @@ namespace DoShineMP.Models
 
         public DbSet<DebugInfo> DebugInfoSet { get; set; }
 
-        public DbSet <IdentifyingCode> IdentifyingCodeSet { get; set; }
+        public DbSet<IdentifyingCode> IdentifyingCodeSet { get; set; }
+
+        public DbSet<ImageDownloadLog> ImageDownloadLogSet { get; set; }
+
+        public DbSet<ImageFile> ImageFileSet { get; set; }
     }
 }

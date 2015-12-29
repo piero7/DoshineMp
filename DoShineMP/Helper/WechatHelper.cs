@@ -1,10 +1,12 @@
 ﻿using DoShineMP.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -369,6 +371,171 @@ namespace DoShineMP.Helper
         {
             var start = new DateTime(1970, 1, 1, 0, 0, 0);
             return start.AddSeconds(timestamp);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTimestamp()
+        {
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalSeconds).ToString();
+        }
+
+
+
+        /// <summary>
+        /// 支付使用的密钥创建
+        /// </summary>
+        /// <param name="pp"></param>
+        /// <returns></returns>
+        //public static string GetMD5(ref Models.PayParms pp)
+        //{
+        //    Dictionary<string, string> dic = new Dictionary<string, string>();
+
+        //    dic.Add("appId", pp.appId);
+        //    dic.Add("timeStamp", pp.timeStamp);
+        //    dic.Add("package", pp.package);
+        //    dic.Add("signType", pp.signType);
+        //    dic.Add("nonceStr", pp.nonceStr);
+        //    pp.paySign = GetMD5(dic);
+
+        //    return pp.paySign;。
+        //}
+
+        public static string GetMD5(Dictionary<string, string> dic)
+        {
+            var enStr = "";
+            ArrayList al = new ArrayList(dic.Keys);
+            al.Sort();
+            foreach (string item in al)
+            {
+                enStr += item + "=" + dic[item] + "&";
+            }
+            enStr += "key=" + System.Configuration.ConfigurationManager.AppSettings["paykey"];
+            return GetMD5(enStr);
+
+        }
+
+        /// <summary>
+        /// 用于网页载入js时获取签名
+        /// </summary>
+        /// <param name="noncestr"></param>
+        /// <param name="jsTicket"></param>
+        /// <param name="times"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string GetMD5(string noncestr, string jsTicket, string times, string url)
+        {
+            string dStr = string.Format("jsapi_ticket={0}&noncestr={1}&timestamp={2}&url={3}");
+            return GetMD5(dStr);
+        }
+
+        public static string GetMD5(string encypStr)
+        {
+            string retStr;
+            MD5CryptoServiceProvider m5 = new MD5CryptoServiceProvider();
+
+            //创建md5对象
+            byte[] inputBye;
+            byte[] outputBye;
+
+            //使用GB2312编码方式把字符串转化为字节数组．
+            inputBye = Encoding.GetEncoding("GB2312").GetBytes(encypStr);
+
+            outputBye = m5.ComputeHash(inputBye);
+
+            retStr = System.BitConverter.ToString(outputBye);
+            retStr = retStr.Replace("-", "").ToUpper();
+            return retStr;
+        }
+
+        public static string GetSha1(string noncestr, string jsTicket, string times, string url)
+        {
+            string dStr = string.Format("jsapi_ticket={0}&noncestr={1}&timestamp={2}&url={3}", jsTicket, noncestr, times, url);
+            return GetSha1(dStr);
+        }
+
+        public static string GetSha1(string dstr)
+        {
+            byte[] tmp = Encoding.UTF8.GetBytes(dstr);
+
+            SHA1CryptoServiceProvider sha = new SHA1CryptoServiceProvider();
+            byte[] tmp2 = sha.ComputeHash(tmp);
+            sha.Clear();
+
+            string ret = BitConverter.ToString(tmp2).Replace("-", "").ToLower();
+            return ret;
+        }
+
+        /// <summary>
+        /// 获取微信前台js完整导入包
+        /// </summary>
+        /// <param name="url">当前url，用于生成签名</param>
+        /// <returns></returns>
+        public static Object GetWechatJsConfig(string url)
+        {
+            string ticke = GetToken(AccountType.JsTicket);
+
+            string nonceStr = GetMD5(DateTime.Now.ToString());
+            string appid = System.Configuration.ConfigurationManager.AppSettings["appid"];
+            string times = GetTimestamp();
+            string singature = GetSha1(nonceStr, ticke, times, url);
+            var ret = new
+            {
+                debug = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["isjsdebug"]),
+                appId = appid,
+                timestamp = times,
+                nonceStr = nonceStr,
+                signature = singature,
+            };
+
+            return ret;
+        }
+
+
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="mediaid"></param>
+        /// <returns></returns>
+        public static string DownloadImgFile(string mediaid)
+        {
+            string file = string.Empty;
+            string content = string.Empty;
+            string strpath = string.Empty;
+            string savepath = string.Empty;
+            string stUrl = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=" + Helper.WechatHelper.GetToken(AccountType.Service) + "&media_id=" + mediaid;
+
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(stUrl);
+
+            req.Method = "GET";
+            using (WebResponse wr = req.GetResponse())
+            {
+                HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse();
+
+                strpath = myResponse.ResponseUri.ToString();
+                //WriteLog("接收类别://" + myResponse.ContentType);
+                WebClient mywebclient = new WebClient();
+                //生成文件名
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + (new Random()).Next().ToString().Substring(0, 4) + ".jpg";
+                savepath = System.Configuration.ConfigurationManager.AppSettings["downimgpath"];
+                //WriteLog("路径://" + savepath);
+                try
+                {
+                    mywebclient.DownloadFile(strpath, savepath);
+                    file = savepath;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                    //savepath = ex.ToString();
+                }
+
+            }
+            return file;
         }
 
     }

@@ -39,6 +39,11 @@ namespace DoShineMP.Models
 
         public string IpStr { get; set; }
 
+        /// <summary>
+        /// 消息体的具体内容
+        /// </summary>
+        public string DetailContent { get; set; }
+
         public Message()
         {
             this.CreateDate = DateTime.Now;

@@ -66,5 +66,6 @@ namespace DoShineMP.Controllers
             return IdentifyingCodeHelper.CheckCode(codeid, code, openid, phone);
         }
 
+
     }
 }
