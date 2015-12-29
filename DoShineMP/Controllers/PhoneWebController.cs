@@ -215,7 +215,7 @@ namespace DoShineMP.Controllers
             {
                 throw;
             }
-            ViewBag.Title = "报修";
+            ViewBag.Title = "自助报修";
             return View();
         }
 

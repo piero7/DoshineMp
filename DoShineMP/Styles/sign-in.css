@@ -2,7 +2,7 @@
 * @Author: 晴
 * @Date:   2015-12-15 10:49:06
 * @Last Modified by:   晴
-* @Last Modified time: 2015-12-24 17:40:57
+* @Last Modified time: 2015-12-29 09:29:47
 */
 .signin{
 	width:100%;
@@ -42,7 +42,7 @@
 	border-radius: 50px;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-	background-color: rgba(255,255,255,.4);
+	background-color: rgba(255,255,255,.2);
 	font-size: 14px;
 	transition: all .6s linear 0s;
 	-webkit-transition: all .6s linear 0s;
@@ -108,7 +108,7 @@
 	display: block;
 	line-height:40px;
 	text-align: center;
-	background-color:rgba(72,189,24,.4);
+	background-color:rgba(72,189,24,1);
 	border-radius: 50px;
 	color:white;
 	font-size: 16px;
