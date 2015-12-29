@@ -330,6 +330,7 @@
     <Content Include="Styles\Repair.css" />
     <Content Include="Styles\rest.css" />
     <Content Include="Styles\sign-in.css" />
+    <Content Include="Uploadimgs\123.png" />
     <Content Include="Views\PhoneWeb\Partner.cshtml" />
     <Content Include="Views\PhoneWeb\PersonalCenter.cshtml" />
     <Content Include="Views\PhoneWeb\Register.cshtml" />
