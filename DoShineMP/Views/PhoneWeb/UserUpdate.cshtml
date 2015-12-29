@@ -11,7 +11,7 @@
         <div class="panel-body">
             <div class="pull-left paneltitle" style="padding-top: 9%;width:40px;">头像</div>
             <div class="pull-right ">
-                <img src="@ViewBag.user.Headimgurl" class="img-rounded" />
+                <img src="@ViewBag.user.Headimgurl" class="img-rounded" style="width:45px;" />
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="pull-left paneltitle">公司电话</div>
+            <div class="pull-left paneltitle">手机号码</div>
             <div class="pull-right panelbody">
                 <input type="text" name="comPhone" id="Phone" value="@ViewBag.user.UserInfo.PhoneNumber" placeholder="请输入手机号" />
             </div>
@@ -63,9 +63,9 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="pull-left paneltitle">公司地址</div>
+            <div class="pull-left paneltitle">地址</div>
             <div class="pull-right panelbody">
-                <input type="text" name="comPhone" id="Address" value="@ViewBag.user.UserInfo.PhoneNumber" placeholder="请输入手机号" />
+                <input type="text" name="comPhone" id="Address" value="@ViewBag.user.UserInfo.Address" placeholder="请输入地址" />
             </div>
         </div>
     </div>
@@ -77,18 +77,21 @@
 
 <input type="hidden" id="openid" name="name" value="@ViewBag.openid" />
 
+
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         $('#tijiao').click(function () {
+            $(this).attr('disabled', true);
             var realName = $('#realName').val();
             var PhoneNumber = $('#Phone').val();
+            var Address = $('#Address').val();
             var openid = $('#openid').val();
 
-            $.post('@Url.Action("CenterUpdateJson","PhoneWeb")', { RealName: realName, PhoneNumber: PhoneNumber, code: openid }, function (data, status) {
+            $.post('@Url.Action("CenterUpdateJson","PhoneWeb")', { RealName: realName, PhoneNumber: PhoneNumber, code: openid, address: Address }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
-                        alert('提交成功!');
+                        //alert('提交成功!');
                         window.location.href = "@Url.Action("MyMessage","PhoneWeb")";
                     } else {
                         alert('提交失败!');

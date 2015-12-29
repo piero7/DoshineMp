@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoShineMP", "DoShineMP\DoShineMP.csproj", "{494C8990-0F8E-40AA-9ABF-D2839C7B8A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoShineMP.Tests", "DoShineMP.Tests\DoShineMP.Tests.csproj", "{7942034D-5A28-44B7-AE0E-E9C408D04FC7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoShineMP.Tests1", "DoShineMP.Tests1\DoShineMP.Tests1.csproj", "{02D618F7-6B54-47ED-8AEC-C5316AFB8FF7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{494C8990-0F8E-40AA-9ABF-D2839C7B8A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{494C8990-0F8E-40AA-9ABF-D2839C7B8A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{494C8990-0F8E-40AA-9ABF-D2839C7B8A0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7942034D-5A28-44B7-AE0E-E9C408D04FC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02D618F7-6B54-47ED-8AEC-C5316AFB8FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02D618F7-6B54-47ED-8AEC-C5316AFB8FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02D618F7-6B54-47ED-8AEC-C5316AFB8FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02D618F7-6B54-47ED-8AEC-C5316AFB8FF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
