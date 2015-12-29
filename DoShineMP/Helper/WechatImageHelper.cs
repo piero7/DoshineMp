@@ -16,7 +16,7 @@ namespace DoShineMP.Helper
         /// <param name="repairid">报修记录id</param>
         /// <param name="openid">用户openid</param>
         /// <returns></returns>
-         public static ImageDownloadLog AddNewImageForRepair(string mediaid, int repairid, string openid)
+        public static ImageDownloadLog AddNewImageForRepair(string mediaid, int repairid, string openid)
         {
             var db = new ModelContext();
             var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairid);
@@ -40,7 +40,7 @@ namespace DoShineMP.Helper
 
 
             //下载
-            var fileName =  WechatHelper.DownloadImgFile(mediaid);
+            var fileName = WechatHelper.DownloadImgFile(mediaid);
 
             var file = new ImageFile
             {
