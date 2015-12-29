@@ -2,7 +2,7 @@
 * @Author: 晴
 * @Date:   2015-12-21 15:16:44
 * @Last Modified by:   晴
-* @Last Modified time: 2015-12-29 10:27:58
+* @Last Modified time: 2015-12-29 16:01:00
 */
 body{
 	font-family: 'Microsoft YaHei';
@@ -91,6 +91,7 @@ body{
 	display: block;
 	border-bottom:1px dashed #ccc;
 }
+
 .new-title span{
 	display: block;
 	padding:10px 0px 5px;
@@ -109,7 +110,7 @@ body{
 	padding:0 20px;
 }
 .new-keep ul li{
-	padding:20px 0;
+	padding:18px 0;
 	border-bottom: 1px solid #d1d1d1;
 	background-color: white;
 }
@@ -155,7 +156,6 @@ body{
 	height:100%;
 }
 .time{
-	padding-top:13px;
 	display: block;
 	color: #a8a8a8;
 }
@@ -173,28 +173,47 @@ body{
 	border-color:  #f06343;
 }*/
 .content-title-b .check{
-	display: block;
-	width:65px;
-	height:35px;
-	font-size: 12px;
-	text-align: center;
-	line-height: 35px;
-	color: white;
 	text-decoration: none;
-	border-radius:5px;
-}.content-title-b .check1{
-	background-color: #71cd95;
+}
+.content-title-b{
+	padding-top:13px;
+}
+/*.content-title-b ins:before{
+	content: "";
+	width:16px;
+	height:16px;
+	float: left;
+	margin-top:2px;
+	vertical-align: middle;
+}*/
+.content-title-b .check{
+	height:18px;
+	padding-left:20px;
+}
 
+.content-title-b .check1{
+	background:url(../Images/submitIcon3x.png) no-repeat 0 1px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #ffc600;
 }
 .content-title-b .check2{
-	background-color: #25be63;
-	
+	background:url(../Images/accept3x.png) no-repeat 0 1px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #ffc600;
 }
 .content-title-b .check3{
-	background-color: #e7856f;
+	background:url(../Images/daiqueren2x3x.png) no-repeat 0 1px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #1ec462;
 }
 .content-title-b .check4{
-	background-color: #f06343;
+	background:url(../Images/complete3x.png) no-repeat 0 1px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #1ec462;
 }
 .operate span.current{
 	color:#f06343;

@@ -28,30 +28,31 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Register(string code)
         {
-            if (string.IsNullOrEmpty(code))
-            {
-                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            }
-            else
-            {
-                ViewBag.code = code;
-                this.openid = CodeJjudgeByOpenid(code);
-                if (!string.IsNullOrEmpty(this.openid))
-                {
-                    if (wuser.GetUserInfo(this.openid).UserInfo != null)
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
-                    }
-                    else
-                    {
-                        ViewBag.openid = this.openid;
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                }
-            }
+            //if (string.IsNullOrEmpty(code))
+            //{
+            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //}
+            //else
+            //{
+            //    ViewBag.code = code;
+            //    this.openid = CodeJjudgeByOpenid(code);
+            //    if (!string.IsNullOrEmpty(this.openid))
+            //    {
+            //        if (wuser.GetUserInfo(this.openid).UserInfo != null)
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+            //        }
+            //        else
+            //        {
+            //            ViewBag.openid = this.openid;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //    }
+            //}
+            ViewBag.code = code;
             ViewBag.Title = "桑田账号-注册";
             return View();
         }
@@ -181,7 +182,6 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
         /// <summary>
         /// 我的主页
         /// </summary>
@@ -216,13 +216,13 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
         /// <summary>
         /// 报修
         /// </summary>
         /// <returns></returns>
         public ActionResult Repair(string code)
         {
+
             try
             {
                 if (!string.IsNullOrEmpty(code))
@@ -230,8 +230,11 @@ namespace DoShineMP.Controllers
                     if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
                     {
                         ViewBag.openid = this.openid;
+
                         //历史保修记录
                         ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+
+
                     }
                     else
                     {
@@ -251,14 +254,13 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
         /// <summary>
         /// 经销商中心
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         public ActionResult Partner(string code)
-         {
+        {
             Models.WechatUser user = new Models.WechatUser();
             if (!string.IsNullOrEmpty(code))
             {
@@ -287,9 +289,6 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "经销商中心";
             return View();
         }
-
-
-
 
         /// <summary>
         /// 在线留言
@@ -339,6 +338,19 @@ namespace DoShineMP.Controllers
         #endregion
 
         #region JsonResult功能块组
+
+        #region 微信js配置参数
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult WechatJsConfigJson(string url)
+        {
+            return Json(WechatHelper.GetWechatJsConfig(url));
+        }
+
+        #endregion
 
         #region 个人信息
         /// <summary>
@@ -566,7 +578,8 @@ namespace DoShineMP.Controllers
                 return this.openid = WechatHelper.GetOpenidByCode(code);
             }
         }
-
         #endregion
+
+
     }
 }
