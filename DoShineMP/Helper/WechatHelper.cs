@@ -520,8 +520,8 @@ namespace DoShineMP.Helper
                 //WriteLog("接收类别://" + myResponse.ContentType);
                 WebClient mywebclient = new WebClient();
                 //生成文件名
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + (new Random()).Next().ToString().Substring(0, 4) + ".jpg";
-                savepath = System.Configuration.ConfigurationManager.AppSettings["downimgpath"];
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + (new Random(99999999)).Next().ToString().PadRight(7,'0').Substring(0, 4) + ".jpg";
+                savepath = System.Configuration.ConfigurationManager.AppSettings["downimgpath"]+fileName;
                 //WriteLog("路径://" + savepath);
                 try
                 {
@@ -555,6 +555,10 @@ namespace DoShineMP.Helper
 
         public string signature { get; set; }
 
+        /// <summary>
+        /// 有参构造函数，自动完成相关congif填写
+        /// </summary>
+        /// <param name="url">访问的完整uranium</param>
         public WechatJsConfig(string url)
         {
             string ticke = Helper.WechatHelper.GetToken(AccountType.JsTicket);

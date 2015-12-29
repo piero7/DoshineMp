@@ -178,6 +178,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PhoneWebController.cs" />
     <Compile Include="Controllers\IdentifyingCodeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Helper\IdentifyingCodeHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -373,6 +374,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
