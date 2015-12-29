@@ -38,7 +38,7 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             if (!string.IsNullOrEmpty(mediaid))
             {
-                WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid).Start();
+                WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid);
             }
 
             LogHelper.AddLog("Apply a new repair", rep.RepairId.ToString(), openid);
