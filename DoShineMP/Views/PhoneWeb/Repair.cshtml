@@ -35,14 +35,23 @@
                         {
                             <li>
                                 <div class="content-title-t">
-                                    <div class="pull-left w8">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.Image.FileName" class="imgyulan" />
+                                    @if (r.Image == null)
+                                    {
+                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
                                         </div>
-                                    </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.Image.FileName" class="imgyulan" />
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                                 <div class="content-title-b">
                                     @switch (r.Status)
@@ -169,7 +178,7 @@
                                 localId: images.localId[i],
                                 success: function (res) {
                                     i++;
-                                    alert('已上传：' + i + '张');
+                                    //alert('已上传：' + i + '张');
                                     images.serverId.push(res.serverId);
                                     $("#serviceid").val(res.serverId);
                                     //alert($("#serviceid").val())
@@ -210,7 +219,7 @@
                         var str = '';
                         $.each(data, function (i, item) {
                             var time = $.timeStamp2String(item.CreateDate)
-                            alert(item.Status);
+                            //alert(item.Status);
                             var statusstr = '';
                             switch (item.Status) {
                                 case 5: statusstr = '<ins class="check check1 pull-left">已提交</ins>'; break;
@@ -219,27 +228,44 @@
                                 case 20: statusstr = '<ins class="check check4 pull-left">已完成</ins>'; break;
                                 case 99: statusstr = '<ins class="check check4 pull-left">待确认</ins>'; break;
                             }
-                            str += '<li>'
-                                + '<div class="content-title-t">'
-                                    + '<div class="pull-left w8">'
-                                        + '<p class="wr-content">' + item.Contenet + '</p>'
-                                    + '</div>'
-                                    + '<div class="pull-right w2">'
-                                       + ' <div class="img">'
-                                       + '<img src="http://115.159.71.54/DoShineMP/Uploadimgs/' + item.Image.FileName + '" class="imgyulan"/>'
-                                       + '</div>'
+                            if (item.Image == null | item.Image == '') {
+                                str += '<li>'
+                                    + '<div class="content-title-t">'
+                                        + '<div class="pull-left w10" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
+                                            + '<p class="wr-content">' + item.Contenet + '</p>'
+                                        + '</div>'
                                    + ' </div>'
-                               + ' </div>'
-                               + ' <div class="content-title-b">'
-                                    + statusstr
-                                    + '<span class="time pull-right">' + time + '</span>'
-                               + ' </div>'
-                            + '</li>';
+                                   + ' <div class="content-title-b">'
+                                        + statusstr
+                                        + '<span class="time pull-right">' + time + '</span>'
+                                   + ' </div>'
+                                + '</li>';
+                            } else {
+                                str += '<li>'
+                                    + '<div class="content-title-t">'
+                                        + '<div class="pull-left w8" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
+                                            + '<p class="wr-content">' + item.Contenet + '</p>'
+                                        + '</div>'
+                                        + '<div class="pull-right w2">'
+                                           + ' <div class="img">'
+                                           + '<img src="http://115.159.71.54/DoShineMP/Uploadimgs/' + item.Image.FileName + '" class="imgyulan"/>'
+                                           + '</div>'
+                                       + ' </div>'
+                                   + ' </div>'
+                                   + ' <div class="content-title-b">'
+                                        + statusstr
+                                        + '<span class="time pull-right">' + time + '</span>'
+                                   + ' </div>'
+                                + '</li>';
+                            }
+
                         })
                         $('#messagenew').html(str);
                         document.getElementById('btn').style.borderColor = '#4ca329';
                         document.getElementById('btn').style.color = '#4ca329';
                         document.getElementById('add-phoneimg').src = '';
+                        $('#serviceid').val('');
+                        $('#add-phoneimg').attr('src', '#');
                     }
                 }
             })
@@ -256,6 +282,13 @@
             });
         })
 
+        function repairid(e) {
+            //alert(1);
+            //alert(e);
+            var repairid = $(this).attr('tagid');
+            var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
+            window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
+        }
 
 
 

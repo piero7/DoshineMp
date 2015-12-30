@@ -254,10 +254,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\123.png" />
+    <Content Include="Images\accept2x.png" />
     <Content Include="Images\accept3x.png" />
     <Content Include="Images\bx.png" />
     <Content Include="Images\codeIcon.png" />
+    <Content Include="Images\complete2x.png" />
     <Content Include="Images\complete3x.png" />
+    <Content Include="Images\daiqueren2x.png" />
     <Content Include="Images\daiqueren2x3x.png" />
     <Content Include="Images\dingdan.png" />
     <Content Include="Images\error.png" />
@@ -292,8 +295,10 @@
     <Content Include="Images\shape-40%402x.png" />
     <Content Include="Images\shape-40.png" />
     <Content Include="Images\shape-6%402x.png" />
+    <Content Include="Images\submitIcon2x.png" />
     <Content Include="Images\submitIcon3x.png" />
     <Content Include="Images\tianjia2x.png" />
+    <Content Include="Images\tijiao.png" />
     <Content Include="Images\touxiang.jpg" />
     <Content Include="Images\uesr.png" />
     <Content Include="Images\uesr2x.png" />
@@ -302,6 +307,10 @@
     <Content Include="Images\usertwo.png" />
     <Content Include="Images\user_bg.PNG" />
     <Content Include="Images\user_phonebg.png" />
+    <Content Include="Images\wancheng.jpg" />
+    <Content Include="Images\wancheng.png" />
+    <Content Include="Images\wancheng2.jpg" />
+    <Content Include="Images\wancheng2x.png" />
     <Content Include="Images\xing.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -328,6 +337,7 @@
     <Content Include="Styles\PersonalCenter.css" />
     <Content Include="Styles\Register.css" />
     <Content Include="Styles\Repair.css" />
+    <Content Include="Styles\RepairDetails.css" />
     <Content Include="Styles\rest.css" />
     <Content Include="Styles\sign-in.css" />
     <Content Include="Uploadimgs\123.png" />
@@ -376,6 +386,7 @@
     <Content Include="Views\PhoneWeb\Messages.cshtml" />
     <Content Include="Views\PhoneWeb\ServerMessages.cshtml" />
     <Content Include="Views\PhoneWeb\UserUpdate.cshtml" />
+    <Content Include="Views\PhoneWeb\RepairDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

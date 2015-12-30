@@ -129,6 +129,7 @@ body {
 
 .content-title-t {
     overflow: hidden;
+    min-height:50px;
 }
 
 .new-keep ul {
@@ -146,6 +147,10 @@ body {
     width: 65%;
     /*padding-top:10px;*/
     /*padding-left: 20px;*/
+}
+
+.content-title-t .w10{
+    width:100%;
 }
 
 .content-title-b {

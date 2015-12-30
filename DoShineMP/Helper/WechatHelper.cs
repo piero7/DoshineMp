@@ -526,11 +526,13 @@ namespace DoShineMP.Helper
                 //WriteLog("路径://" + savepath);
                 try
                 {
+                    new Models.DebugInfo(savepath, "");
                     mywebclient.DownloadFile(strpath, savepath);
                     file = fileName;
                 }
                 catch (Exception ex)
                 {
+                    new Models.DebugInfo(ex.Message, "");
                     throw ex;
                     //savepath = ex.ToString();
                 }
