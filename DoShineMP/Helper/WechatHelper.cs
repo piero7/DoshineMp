@@ -363,7 +363,7 @@ namespace DoShineMP.Helper
         }
 
         /// <summary>
-        /// unix时间戳转换成日期
+        /// 微信时间戳转换成日期
         /// </summary>
         /// <param name="unixTimeStamp">时间戳（秒）</param>
         /// <returns></returns>
@@ -374,7 +374,7 @@ namespace DoShineMP.Helper
         }
 
         /// <summary>
-        /// 
+        /// 获取当前时间的微信时间戳
         /// </summary>
         /// <returns></returns>
         public static string GetTimestamp()
@@ -451,12 +451,25 @@ namespace DoShineMP.Helper
             return retStr;
         }
 
+        /// <summary>
+        /// 针对微信js文件导入生成签名
+        /// </summary>
+        /// <param name="noncestr">随机字符串</param>
+        /// <param name="jsTicket">微信js Token</param>
+        /// <param name="times">时间戳</param>
+        /// <param name="url">对应的url</param>
+        /// <returns></returns>
         public static string GetSha1(string noncestr, string jsTicket, string times, string url)
         {
             string dStr = string.Format("jsapi_ticket={0}&noncestr={1}&timestamp={2}&url={3}", jsTicket, noncestr, times, url);
             return GetSha1(dStr);
         }
 
+        /// <summary>
+        /// 将现有的字符串进行sha1签名
+        /// </summary>
+        /// <param name="dstr"></param>
+        /// <returns></returns>
         public static string GetSha1(string dstr)
         {
             byte[] tmp = Encoding.UTF8.GetBytes(dstr);
