@@ -273,7 +273,10 @@ namespace DoShineMP.Controllers
                 var repairdetail = repairHelper.GetDetail(a);
                 if (repairdetail != null)
                 {
-                    repairdetail.Image.FileName = System.Configuration.ConfigurationManager.AppSettings["httpimgpath"] + repairdetail.Image.FileName;
+                    if (repairdetail.Image != null)
+                    {
+                        repairdetail.Image.FileName = System.Configuration.ConfigurationManager.AppSettings["httpimgpath"] + repairdetail.Image.FileName;
+                    }
                     ViewBag.RepairDetail = repairdetail;
                 }
                 else

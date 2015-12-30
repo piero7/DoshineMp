@@ -15,9 +15,12 @@
             </div>
             <div class="top-content">
                 <p>@ViewBag.RepairDetail.Contenet</p>
-                <div class="img-content">
-                    <img src="@ViewBag.RepairDetail.Image.FileName" />
-                </div>
+                @if (ViewBag.RepairDetail.Image != null)
+                {
+                    <div class="img-content">
+                        <img src="@ViewBag.RepairDetail.Image.FileName" />
+                    </div>
+                }
             </div>
         </div>
         <div class="list-bottom">
@@ -28,79 +31,79 @@
 
                 @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Apply)
             {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li>受理</li>
+                        <li>确认</li>
+                        <li>完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li>受理</li>
-                    <li>确认</li>
-                    <li>完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li></li>
-                        <li></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-one"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li class="current">受理</li>
+                        <li>确认</li>
+                        <li>完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-one"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li class="current">受理</li>
-                    <li>确认</li>
-                    <li>完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-two"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li class="current">受理</li>
+                        <li class="current">确认</li>
+                        <li>完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-two"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li class="current">受理</li>
-                    <li class="current">确认</li>
-                    <li>完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li class="current"></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li class="current"></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-two"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li class="current">受理</li>
+                        <li class="current">确认</li>
+                        <li class="current">完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-two"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li class="current">受理</li>
-                    <li class="current">确认</li>
-                    <li class="current">完成</li>
-                </ul>
                 }
 
             </div>
@@ -126,9 +129,16 @@
                     <p>反馈信息</p>
                 </div>
                 <p class="back-content">
-                    @ViewBag.RepairDetail.Response
-                </p>
-            </div>
+                    @if (ViewBag.RepairDetail.Response == null)
+                    {
+                    <p>无</p>
+                    }
+                    else
+                    {
+                        @ViewBag.RepairDetail.Response
+                    }
+                    </p>
+                </div>
         }
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)

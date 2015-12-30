@@ -3,47 +3,30 @@
     font-size: 16px;
     color: #3e3e3e;
     font-weight: 500;
-    background-color: #eee;
-    padding-top: 0;
+    background-color:#eee;
 }
-
-.col-xs-12 {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
+.col-xs-12{
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
     /*margin-bottom:10%;*/
 }
 
 .panel {
-    margin: 0;
+    margin:0;
     padding-left: 5%;
     padding-right: 5%;
     margin-top: 0;
     margin-bottom: 0;
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
+    color: #626262;
 }
 
 input {
-    border: none;
+    border: 0;
     outline: none;
-    overflow:hidden;
-}
-
-select {
-    border: none;
-    outline:none;
-    font-size:16px;
-    color:#3e3e3e;
-}
-
-.form-control{
-    border:none;
-}
-.form-control option{
-    font-size:16px;
-    color:#3e3e3e;
 }
 
 .img-rounded {
@@ -51,7 +34,7 @@ select {
 }
 
 .paneltitle {
-    width: 25%;
+    width: 30%;
 }
 
 .panelbody {
@@ -61,6 +44,7 @@ select {
 
     .panelbody input {
         width: 100%;
+        font-size: 14px;
     }
 
 .panel-body {
@@ -82,12 +66,15 @@ select {
     }
 
 #tijiao {
-    font-size: 7vw;
-    line-height: 14vw;
+    height:40px;
+    line-height: 20px !important;
+    font-size: 16px;
+    line-height: 10vw;
     width: 90%;
     margin: 20px auto;
+    border-radius:10px;
+    outline: none;
 }
-
-.marginB {
-    margin-bottom: 5%;
+.marginB{
+    margin-bottom:15px;
 }
