@@ -81,14 +81,21 @@ namespace DoShineMP.Helper
                           orderby r.CreateDate descending
                           select r).ToList();
 
+            foreach (var item in ownhis)
+            {
+                item.IsUserself = true;
+            }
+
             var rCount = tCount - ownhis.Count();
             if (rCount > 0)
             {
-                ownhis.AddRange(
-                    (
-                    from r in db.RepairSet
-                    select r).Take(rCount).OrderBy(item => item.RepairId).ToList()
-                    );
+                var tmpList = (from r in db.RepairSet
+                               select r).Take(rCount).OrderBy(item => item.RepairId).ToList();
+                foreach (var item in tmpList)
+                {
+                    item.IsUserself = false;
+                }
+                ownhis.AddRange(tmpList);
             }
 
             return ownhis;
