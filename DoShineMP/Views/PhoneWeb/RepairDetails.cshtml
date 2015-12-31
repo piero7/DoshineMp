@@ -5,6 +5,7 @@
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/RepairDetails.css" rel="stylesheet" />
+    <link href="~/Styles/star-rating.css" rel="stylesheet" />
 }
 <div class="keep-list">
     <div class="keep-list-in">
@@ -125,29 +126,23 @@
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {
             <div class="back">
-                <div class="back-title">
-                    <p>反馈信息</p>
+                <div class="bottom-title">
+                    <p>服务评分</p>
                 </div>
-                <p class="back-content">
-                    @if (ViewBag.RepairDetail.Response == null)
-                    {
-                    <p>无</p>
-                    }
-                    else
-                    {
-                        @ViewBag.RepairDetail.Response
-                    }
-                    </p>
+                <div class="keep-textarea">
+                    <input id="input-21d" value="@ViewBag.RepairDetail.Score" type="number" class="rating" min=0 max=5 step=1 data-size="sm" disabled="disabled">
                 </div>
+            </div>
         }
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
         {
             <div class="keep-content-t clearfix marginB">
+                <div class="bottom-title">
+                    <p>服务评分</p>
+                </div>
                 <div class="keep-textarea">
-                    <!-- <em class="br" style="padding:10px 0; margin-top:20px;"></em> -->
-                    <textarea placeholder="亲爱的顾客,我们已经为您完成了所有的服务。请在此输入您的反馈信息，非常感谢！" id="repaircontent"></textarea>
-                    <!-- <em class="br"></em> -->
+                    <input id="input-21d" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="sm">
                 </div>
                 <div class="col-xs-12 operate ">
                     <input type="button" class="commit pull-right" id="btn" value="提交">
@@ -157,16 +152,23 @@
     </div>
 </div>
 
+
+
 <input type="hidden" value="@ViewBag.RepairDetail.RepairId" id="repairID" />
 
 @section scripts{
+    <script src="~/Scripts/star-rating.js"></script>
     <script type="text/javascript">
-
+        jQuery(document).ready(function () {
+            $(".rating-kv").rating();
+            // alert($('#input-21d').val());
+        });
         $('#btn').click(function () {
             $(this).attr('disabled', true);
             var repairID = $('#repairID').val();
             var response = $('#repaircontent').val();
-            var score = 5;
+            var score = $('#input-21d').val();
+            alert(score);
             $.post('@Url.Action("RepairsponJson", "PhoneWeb")', { repairID: repairID, response: response, score: score }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {

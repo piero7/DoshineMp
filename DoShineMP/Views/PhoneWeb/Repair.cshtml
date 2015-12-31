@@ -195,10 +195,6 @@
         });
 
 
-
-
-
-
         function btn() {
             var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
@@ -208,7 +204,6 @@
                 return false;
             }
             $('#btn').attr('disabled', true);
-            //alert(serviceid);
             serviceid = serviceid == null ? '#' : serviceid;
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid }, function (data, status) {
                 if (status == 'success') {
@@ -257,7 +252,6 @@
                                    + ' </div>'
                                 + '</li>';
                             }
-
                         })
                         $('#messagenew').html(str);
                         document.getElementById('btn').style.borderColor = '#4ca329';

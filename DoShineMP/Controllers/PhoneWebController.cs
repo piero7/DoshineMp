@@ -295,40 +295,12 @@ namespace DoShineMP.Controllers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public ActionResult RepairInterior(string code)
+        public ActionResult RepairInterior()
         {
-            try
-            {
-                if (!string.IsNullOrEmpty(code))
-                {
-                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                    {
-                        var user = wuser.GetUserInfo(this.openid);
-                        if (user.UserInfo != null)
-                        {
-                            ViewBag.openid = this.openid;
-                            //历史保修记录
-                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
-                        }
-                        else
-                        {
-                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "RepairInterior", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "RepairInterior", ""));
-                }
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            ViewBag.RepairList5 = repairHelper.GetRepairList(Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetRepairList(Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairLis20 = repairHelper.GetRepairList(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetRepairList(Models.RepairStatus.Finish, 10, 0).ToList();
             ViewBag.Title = "报修受理";
             return View();
         }
@@ -681,11 +653,12 @@ namespace DoShineMP.Controllers
             string msg = "Y";
             try
             {
-                DateTime date;
-                DateTime.TryParse(exceptDate, out date);
+
                 switch (type)
                 {
                     case "1":
+                        DateTime date;
+                        DateTime.TryParse(exceptDate, out date);
                         msg = repairHelper.Accept(repaidID, date, innderNumber) != null ? "Y" : "N";
                         ; break;
                     case "2":
@@ -703,7 +676,6 @@ namespace DoShineMP.Controllers
         #endregion
 
         #endregion
-
 
         #region 杂项功能 --短信
 

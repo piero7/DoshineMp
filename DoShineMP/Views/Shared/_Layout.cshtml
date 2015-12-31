@@ -7,8 +7,6 @@
     <title>@ViewBag.Title </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.5.8/css/sm.min.css">
-    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.5.8/css/sm-extend.min.css">
     @RenderSection("styles",required:false)
 </head>
 <body>
@@ -17,9 +15,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.5.8/js/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.5.8/js/sm-extend.min.js' charset='utf-8'></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
