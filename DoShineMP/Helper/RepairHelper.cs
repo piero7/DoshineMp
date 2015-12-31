@@ -174,5 +174,47 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             return rep;
         }
+
+
+        /// <summary>
+        /// 获得维修记录
+        /// </summary>
+        /// <param name="sta">需要获取的记录状态(获取 全部状态=0，提交=5,受理=10，处理完成待评价=20，完成=99)</param>
+        /// <param name="count">每页的数量</param>
+        /// <param name="page">当前页数（从0开始计数）</param>
+        /// <returns></returns>
+        public IEnumerable<Repair> GetRepairList(RepairStatus sta, int count, int page)
+        {
+            var db = new ModelContext();
+            int skip = count * page;
+            if (sta == RepairStatus.Unknow)
+            {
+                return db.RepairSet.OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
+            }
+            else
+            {
+                return db.RepairSet.Where(item => item.Status == sta).OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
+            }
+        }
+
+        /// <summary>
+        /// 获得某类维修记录的总页数
+        /// </summary>
+        /// <param name="sta">需要获取的记录状态(获取 全部状态=0，提交=5,受理=10，处理完成待评价=20，完成=99)</param>
+        /// <param name="count">每页的数量</param>
+        /// <returns></returns>
+        public int GetAllPageCount(RepairStatus sta, int count)
+        {
+            var db = new ModelContext();
+
+            if (sta == RepairStatus.Unknow)
+            {
+                return db.RepairSet.Count() / count + 1;
+            }
+            else
+            {
+                return db.RepairSet.Where(item => item.Status == sta).Count() / count + 1;
+            }
+        }
     }
 }
