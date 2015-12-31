@@ -23,7 +23,7 @@
                 @if (ViewBag.RepairDetail.Image != null)
                 {
                     <div class="img-content">
-                        <img src="@ViewBag.RepairDetail.Image.FileName" />
+                        <img src="@ViewBag.RepairDetail.Image.FileName" class="imgyulan" />
                     </div>
                 }
             </div>
@@ -149,6 +149,7 @@
 <input type="hidden" value="@ViewBag.RepairDetail.RepairId" id="repairID" />
 
 @section scripts{
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/dev/js/mobiscroll.core-2.5.2.js"></script>
     <script src="~/dev/js/mobiscroll.core-2.5.2-zh.js"></script>
     <script src="~/dev/js/mobiscroll.datetime-2.5.1.js"></script>
@@ -156,6 +157,77 @@
     <script src="~/dev/js/mobiscroll.android-ics-2.5.2.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
     <script type="text/javascript">
+        var token;
+
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        $(function () {
+            $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
+                var debug = data.debug;
+                var appId = data.appId;
+                var timestamp = data.timestamp;
+                var nonceStr = data.nonceStr;
+                var signature = data.signature
+
+                wx.config({
+                    debug: debug,
+                    appId: appId,
+                    timestamp: timestamp,
+                    nonceStr: nonceStr,
+                    signature: signature,
+                    jsApiList: [
+                        'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                    ]
+                });
+            })
+        })
+
+        $(document).on('click', '.imgyulan', function () {
+            var imgurl = $(this).attr('src');
+            //alert(imgurl)
+            wx.previewImage({
+                current: imgurl,
+                urls: [
+                 imgurl
+                ]
+            });
+        })
+
 
         //初始化时间控件
         $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });

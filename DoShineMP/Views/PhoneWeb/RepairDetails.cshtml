@@ -19,7 +19,7 @@
                 @if (ViewBag.RepairDetail.Image != null)
                 {
                     <div class="img-content">
-                        <img src="@ViewBag.RepairDetail.Image.FileName" />
+                        <img src="@ViewBag.RepairDetail.Image.FileName" class="imgyulan" />
                     </div>
                 }
             </div>
@@ -157,8 +157,83 @@
 <input type="hidden" value="@ViewBag.RepairDetail.RepairId" id="repairID" />
 
 @section scripts{
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
     <script type="text/javascript">
+        var token;
+
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        $(function () {
+            $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
+                var debug = data.debug;
+                var appId = data.appId;
+                var timestamp = data.timestamp;
+                var nonceStr = data.nonceStr;
+                var signature = data.signature
+
+                wx.config({
+                    debug: debug,
+                    appId: appId,
+                    timestamp: timestamp,
+                    nonceStr: nonceStr,
+                    signature: signature,
+                    jsApiList: [
+                        'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                    ]
+                });
+            })
+        })
+
+        $(document).on('click', '.imgyulan', function () {
+            var imgurl = $(this).attr('src');
+            //alert(imgurl)
+            wx.previewImage({
+                current: imgurl,
+                urls: [
+                 imgurl
+                ]
+            });
+        })
+
+
+
+
         jQuery(document).ready(function () {
             $(".rating-kv").rating();
             // alert($('#input-21d').val());
@@ -168,7 +243,7 @@
             var repairID = $('#repairID').val();
             var response = $('#repaircontent').val();
             var score = $('#input-21d').val();
-            alert(score);
+            //alert(score);
             $.post('@Url.Action("RepairsponJson", "PhoneWeb")', { repairID: repairID, response: response, score: score }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
