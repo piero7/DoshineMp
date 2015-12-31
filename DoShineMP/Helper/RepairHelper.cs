@@ -119,7 +119,7 @@ namespace DoShineMP.Helper
 
             rep.Status = RepairStatus.Accept;
             rep.AccepDate = DateTime.Now;
-            rep.ExceptHandleDate = DateTime.Now;
+            rep.ExceptHandleDate = exceptDate;
             rep.InnerNumber = innderNumber;
 
             db.SaveChanges();
@@ -148,6 +148,7 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             return rep;
         }
+
 
         /// <summary>
         /// 评价报修
