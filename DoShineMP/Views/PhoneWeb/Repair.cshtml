@@ -17,7 +17,7 @@
 
             <div class="col-xs-12 operate ">
                 @*<input type="button" class="add-photo addimages" id="chooseImage">*@
-                <img src="#" class="addimages" id="add-phoneimg" />
+                <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg" />
                 <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交" style="margin-top:10px;">
             </div>
         </div>
@@ -258,7 +258,8 @@
                         document.getElementById('btn').style.color = '#4ca329';
                         document.getElementById('add-phoneimg').src = '';
                         $('#serviceid').val('');
-                        $('#add-phoneimg').attr('src', '#');
+                        $('#add-phoneimg').attr('src', '../../doshinemp/Images/tianjia2x.png');
+                        $('#btn').attr('disabled', false);
                     }
                 }
             })

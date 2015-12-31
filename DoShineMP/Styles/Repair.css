@@ -4,198 +4,227 @@
 * @Last Modified by:   晴
 * @Last Modified time: 2015-12-31 17:41:34
 */
-body{
-	font-family: 'Microsoft YaHei';
-	background-color:#ececec;
+body {
+    font-family: 'Microsoft YaHei';
+    background-color: #ececec;
 }
 /*.keep-content-t{
 	padding-top:40px;
 
 }*/
-.keep-content-t{
-	box-shadow:0px 5px 5px #ccc;
-	-webkit-box-shadow:0px 5px 5px #ccc;
+.keep-content-t {
+    box-shadow: 0px 5px 5px #ccc;
+    -webkit-box-shadow: 0px 5px 5px #ccc;
 }
-.keep-title{
-	font-size: 30px;
-	color:block;
-	width:100%;
-	padding-bottom: 20px;
-	text-align: center;
+
+.keep-title {
+    font-size: 30px;
+    color: block;
+    width: 100%;
+    padding-bottom: 20px;
+    text-align: center;
 }
-.keep-textarea{
+
+.keep-textarea {
     padding: 15px 15px 0 15px;
     background: white;
 }
-.keep-textarea textarea{
-	width: 100%;
-	height:160px;
-	background-color: white;
-	border-radius: 5px;
-	border-color:#bdbdbd;
-	resize:none;
-	border:0;
-	font-size:16px;
-}
-.operate{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	/*display: table;*/
-}
-.operate .commit{
-	margin-left:20px;
-	margin-top:15px;
-	border-radius:10px;
-	outline: none;
-}
-.operate input{
-	background-color: white;
-}
-.br{
-	display: block;
-	border-top:1px solid #ddd;
-}
-.commit{
-	width: 85px;
-	display: block;
-	border:1px solid #4ca329;
-	font-size: 16px;
-	text-align: center;
-	line-height:38px;
-	/*display: table-cell;*/
-	color:#4ca329; 
-}
-.operate .countermand{
-	border:1px solid #bdbdbd;
-	background: white;
-}
-.go-photo{
-	overflow: hidden;
-	padding:10px 10px 10px 20px;
-}
-.add-photo{
-	width:60px;
-	height:60px;
-	background-color: white;
-	border:1px dashed #ccc;
-	background: url(../Images/tianjia2x.png) no-repeat 5px 5px;
-	outline: none;
-}
-#add-phoneimg{
-    width:60px;
-	height:60px;
-	background: white;
-	border:1px dashed #ccc;
-	background: url(../Images/tianjia2x.png) no-repeat 5px 5px;
-	outline: none;
-}
-/*new keep css*/
-.keep-content-b{
-	background-color:white;
-}
-.new-title {
-	padding:15px 15px 0px 15px;
-	border-bottom:1px solid #aaa;
-	background: white;
-	margin-bottom:0;
-}
-.new-title ins{
-	display: block;
-	border-bottom:1px dashed #ccc;
+
+    .keep-textarea textarea {
+        width: 100%;
+        height: 160px;
+        background-color: white;
+        border-radius: 5px;
+        border-color: #bdbdbd;
+        resize: none;
+        border: 0;
+        font-size: 16px;
+    }
+
+.operate {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*display: table;*/
 }
 
-.new-title span{
-	display: block;
-	padding:0 0px 5px;
-	font-size: 16px;
+    .operate .commit {
+        margin-left: 20px;
+        margin-top: 15px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    .operate input {
+        background-color: white;
+    }
+
+.br {
+    display: block;
+    border-top: 1px solid #ddd;
 }
-.logo{
-	width:80px;
-	height:80px;
-	background-color:#ccc;
+
+.commit {
+    width: 85px;
+    display: block;
+    border: 1px solid #4ca329;
+    font-size: 16px;
+    text-align: center;
+    line-height: 38px;
+    /*display: table-cell;*/
+    color: #4ca329;
 }
-.content-title-t{
-	overflow: hidden;
+
+.operate .countermand {
+    border: 1px solid #bdbdbd;
+    background: white;
 }
-.new-keep ul{
-	background-color: #fff;
-	padding:0 20px;
+
+.go-photo {
+    overflow: hidden;
+    padding: 10px 10px 10px 20px;
 }
-.new-keep ul li{
-	padding: 20px 0 8px;
-	border-bottom: 1px solid #e3e1e1;
-	background-color: white;
+
+.add-photo {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 1px dashed #ccc;
+    outline: none;
 }
-.content-title-t .w8{
-	width: 65%;
-	/*padding-top:10px;*/
-	/*padding-left: 20px;*/
+
+#add-phoneimg {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 1px dashed #ccc;
+    outline: none;
 }
-.w10{
-	width:100%;
-	height:55px;
+/*new keep css*/
+.keep-content-b {
+    background-color: white;
 }
-.content-title-b{
-	overflow: hidden;
+
+.new-title {
+    padding: 15px 15px 0px 15px;
+    border-bottom: 1px solid #aaa;
+    background: white;
+    margin-bottom: 0;
 }
-.content-title-b p{
-	width:100%;
-	white-space:nowrap;
-	 text-overflow:ellipsis; 
-	 -o-text-overflow:ellipsis; 
-	 overflow:hidden;
+
+    .new-title ins {
+        display: block;
+        border-bottom: 1px dashed #ccc;
+    }
+
+    .new-title span {
+        display: block;
+        padding: 0 0px 5px;
+        font-size: 16px;
+    }
+
+.logo {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
 }
-.marginB{
-	margin-bottom: 20px;
-	background: white;
+
+.content-title-t {
+    overflow: hidden;
 }
-.panel{
-	border:0;
+
+.new-keep ul {
+    background-color: #fff;
+    padding: 0 20px;
 }
-.w8 p{
-	/*font-weight: bold ;*/
+
+    .new-keep ul li {
+        padding: 20px 0 8px;
+        border-bottom: 1px solid #e3e1e1;
+        background-color: white;
+    }
+
+.content-title-t .w8 {
+    width: 65%;
+    /*padding-top:10px;*/
+    /*padding-left: 20px;*/
 }
-.w8 b{
-	font-weight: normal;
+
+.w10 {
+    width: 100%;
+    height: 55px;
 }
+
+.content-title-b {
+    overflow: hidden;
+}
+
+    .content-title-b p {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+.marginB {
+    margin-bottom: 20px;
+    background: white;
+}
+
+.panel {
+    border: 0;
+}
+
+.w8 p {
+    /*font-weight: bold ;*/
+}
+
+.w8 b {
+    font-weight: normal;
+}
+
 .w2 {
-	/*width: 30%;*/
+    /*width: 30%;*/
 }
-.w2 .img{
-	width:75px;
-	height:75px;
-	background-color: #ccc;
+
+    .w2 .img {
+        width: 75px;
+        height: 75px;
+        background-color: #ccc;
+    }
+
+        .w2 .img img {
+            width: 100%;
+            height: 100%;
+        }
+
+.time {
+    display: block;
+    color: #a8a8a8;
 }
-.w2 .img img{
-	width: 100%;
-	height:100%;
-}
-.time{
-	display: block;
-	color: #a8a8a8;
-}
-.w8 .wr-content{
-	width: 100%;
-	min-width: 55px;
-	height:55px;
-	text-overflow:ellipsis;
-	-o-text-overflow:ellipsis;
-	overflow:hidden;
-	color: #626262;
-	margin-bottom:0;
+
+.w8 .wr-content {
+    width: 100%;
+    min-width: 55px;
+    height: 55px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+    color: #626262;
+    margin-bottom: 0;
 }
 /*.commit:hover{
 	color:#f06343;
 	border-color:  #f06343;
 }*/
-.content-title-b .check{
-	text-decoration: none;
+.content-title-b .check {
+    text-decoration: none;
 }
 
-.content-title-b{
-	padding-top:15px;
+.content-title-b {
+    padding-top: 15px;
 }
-/*.content-title-b ins:before{
+    /*.content-title-b ins:before{
 	content: "";
 	width:16px;
 	height:16px;
@@ -203,37 +232,41 @@ body{
 	margin-top:2px;
 	vertical-align: middle;
 }*/
-.content-title-b .check{
-	height:16px;
-	line-height: 16px;
-	padding-left:20px;
-}
+    .content-title-b .check {
+        height: 16px;
+        line-height: 16px;
+        padding-left: 20px;
+    }
 
-.content-title-b .check1{
-	background:url(../Images/submitIcon2x.png) no-repeat left center;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #ffc600;
-}
-.content-title-b .check2{
-	background:url(../Images/accept2x.png) no-repeat;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #ffc600;
-}
-.content-title-b .check3{
-	background:url(../Images/daiqueren2x.png) no-repeat;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #1ec462;
-}
-.content-title-b .check4{
-	background:url(../Images/complete2x.png) no-repeat 0 0px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #1ec462;
-}
-.operate span.current{
-	color:#f06343;
-	border-color:  #f06343;
+    .content-title-b .check1 {
+        background: url(../Images/submitIcon2x.png) no-repeat left center;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #ffc600;
+    }
+
+    .content-title-b .check2 {
+        background: url(../Images/accept2x.png) no-repeat;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #ffc600;
+    }
+
+    .content-title-b .check3 {
+        background: url(../Images/daiqueren2x.png) no-repeat;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #1ec462;
+    }
+
+    .content-title-b .check4 {
+        background: url(../Images/complete2x.png) no-repeat 0 0px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #1ec462;
+    }
+
+.operate span.current {
+    color: #f06343;
+    border-color: #f06343;
 }
