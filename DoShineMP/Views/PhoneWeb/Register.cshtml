@@ -129,16 +129,17 @@
                 alert('手机号必填！')
                 return false;
             }
-            alert(PhoneNumber)
-            alert(openid)
-            alert(sendid)
-            alert(PhoneYZM)
+            //alert(PhoneNumber)
+            //alert(openid)
+            //alert(sendid)
+            //alert(PhoneYZM)
             $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: openid, sendid: sendid, sendcode: PhoneYZM }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
                         //alert("注册成功!");
-                        window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
+                        //window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
                         //WeixinJSBridge.call('closeWindow');
+                        window.location.href = '@Url.Action("MyMessage", "PhoneWeb")';
                     }
                     else if (data.msg == 'N') {
                         alert("注册失败！");

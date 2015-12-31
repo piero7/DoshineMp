@@ -168,6 +168,7 @@ namespace DoShineMP.Helper
             rep.Score = score;
             rep.ResponeDate = DateTime.Now;
             rep.Response = response;
+            rep.Status = RepairStatus.Finish;
 
             db.SaveChanges();
             return rep;

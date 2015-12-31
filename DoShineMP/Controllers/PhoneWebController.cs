@@ -229,16 +229,21 @@ namespace DoShineMP.Controllers
                 {
                     if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
                     {
-                        ViewBag.openid = this.openid;
-
-                        //历史保修记录
-                        ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
-
-
+                        var user = wuser.GetUserInfo(this.openid);
+                        if (user.UserInfo != null)
+                        {
+                            ViewBag.openid = this.openid;
+                            //历史保修记录
+                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+                        }
+                        else
+                        {
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        }
                     }
                     else
                     {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
                     }
                 }
                 else
@@ -251,6 +256,36 @@ namespace DoShineMP.Controllers
                 throw;
             }
             ViewBag.Title = "自助报修";
+            return View();
+        }
+
+
+        /// <summary>
+        /// 保修详情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult RepairDetails(string repairid)
+        {
+            int a;
+            if (int.TryParse(repairid, out a))
+            {
+                var repairdetail = repairHelper.GetDetail(a);
+                if (repairdetail != null)
+                {
+                    if (repairdetail.Image != null)
+                    {
+                        repairdetail.Image.FileName = System.Configuration.ConfigurationManager.AppSettings["httpimgpath"] + repairdetail.Image.FileName;
+                    }
+                    ViewBag.RepairDetail = repairdetail;
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+                }
+            }
+
+            ViewBag.Title = "报修详情";
             return View();
         }
 
@@ -334,6 +369,8 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "客服系统";
             return View();
         }
+
+
 
         #endregion
 
@@ -500,7 +537,7 @@ namespace DoShineMP.Controllers
 
         #endregion
 
-        #region 杂项功能
+        #region 报修功能
 
         /// <summary>
         /// 添加保修记录返回数据
@@ -528,7 +565,35 @@ namespace DoShineMP.Controllers
             }
         }
 
+        /// <summary>
+        /// 反馈报修评价
+        /// </summary>
+        /// <param name="repairID">报修id</param>
+        /// <param name="response">评价内容</param>
+        /// <param name="score">分数（预留，若无则填0）</param>
+        /// <returns></returns>
+        public JsonResult RepairsponJson(int repairID, string response, int score)
+        {
+            try
+            {
+                if (repairHelper.Response(repairID, response, score) != null)
+                {
+                    return Json(new { msg = "Y" });
+                }
+                else
+                {
+                    return Json(new { msg = "N" });
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { msg = "N" });
+            }
+        }
 
+        #endregion
+
+        #region 杂项功能 --短信
 
         /// <summary>
         /// 发送短信

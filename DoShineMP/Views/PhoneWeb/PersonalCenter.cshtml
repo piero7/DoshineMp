@@ -10,9 +10,9 @@
 <div class="col-xs-12 marginB">
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="pull-left paneltitle" style="padding-top: 9%;width:40px;">头像</div>
+            <div class="pull-left paneltitle" style="padding-top: 5%;">头像</div>
             <div class="pull-right ">
-                <img src="@ViewBag.user.Headimgurl" class="img-rounded" />
+                <img src="@ViewBag.user.Headimgurl" class="img-circle" style="width:50px;" />
             </div>
         </div>
     </div>
@@ -104,7 +104,7 @@ else
     <div class="col-xs-12 marginB">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="pull-left paneltitle">类型</div>
+                <div class="pull-left paneltitle" style="padding-top:3%;">类型</div>
                 <div class="pull-right panelbody">
                     <select class="form-control" id="type">
                         <option value="Sub_contractor">分包商</option>
@@ -182,7 +182,7 @@ else
             $.post(url, { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
-                        alert('提交成功!');
+                        //alert('提交成功!');
                         window.location.href = "@Url.Action("Partner","PhoneWeb")";
                     }
                     else
