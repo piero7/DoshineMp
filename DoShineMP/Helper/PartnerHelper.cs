@@ -30,10 +30,12 @@ namespace DoShineMP.Helper
                 return null;
             }
 
+            usr.UserInfo.Name = realname;
+
 
             var pat = new Partner
             {
-                RealName=realname,
+                RealName = realname,
                 Address = address,
                 CompanyName = comName,
                 CreateDate = DateTime.Now,
@@ -61,6 +63,8 @@ namespace DoShineMP.Helper
             {
                 return null;
             }
+
+            usr.UserInfo.Name = realname;
 
             var pat = db.PartnerSet.Find(usr.PartnerId);
             pat.RealName = realname;
