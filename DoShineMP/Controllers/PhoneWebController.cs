@@ -261,7 +261,7 @@ namespace DoShineMP.Controllers
 
 
         /// <summary>
-        /// 保修详情
+        /// 报修详情
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -288,6 +288,54 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "报修详情";
             return View();
         }
+
+
+        /// <summary>
+        /// 报修受理
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult RepairInterior()
+        {
+            ViewBag.RepairList5 = repairHelper.GetRepairList(Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetRepairList(Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairLis20 = repairHelper.GetRepairList(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetRepairList(Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.Title = "报修受理";
+            return View();
+        }
+
+
+        /// <summary>
+        /// 保修受理详情
+        /// </summary>
+        /// <param name="repairid"></param>
+        /// <returns></returns>
+        public ActionResult RepairDetailsInterior(string repairid)
+        {
+            int a;
+            if (int.TryParse(repairid, out a))
+            {
+                var repairdetail = repairHelper.GetDetail(a);
+                if (repairdetail != null)
+                {
+                    if (repairdetail.Image != null)
+                    {
+                        repairdetail.Image.FileName = System.Configuration.ConfigurationManager.AppSettings["httpimgpath"] + repairdetail.Image.FileName;
+                    }
+                    ViewBag.RepairDetail = repairdetail;
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "RepairInterior", ""));
+                }
+            }
+
+            ViewBag.Title = "报修详情";
+            return View();
+        }
+
+
 
         /// <summary>
         /// 经销商中心
@@ -539,6 +587,7 @@ namespace DoShineMP.Controllers
 
         #region 报修功能
 
+        #region 用户
         /// <summary>
         /// 添加保修记录返回数据
         /// </summary>
@@ -590,6 +639,41 @@ namespace DoShineMP.Controllers
                 return Json(new { msg = "N" });
             }
         }
+
+        #endregion
+
+        #region 内部人员
+
+        /// <summary>
+        /// 保修受理
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult RepairDetailJson(int repaidID, string exceptDate, string innderNumber, string type)
+        {
+            string msg = "Y";
+            try
+            {
+
+                switch (type)
+                {
+                    case "1":
+                        DateTime date;
+                        DateTime.TryParse(exceptDate, out date);
+                        msg = repairHelper.Accept(repaidID, date, innderNumber) != null ? "Y" : "N";
+                        ; break;
+                    case "2":
+                        msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        ; break;
+                }
+                return Json(new { msg = msg });
+            }
+            catch (Exception e)
+            {
+                return Json(new { msg = msg });
+            }
+        }
+
+        #endregion
 
         #endregion
 
