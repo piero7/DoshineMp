@@ -163,7 +163,6 @@
                 wx.chooseImage({
                     success: function (res) {
                         images.localId = res.localIds;
-
                         if (images.localId.length == 0) {
                             alert('请先使用 chooseImage 接口选择图片');
                             return;
@@ -179,7 +178,8 @@
                                     images.serverId.push(res.serverId);
                                     $("#serviceid").val(res.serverId);
                                     //alert($("#serviceid").val())
-                                    document.getElementById('add-phoneimg').src = res.localId;
+                                    //alert(images.localId[0]);
+                                    document.getElementById('add-phoneimg').src = images.localId[0];
                                 },
                                 fail: function (res) {
                                     alert(JSON.stringify(res));
@@ -195,7 +195,12 @@
         });
 
 
+
+
+
+
         function btn() {
+
             var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
@@ -205,6 +210,7 @@
             }
             $('#btn').attr('disabled', true);
             serviceid = serviceid == null ? '#' : serviceid;
+            //alert(serviceid);
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
@@ -252,6 +258,7 @@
                                    + ' </div>'
                                 + '</li>';
                             }
+
                         })
                         $('#messagenew').html(str);
                         document.getElementById('btn').style.borderColor = '#4ca329';

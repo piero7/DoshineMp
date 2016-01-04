@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -69,16 +68,28 @@
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="pull-left paneltitle">姓名</div>
-                <div class="pull-right panelbody">
-                    <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
+        @if (ViewBag.parnter.UserInfo.Name != null)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="pull-left paneltitle">姓名</div>
+                    <div class="pull-right panelbody">
+                        <input type="text" name="realName" id="realName" value="@ViewBag.parnter.UserInfo.Name" placeholder="请输入姓名" />
+                    </div>
                 </div>
             </div>
-        </div>
-
+        }
+        else
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="pull-left paneltitle">姓名</div>
+                    <div class="pull-right panelbody">
+                        <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
+                    </div>
+                </div>
+            </div>
+        }
 
         <div class="panel panel-default">
             <div class="panel-body">
@@ -133,7 +144,6 @@ else
             </div>
         </div>
 
-
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="pull-left paneltitle">公司地址</div>
@@ -154,7 +164,7 @@ else
     </div>
 }
 <div class="col-xs-12 marginB">
-    <button type="button" id="tijiao" class="btn btn-success btn-block" >提交</button>
+    <button type="button" id="tijiao" class="btn btn-success btn-block">提交</button>
 </div>
 
 <input type="hidden" id="openid" name="name" value="@ViewBag.openid" />

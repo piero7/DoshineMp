@@ -90,6 +90,11 @@ body {
         border-top: 2px solid #1ec462;
     }
 
+
+.marginB {
+    padding-top: 30px;
+}
+
 .state-ul li {
     position: absolute;
     top: 26px;

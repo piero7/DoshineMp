@@ -23,8 +23,10 @@ namespace DoShineMP.Controllers
         #region 页面视图
 
         /// <summary>
-        /// 个人注册
+        /// 注册
         /// </summary>
+        /// <param name="code">微信code</param>
+        /// <param name="type">用户或者经销商</param>
         /// <returns></returns>
         public ActionResult Register(string code)
         {
@@ -54,6 +56,7 @@ namespace DoShineMP.Controllers
             }
             ViewBag.code = code;
             ViewBag.Title = "桑田账号-注册";
+            ViewBag.urltype = string.IsNullOrEmpty(url.urltype) ? "N" : url.urltype;
             return View();
         }
 
@@ -64,6 +67,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult PersonalCenter(string code, string type)
         {
+            url.urltype = "PersonalCenter";
             try
             {
                 if (!string.IsNullOrEmpty(code))
@@ -114,6 +118,7 @@ namespace DoShineMP.Controllers
         public ActionResult MyMessage(string code)
         {
             Models.WechatUser user = new Models.WechatUser();
+            url.urltype = "MyMessage";
             if (!string.IsNullOrEmpty(code))
             {
                 if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
@@ -145,6 +150,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult UserUpdate(string code)
         {
+            url.urltype = "MyMessage";
             try
             {
                 if (!string.IsNullOrEmpty(code))
@@ -222,7 +228,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Repair(string code)
         {
-
+            url.urltype = "Repair";
             try
             {
                 if (!string.IsNullOrEmpty(code))
@@ -380,6 +386,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Messages(string code)
         {
+            url.urltype = "Messages";
             if (!string.IsNullOrEmpty(code))
             {
                 if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
@@ -730,5 +737,16 @@ namespace DoShineMP.Controllers
         #endregion
 
 
+
+
     }
+
+    #region 临时变量
+    static class url
+    {
+        public static string urltype { get; set; }
+    }
+
+
+    #endregion
 }
