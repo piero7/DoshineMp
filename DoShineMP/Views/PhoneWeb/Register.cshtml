@@ -11,7 +11,7 @@
         <h1 class='signin-title'>注册桑田账号</h1>
         <ul class="sigin-play">
             <li>
-                <input type="text" class="signin-tel" id="PhoneName" value="@ViewBag.code" placeholder="请输入手机号">
+                <input type="text" class="signin-tel" id="PhoneName" placeholder="请输入手机号">
                 <span class='Error'>请输入手机号码</span>
             </li>
             <li style="overflow:hidden;">
@@ -39,6 +39,7 @@
         var openid = $('#openid').val();
         var sendid;
         window.onload = function () {
+
             // 正则验证
             var Play = document.getElementById('PhoneName');
             var Ipu = Play.getElementsByTagName('input');
@@ -102,6 +103,7 @@
                 console.log(GoBtn);
                 this.className = 'go-btn current';
                 this.style.display = 'none';
+                this.nextElementSibling.style.display = 'block'
                 down = this;
                 newTime = oldTime;
                 timer = setInterval(function () {
@@ -118,7 +120,20 @@
             GoBtn.ontouchend = function () {
                 this.className = 'go-btn';
             }
+
+            var Signin = document.getElementsByClassName('signin-werfy')[0];
+
+            document.getElementById('PhoneName').onkeydown = function () {
+                GoBtntext.style.display = 'none';
+                GoBtn.className = 'go-btn current';
+                GoBtn.style.display = 'block';
+                Signin.value = "";
+                clearInterval(timer);
+            }
+
         }
+
+
 
         $('#signin-btn').click(function () {
             var RealName = '';
@@ -133,10 +148,8 @@
             $.post("@Url.Action("RegisterJson","PhoneWeb")", { RealName: RealName, PhoneNumber: PhoneNumber, code: openid, sendid: sendid, sendcode: PhoneYZM }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
-                        //alert("注册成功!");
-                        //window.location.reload("@Url.Action("MyMessage","PhoneWeb")");
-                        //WeixinJSBridge.call('closeWindow');
-                        window.location.href = '../../DoshineMP/PhoneWeb/' + urltype;
+                        var path = '../../DoshineMP/PhoneWeb/' + utltype;
+                        window.location.href = path;
                     }
                     else if (data.msg == 'N') {
                         alert("注册失败！");
@@ -147,6 +160,10 @@
                 }
             })
         })
+
+
+
+
 
     </script>
 }
