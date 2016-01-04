@@ -68,28 +68,15 @@
                 </div>
             </div>
         </div>
-        @if (ViewBag.parnter.UserInfo.Name != null)
-        {
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="pull-left paneltitle">姓名</div>
-                    <div class="pull-right panelbody">
-                        <input type="text" name="realName" id="realName" value="@ViewBag.parnter.UserInfo.Name" placeholder="请输入姓名" />
-                    </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left paneltitle">姓名</div>
+                <div class="pull-right panelbody">
+                    <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
                 </div>
             </div>
-        }
-        else
-        {
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="pull-left paneltitle">姓名</div>
-                    <div class="pull-right panelbody">
-                        <input type="text" name="realName" id="realName" value="" placeholder="请输入姓名" />
-                    </div>
-                </div>
-            </div>
-        }
+        </div>
 
         <div class="panel panel-default">
             <div class="panel-body">
