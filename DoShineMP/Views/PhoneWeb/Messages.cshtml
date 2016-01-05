@@ -3,84 +3,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
-    <style type="text/css">
-        body {
-            font-family: 'Microsoft YaHei';
-        }
-
-        .jumbotron {
-            background: none;
-        }
-
-        #bk {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(128, 128, 128,0.2);
-            -webkit-border-radius: 10px 10px 10px 10px;
-            -moz-border-radius: 10px 10px 10px 10px;
-        }
-
-        #foottext {
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-        }
-
-        .media .media-object {
-            width: 50%;
-        }
-
-        .media .media-heading {
-            font-weight: 400;
-        }
-
-        .media .media-body > div {
-            max-width: 90%;
-            display: inline-block;
-            padding: 2vw;
-            background-color: white;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-        }
-
-        #alertmess > span {
-            background-color: white;
-            display: inline-block;
-            padding-left: 5vw;
-            padding-right: 5vw;
-            -webkit-border-radius: 15px;
-            -moz-border-radius: 15px;
-        }
-
-        #foottext .form-control {
-            height: 4em;
-            padding-left: 2%;
-        }
-
-        #foottext .btn-default {
-            height: 4em;
-        }
-    </style>
+    <link href="~/Styles/Messages.css" rel="stylesheet" />
 }
+
 <div id="bk"></div>
 <div class="col-xs-12" id="bodycontent">
     <div class="jumbotron" id="messages">
     </div>
 </div>
-<div class="input-group" id="foottext">
-    <input type="text" class="form-control" id="sendText" placeholder="输入信息">
-    <span class="input-group-btn">
-        <input class="btn btn-default" onclick="send()" id="btnSend" type="button" value="提交" />
+
+<div class="bg-input" id="foottext">
+    <input type="text" class="sendInput" id="sendText" placeholder="输入信息">
+    <span class="sendSpan text-center">
+        <input class="sendBtn" onclick="send()" id="btnSend" type="button" value="发送" />
     </span>
 </div>
+
 <input type="hidden" id="username" value="@ViewBag.user.NickName" />
 <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
 <input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
 <input type="hidden" id="openid" value="@ViewBag.user.OpenId" />
+
+
 
 @section scripts{
     <script src="~/Scripts/Models.js"></script>
@@ -160,7 +104,6 @@
                 } else {
                     var str = '<div class="media mediaright">'
                            + '<div class="media-body">'
-                               + '<h5 class="media-heading text-right">我</h5>'
                                + '<div class="pull-right mediacontent">' + msg + '</div>'
                            + '</div>'
                            + '<div class="media-right">'
@@ -176,7 +119,6 @@
                 window.scrollTo(0, div.scrollHeight);
                 document.getElementById('sendText').value = '';
             }
-
         }
 
         window.onbeforeunload = function () {
@@ -221,11 +163,10 @@
                 var str = '<div class="media medialeft">'
                      + '<div class="media-left">'
                          + '<a href="#">'
-                         + '<img class="media-object img-circle" src="../../Images/123.png" alt="...">'
+                         + '<img class="media-object img-circle" src="../../doshinemp/Images/logo.png" alt="...">'
                          + '</a>'
                      + '</div>'
                      + '<div class="media-body">'
-                         + '<h5 class="media-heading">客服</h5>'
                          + '<div class="mediacontent">' + msgsss.Msg + '</div>'
                      + '</div>'
                      + '</div>';
