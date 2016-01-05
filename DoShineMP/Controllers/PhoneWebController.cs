@@ -305,7 +305,7 @@ namespace DoShineMP.Controllers
         {
             ViewBag.RepairList5 = repairHelper.GetRepairList(Models.RepairStatus.Apply, 10, 0).ToList();
             ViewBag.RepairList10 = repairHelper.GetRepairList(Models.RepairStatus.Accept, 10, 0).ToList();
-            ViewBag.RepairLis20 = repairHelper.GetRepairList(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList20 = repairHelper.GetRepairList(Models.RepairStatus.FinishHandle, 10, 0).ToList();
             ViewBag.RepairList99 = repairHelper.GetRepairList(Models.RepairStatus.Finish, 10, 0).ToList();
             ViewBag.Title = "报修受理";
             return View();
