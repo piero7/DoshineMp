@@ -10,13 +10,27 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
+            @if (ViewBag.user.UserInfo.Address != null)
+            {
+                <div class="site-box">
+                    <input type="text" class="site" id="address" value="@ViewBag.user.UserInfo.Address" placeholder="请输入您的地址...">
+                    <span></span>
+                </div>
+            }
+            else
+            {
+                <div class="site-box">
+                    <input type="text" class="site" id="address" placeholder="请输入您的地址...">
+                    <span></span>
+                </div>
+            }
+
             <div class="keep-textarea">
                 <textarea placeholder="请输入您要报修的内容..." id="keep"></textarea>
                 <em class="br"></em>
             </div>
 
             <div class="col-xs-12 operate ">
-                @*<input type="button" class="add-photo addimages" id="chooseImage">*@
                 <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg" />
                 <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交" style="margin-top:10px;">
             </div>
@@ -204,14 +218,17 @@
             var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
+            var address = $('#address').val();
+
             if (keeptext == '' || keeptext == null) {
                 alert('内容不得为空!')
                 return false;
             }
+
             $('#btn').attr('disabled', true);
             serviceid = serviceid == null ? '#' : serviceid;
-            //alert(serviceid);
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid }, function (data, status) {
+
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: address }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');

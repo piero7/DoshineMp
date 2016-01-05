@@ -30,32 +30,32 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Register(string code)
         {
-            //if (string.IsNullOrEmpty(code))
-            //{
-            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //}
-            //else
-            //{
-            //    ViewBag.code = code;
-            //    this.openid = CodeJjudgeByOpenid(code);
-            //    if (!string.IsNullOrEmpty(this.openid))
-            //    {
-            //        if (wuser.GetUserInfo(this.openid).UserInfo != null)
-            //        {
-            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
-            //        }
-            //        else
-            //        {
-            //            ViewBag.openid = this.openid;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //    }
-            //}
-            //ViewBag.code = code;
-            //ViewBag.urltype = string.IsNullOrEmpty(url.urltype) ? "N" : url.urltype;
+            if (string.IsNullOrEmpty(code))
+            {
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            }
+            else
+            {
+                ViewBag.code = code;
+                this.openid = CodeJjudgeByOpenid(code);
+                if (!string.IsNullOrEmpty(this.openid))
+                {
+                    if (wuser.GetUserInfo(this.openid).UserInfo != null)
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+                    }
+                    else
+                    {
+                        ViewBag.openid = this.openid;
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                }
+            }
+            ViewBag.code = code;
+            ViewBag.urltype = string.IsNullOrEmpty(url.urltype) ? "MyMessage" : url.urltype;
             ViewBag.Title = "桑田账号-注册";
 
             return View();
@@ -239,6 +239,7 @@ namespace DoShineMP.Controllers
                         var user = wuser.GetUserInfo(this.openid);
                         if (user.UserInfo != null)
                         {
+                            ViewBag.user = user;
                             ViewBag.openid = this.openid;
                             //历史保修记录
                             ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
@@ -265,7 +266,6 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "自助报修";
             return View();
         }
-
 
         /// <summary>
         /// 报修详情
@@ -296,7 +296,6 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
         /// <summary>
         /// 报修受理
         /// </summary>
@@ -311,7 +310,6 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "报修受理";
             return View();
         }
-
 
         /// <summary>
         /// 保修受理详情
@@ -341,8 +339,6 @@ namespace DoShineMP.Controllers
             ViewBag.Title = "报修详情";
             return View();
         }
-
-
 
         /// <summary>
         /// 经销商中心
@@ -602,10 +598,14 @@ namespace DoShineMP.Controllers
         /// <param name="code"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public JsonResult RepairJson(string code, string content, string mediaid)
+        public JsonResult RepairJson(string code, string content, string mediaid, string address)
         {
             try
             {
+                var user = wuser.GetUserInfo(code);
+                user.UserInfo.Address = address;
+                wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
+
                 //TODO: 添加mediaid
                 if (repairHelper.AddRepair(code, content, mediaid) != null)
                 {

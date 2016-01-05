@@ -244,12 +244,14 @@
             var exceptDate = $('#appDateTime').val();
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
-            if(exceptDate==null||exceptDate==''){
-                alert('请选择受理时间！');
-                 $(this).attr('disabled', false);
-                return false;
-            }
 
+            if (type == 1) {
+                if (exceptDate == null || exceptDate == '') {
+                    alert('请选择受理时间！');
+                    $(this).attr('disabled', false);
+                    return false;
+                }
+            }
             //alert(innderNumber)
             $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                 if (status === 'success') {
