@@ -291,3 +291,6 @@ body {
         transform: scale(1,0.5);
         -webkit-transform: scale(1,0.5);
     }
+    .time-l{
+	margin-right:10px;
+}

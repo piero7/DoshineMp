@@ -83,7 +83,11 @@
                                             <ins class="check check4 pull-left">已完成</ins>;
                                             break;
                                     }
-                                    <span class="time pull-right">@r.CreateDate</span>
+                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                    @if (r.User.Name != null)
+                                    {
+                                        <span class="time-l time pull-right">@r.User.Name</span>
+                                    }
                                 </div>
                             </li>
                         }
@@ -235,7 +239,7 @@
                         //alert("提交成功！");
                         var str = '';
                         $.each(data, function (i, item) {
-                            var time = $.timeStamp2String(item.CreateDate)
+                            var time = $.timeStamp2String(item.CreateDate).split(' ');
                             //alert(item.Status);
                             var statusstr = '';
                             switch (item.Status) {
@@ -254,7 +258,8 @@
                                    + ' </div>'
                                    + ' <div class="content-title-b">'
                                         + statusstr
-                                        + '<span class="time pull-right">' + time + '</span>'
+                                        + '<span class="time pull-right">' + time[0] + '</span>'
+                                        + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
                                    + ' </div>'
                                 + '</li>';
                             } else {
@@ -271,7 +276,8 @@
                                    + ' </div>'
                                    + ' <div class="content-title-b">'
                                         + statusstr
-                                        + '<span class="time pull-right">' + time + '</span>'
+                                        + '<span class="time pull-right">' + time[0] + '</span>'
+                                        + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
                                    + ' </div>'
                                 + '</li>';
                             }
