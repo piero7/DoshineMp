@@ -1,0 +1,179 @@
+/* 
+* @Author: 晴
+* @Date:   2015-12-15 10:49:06
+* @Last Modified by:   晴
+* @Last Modified time: 2016-01-05 14:40:49
+*/
+
+body{
+	font-size: "Microsoft YaHei"
+}
+.signin{
+	width:100%;
+	height:100%;
+	/*background-color: #eee;*/
+}
+.signin{
+	overflow: hidden;
+	background-color: #ececec;	
+}
+.signin .signin-content{
+	padding:10px 20px;
+}
+
+.signin-content .signin-title{
+	font-size: 25px;
+	color:#333;
+	text-align: center;
+	padding:14px 0 20px 0 ;
+}
+.sigin-play li{
+	margin-top:20px;
+	position: relative;
+
+}
+.signin-tel,
+.signin-werfy{
+	width: 100%;
+	padding-left:45px;
+	height:45px;
+	outline: none;
+	display: block;
+	border:1px solid #fff;
+	border-radius: 5px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	background-color:white;
+	font-size: 14px;
+	transition: border .6s linear 0s;
+	-webkit-transition: border .6s linear 0s;
+	/*border:1px solid #73ca60;*/
+}
+.signin-werfy{
+	width:50%;
+	float: left;
+}
+.sigin-play li:nth-child(1):before{
+	position: absolute;
+	top:10px;
+	left:15px;
+	/*transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);*/
+	content:"";
+	display: block;
+	width:23px;
+	height:23px;
+	background:url(../images/user2x.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+}
+.sigin-play li:nth-child(2):before{
+	position: absolute;
+	top:10px;
+	left:15px;
+	/*transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);*/
+	content:"";
+	display: block;
+	width:18px;
+	height:23px;
+	background:url(../images/phone2x.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+}
+.werfy-img{
+	width:30%;
+	min-width: 125px;
+	height:45px;
+	float: right;
+}
+.go-btn{
+	width: 98%;
+	display: block;
+	line-height: 43px;
+	text-align: center;
+	background: #50c421;
+	color: white;
+	border-radius: 5px;
+    outline: none;
+}
+.go-btn:nth-child(1){
+	background: #e0e0e0;
+
+}
+.werfy-img .current{
+	background-image:-webkit-linear-gradient(top, #7fbf4d, #63a62f);
+}
+.sigin-play .signin-btn{
+	display: block;
+	line-height:40px;
+	text-align: center;
+	background-color:#e0e0e0;
+	border-radius: 5px;
+	color:white;
+	font-size: 16px;
+	margin:45px 0;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #cdcdcd;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #cdcdcd;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #cdcdcd;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #cdcdcd;
+}
+.signin-content .msg{
+	text-align: center;
+	color: #A7A7A7; 
+	font-size: 14px;
+	line-height:24px;
+}
+
+.msg a{
+	color: #7eca60;
+}
+.sigin-play .Error{
+	display: none;
+	font-size: 12px;
+	color: #ff6700;
+	padding-left: 20px;
+	margin-top:15px;
+	background:url(../images/error.png) no-repeat left center;
+	vertical-align: middle;
+}
+.sigin-play input.current{
+	border:1px solid #ff6700;
+}
+
+@media screen and (min-width: 375px){
+	.signin-werfy{
+		width:50%;
+	}
+}
+.logo{
+	width:45px;
+	height:45px;
+	margin:35px auto 0;
+}
+.logo img{
+	width:100%;
+	height:100%;
+}
+@media screen and (max-height: 485px){
+	.logo{
+	margin:15px auto 0;
+	}
+}

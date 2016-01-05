@@ -297,7 +297,9 @@
     <Content Include="Images\jiantou.png" />
     <Content Include="Images\location.png" />
     <Content Include="Images\location3x.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\more.png" />
+    <Content Include="Images\phone2x.png" />
     <Content Include="Images\por.png" />
     <Content Include="Images\por3x.png" />
     <Content Include="Images\qiu.png" />
@@ -325,6 +327,7 @@
     <Content Include="Images\uesr.png" />
     <Content Include="Images\uesr2x.png" />
     <Content Include="Images\user.png" />
+    <Content Include="Images\user2x.png" />
     <Content Include="Images\userIcon.png" />
     <Content Include="Images\usertwo.png" />
     <Content Include="Images\user_bg.PNG" />
@@ -366,6 +369,7 @@
     <Content Include="Styles\RepairDetails.css" />
     <Content Include="Styles\rest.css" />
     <Content Include="Styles\sign-in.css" />
+    <Content Include="Styles\sign-in20160105.css" />
     <Content Include="Styles\star-rating.css" />
     <Content Include="Styles\wytab.css" />
     <Content Include="Uploadimgs\123.png" />
