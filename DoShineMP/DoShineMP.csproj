@@ -345,6 +345,7 @@
     <None Include="Properties\PublishProfiles\DoShineMP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Commons.js" />
+    <Content Include="Scripts\cookiecode.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -359,6 +360,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\star-rating.js" />
     <Content Include="Scripts\TouchSlide.1.1.js" />
+    <Content Include="Scripts\zepto.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\chat.css" />
     <Content Include="Styles\Messages.css" />
@@ -422,6 +424,7 @@
     <Content Include="Views\PhoneWeb\RepairDetails.cshtml" />
     <Content Include="Views\PhoneWeb\RepairInterior.cshtml" />
     <Content Include="Views\PhoneWeb\RepairDetailsInterior.cshtml" />
+    <Content Include="Views\Shared\_LayoutQiye.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

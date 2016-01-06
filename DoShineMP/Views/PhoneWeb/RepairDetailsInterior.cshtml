@@ -179,6 +179,8 @@
             serverId: []
         };
         $(function () {
+            //console.log( window.localStorage['RepairId'])
+            // console.log( window.localStorage['IndexLi'])
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -271,12 +273,28 @@
             $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg != 'N') {
-                        window.location.href = '@Url.Action("RepairInterior","PhoneWeb")'
-                        //window.location.reload();
+                        //window.location.href = '@Url.Action("RepairInterior","PhoneWeb")?IndexLi=' + (new Number(GetQueryString('IndexLi')) + 1) + '#' + repaidID;
+                        //window.history.go('@Url.Action("RepairInterior","PhoneWeb")?IndexLi=' + (new Number(GetQueryString('IndexLi')) + 1) + '#' + repaidID)
+
+                        //var json = window.history.state
+
+                        //console.log(window.history)
+                        window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
+                        
+                        window.history.go(-1);
                     }
                 }
             })
         })
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+
+
     </script>
 
     <script type="text/javascript">

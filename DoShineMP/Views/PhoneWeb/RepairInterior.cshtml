@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQiye.cshtml";
 }
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList5 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -60,7 +60,7 @@
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList10 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -98,7 +98,7 @@
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList20 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -136,7 +136,7 @@
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList99 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -180,20 +180,15 @@
 
 <input type="hidden" value="" id="serviceid" />
 
-
-
-
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="~/Scripts/Commons.js"></script>
+    <script src="~/Scripts/TouchSlide.1.1.js"></script>
+    <script src="~/Scripts/zepto.min.js"></script>
+    <script src="~/Scripts/cookiecode.js"></script>
     <script type="text/javascript">
 
-
-
-
-        TouchSlide({ slideCell: "#leftTabBox" });
-
-
+        var tabnumber = 3;//分页tab数量
+        var IndexLi = 0;
 
         var token;
 
@@ -202,7 +197,7 @@
             serverId: []
         };
         $(function () {
-
+            //cookiecode();
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -254,6 +249,15 @@
                     ]
                 });
             })
+
+            var indexli = GetQueryString('IndexLi');
+
+            IndexLi = (indexli != '' && indexli != null) ? window.localStorage['IndexLi'] : 0;
+            TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
+            tab(IndexLi);
+
+
+
         })
 
 
@@ -318,9 +322,67 @@
             });
         })
 
+        $('.hd li').tap(function () {
+            IndexLi = $(this).index();
+            tab(IndexLi);
+        });
+
+
+        $(window).swipeLeft(function () {
+            if (IndexLi < tabnumber - 1) {
+                IndexLi++;
+                tab(IndexLi);
+            }
+
+        })
+
         function repairid(e) {
-            window.location.href = '@Url.Action("RepairDetailsInterior", "PhoneWeb")?repairid=' + e;
+            window.localStorage['IndexLi'] = IndexLi;
+            window.history.replaceState(null, null, '?IndexLi=0');
+            window.location.href = '@Url.Action("RepairDetailsInterior", "PhoneWeb")?repairid=' + e + '&IndexLi=' + IndexLi;
         }
+
+        $(window).swipeRight(function () {
+            if (IndexLi > 0) {
+                IndexLi--;
+                tab(IndexLi);
+            }
+        })
+
+        function tab(enumber) {
+            Lilength = $('.Padding').eq(enumber).find('li').length
+            LiHeight = 139;
+            Height = Lilength * LiHeight
+            $('.tempWrap .bd').css({ 'height': Height + 'px', 'overflow': 'hidden' })
+        }
+
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        //function cookiecode() {
+        //    var ck = new Cookie('RepairInteror');
+        //    if (ck.Read() == null) {
+        //        window.localStorage['IndexLi'] = 0;
+        //        var dd = new Date();
+        //        dd = new Date(dd.getYear() + 1900, dd.getMonth(), dd.getDate());
+        //        dd.setDate(dd.getDate() + 365);
+        //        ck.setExpiresTime(dd);
+
+        //        ck.Write("true");
+
+        //    } else {
+        //        if (ck.Read() == "true") {
+        //            ck.Write("false");
+        //        } else {
+        //            ck.Write("true");
+
+        //        }
+        //    }
+        //}
 
 
 
