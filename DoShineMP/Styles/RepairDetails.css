@@ -268,14 +268,35 @@ body{
 }
 .demos{
 	height:30px;
+    padding:0 15px;
+    text-align:center;
 }
+
 .demos input{
-	width:100%;
+    margin：0 auto;
 	height:100%;
 	text-align:center;
 	border:0;
 	font-size: 16px;
-	color: #a8a8a8;
+	color: #4ca329;
+
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: orange;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: orange;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: orange;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color:orange;
 }
 
 .keep-textarea{

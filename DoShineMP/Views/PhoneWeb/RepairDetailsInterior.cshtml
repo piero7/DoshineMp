@@ -145,17 +145,17 @@
         {
             <div class="content">
                 <div class="demos">
-                    <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" />
+                    <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()"/>
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
-                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理">
+                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
                 </div>
             </div>
         }
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
-            <div class="col-xs-12 operate  ">
-                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成">
+            <div class="col-xs-12 operate ">
+                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成" >
             </div>
         }
     </div>
@@ -245,13 +245,11 @@
             });
         })
 
-
         //初始化时间控件
         $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
 
         jQuery(document).ready(function () {
             $(".rating-kv").rating();
-            // alert($('#input-21d').val());
         });
 
         //提交
@@ -262,30 +260,17 @@
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
 
-            if (type == 1) {
-                if (exceptDate == null || exceptDate == '') {
-                    alert('请选择受理时间！');
-                    $(this).attr('disabled', false);
-                    return false;
-                }
-            }
-            //alert(innderNumber)
             $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg != 'N') {
-                        //window.location.href = '@Url.Action("RepairInterior","PhoneWeb")?IndexLi=' + (new Number(GetQueryString('IndexLi')) + 1) + '#' + repaidID;
-                        //window.history.go('@Url.Action("RepairInterior","PhoneWeb")?IndexLi=' + (new Number(GetQueryString('IndexLi')) + 1) + '#' + repaidID)
-
-                        //var json = window.history.state
-
-                        //console.log(window.history)
                         window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
-                        
                         window.history.go(-1);
                     }
                 }
             })
         })
+
+        
 
         function GetQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -299,6 +284,7 @@
 
     <script type="text/javascript">
         $(function () {
+            setInterval(Time, 1000);
             var currYear = (new Date()).getFullYear();
             var opt = {};
             opt.date = { preset: 'date' };
@@ -318,6 +304,8 @@
             var optDateTime = $.extend(opt['datetime'], opt['default']);
             var optTime = $.extend(opt['time'], opt['default']);
             $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+
+
             // $("#appTime").mobiscroll(optTime).time(optTime);
 
             //下面注释部分是上面的参数可以替换改变它的样式
@@ -347,8 +335,16 @@
             //height: 45,
             //width: 90,
             //rows: 3}
-
         });
+
+        $('#applybtn[tag="1"]').css('background-color','#ddd')
+        function Time() {
+
+            if ($('#appDateTime').val() != null && $('#appDateTime').val() != '') {
+                $('#applybtn').attr({ 'disabled': false}).css( 'background-color','#4ca329')
+            }
+        }
+
     </script>
 
 
