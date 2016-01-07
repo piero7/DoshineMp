@@ -40,5 +40,9 @@ namespace DoShineMP.Models
         public DbSet<ImageFile> ImageFileSet { get; set; }
 
         public DbSet<Record> RecordSet { get; set; }
+
+        public DbSet<Salesman> SalesmanSet { get; set; }
+
+        public DbSet<District> DistrictSet { get; set; }
     }
 }

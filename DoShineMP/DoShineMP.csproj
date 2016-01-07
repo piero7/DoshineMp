@@ -224,11 +224,16 @@
     <Compile Include="Migrations\201512290522063_finish.Designer.cs">
       <DependentUpon>201512290522063_finish.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601070649555_addRecord.cs" />
+    <Compile Include="Migrations\201601070649555_addRecord.Designer.cs">
+      <DependentUpon>201601070649555_addRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\DebugInfo.cs" />
+    <Compile Include="Models\District.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IdentifyingCode.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -240,6 +245,7 @@
     <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\Repair.cs" />
+    <Compile Include="Models\Salesman.cs" />
     <Compile Include="Models\Terminal.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\UserInfo.cs" />
@@ -471,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512290522063_finish.resx">
       <DependentUpon>201512290522063_finish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601070649555_addRecord.resx">
+      <DependentUpon>201601070649555_addRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
