@@ -38,5 +38,7 @@ namespace DoShineMP.Models
         public DbSet<ImageDownloadLog> ImageDownloadLogSet { get; set; }
 
         public DbSet<ImageFile> ImageFileSet { get; set; }
+
+        public DbSet<Record> RecordSet { get; set; }
     }
 }
