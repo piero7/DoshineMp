@@ -590,5 +590,31 @@ namespace DoShineMP.Helper
             this.nonceStr = nonceStr;
             this.signature = singature;
         }
+
+
+        /// <summary>
+        /// 发送企业号信息
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="msg"></param>
+        internal static void SendComponyMessage(IEnumerable<string> accounts, string msg)
+        {
+            //   account = "chenzijun|q@51xc.me";
+            var account = "";
+            foreach (string str in accounts)
+            {
+                account += (str + "|");
+            }
+            account.Remove(account.Length - 1);
+
+
+            var send = "{{\"touser\": \"{0}\",\"msgtype\": \"text\",\"agentid\": \"{2}\",\"text\": {{\"content\": \"{1}\"}},\"safe\":\"0\"}}";
+
+            send = string.Format(send, account, msg, System.Configuration.ConfigurationManager.AppSettings["agentid"]);
+
+            var token = WechatHelper.GetToken(AccountType.Company);
+            var url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + token;
+            WechatHelper.GetResponse(send, url);
+        }
     }
 }
