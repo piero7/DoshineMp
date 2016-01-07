@@ -10,10 +10,10 @@
 <div class="keep-list">
     <div class="keep-list-in">
         <div class="list-top">
-            <div class="top-title">
+            @*<div class="top-title">
                 <span>报修日期：</span>
                 <em>@ViewBag.RepairDetail.CreateDate</em>
-            </div>
+            </div>*@
             <div class="top-content">
                 <p>@ViewBag.RepairDetail.Contenet</p>
                 @if (ViewBag.RepairDetail.Image != null)
@@ -23,6 +23,18 @@
                     </div>
                 }
             </div>
+        </div>
+        <div class="informant">
+            @if (ViewBag.RepairDetail.User.Name!=null)
+            {
+                <p>申请人：@ViewBag.RepairDetail.User.Name <a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
+            }
+            else
+            {
+                <p>申请人： <a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
+            }
+            <p>报修日期：@ViewBag.RepairDetail.CreateDate</p>
+            <p>地址：@ViewBag.RepairDetail.User.Address</p>
         </div>
         <div class="list-bottom">
             <div class="bottom-title">

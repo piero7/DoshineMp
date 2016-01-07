@@ -91,13 +91,13 @@
             $.post('@Url.Action("CenterUpdateJson","PhoneWeb")', { RealName: realName, PhoneNumber: PhoneNumber, code: openid, address: Address }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
-                        //alert('提交成功!');
-                        window.location.href = "@Url.Action("MyMessage","PhoneWeb")";
+                        window.history.go(-1);
                     } else {
                         alert('提交失败!');
                     }
                 }
             })
         })
+
     </script>
 }

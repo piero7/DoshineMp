@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQiye.cshtml";
 }
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
@@ -12,7 +12,7 @@
         <div class="hd">
             <ul>
                 <li><a href="#">待受理</a></li>
-                <li ><a href="#">待处理</a></li>
+                <li><a href="#">待处理</a></li>
                 <li class="on"><a href="#">已完成</a></li>
             </ul>
         </div>
@@ -22,7 +22,7 @@
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList5 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -36,16 +36,20 @@
                                     <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                         <p class="wr-content">@r.Contenet</p>
                                     </div>
-                                        <div class="pull-right w2">
-                                            <div class="img">
-                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.Image.FileName" class="imgyulan" />
-                                            </div>
+                                    <div class="pull-right w2">
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.Image.FileName" class="imgyulan" />
                                         </div>
+                                    </div>
                                 }
                             </div>
                             <div class="content-title-b">
                                 <ins class="check check1 pull-left">已提交</ins>
-                                <span class="time pull-right">@r.CreateDate</span>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
                             </div>
                         </li>
                     }
@@ -56,7 +60,7 @@
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList10 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -79,18 +83,22 @@
                             </div>
                             <div class="content-title-b">
                                 <ins class="check check2 pull-left">已受理</ins>
-                                <span class="time pull-right">@r.CreateDate</span>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
                             </div>
                         </li>
                     }
                 }
             </ul>
-            <ul  class="Padding">
+            <ul class="Padding">
                 @if (ViewBag.RepairList20 != null)
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList20 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -113,16 +121,22 @@
                             </div>
                             <div class="content-title-b">
                                 <ins class="check check3 pull-left">待确认</ins>
-                                <span class="time pull-right">@r.CreateDate</span>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
                             </div>
                         </li>
                     }
                 }
+
+
                 @if (ViewBag.RepairList99 != null)
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList99 as List<DoShineMP.Models.Repair>)
                     {
-                        <li>
+                        <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
                                 @if (r.Image == null)
@@ -145,7 +159,11 @@
                             </div>
                             <div class="content-title-b">
                                 <ins class="check check4 pull-left">已完成</ins>
-                                <span class="time pull-right">@r.CreateDate</span>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
                             </div>
                         </li>
                     }
@@ -157,25 +175,17 @@
 
 
 
-
-
-
 <input type="hidden" value="" id="serviceid" />
-
-
-
 
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="~/Scripts/Commons.js"></script>
+    <script src="~/Scripts/TouchSlide.1.1.js"></script>
+    <script src="~/Scripts/zepto.min.js"></script>
+    <script src="~/Scripts/cookiecode.js"></script>
     <script type="text/javascript">
 
-
-
-
-        TouchSlide({ slideCell: "#leftTabBox" });
-
-
+        var tabnumber = 3;//分页tab数量
+        var IndexLi = 0;
 
         var token;
 
@@ -184,7 +194,7 @@
             serverId: []
         };
         $(function () {
-
+            //cookiecode();
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -236,6 +246,12 @@
                     ]
                 });
             })
+
+            var indexli = GetQueryString('IndexLi');
+
+            IndexLi = (indexli != '' && indexli != null) ? window.localStorage['IndexLi'] : 0;
+            TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
+            tab(IndexLi);
         })
 
 
@@ -285,10 +301,6 @@
 
         });
 
-
-
-
-
         $(document).on('click', '.imgyulan', function () {
             var imgurl = $(this).attr('src');
             //alert(imgurl)
@@ -300,11 +312,46 @@
             });
         })
 
+        $('.hd li').tap(function () {
+            IndexLi = $(this).index();
+            tab(IndexLi);
+        });
+
+
+        $(window).swipeLeft(function () {
+            if (IndexLi < tabnumber - 1) {
+                IndexLi++;
+                tab(IndexLi);
+            }
+
+        })
+
         function repairid(e) {
-            window.location.href = '@Url.Action("RepairDetailsInterior", "PhoneWeb")?repairid=' + e;
+            window.localStorage['IndexLi'] = IndexLi;
+            window.history.replaceState(null, null, '?IndexLi=0');
+            window.location.href = '@Url.Action("RepairDetailsInterior", "PhoneWeb")?repairid=' + e + '&IndexLi=' + IndexLi;
+        }
+
+        $(window).swipeRight(function () {
+            if (IndexLi > 0) {
+                IndexLi--;
+                tab(IndexLi);
+            }
+        })
+
+        function tab(enumber) {
+            Lilength = $('.Padding').eq(enumber).find('li').length
+            LiHeight = 139;
+            Height = Lilength * LiHeight
+            $('.tempWrap .bd').css({ 'height': Height + 'px', 'overflow': 'hidden' })
         }
 
 
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
 
     </script>
 }

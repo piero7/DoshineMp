@@ -2,7 +2,7 @@
 * @Author: 晴
 * @Date:   2015-12-31 10:52:57
 * @Last Modified by:   晴
-* @Last Modified time: 2015-12-31 18:09:39
+* @Last Modified time: 2016-01-06 15:19:53
 */
 a
 {
@@ -46,12 +46,12 @@ a
 
 	/* 本例子css -------------------------------------- */
 	.tabBox .hd{
-	height:40px;
+	height:42px;
 	line-height:40px;
 	padding:0 10px;
 	font-size:16px;
 	background:#F3F3F3;
-	border-top:2px solid #CECECE;
+	border-bottom:1px solid #CECECE;
 }
 	.tabBox .hd ul{
 	overflow:hidden;
@@ -106,7 +106,7 @@ a
 
 body{
 	font-family: 'Microsoft YaHei';
-	background-color:#ececec;
+	background-color:#fff;
 }
 /*new keep css*/
 .keep-content-b{
@@ -145,22 +145,16 @@ body{
 	border-bottom: 1px solid #e3e1e1;
 	background-color: white;
 }
+.Padding{
+	display: none;
+}
 .content-title-t .w8{
 	width: 65%;
 	/*padding-top:10px;
 	*/
 	/*padding-left: 20px;
-	*/
+	*/;
 }
-.content-title-t .w10{
-	width: 100%;
-    min-height:55px;
-	/*padding-top:10px;
-	*/
-	/*padding-left: 20px;
-	*/
-}
-
 .content-title-b{
 	overflow: hidden;
 }
@@ -210,6 +204,9 @@ body{
 	overflow:hidden;
 	color: #626262;
 	margin-bottom:0;
+}
+.content-title-t .w10{
+	height:55px;
 }
 /*.commit:hover{
 	color:#f06343;

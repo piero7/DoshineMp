@@ -14,10 +14,11 @@
 <div class="keep-list">
     <div class="keep-list-in">
         <div class="list-top">
-            <div class="top-title">
-                <span>报修日期：</span>
-                <em>@ViewBag.RepairDetail.CreateDate</em>
-            </div>
+            @*<div class="top-title">
+                    <span>报修日期：</span>
+                    <em>@ViewBag.RepairDetail.CreateDate</em>
+                </div>*@
+
             <div class="top-content">
                 <p>@ViewBag.RepairDetail.Contenet</p>
                 @if (ViewBag.RepairDetail.Image != null)
@@ -28,6 +29,20 @@
                 }
             </div>
         </div>
+
+        <div class="informant">
+            @if (ViewBag.RepairDetail.User.Name != null)
+            {
+                <p>申请人：@ViewBag.RepairDetail.User.Name <a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
+            }
+            else
+            {
+                <p>申请人： <a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
+            }
+            <p>报修日期：@ViewBag.RepairDetail.CreateDate</p>
+            <p>地址：@ViewBag.RepairDetail.User.Address</p>
+        </div>
+
         <div class="list-bottom" style="background-color:white;">
             <div class="bottom-title">
                 <p>状态跟踪</p>
@@ -164,6 +179,8 @@
             serverId: []
         };
         $(function () {
+            //console.log( window.localStorage['RepairId'])
+            // console.log( window.localStorage['IndexLi'])
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -244,22 +261,40 @@
             var exceptDate = $('#appDateTime').val();
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
-            if(exceptDate==null||exceptDate==''){
-                alert('请选择受理时间！');
-                 $(this).attr('disabled', false);
-                return false;
-            }
 
+            if (type == 1) {
+                if (exceptDate == null || exceptDate == '') {
+                    alert('请选择受理时间！');
+                    $(this).attr('disabled', false);
+                    return false;
+                }
+            }
             //alert(innderNumber)
             $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg != 'N') {
-                        window.location.href = '@Url.Action("RepairInterior","PhoneWeb")'
-                        //window.location.reload();
+                        //window.location.href = '@Url.Action("RepairInterior","PhoneWeb")?IndexLi=' + (new Number(GetQueryString('IndexLi')) + 1) + '#' + repaidID;
+                        //window.history.go('@Url.Action("RepairInterior","PhoneWeb")?IndexLi=' + (new Number(GetQueryString('IndexLi')) + 1) + '#' + repaidID)
+
+                        //var json = window.history.state
+
+                        //console.log(window.history)
+                        window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
+                        
+                        window.history.go(-1);
                     }
                 }
             })
         })
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+
+
     </script>
 
     <script type="text/javascript">

@@ -303,7 +303,9 @@
     <Content Include="Images\jiantou.png" />
     <Content Include="Images\location.png" />
     <Content Include="Images\location3x.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\more.png" />
+    <Content Include="Images\phone2x.png" />
     <Content Include="Images\por.png" />
     <Content Include="Images\por3x.png" />
     <Content Include="Images\qiu.png" />
@@ -331,6 +333,7 @@
     <Content Include="Images\uesr.png" />
     <Content Include="Images\uesr2x.png" />
     <Content Include="Images\user.png" />
+    <Content Include="Images\user2x.png" />
     <Content Include="Images\userIcon.png" />
     <Content Include="Images\usertwo.png" />
     <Content Include="Images\user_bg.PNG" />
@@ -348,6 +351,7 @@
     <None Include="Properties\PublishProfiles\DoShineMP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Commons.js" />
+    <Content Include="Scripts\cookiecode.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -362,8 +366,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\star-rating.js" />
     <Content Include="Scripts\TouchSlide.1.1.js" />
+    <Content Include="Scripts\zepto.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\chat.css" />
+    <Content Include="Styles\Messages.css" />
     <Content Include="Styles\MyMessage.css" />
     <Content Include="Styles\partner.css" />
     <Content Include="Styles\PersonalCenter.css" />
@@ -372,6 +378,7 @@
     <Content Include="Styles\RepairDetails.css" />
     <Content Include="Styles\rest.css" />
     <Content Include="Styles\sign-in.css" />
+    <Content Include="Styles\sign-in20160105.css" />
     <Content Include="Styles\star-rating.css" />
     <Content Include="Styles\wytab.css" />
     <Content Include="Uploadimgs\123.png" />
@@ -425,6 +432,7 @@
     <Content Include="Views\PhoneWeb\RepairDetails.cshtml" />
     <Content Include="Views\PhoneWeb\RepairInterior.cshtml" />
     <Content Include="Views\PhoneWeb\RepairDetailsInterior.cshtml" />
+    <Content Include="Views\Shared\_LayoutQiye.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

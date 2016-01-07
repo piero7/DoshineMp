@@ -4,10 +4,39 @@
 }
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
-    <link href="~/Styles/sign-in.css" rel="stylesheet" />
+    <link href="~/Styles/sign-in20160105.css" rel="stylesheet" />
+    @*<link href="~/Styles/sign-in.css" rel="stylesheet" />*@
 }
+@*<div class="signin">
+        <div class="signin-content">
+            <h1 class='signin-title'>注册桑田账号</h1>
+            <ul class="sigin-play">
+                <li>
+                    <input type="text" class="signin-tel" id="PhoneName" placeholder="请输入手机号">
+                    <span class='Error'>请输入手机号码</span>
+                </li>
+                <li style="overflow:hidden;">
+                    <input type="text" class="signin-werfy" id="code2" placeholder="验证码">
+                    <span class='Error'>请输入手机验证码</span>
+                    <div class="werfy-img">
+                        <p class="go-btn" id="gian">获取验证码</p>
+                        <p class="go-btn" id="giantext"></p>
+                    </div>
+                </li>
+                <li>
+                    <div class="signin-btn" id="signin-btn">立即注册</div>
+                </li>
+            </ul>
+            <p class="msg">点击“立即注册”，表示您同意并愿意遵守</p>
+            <p class="msg">桑田<a href="#">用户协议</a> 和 <a href="#">隐私政策</a></p>
+        </div>
+    </div>*@
+
 <div class="signin">
     <div class="signin-content">
+        <div class="logo">
+            <img src="~/Images/logo.png" alt="桑田">
+        </div>
         <h1 class='signin-title'>注册桑田账号</h1>
         <ul class="sigin-play">
             <li>
@@ -15,8 +44,8 @@
                 <span class='Error'>请输入手机号码</span>
             </li>
             <li style="overflow:hidden;">
-                <input type="text" class="signin-werfy" id="code2" placeholder="验证码">
-                <span class='Error'>请输入手机验证码</span>
+                <input type="text" class="signin-werfy" id="code2" placeholder='验证码'>
+                <span class='Error'>请输入6位验证码</span>
                 <div class="werfy-img">
                     <p class="go-btn" id="gian">获取验证码</p>
                     <p class="go-btn" id="giantext"></p>
@@ -26,27 +55,29 @@
                 <div class="signin-btn" id="signin-btn">立即注册</div>
             </li>
         </ul>
-        <p class="msg">点击“立即注册”，表示您同意并愿意遵守</p>
-        <p class="msg">桑田<a href="#">用户协议</a> 和 <a href="#">隐私政策</a></p>
+        <p class="msg">点击立即注册，表示您同意并愿意遵守</p>
+        <p class="msg">桑田<a href="#">用户协议</a></p>
     </div>
 </div>
+
 <input type="hidden" value="@ViewBag.openid" id="openid" />
 <input type="hidden" value="@ViewBag.urltype" id="urltype" />
+
+
 
 @section scripts{
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
+        var Color = 'rgb(80, 196, 33)';
         var openid = $('#openid').val();
         var sendid;
         window.onload = function () {
 
-            // 正则验证
             var Play = document.getElementById('PhoneName');
             var Ipu = Play.getElementsByTagName('input');
             var Ipulength = Ipu.length;
             console.log(Ipu)
             for (var i = 0; i < Ipulength; i++) {
-                // Ipu[0].addEventListener('onfocus', werfyhanlder)  这样绑定没有
                 Ipu[i].index = i;
                 Ipu[i].onblur = function () {
                     console.log(this.index)
@@ -58,32 +89,38 @@
 
             var werfyhanlder = function () {
                 console.log(1)
-
-
             }
 
+            //手机号正则判断
             var checkMobile = function (s, b) {
                 var regu = /^[1][0-9]{10}$/;
                 var re = new RegExp(regu);
                 if (re.test(s)) {
                     b.className = 'signin-tel'
                     b.nextElementSibling.style.display = 'none'
+                    GoBtn.style.backgroundColor = Color;
                     return true;
                 } else {
                     b.className = 'signin-tel current'
                     b.nextElementSibling.style.display = 'block'
+                    GoBtn.style.backgroundColor = '#e0e0e0';
                     return false;
                 }
             }
 
-            //  图片验证码
+            //短信验证码
             var GoBtn = document.getElementById('gian');
             var GoBtntext = document.getElementById('giantext');
             var newTime = 0;
             var oldTime = 60;
             var down = null;
             var timer;
+
+            //根据输入的手机号 发送短信验证码
             GoBtn.onclick = function () {
+                if (this.style.backgroundColor != Color) {
+                    return false;
+                }
                 var PhoneNumber = $('#PhoneName').val();
                 if (PhoneNumber == null || PhoneNumber == '') {
                     alert('请输入手机号')
@@ -99,6 +136,7 @@
                     }
                 })
 
+                //短信验证码倒计时
                 GoBtntext.innerHTML = oldTime + '秒重新获取';
                 console.log(GoBtn);
                 this.className = 'go-btn current';
@@ -121,21 +159,74 @@
                 this.className = 'go-btn';
             }
 
-            var Signin = document.getElementsByClassName('signin-werfy')[0];
+            // 清空表单
+            var InVal = null;
+            var InVal2 = document.getElementById('code2');
+            var SinBtn = document.getElementById('signin-btn');
+            //
 
-            document.getElementById('PhoneName').onkeydown = function () {
-                GoBtntext.style.display = 'none';
-                GoBtn.className = 'go-btn current';
-                GoBtn.style.display = 'block';
-                Signin.value = "";
-                clearInterval(timer);
+            var removeHanlder = function () {
+                var Signin = document.getElementsByClassName('signin-werfy')[0];
+
+                document.getElementById('PhoneName').onkeyup = function () {
+                    InVal = document.getElementById('PhoneName').value;
+                    if (InVal != "" || InVal != null) {
+                        //console.log(InVal);
+                        checkMobile(InVal, this)
+                    }
+                    else if (InVal != "" && InVal2 != "") {
+                        console.log(InVal + ' ' + InVal2);
+                        SinBtn.style.background = '#50c4421';
+                    }
+                    else {
+                        console.log(InVal2)
+                        GoBtn.style.backgroundColor = '#e0e0e0';
+                        SinBtn.style.backgroundColor = '#e0e0e0';
+                    }
+                    GoBtntext.style.display = 'none';
+                    GoBtn.className = 'go-btn';
+                    GoBtn.style.display = 'block';
+                    Signin.value = "";
+                    clearInterval(timer);
+                }
             }
+            InVal2.onkeyup = function () {
+                InVal = document.getElementById('PhoneName').value;
+                Invals = this.value;
+                if (InVal != "" && Invals.length == 6) {
+                    SinBtn.style.backgroundColor = '#50c421';
+                }
+                else {
+                    SinBtn.style.backgroundColor = '#e0e0e0';
+                }
+
+            }
+
+
+            removeHanlder()
+
+
+            var borderhanlder = function (s, m) {
+                s.onfocus = function () {
+                    this.style.border = '1px solid ' + m + '';
+                }
+                s.onblur = function () {
+                    this.style.border = '0px';
+                }
+
+            }
+            bordercolor = '#7eca60'
+            borderhanlder(InVal2, bordercolor)
+            borderhanlder(document.getElementById('PhoneName'), bordercolor)
 
         }
 
 
-
+        //点击立即注册 提交数据
         $('#signin-btn').click(function () {
+            if (document.getElementById('signin-btn').style.backgroundColor != Color) {
+                return false;
+            }
             var RealName = '';
             var PhoneNumber = $('#PhoneName').val();
             var PhoneYZM = $('#code2').val();

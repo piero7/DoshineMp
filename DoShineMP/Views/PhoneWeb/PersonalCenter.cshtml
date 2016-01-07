@@ -180,7 +180,8 @@ else
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         //alert('提交成功!');
-                        window.location.href = "@Url.Action("Partner","PhoneWeb")";
+                        //window.location.href = "@Url.Action("Partner","PhoneWeb")";
+                        window.history.go(-1);
                     }
                     else
                         alert('提交失败!')
