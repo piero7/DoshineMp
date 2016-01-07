@@ -175,9 +175,6 @@
 
 
 
-
-
-
 <input type="hidden" value="" id="serviceid" />
 
 @section scripts{
@@ -255,9 +252,6 @@
             IndexLi = (indexli != '' && indexli != null) ? window.localStorage['IndexLi'] : 0;
             TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
             tab(IndexLi);
-
-
-
         })
 
 
@@ -306,10 +300,6 @@
             };
 
         });
-
-
-
-
 
         $(document).on('click', '.imgyulan', function () {
             var imgurl = $(this).attr('src');
@@ -362,29 +352,6 @@
             var r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]); return null;
         }
-
-        //function cookiecode() {
-        //    var ck = new Cookie('RepairInteror');
-        //    if (ck.Read() == null) {
-        //        window.localStorage['IndexLi'] = 0;
-        //        var dd = new Date();
-        //        dd = new Date(dd.getYear() + 1900, dd.getMonth(), dd.getDate());
-        //        dd.setDate(dd.getDate() + 365);
-        //        ck.setExpiresTime(dd);
-
-        //        ck.Write("true");
-
-        //    } else {
-        //        if (ck.Read() == "true") {
-        //            ck.Write("false");
-        //        } else {
-        //            ck.Write("true");
-
-        //        }
-        //    }
-        //}
-
-
 
     </script>
 }

@@ -42,6 +42,8 @@ namespace DoShineMP.Controllers
                 {
                     if (wuser.GetUserInfo(this.openid).UserInfo != null)
                     {
+                        //Response.Write("<script language='javascript'>window.location.replace('" + WechatHelper.BackForCode("PhoneWeb", "MyMessage", "") + "')</script>");
+                        //Server.Transfer(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""), true);
                         Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
                     }
                     else
