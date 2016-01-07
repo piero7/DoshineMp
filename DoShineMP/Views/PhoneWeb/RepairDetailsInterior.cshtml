@@ -149,14 +149,24 @@
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
                     <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
+                    @*取消按钮*@
+                    <input type="button" class="commit pull-right" id="applybtn" tag="2" value="取消">
                 </div>
+
+
             </div>
+
+
+
         }
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate ">
                 <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成" >
+                @*取消按钮*@
+                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认取消">
             </div>
+            
         }
     </div>
 </div>

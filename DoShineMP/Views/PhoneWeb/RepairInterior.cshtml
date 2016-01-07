@@ -331,6 +331,7 @@
             var indexli = GetQueryString('IndexLi');
             IndexLi = (indexli != '' && indexli != null) ? (window.localStorage['IndexLi'] == 0 ? indexli : window.localStorage['IndexLi']) : 0;
             TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
+            console.log(IndexLi)
             tab(IndexLi);
         })
 
@@ -402,7 +403,7 @@
             console.log(IndexLi)
             if (IndexLi < tabnumber - 1) {
                 IndexLi++;
-                console.log(IndexLi)
+                //TouchSlide({ defaultIndex: IndexLi});
                 tab(IndexLi);
             }
 
@@ -419,6 +420,14 @@
             if (IndexLi > 0) {
                 IndexLi--;
                 console.log(IndexLi)
+                tab(IndexLi);
+                //TouchSlide({defaultIndex: IndexLi });
+            }
+        })
+        $(window).swipeUp(function () {
+            if (IndexLi < tabnumber - 1) {
+                IndexLi++;
+                //TouchSlide({ defaultIndex: IndexLi});
                 tab(IndexLi);
             }
         })
