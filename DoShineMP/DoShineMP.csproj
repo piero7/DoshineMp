@@ -446,6 +446,9 @@
     <Content Include="Views\PhoneWeb\RepairDetailsInterior.cshtml" />
     <Content Include="Views\Shared\_LayoutQiye.cshtml" />
     <Content Include="Views\PhoneWeb\RepairHistory.cshtml" />
+    <Content Include="Views\PhoneWeb\ceshi.cshtml" />
+    <Content Include="Views\PhoneWeb\Supplier.cshtml" />
+    <Content Include="Views\PhoneWeb\Distributor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

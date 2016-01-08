@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace DoShineMP.Controllers
 {
@@ -437,6 +439,24 @@ namespace DoShineMP.Controllers
 
 
 
+        /// <summary>
+        /// 供应商
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Supplier()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 经销商
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Distributor()
+        {
+            return View();
+        }
+
         #endregion
 
         #region JsonResult功能块组
@@ -728,6 +748,22 @@ namespace DoShineMP.Controllers
 
         #endregion
 
+        #region 跨域调用
+
+        /// <summary>
+        /// 调用其它域api，解决跨域问题
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public JsonResult ApiJsonAll(string url)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(url).Result;
+            return Json(new { msg = cl });
+        }
+
+        #endregion
+
         #endregion
 
         #region 公用模块
@@ -748,10 +784,25 @@ namespace DoShineMP.Controllers
                 return this.openid = WechatHelper.GetOpenidByCode(code);
             }
         }
+        
+
         #endregion
 
+        #region 测试页面
 
+        /// <summary>
+        /// ceshi
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ceshi()
+        {
 
+            ViewBag.open = (dynamic)WechatHelper.GetWechatJsConfig(Request.Url.ToString());
+            return View();
+        }
+
+        #endregion
+        
 
     }
 
