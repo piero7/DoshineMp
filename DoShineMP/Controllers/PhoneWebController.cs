@@ -571,9 +571,9 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
+                //DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
-                if (partner.EditPartnerInfo(code, comName, p, realName, Address, comPhone) != null)
+                if (partner.EditPartnerInfo(code, comName, realName, Address, comPhone) != null)
                 {
                     return Json(new { msg = "Y" });
                 }
