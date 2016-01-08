@@ -173,6 +173,7 @@
                     }
                 }
             </ul>
+
             @*已取消*@
             <ul class="Padding">
                 @if (ViewBag.RepairList20 != null)
@@ -264,6 +265,7 @@
     <script src="~/Scripts/TouchSlide.1.1.js"></script>
     <script src="~/Scripts/zepto.min.js"></script>
     <script src="~/Scripts/cookiecode.js"></script>
+    <script src="~/Scripts/locales/touch.js"></script>
     <script type="text/javascript">
 
         var tabnumber = 4;//分页tab数量
@@ -331,6 +333,7 @@
             var indexli = GetQueryString('IndexLi');
             IndexLi = (indexli != '' && indexli != null) ? (window.localStorage['IndexLi'] == 0 ? indexli : window.localStorage['IndexLi']) : 0;
             TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
+            console.log(IndexLi)
             tab(IndexLi);
         })
 
@@ -402,7 +405,7 @@
             console.log(IndexLi)
             if (IndexLi < tabnumber - 1) {
                 IndexLi++;
-                console.log(IndexLi)
+                //TouchSlide({ defaultIndex: IndexLi});
                 tab(IndexLi);
             }
 
@@ -420,6 +423,7 @@
                 IndexLi--;
                 console.log(IndexLi)
                 tab(IndexLi);
+                //TouchSlide({defaultIndex: IndexLi });
             }
         })
 

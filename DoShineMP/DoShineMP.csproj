@@ -323,6 +323,10 @@
     <Content Include="Images\por3x.png" />
     <Content Include="Images\qiu.png" />
     <Content Include="Images\qiu3x.png" />
+    <Content Include="Images\quxiao.jpg" />
+    <Content Include="Images\quxiao.png" />
+    <Content Include="Images\quxiao1.png" />
+    <Content Include="Images\quxiaodome.png" />
     <Content Include="Images\regsiter_bg.PNG" />
     <Content Include="Images\shape-214%402x.png" />
     <Content Include="Images\shape-214.png" />
@@ -372,6 +376,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locales\touch.js" />
     <Content Include="Scripts\Models.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\partner.js" />
@@ -382,6 +387,7 @@
     <Content Include="Scripts\zepto.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\chat.css" />
+    <Content Include="Styles\history.css" />
     <Content Include="Styles\Messages.css" />
     <Content Include="Styles\MyMessage.css" />
     <Content Include="Styles\partner.css" />
@@ -446,11 +452,14 @@
     <Content Include="Views\PhoneWeb\RepairInterior.cshtml" />
     <Content Include="Views\PhoneWeb\RepairDetailsInterior.cshtml" />
     <Content Include="Views\Shared\_LayoutQiye.cshtml" />
+    <Content Include="Views\PhoneWeb\RepairHistory.cshtml" />
+    <Content Include="Views\PhoneWeb\ceshi.cshtml" />
+    <Content Include="Views\PhoneWeb\Supplier.cshtml" />
+    <Content Include="Views\PhoneWeb\Distributor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\" />
-    <Folder Include="Scripts\locales\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

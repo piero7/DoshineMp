@@ -31,13 +31,14 @@
         </div>
 
         <div class="informant">
+            <p>手机号：<a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
             @if (ViewBag.RepairDetail.User.Name != null)
             {
-                <p>申请人：@ViewBag.RepairDetail.User.Name <a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
+                <p>申请人：@ViewBag.RepairDetail.User.Name </p>
             }
             else
             {
-                <p>申请人： <a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
+                <p>申请人： </p>
             }
             <p>报修日期：@ViewBag.RepairDetail.CreateDate</p>
             <p>地址：@ViewBag.RepairDetail.User.Address</p>
@@ -149,14 +150,24 @@
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
                     <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
+                    @*取消按钮*@
+                    <input type="button" class="commit pull-right" id="applybtn" tag="2" value="取消">
                 </div>
+
+
             </div>
+
+
+
         }
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate ">
                 <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成" >
+                @*取消按钮*@
+                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认取消">
             </div>
+            
         }
     </div>
 </div>

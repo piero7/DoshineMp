@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "ceshi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input type="text" value="@ViewBag.open.debug" />
+<input type="text" value="@ViewBag.open.appId" />
+<input type="text" value="@ViewBag.open.timestamp" />
+<input type="text" value="@ViewBag.open.nonceStr" />
+<input type="text" value="@ViewBag.open.signature" />
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            //var thisurl = 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&get_poi=1&key=AGPBZ-N4HCV-7KBPX-UGUGB-XSRBQ-IHBAF';
+            thisurl = 'http://apis.map.qq.com/ws/geocoder/v1/?location=31.27087,121.3779&get_poi=1&key=AGPBZ-N4HCV-7KBPX-UGUGB-XSRBQ-IHBAF';
+            $.post('@Url.Action("ApiJsonAll","PhoneWeb")', { url: thisurl }, function (data, status) {
+                //alert(status)
+                var add = JSON.parse(data.msg)
+                alert(add.result.formatted_addresses.recommend);
+            })
+        })
+
+    </script>
+}

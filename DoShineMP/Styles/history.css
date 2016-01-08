@@ -1,4 +1,4 @@
-/* 
+﻿/* 
 * @Author: 晴
 * @Date:   2015-12-31 10:52:57
 * @Last Modified by:   晴
@@ -263,4 +263,10 @@ body{
 .operate span.current{
 	color:#f06343;
 	border-color:  #f06343;
+}
+.content-title-b .check5{
+	background:url(../Images/quxiao.png) no-repeat 0 0px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #f1514e;
 }
