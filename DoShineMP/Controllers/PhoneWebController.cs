@@ -270,6 +270,17 @@ namespace DoShineMP.Controllers
         }
 
         /// <summary>
+        /// 用户报修历史
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult RepairHistory(string code)
+        {
+            ViewBag.Title = "保修历史";
+            return View();
+        }
+
+        /// <summary>
         /// 报修详情
         /// </summary>
         /// <param name="code"></param>
