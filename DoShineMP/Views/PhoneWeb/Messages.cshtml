@@ -46,9 +46,10 @@
         var userimg = document.getElementById('userimg').value;
         var openid = document.getElementById('openid').value;
         var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
-        //var NewNickIp = new NickIp('o-1oAwYL8h056l2g1Q2xi5P8-YkU', '2', '', true, true, '100001', '0000000001', '', '', "");
+        //var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
+        //var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
         var socket;
-        var serverIP = '115.159.71.54';//服务器IP
+        var serverIP = '192.168.1.111';//服务器IP
         var serverPort = '9000';//服务器端口
 
 
@@ -117,7 +118,7 @@
                 } else {
                     var str = '<div class="media mediaright">'
                            + '<div class="media-body">'
-                               + '<div class="pull-right mediacontent">' + msg + '</div>'
+                               + '<div class="pull-right mediacontent" style="word-break:break-all">' + msg + '</div>'
                            + '</div>'
                            + '<div class="media-right">'
                                + '<a href="#">'
@@ -181,7 +182,7 @@
                          + '</a>'
                      + '</div>'
                      + '<div class="media-body">'
-                         + '<div class="mediacontent">' + msgsss.Msg + '</div>'
+                         + '<div class="mediacontent" style="word-break:break-all">' + msgsss.Msg + '</div>'
                      + '</div>'
                      + '</div>';
                 var html = document.getElementById("messages").innerHTML + str;
