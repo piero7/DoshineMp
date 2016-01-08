@@ -316,6 +316,10 @@
     <Content Include="Images\por3x.png" />
     <Content Include="Images\qiu.png" />
     <Content Include="Images\qiu3x.png" />
+    <Content Include="Images\quxiao.jpg" />
+    <Content Include="Images\quxiao.png" />
+    <Content Include="Images\quxiao1.png" />
+    <Content Include="Images\quxiaodome.png" />
     <Content Include="Images\regsiter_bg.PNG" />
     <Content Include="Images\shape-214%402x.png" />
     <Content Include="Images\shape-214.png" />
@@ -376,6 +380,7 @@
     <Content Include="Scripts\zepto.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\chat.css" />
+    <Content Include="Styles\history.css" />
     <Content Include="Styles\Messages.css" />
     <Content Include="Styles\MyMessage.css" />
     <Content Include="Styles\partner.css" />

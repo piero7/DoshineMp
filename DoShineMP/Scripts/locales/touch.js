@@ -7,7 +7,6 @@
       touchTimeout, tapTimeout, swipeTimeout, longTapTimeout,
       longTapDelay = 350,
       gesture;
-    alert(swipeLeft)
 
 
     function swipeDirection(x1, x2, y1, y2) {
@@ -118,7 +117,7 @@
               else if ('last' in touch)
                   // don't fire tap when delta position changed by more than 30 pixels,
                   // for instance when moving to a point and back to origin
-                  if (deltaX < 30 && deltaY < 30) {
+                  if (deltaX < 130 && deltaY < 130) {
                       // delay by one tick so we can cancel the 'tap' event if 'scroll' fires
                       // ('tap' fires before 'scroll')
                       tapTimeout = setTimeout(function () {
