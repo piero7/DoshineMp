@@ -425,13 +425,6 @@
                 //TouchSlide({defaultIndex: IndexLi });
             }
         })
-        $(window).swipeUp(function () {
-            if (IndexLi < tabnumber - 1) {
-                IndexLi++;
-                //TouchSlide({ defaultIndex: IndexLi});
-                tab(IndexLi);
-            }
-        })
 
         function tab(enumber) {
             Lilength = $('.Padding').eq(enumber).find('li').length
