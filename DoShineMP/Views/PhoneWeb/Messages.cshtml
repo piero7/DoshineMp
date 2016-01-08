@@ -4,24 +4,13 @@
 }
 @section styles{
     <link href="~/Styles/Messages.css" rel="stylesheet" />
-    <style type="text/css">
-        span1{
-            display: inline;
-            color:#aaa;
         }
-    </style>
-}
+
 <div id="bk"></div>
 <div class="col-xs-12" id="bodycontent">
     <div class="jumbotron" id="messages">
     </div>
 </div>
-@*<div class="input-group" id="foottext">
-        <input type="text" class="form-control" id="sendText" placeholder="输入信息">
-        <span class="input-group-btn">
-            <input class="btn btn-default" onclick="send()" id="btnSend" type="button" value="提交" />
-        </span>
-    </div>*@
 
 <div class="bg-input" id="foottext">
     <input type="text" class="sendInput" id="sendText" placeholder="输入信息">
@@ -30,13 +19,10 @@
     </span>
 </div>
 
-
 <input type="hidden" id="username" value="@ViewBag.user.NickName" />
 <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
 <input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
 <input type="hidden" id="openid" value="@ViewBag.user.OpenId" />
-
-
 
 @section scripts{
     <script src="~/Scripts/Models.js"></script>
@@ -56,6 +42,7 @@
         window.onload = function () {
             connect();
         }
+
         function connect() {
             var host = "ws://" + serverIP + ":" + serverPort + "/"
             socket = new WebSocket(host);
@@ -65,10 +52,9 @@
                     //$("btnConnect").disabled = true;
                     //alert("连接成功！");
                     socket.send(JSON.stringify(NewNickIp) + ' ');
-                    var dat=new Date();
+
                     var str = '<div id="alertmess" class="text-center">'
-                             + '<span>Hi,非常高兴为您服务~</span><br/><br/>'
-                             +'<span1>'+(dat.getMonth()+1)+'-'+dat.getDate()+' '+dat.getHours()+':'+dat.getMinutes()+'</span1>'
+                             + '<span>连接成功！</span>'
                              + '</div>';
                     document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                 };
@@ -81,7 +67,7 @@
                         var str = '<div id="alertmess" class="text-center">'
                              + '<span>非文本信息！</span>'
                              + '</div>';
-                        //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                        document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                     }
                 };
 
@@ -89,14 +75,14 @@
                     var str = '<div id="alertmess" class="text-center" style="margin-top:15px;">'
                              + '<span>连接断开！</span>'
                              + '</div>';
-                    //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                    document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                 };
             }
             catch (ex) {
                 var str = '<div id="alertmess" class="text-center">'
                              + '<span>网络错误，连接失败！</span>'
                              + '</div>';
-                //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                 log(ex);
             }
         }
@@ -133,7 +119,6 @@
                 window.scrollTo(0, div.scrollHeight);
                 document.getElementById('sendText').value = '';
             }
-
         }
 
         window.onbeforeunload = function () {
@@ -192,6 +177,7 @@
 
             var div = document.getElementById('messages');
             window.scrollTo(0, div.scrollHeight);
+
         }
         
         function onkey(event) { if (event.keyCode == 13) { send(); } }
