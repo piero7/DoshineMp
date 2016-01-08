@@ -97,7 +97,7 @@
         </div>
     </div>
 </div>
-<input type="hidden" value="@ViewBag.openid" id="openid" />
+@*<input type="hidden" value="@ViewBag.openid" id="openid" />*@
 <input type="hidden" value="" id="serviceid" />
 
 
@@ -162,6 +162,7 @@
                     'openCard'
                     ]
                 });
+
             })
         })
 
@@ -314,6 +315,26 @@
             window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
         }
 
+        $(document).on('click', '#address', function () {
+            wx.getLocation({
+                type: 'gcj02', //wgs84 或 gcj02
+                success: function (res) {
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+
+                    var thisurl = 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&get_poi=1&key=AGPBZ-N4HCV-7KBPX-UGUGB-XSRBQ-IHBAF';
+                    $.post('@Url.Action("ApiJsonAll","PhoneWeb")', { url: thisurl }, function (data, status) {
+                        //alert(status)
+                        var add = JSON.parse(data.msg)
+                        //alert(add.result.formatted_addresses.recommend);
+                        $('#address').val(add.result.formatted_addresses.recommend);
+                    })
+                },
+                fail: function (res) {
+                    alert('获取位置失败');
+                }
+            });
+        });
 
 
     </script>
