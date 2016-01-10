@@ -437,8 +437,6 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
-
         /// <summary>
         /// 供应商
         /// </summary>
@@ -784,7 +782,7 @@ namespace DoShineMP.Controllers
                 return this.openid = WechatHelper.GetOpenidByCode(code);
             }
         }
-        
+
 
         #endregion
 
@@ -802,16 +800,16 @@ namespace DoShineMP.Controllers
         }
 
         #endregion
-        
+
 
     }
 
     #region 临时变量
+
     static class url
     {
         public static string urltype { get; set; }
     }
-
 
     #endregion
 }
