@@ -166,7 +166,7 @@ var TouchSlide = function (a) {
     }, t)), o)
         for (var R = 0; p > R; R++) ! function () {
             var a = R;
-            o[a].addEventListener("click", function () {
+            o[a].addEventListener("tap", function () {
                 clearTimeout(z), clearTimeout(A), r = a, X()
             })
         }();

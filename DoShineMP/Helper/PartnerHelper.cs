@@ -19,8 +19,11 @@ namespace DoShineMP.Helper
         /// <param name="realname">真实姓名</param>
         /// <param name="address">公司地址</param>
         /// <param name="comPhone">公司电话</param>
+        /// <param name="email">电子邮件</param>
+        /// <param name="salesmanId">对应的销售id</param>
+        /// <param name="files">相关资质图片字符串，格式为文件 名称1:mediaid; eg:经营许可证:000001;组织机构代码:000005;</param>
         /// <returns></returns>
-        public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
+        public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone, int salesmanId, string email, string files)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -30,8 +33,8 @@ namespace DoShineMP.Helper
                 return null;
             }
 
+            // 将用户信息中的姓名更新
             usr.UserInfo.Name = realname;
-
 
             var pat = new Partner
             {
@@ -43,18 +46,46 @@ namespace DoShineMP.Helper
                 CompanyPhone = comPhone,
                 Point = 0,
                 Type = type,
+                Email = email,
+                SalesmanId = salesmanId,
             };
             db.PartnerSet.Add(pat);
             db.SaveChanges();
             db.WechatUserSet.Find(usr.WechatUserId).PartnerId = pat.PartnerId;
             db.SaveChanges();
+
+            //下载文件
+            var filestrList = files.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var fileDic = new Dictionary<string, string>();
+            foreach (var filestr in filestrList)
+            {
+                var fileinfo = filestr.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                if (fileinfo.Length == 2)
+                {
+                    fileDic.Add(fileinfo[0], fileinfo[1]);
+                }
+            }
+            if (fileDic != null && fileDic.Count > 0)
+            {
+                WechatImageHelper.AddNewImageForPartner(fileDic, pat.PartnerId, openid);
+            }
+
             LogHelper.AddLog("Regist as a patner.", pat.PartnerId.ToString(), openid);
 
             return pat;
         }
 
         //[HttpGet]
-        public Partner EditPartnerInfo(string openid, string comName, PartnerType type, string realname, string address, string comPhone)
+        /// <summary>
+        /// 编辑合作伙伴
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="comName"></param>
+        /// <param name="realname"></param>
+        /// <param name="address"></param>
+        /// <param name="comPhone"></param>
+        /// <returns></returns>
+        public Partner EditPartnerInfo(string openid, string comName, string realname, string address, string comPhone, string email)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -65,13 +96,13 @@ namespace DoShineMP.Helper
             }
 
             usr.UserInfo.Name = realname;
-
             var pat = db.PartnerSet.Find(usr.PartnerId);
             pat.RealName = realname;
             pat.CompanyName = comName;
-            pat.Type = type;
+            //pat.Type = type;
             pat.Address = address;
             pat.CompanyPhone = comPhone;
+            pat.Email = email;
 
             db.SaveChanges();
 
@@ -92,6 +123,63 @@ namespace DoShineMP.Helper
             WechatUser wuser = WechatHelper.CheckOpenid(openid);
             wuser = WechatHelper.CheckPartner(wuser);
             return wuser;
+        }
+
+        /// <summary>
+        /// 添加相关资质
+        /// </summary>
+        /// <param name="mediaDic">key为文件名，value为mediaId</param>
+        /// <returns></returns>
+        public Partner AddFile(int partnerId, Dictionary<string, string> mediaDic, string openid)
+        {
+            var db = new ModelContext();
+            var par = db.PartnerSet.FirstOrDefault(item => item.PartnerId == partnerId);
+            if (par == null)
+            {
+                return null;
+            }
+            WechatImageHelper.AddNewImageForPartner(mediaDic, partnerId, openid);
+            return par;
+        }
+
+        /// <summary>
+        /// 确认合作伙伴
+        /// </summary>
+        /// <param name="partnerId"></param>
+        /// <returns></returns>
+        public Partner Accrpt(int partnerId)
+        {
+            var db = new ModelContext();
+            var par = db.PartnerSet.FirstOrDefault(item => item.PartnerId == partnerId);
+
+            if (par == null)
+            {
+                return null;
+            }
+
+            par.Status = PartnerStatus.Accept;
+            db.SaveChanges();
+            return par;
+        }
+
+        /// <summary>
+        /// 注销合作伙伴
+        /// </summary>
+        /// <param name="partnerId"></param>
+        /// <returns></returns>
+        public Partner Cancel(int partnerId)
+        {
+            var db = new ModelContext();
+            var par = db.PartnerSet.FirstOrDefault(item => item.PartnerId == partnerId);
+            if (par == null)
+            {
+                return null;
+            }
+
+            par.Status = PartnerStatus.Cancel;
+            db.SaveChanges();
+
+            return par;
         }
     }
 }
