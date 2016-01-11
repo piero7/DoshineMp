@@ -17,6 +17,24 @@ namespace DoShineMP.Helper
     {
 
         /// <summary>
+        /// 获取两点之间的距离
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        public static double GetDistance(double x1, double y1, double x2, double y2)
+        {
+            double rad = 6371; //Earth radius in Km
+            double p1X = x1 / 180 * Math.PI;
+            double p1Y = y1 / 180 * Math.PI;
+            double p2X = x2 / 180 * Math.PI;
+            double p2Y = y2 / 180 * Math.PI;
+            return Math.Acos(Math.Sin(p1Y) * Math.Sin(p2Y) +
+                Math.Cos(p1Y) * Math.Cos(p2Y) * Math.Cos(p2X - p1X)) * rad;
+        }
+
+        /// <summary>
         /// 发送POST包，获得回复。
         /// </summary>
         /// <param name="data"></param>
@@ -554,6 +572,32 @@ namespace DoShineMP.Helper
             return file;
         }
 
+
+        /// <summary>
+        /// 发送企业号信息
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="msg"></param>
+        internal static void SendComponyMessage(IEnumerable<string> accounts, string msg)
+        {
+            //   account = "chenzijun|q@51xc.me";
+            var account = string.Join("|", accounts);
+            //foreach (string str in accounts)
+            //{
+            //    account += (str + "|");
+            //}
+            account.Remove(account.Length - 1);
+
+
+            var send = "{{\"touser\": \"{0}\",\"msgtype\": \"text\",\"agentid\": \"{2}\",\"text\": {{\"content\": \"{1}\"}},\"safe\":\"0\"}}";
+
+            send = string.Format(send, account, msg, System.Configuration.ConfigurationManager.AppSettings["agentid"]);
+
+            var token = WechatHelper.GetToken(AccountType.Company);
+            var url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + token;
+            WechatHelper.GetResponse(send, url);
+        }
+
     }
 
     /// <summary>
@@ -592,29 +636,8 @@ namespace DoShineMP.Helper
         }
 
 
-        /// <summary>
-        /// 发送企业号信息
-        /// </summary>
-        /// <param name="account"></param>
-        /// <param name="msg"></param>
-        internal static void SendComponyMessage(IEnumerable<string> accounts, string msg)
-        {
-            //   account = "chenzijun|q@51xc.me";
-            var account = "";
-            foreach (string str in accounts)
-            {
-                account += (str + "|");
-            }
-            account.Remove(account.Length - 1);
 
 
-            var send = "{{\"touser\": \"{0}\",\"msgtype\": \"text\",\"agentid\": \"{2}\",\"text\": {{\"content\": \"{1}\"}},\"safe\":\"0\"}}";
 
-            send = string.Format(send, account, msg, System.Configuration.ConfigurationManager.AppSettings["agentid"]);
-
-            var token = WechatHelper.GetToken(AccountType.Company);
-            var url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + token;
-            WechatHelper.GetResponse(send, url);
-        }
     }
 }

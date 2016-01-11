@@ -25,6 +25,8 @@ namespace DoShineMP.Models
 
         public RecordType Type { get; set; }
 
+        public string Openid { get; set; }
+
         public int? UserInfoId { get; set; }
 
         [ForeignKey("UserInfoId")]
