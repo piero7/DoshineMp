@@ -322,3 +322,56 @@ textarea::-webkit-input-placeholder {
 	color: #5bc084;
 	margin-left:10px;
 }
+
+.choose {
+    width:100%;
+    background-color:white;
+    padding:0 15px 30px;
+}
+.service{
+    overflow:hidden;
+    padding-bottom:10px;
+    border-bottom:1px solid #ddd;
+}
+.service li{
+    float:left;
+    padding:5px 10px;
+    background-color:white;
+    color:#333;
+    border:1px solid #1ec462;
+    border-radius:15px;
+    margin-right:5px;
+    transition:all .6s linear 0s;
+    -webkit-transition:all .6s linear 0s;
+
+}
+.choose h4{
+    font-size:14px;
+    padding:12px 0px 10px 0px ;
+}
+.choose-title .choose-input{
+    width:100%;
+    padding-top:10px;
+    min-height:70px;
+    border:0;
+}
+.service li.current{
+    background-color:#1ec462;
+    color:white;
+}
+.choose-photo {
+    overflow:hidden;
+}
+.choose-photo img{
+    width:50px;
+    height:50px;
+   float：left;
+   margin-right:5px;
+   margin-top:5px;
+}
+.add-photo {
+    width: 60px;
+    height: 60px;
+    border: 1px dashed #ccc;
+    margin-right:0px;
+}

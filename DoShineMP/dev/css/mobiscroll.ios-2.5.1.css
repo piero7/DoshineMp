@@ -233,3 +233,10 @@
 .ios .dww .dw-msel {
     color: #215085;
 }
+
+ .android-ics.light .dwbc{
+            background-color: #4bc1cd;
+    }
+    .android-ics .dwv{
+            border-bottom: 2px solid #e0e0e0;
+    }

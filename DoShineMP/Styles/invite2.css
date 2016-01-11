@@ -4,7 +4,6 @@
 * @Last Modified by:   晴
 * @Last Modified time: 2016-01-11 14:25:36
 */
-
 body{
 	font-family: 'Microsoft yahei';
 }
@@ -31,15 +30,16 @@ body{
 	font-size: 14px;
 	color: #626262;
 	text-align:left;
-	background:url(../Images/face2.png) no-repeat center left;
+	background:url(../Images/face2.png) no-repeat 35% center;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+    text-align:center;
 }
 .itme-select li.current{
 	background-image:url(../Images/face.jpg);
 }
 .itme-select li.current{
-	background:url(../Images/face.jpg) no-repeat center left;
+	background:url(../Images/face.jpg) no-repeat 35% center;
 }
 .itme-box .itme dt{
 	padding:20px 0 15px;
@@ -79,8 +79,8 @@ body{
 	/*overflow: hidden;*/
 }
 .tips-select input,
-.tips-select2 input{
-	text-align: left;
+.tips-select input{
+	text-align: center;
 }
 .select-ul,
 .select-ul2{
@@ -98,8 +98,8 @@ body{
 }
 .select-ul li,
 .select-ul2 li{
-	padding:15px 10px;
-	text-align: left;
+	padding:15px 0px;
+	text-align: center;
 	background-color:#d16c6c;
 	color:white;
 	border-bottom:1px solid white;
@@ -191,7 +191,7 @@ input[disabled='disabled']{
 	-webkit-transition: transform .2s linear 0s;
 	position:absolute;
 	top:50%;
-	right:5px;  
+	right:5px;
 	margin-top:-10px;
 	width:20px;
 	height:20px;

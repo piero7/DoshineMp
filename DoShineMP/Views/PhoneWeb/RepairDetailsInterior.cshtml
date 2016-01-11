@@ -9,7 +9,12 @@
     <link href="~/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" />
     <link href="~/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" />
     <link href="~/Styles/star-rating.css" rel="stylesheet" />
-
+    <style>
+        .android-ics.light .dwbc{
+                background-color: #4bc1cd;
+        }
+       
+    </style>
 }
 <div class="keep-list">
     <div class="keep-list-in">
@@ -43,7 +48,23 @@
             <p>报修日期：@ViewBag.RepairDetail.CreateDate</p>
             <p>地址：@ViewBag.RepairDetail.User.Address</p>
         </div>
-
+        <div class="choose ">
+           <h4>请选择处理状态:</h4>
+            <ul class="service">
+                <li class="current">已修复</li>
+                <li>未修复</li>
+                <li>不属于维保范围</li>
+            </ul>
+            <div class="choose-title">
+                <textarea class="choose-input" placeholder="请描述现场处理概况..."></textarea>
+                <div class="choose-photo">
+                    <img src="~/Images/logo.png" />
+                    <img src="~/Images/logo.png" />
+                    <img src="~/Images/logo.png" />
+                    <img src="~/Images/tianjia2x.png" class="add-photo">
+                </div>
+            </div>
+        </div>
         <div class="list-bottom" style="background-color:white;">
             <div class="bottom-title">
                 <p>状态跟踪</p>
@@ -165,7 +186,7 @@
             <div class="col-xs-12 operate ">
                 <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成" >
                 @*取消按钮*@
-                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认取消">
+                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="取消" style="background-color:#dedede">
             </div>
             
         }
@@ -355,6 +376,11 @@
                 $('#applybtn').attr({ 'disabled': false}).css( 'background-color','#4ca329')
             }
         }
+
+        // 处理状态js
+        $('.service li').click(function () {
+               $(this).addClass('current').siblings().removeClass('current')
+        })
 
     </script>
 
