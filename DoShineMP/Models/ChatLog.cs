@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DoShineMP.Models
 {
-    class ChatLog
+    public class ChatLog
     {
         [Key]
         public int ChatLogId { get; set; }
@@ -16,6 +16,8 @@ namespace DoShineMP.Models
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public string Openid { get; set; }
 
         /// <summary>
         /// 标识是否已读
@@ -58,7 +60,7 @@ namespace DoShineMP.Models
             get
             {
                 var ret = new Dictionary<string, string>();
-                if (string.IsNullOrEmpty(UserInfo) )
+                if (string.IsNullOrEmpty(UserInfo))
                 {
                     return ret;
                 }
@@ -94,6 +96,9 @@ namespace DoShineMP.Models
 
     }
 
+    /// <summary>
+    /// 聊天状态
+    /// </summary>
     public enum ChatStatus
     {
         Unknown = 0,

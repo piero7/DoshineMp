@@ -28,7 +28,7 @@ namespace DoShineMP.Helper
                 return null;
             }
             //var tmnName = type == MessageType.Service ? System.Configuration.ConfigurationManager.AppSettings["ServerService"] : System.Configuration.ConfigurationManager.AppSettings["DoshineWechatService"];
-            string  tmnName = System.Configuration.ConfigurationManager.AppSettings["termailname"];
+            string tmnName = System.Configuration.ConfigurationManager.AppSettings["termailname"];
             var db = new ModelContext();
             var tmn = db.TerminalSet.FirstOrDefault(item => item.Name == tmnName);
             var msg = new Message
@@ -38,13 +38,15 @@ namespace DoShineMP.Helper
                 Type = type,
                 UserId = wuser.UserInfoId,
                 TerminalId = tmn.TerminalId,
-                 
+
             };
             db.MessageSet.Add(msg);
             db.SaveChanges();
             if (isNew)
             {
                 LogHelper.AddLog("send a message", msg.MessageId.ToString(), openid);
+
+                ChatLogHelper.AddNewLog(openid, ChatStatus.Chatting, null);
             }
 
             return msg;
@@ -77,6 +79,9 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             return msg;
         }
+
+
+        
 
     }
 }
