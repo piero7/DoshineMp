@@ -311,8 +311,7 @@
     <Content Include="Images\daiqueren2x.png" />
     <Content Include="Images\dingdan.png" />
     <Content Include="Images\error.png" />
-    <Content Include="Images\face.jpg" />
-    <Content Include="Images\face2.png" />
+    <Content Include="Images\gonying.png" />
     <Content Include="Images\grade.png" />
     <Content Include="Images\grade3x.png" />
     <Content Include="Images\icodepic.PNG" />
@@ -394,6 +393,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\chat.css" />
     <Content Include="Styles\history.css" />
+    <Content Include="Styles\invite2.css" />
     <Content Include="Styles\invite.css" />
     <Content Include="Styles\Messages.css" />
     <Content Include="Styles\MyMessage.css" />
