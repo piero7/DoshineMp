@@ -232,6 +232,14 @@
     <Compile Include="Migrations\201601070649555_addRecord.Designer.cs">
       <DependentUpon>201601070649555_addRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601110316412_AddModelsfFor040.cs" />
+    <Compile Include="Migrations\201601110316412_AddModelsfFor040.Designer.cs">
+      <DependentUpon>201601110316412_AddModelsfFor040.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110737333_addOpenidForChatLog.cs" />
+    <Compile Include="Migrations\201601110737333_addOpenidForChatLog.Designer.cs">
+      <DependentUpon>201601110737333_addOpenidForChatLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
@@ -496,6 +504,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601070649555_addRecord.resx">
       <DependentUpon>201601070649555_addRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110316412_AddModelsfFor040.resx">
+      <DependentUpon>201601110316412_AddModelsfFor040.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110737333_addOpenidForChatLog.resx">
+      <DependentUpon>201601110737333_addOpenidForChatLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

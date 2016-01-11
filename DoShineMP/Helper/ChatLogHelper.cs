@@ -15,7 +15,7 @@ namespace DoShineMP.Helper
         /// <param name="status"></param>
         /// <param name="userinfoDic">记录用户信息，key为信息名称，value为信息具体内容 eg：eg:手机号:13600000000;微信号:wechatnumber</param>
         /// <returns></returns>
-        public static ChatLog AddNewLog(ChatStatus status, Dictionary<string, string> userinfoDic)
+        public static ChatLog AddNewLog(string openid, ChatStatus status, Dictionary<string, string> userinfoDic)
         {
             var cl = new ChatLog
             {
@@ -23,6 +23,7 @@ namespace DoShineMP.Helper
                 Status = status,
                 HasReaded = status == ChatStatus.Chatting ? true : false,
                 UserInfoDic = userinfoDic,
+                Openid = openid,
             };
             var db = new ModelContext();
             db.ChatLogSet.Add(cl);
@@ -62,6 +63,50 @@ namespace DoShineMP.Helper
             return (from cl in db.ChatLogSet
                     where !cl.HasReaded
                     select cl).ToList();
+        }
+
+        /// <summary>
+        /// 标记聊天结束
+        /// </summary>
+        /// <param name="openid">用户的openid</param>
+        /// <returns></returns>
+        public static ChatLog FinishChatting(string openid)
+        {
+            var db = new ModelContext();
+            ChatLog cl = db.ChatLogSet.OrderByDescending(item => item.StartDate).FirstOrDefault(item => item.Openid == openid);
+            if (cl == null)
+            {
+                return null;
+            }
+
+            cl.EndDate = DateTime.Now;
+            cl.Status = ChatStatus.Finish;
+            db.SaveChanges();
+
+            return cl;
+        }
+
+
+        /// <summary>
+        /// 添加离线消息记录
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="userinfoDic"></param>
+        /// <returns></returns>
+        public static ChatLog AddOfflineChatLog(string openid, Dictionary<string, string> userinfoDic)
+        {
+            var db = new ModelContext();
+            var cl = new ChatLog
+            {
+                HasReaded = false,
+                Openid = openid,
+                StartDate = DateTime.Now,
+                Status = ChatStatus.Leave,
+                UserInfoDic = userinfoDic,
+            };
+            db.ChatLogSet.Add(cl);
+
+            return cl;
         }
     }
 }

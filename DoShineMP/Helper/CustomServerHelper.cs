@@ -44,7 +44,6 @@ namespace DoShineMP.Helper
         {
             var db = new ModelContext();
             return db.CustomServerSet.FirstOrDefault(item => item.Name == name);
-
         }
     }
 }
