@@ -166,6 +166,7 @@ else
             var realName = $('#realName').val();
             var comAddress = $('#comAddress').val();
             var comPhone = $('#comPhone').val();
+            var email = '';
             var code = $('#openid').val();
             var url = '@Url.Action("ReginPartnerJson", "PhoneWeb")';
             if (comName == null && realName == null && phoneNumber && null) {
@@ -176,7 +177,7 @@ else
                 url = '@Url.Action("EditPartnerInfoJson", "PhoneWeb")';
             }
 
-            $.post(url, { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone }, function (data, status) {
+            $.post(url, { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone, email: email }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         //alert('提交成功!');
