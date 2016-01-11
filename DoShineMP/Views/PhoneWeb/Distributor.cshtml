@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "经销商";
+    ViewBag.Title = "诚邀加盟";
     Layout = "~/Views/Shared/_LayoutQiye.cshtml";
 }
 @section styles{
@@ -26,7 +26,7 @@
             <dl class="itme">
                 <dt>加盟区域<ins>*</ins></dt>
                 <dd class="tips-select">
-                    <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val"  style="padding:0px">
+                    <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val" >
                     <span class='jia'></span>
                     <ul class="select-ul">
                         <li>11111</li>
@@ -93,10 +93,10 @@
             </dl>
             <dl class="itme">
                 <dt>服务代表<ins>*</ins></dt>
-                <dd class="tips-select">
-                    <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val1" style="padding:0px">
-                    <span class='jia'></span>
-                    <ul class="select-ul">
+                <dd class="tips-select2">
+                    <input type="text" class="select-val2" palceholder="请选择" disabled="flase" id="Val">
+                    <span class='jia2'></span>
+                    <ul class="select-ul2">
                         <li>11111</li>
                         <li>2222</li>
                         <li>3333</li>
@@ -125,22 +125,48 @@
     <script type="text/javascript">
         var key = true;
         var Child = null;
+        var Height = $('.select-ul li').length*51;
+        console.log(Height)
         $('.select-val').tap(function (e) {
-            console.log(e);
             if (key) {
-                $(this).siblings('.select-ul').css({ 'height': 'auto', 'display': 'block' });
-                InFor($(this).children(),'active');
-                $(this).siblings('.jia').addClass('current')
+                $('.select-ul').css({ 'height': Height+'px'});
+                $('.jia').addClass('current');
                 key = false;
-                console.log(this.children)
             } else {
-                InFor($(this).children(), "");
-                $(this).siblings('.select-ul').css({ 'height': '0', 'display': 'none' });
-                $(this).siblings('.jia').removeClass('current')
+                $('.select-ul').css({ 'height': '0'});
+                $('.jia').removeClass('current')
                 key = true;
             }
         })
+        $('.select-ul li').tap(function () {
+            $('.select-val').val($(this).text());
+            $('.select-ul').css({ 'height': '0' });
+            $('.jia').removeClass('current')
+            key = true;
+        })
 
+        var key2 = true;
+        var Child = null;
+        var Height = $('.select-ul2 li').length*51;
+        console.log(Height)
+        console.log($('.select-ul2 li').length)
+        $('.select-val2').tap(function (e) {
+            if (key2) {
+                $('.select-ul2').css({ 'height': Height + 'px'});
+                $('.jia2').addClass('current')
+                key2 = false;
+            } else {
+                $('.select-ul2').css({ 'height': '0'});
+                $('.jia2').removeClass('current')
+                key2 = true;
+            }
+        })
+        $('.select-ul2 li').tap(function () {
+            $('.select-val2').val($(this).text());
+            $('.select-ul2').css({ 'height': '0' });
+            $('.jia2').removeClass('current')
+            key2 = true;
+        })
 
         $('.itme-select li').tap(function (e) {
             $(this).addClass('current').siblings().removeClass('current');
@@ -148,28 +174,25 @@
         })
 
         //  Select ul js
-        var Sele = document.getElementsByClassName('select-ul')[0].children;
-        var Leng = Sele.length;
-        function InFor(a,c) {
-            var i = 0;
-            var timer = null;
-            timer = setInterval(function () {
-                Sele[i].className = c;
-                i++;
-                if (i == Leng) {
-                    clearInterval(timer);
-                }
-            }, 100)
-
-
-            $('.select-ul li').tap(function (e) {
-                $(this).parent().prev().prev().val($(this).text())
-                //$('.select-val').val($(this).text())
-               $(this).parent().css({ 'height': '0', 'display': 'none' });
-                key = true;
-                InFor("")
-            })
-        }
+        //var Sele = document.getElementsByClassName('select-ul')[0].children;
+        //var Leng = Sele.length;
+        //function InFor(c) {
+        //    var i = 0;
+        //    var timer = null;
+        //    timer = setInterval(function () {
+        //        Sele[i].className = c;
+        //        i++;
+        //        if (i == Leng) {
+        //            clearInterval(timer);
+        //        }
+        //    }, 100)
+        //    $('.select-ul li').tap(function (e) {
+        //        $('.select-val').val($(this).text())
+        //        $('.select-ul').css({ 'height': '0', 'display': 'none' });
+        //        key = true;
+        //        InFor("")
+        //    })
+        //}
 
 
 
@@ -179,13 +202,13 @@
 
         $('.submit-btn').tap(function () {
             Fund = $('.itme-select li.current').text();
-            Jion = $('#val').val();
+            Jion = $('.select-val').val();
             Name = $('.Name').val();
             Tel = $('.Tel').val();
             Mail = $('.Mail').val();
             Corr = $('.Corr').val();
             Site = $('.Site').val();
-            Behaif = $('#val1').val();
+            Behaif = $('.Behaif').val();
             Commit = $('.conmmit').val();
             ImgSrcLen = $('.photo').find('img');
             $.each(ImgSrcLen, function (i, item) {
