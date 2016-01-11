@@ -44,5 +44,11 @@ namespace DoShineMP.Models
         public DbSet<Salesman> SalesmanSet { get; set; }
 
         public DbSet<District> DistrictSet { get; set; }
+
+        public DbSet<ChatLog> ChatLogSet { get; set; }
+
+        public DbSet<UsefulChat> UsefulChatSet { get; set; }
+
+        public DbSet<CustomServer> CustomServerSet { get; set; }
     }
 }

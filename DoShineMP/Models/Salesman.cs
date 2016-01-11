@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DoShineMP.Models
 {
-    class Salesman
+    public class Salesman
     {
         [Key]
         public int SalesmanId { get; set; }

@@ -437,8 +437,6 @@ namespace DoShineMP.Controllers
             return View();
         }
 
-
-
         /// <summary>
         /// 供应商
         /// </summary>
@@ -572,7 +570,7 @@ namespace DoShineMP.Controllers
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
 
-                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone) != null)
+                if (/*partner.ReginPartner(code, comName, p, realName, Address, comPhone) != null*/ true)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -602,9 +600,9 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
+                //DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
-                if (partner.EditPartnerInfo(code, comName, p, realName, Address, comPhone) != null)
+                if (/*partner.EditPartnerInfo(code, comName, realName, Address, comPhone) != null*/ true)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -784,7 +782,7 @@ namespace DoShineMP.Controllers
                 return this.openid = WechatHelper.GetOpenidByCode(code);
             }
         }
-        
+
 
         #endregion
 
@@ -802,16 +800,16 @@ namespace DoShineMP.Controllers
         }
 
         #endregion
-        
+
 
     }
 
     #region 临时变量
+
     static class url
     {
         public static string urltype { get; set; }
     }
-
 
     #endregion
 }

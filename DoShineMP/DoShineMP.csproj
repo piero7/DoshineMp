@@ -179,13 +179,17 @@
     <Compile Include="Controllers\PhoneWebController.cs" />
     <Compile Include="Controllers\IdentifyingCodeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Helper\ChatLogHelper.cs" />
+    <Compile Include="Helper\CustomServerHelper.cs" />
     <Compile Include="Helper\IdentifyingCodeHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Helper\PartnerHelper.cs" />
     <Compile Include="Helper\RepairHelper.cs" />
+    <Compile Include="Helper\SalesmanHelper.cs" />
     <Compile Include="Helper\ShortMessageHelper.cs" />
+    <Compile Include="Helper\UsefulChatHelper.cs" />
     <Compile Include="Helper\WechatHelper.cs" />
     <Compile Include="Helper\WechatImageHelper.cs" />
     <Compile Include="Helper\WechatUserHelper.cs" />
@@ -232,6 +236,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
     <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\ChatLog.cs" />
+    <Compile Include="Models\CustomServer.cs" />
     <Compile Include="Models\DebugInfo.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\File.cs" />
@@ -248,6 +254,7 @@
     <Compile Include="Models\Salesman.cs" />
     <Compile Include="Models\Terminal.cs" />
     <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\UsefulChat.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\WechatUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

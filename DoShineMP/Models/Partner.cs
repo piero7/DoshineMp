@@ -16,7 +16,7 @@ namespace DoShineMP.Models
         public string CompanyName { get; set; }
 
         /// <summary>
-        /// 相关文件列表 文件内容:文件id; eg:经营许可证:1;
+        /// 相关文件列表 文件id:文件内容; eg:  1:经营许可证;
         /// </summary>
         string FileList { get; set; }
 
@@ -29,6 +29,8 @@ namespace DoShineMP.Models
         public string RealName { get; set; }
 
         public string CompanyPhone { get; set; }
+
+        public string Email { get; set; }
 
         public int? UserId { get; set; }
 
@@ -43,6 +45,23 @@ namespace DoShineMP.Models
 
         //[ForeignKey("WechatUserId")]
         //public virtual WechatUser WechatUser { get; set; }
+
+        public int? SalesmanId { get; set; }
+
+        [ForeignKey("SalesmanId")]
+        public virtual Salesman Salesman { get; set; }
+
+        public PartnerStatus Status { get; set; }
+
+        /// <summary>
+        /// 确认时间 
+        /// </summary>
+        public DateTime? AcceptDate { get; set; }
+
+        /// <summary>
+        /// 取消时间
+        /// </summary>
+        public DateTime? CancelDate { get; set; }
 
         public Partner()
         {
@@ -106,5 +125,25 @@ namespace DoShineMP.Models
         /// </summary>
         Dealer = 3,
         Both = 9,
+    }
+
+    /// <summary>
+    /// 合作伙伴状态
+    /// </summary>
+    public enum PartnerStatus
+    {
+        Unknow = 0,
+        /// <summary>
+        /// 提出申请
+        /// </summary>
+        Apply = 5,
+        /// <summary>
+        /// 已经确认
+        /// </summary>
+        Accept = 10,
+        /// <summary>
+        /// 已经取消
+        /// </summary>
+        Cancel = 99,
     }
 }
