@@ -1,16 +1,208 @@
 ﻿
 @{
     ViewBag.Title = "经销商";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQiye.cshtml";
 }
 @section styles{
-    
-    }
+    <link href="~/Styles/rest.css" rel="stylesheet" />
+    <link href="~/Styles/invite.css" rel="stylesheet" />
+
+}
+<div class="inviteWrap">
+    <div class="inviteUp">
+        <img src="~/Images/invite.png" alt="">
+    </div>
+    <div class="inviteDown">
+        <div class="itme">
+            <h2 class="itme-Title">我能提供的加盟资金</h2>
+            <ul class="itme-select">
+                <li class="">500-1000元</li>
+                <li>2000-5000元</li>
+                <li class="current">10000-30000元</li>
+                <li>50000元以上</li>
+            </ul>
+        </div>
+        <div class="itme-box">
+            <dl class="itme">
+                <dt>加盟区域<ins>*</ins></dt>
+                <dd class="tips-select">
+                    <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val"  style="padding:0px">
+                    <span class='jia'></span>
+                    <ul class="select-ul">
+                        <li>11111</li>
+                        <li>2222</li>
+                        <li>3333</li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="itme">
+                <dt><ins style="font-size:12px;">温馨提示：以下信息请填写真实有效信息，以便我们跟进处理。</ins></dt>
+            </dl>
+            <dl class="itme">
+                <dt>姓名<ins>*</ins></dt>
+                <dd>
+                    <input type="text" placeholder="请输入您的姓名..." class="Name">
+                </dd>
+            </dl>
+            <dl class="itme">
+                <dt>手机号<ins>*</ins></dt>
+                <dd>
+                    <input type="text" placeholder="请输入您的手机号..." class="Tel">
+                </dd>
+            </dl>
+            <dl class="itme">
+                <dt>电子邮箱<ins>*</ins></dt>
+                <dd>
+                    <input type="text" placeholder="请输入您的邮箱..." class="Mail">
+                </dd>
+            </dl>
+            <dl class="itme" style="overflow:hidden">
+                <dt>相关资质<ins>*</ins></dt>
+                <dd>
+                    <p>人请上传本人真实身份证图片，企业单位上传有效期内营业执照并加盖公章。</p>
+                    <div class="title-photo">
+                        <textarea placeholder="请输入图片标题或描述" class="Corr"></textarea>
+                        <ins class="add-photo"><img src="~/Images/xiangji.png" alt=""></ins>
+                        <div class="photo">
+                            <span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span>
+                            <span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span><span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span><span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span><span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span><span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span><span>
+                                <img src="~/Images/logo.png" alt="">
+                            </span>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="itme">
+                <dt>通讯地址<ins>*</ins></dt>
+                <dd>
+                    <p>方便为您寄送资料</p>
+                    <input type="text" placeholder="" class="Site">
+                </dd>
+            </dl>
+            <dl class="itme">
+                <dt>服务代表<ins>*</ins></dt>
+                <dd class="tips-select">
+                    <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val1" style="padding:0px">
+                    <span class='jia'></span>
+                    <ul class="select-ul">
+                        <li>11111</li>
+                        <li>2222</li>
+                        <li>3333</li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="itme">
+                <dt>备注：</dt>
+                <dd>
+                    <textarea class="conmmit"></textarea>
+                </dd>
+            </dl>
+            <dl>
+                <dd><span class="submit-btn"><img src="~/Images/btn.jpg" alt=""></span></dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+
 
 
 
 @section scripts{
-    
-    
-    }
+    <script src="~/Scripts/zepto.min.js"></script>
+    <script type="text/javascript">
+        var key = true;
+        var Child = null;
+        $('.select-val').tap(function (e) {
+            console.log(e);
+            if (key) {
+                $(this).siblings('.select-ul').css({ 'height': 'auto', 'display': 'block' });
+                InFor($(this).children(),'active');
+                $(this).siblings('.jia').addClass('current')
+                key = false;
+                console.log(this.children)
+            } else {
+                InFor($(this).children(), "");
+                $(this).siblings('.select-ul').css({ 'height': '0', 'display': 'none' });
+                $(this).siblings('.jia').removeClass('current')
+                key = true;
+            }
+        })
+
+
+        $('.itme-select li').tap(function (e) {
+            $(this).addClass('current').siblings().removeClass('current');
+
+        })
+
+        //  Select ul js
+        var Sele = document.getElementsByClassName('select-ul')[0].children;
+        var Leng = Sele.length;
+        function InFor(a,c) {
+            var i = 0;
+            var timer = null;
+            timer = setInterval(function () {
+                Sele[i].className = c;
+                i++;
+                if (i == Leng) {
+                    clearInterval(timer);
+                }
+            }, 100)
+
+
+            $('.select-ul li').tap(function (e) {
+                $(this).parent().prev().prev().val($(this).text())
+                //$('.select-val').val($(this).text())
+               $(this).parent().css({ 'height': '0', 'display': 'none' });
+                key = true;
+                InFor("")
+            })
+        }
+
+
+
+
+        //  submit js
+        var Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit,ImgSrc = [];
+
+        $('.submit-btn').tap(function () {
+            Fund = $('.itme-select li.current').text();
+            Jion = $('#val').val();
+            Name = $('.Name').val();
+            Tel = $('.Tel').val();
+            Mail = $('.Mail').val();
+            Corr = $('.Corr').val();
+            Site = $('.Site').val();
+            Behaif = $('#val1').val();
+            Commit = $('.conmmit').val();
+            ImgSrcLen = $('.photo').find('img');
+            $.each(ImgSrcLen, function (i, item) {
+                console.log(item)
+                console.log(i)
+                ImgSrc[i] = item.src
+            })
+            var Inputs = $('.itme dd').find('input');
+            $.each(Inputs,function (i, item) {
+                if (Inputs[i].value == '' || Inputs[i].value == null) {
+                    document.body.scrollTop = item.offsetTop+40;
+                    console.log( document.body.scrollTop = item.offsetTop)
+                }
+            })
+           //  alert(Fund + Jion + Name + Tel + Mail + Corr + Site + Behaif + Commit)
+        })
+    </script>
+
+}
 
