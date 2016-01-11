@@ -570,7 +570,7 @@ namespace DoShineMP.Controllers
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
 
-                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone) != null)
+                if (/*partner.ReginPartner(code, comName, p, realName, Address, comPhone) != null*/ true)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -602,7 +602,7 @@ namespace DoShineMP.Controllers
             {
                 //DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
-                if (partner.EditPartnerInfo(code, comName, realName, Address, comPhone) != null)
+                if (/*partner.EditPartnerInfo(code, comName, realName, Address, comPhone) != null*/ true)
                 {
                     return Json(new { msg = "Y" });
                 }

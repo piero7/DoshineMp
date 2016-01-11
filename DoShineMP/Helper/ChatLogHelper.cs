@@ -27,7 +27,6 @@ namespace DoShineMP.Helper
             var db = new ModelContext();
             db.ChatLogSet.Add(cl);
             db.SaveChanges();
-
             return cl;
         }
 
@@ -51,6 +50,7 @@ namespace DoShineMP.Helper
 
             return cl;
         }
+
 
         /// <summary>
         /// 获得所有的未读记录

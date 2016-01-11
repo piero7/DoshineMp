@@ -21,7 +21,7 @@ namespace DoShineMP.Helper
         /// <param name="comPhone">公司电话</param>
         /// <param name="email">电子邮件</param>
         /// <param name="salesmanId">对应的销售id</param>
-        /// <param name="files">相关资质图片字符串，格式为文件 名称1:mediaid; eg:经营许可证:000001;组织机构代码:000005;</param>
+        /// <param name="files">相关资质图片字符串，格式为文件 名称1 :mediaid; eg:经营许可证:000001;组织机构代码:000005;</param>
         /// <returns></returns>
         public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone, int salesmanId, string email, string files)
         {
@@ -74,6 +74,7 @@ namespace DoShineMP.Helper
 
             return pat;
         }
+
 
         //[HttpGet]
         /// <summary>
