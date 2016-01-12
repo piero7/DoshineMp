@@ -550,8 +550,8 @@ namespace DoShineMP.Controllers
         /// <summary>
         /// 合作伙伴注册
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="comName"></param>
+        /// <param name="code">openid</param>
+        /// <param name="comName">姓名</param>
         /// <param name="Type"> Sub_contractor分包商，Supplier供应商 </param>
         /// <param name="realName"></param>
         /// <param name="Address"></param>
