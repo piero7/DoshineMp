@@ -47,7 +47,7 @@
         {
             <div class="choose ">
                 <h4></h4>
-                <ul class="service" id="RepairFinishTypeid">
+                <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;">
                     @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
                     {
                         <li class="current" typeid="Fixed">已修复</li>
@@ -62,7 +62,10 @@
                     }
                 </ul>
                 <div class="choose-title">
-                    <textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe" disabled style="background-color:white;"></textarea>
+                    @*<textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe" disabled style="background-color:white;"></textarea>*@
+                    <p class="back-content">
+                       @ViewBag.RepairDetail.Describe
+                    </p>
                     <div class="choose-photo" id="choose-photo">
                         @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
                         {

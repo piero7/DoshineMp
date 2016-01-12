@@ -261,6 +261,12 @@ body{
 	-webkit-background-size: contain;
 	color: #1ec462;
 }
+.content-title-b .check5{
+	background:url(../Images/quxiao.png) no-repeat 0 0px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #f1514e;
+}
 .operate span.current{
 	color:#f06343;
 	border-color:  #f06343;

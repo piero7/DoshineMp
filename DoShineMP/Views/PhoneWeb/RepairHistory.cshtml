@@ -285,7 +285,7 @@
             IndexLi = (indexli == window.localStorage['IndexLi1']) ? indexli : window.localStorage['IndexLi1'];
             TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
             //console.log(IndexLi)
-            tab(IndexLi);
+            //tab(IndexLi);
         })
 
 
@@ -348,7 +348,7 @@
 
         $('.hd li').click(function () {
             IndexLi = $(this).index();
-            tab(IndexLi);
+            //tab(IndexLi);
 
         })
 
@@ -359,7 +359,7 @@
             if (IndexLi < tabnumber - 1) {
                 IndexLi++;
                 //TouchSlide({ defaultIndex: IndexLi});
-                tab(IndexLi);
+                //tab(IndexLi);
             }
 
         })
@@ -367,7 +367,7 @@
         $(window).swipeRight(function () {
             if (IndexLi > 0) {
                 IndexLi--;
-                tab(IndexLi)
+                //tab(IndexLi)
                 //console.log('之前' + IndexLi);
                 //TouchSlide({defaultIndex: IndexLi });
             }

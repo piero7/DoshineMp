@@ -8,7 +8,7 @@
 
 
 <!-- 用户信息  -->
-<div class="Mymessage" style="padding-top:5px;padding-bottom:5px;">
+<div class="Mymessage" id="MyMessage" style="padding-top:5px;padding-bottom:5px;">
     <div class="pull-left logo">
         <img src="@ViewBag.wuser.Headimgurl" class="img-circle" alt="Alternate Text" />
     </div>
@@ -78,6 +78,10 @@
                 case 'Mymessage-icon6 icon': window.location.href = 'http://mp.weixin.qq.com/s?__biz=MjM5MTI4MDAyMQ==&mid=420442559&idx=1&sn=fa4138a1f575852cc0860a844f34708d&scene=1&srcid=1222kq265t3bUfC5nqvM9BqC#wechat_redirect'; break;
                 case 'Mymessage-icon7 icon': window.location.href = 'http://mp.weixin.qq.com/s?__biz=MjM5MTI4MDAyMQ==&mid=416121858&idx=1&sn=1a37a4e8295c88930e43eec998a2e904&scene=18#wechat_redirect'; break;
             }
+        })
+
+        $('#MyMessage').click(function () {
+            window.location.href = '@Url.Action("PersonalCenter","PhoneWeb")?type=update';
         })
     </script>
 }

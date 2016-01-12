@@ -23,9 +23,9 @@
         </div>
         <div class="itme">
             <h2 class="itme-Title">称谓<ins style="text-decoration: none; color:#f1514e;">*</ins></h2>
-            <ul class="itme-select">
-                <li class="current">先生</li>
-                <li>女士</li>
+            <ul class="itme-select" id="sextype">
+                <li class="current" typeid="Man">先生</li>
+                <li typeid="Female">女士</li>
             </ul>
         </div>
         <div class="itme-box">
@@ -163,11 +163,14 @@
             };
             document.querySelector('#add-phoneimg').onclick = function () {
                 var title_text = $('#title_text').val();
+                //alert(title_text);
                 if (title_text == null) {
-                    alert('请输入标题!')
+                    //alert('请输入标题!')
                     return;
                 }
+
                 wx.chooseImage({
+                    count: 1,
                     success: function (res) {
                         images.localId = res.localIds;
                         if (images.localId.length == 0) {
@@ -230,6 +233,9 @@
 
             code = $('#openid').val();
 
+            //称谓
+            sextype = $('#sextype').find('.current').attr('typeid');
+
             var Inputs = $('.itme dd').find('input');
 
             $.each(Inputs, function (i, item) {
@@ -249,13 +255,11 @@
 
             })
 
-            $.post('@Url.Action("ReginPartnerJson","PhoneWeb")', { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: 0, email: Mail, files: imgyulanstr, discrictid: 0 }, function (data, status) {
+            $.post('@Url.Action("ReginPartnerJson","PhoneWeb")', { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: 0, email: Mail, files: imgyulanstr, discrictid: 0, sextype: sextype, money: "" }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         window.location.replace("@Url.Action("Partner","PhoneWeb")");
                     }
-                    //else
-                    //    alert('提交失败!')
                 }
             })
 

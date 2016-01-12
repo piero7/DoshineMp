@@ -98,6 +98,7 @@ namespace DoShineMP.Controllers
             {
                 Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
             }
+
             ViewBag.Title = "个人信息";
             return View();
         }
@@ -331,6 +332,7 @@ namespace DoShineMP.Controllers
             {
                 Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
             }
+            ViewBag.welcome = ConfigurationManager.AppSettings["welcome"];
             ViewBag.Title = "在线客服";
             return View();
         }
@@ -441,7 +443,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns> 
         public ActionResult Supplier(string code)
         {
-            url.urltype = "PersonalCenter";
+            url.urltype = "Supplier";
             try
             {
                 if (!string.IsNullOrEmpty(code))
@@ -495,7 +497,7 @@ namespace DoShineMP.Controllers
         public ActionResult Distributor(string code)
         {
 
-            url.urltype = "PersonalCenter";
+            url.urltype = "Distributor";
             try
             {
                 if (!string.IsNullOrEmpty(code))
@@ -653,15 +655,16 @@ namespace DoShineMP.Controllers
         /// <param name="Address"></param>
         /// <param name="comPhone"></param>
         /// <returns></returns>
-        public JsonResult ReginPartnerJson(string code, string comName, string type, string realName, string Address, string comPhone, int salesmanId, string eamil, string files, int discrictid)
+        public JsonResult ReginPartnerJson(string code, string comName, string type, string realName, string Address, string comPhone, int salesmanId, string eamil, string files, int discrictid, string sextype, string money)
         {
             try
             {
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
+                DoShineMP.Models.Sex s = (DoShineMP.Models.Sex)Enum.Parse(typeof(DoShineMP.Models.Sex), sextype);
 
-                if (salesmanId == 0)
+                if (salesmanId == 0) ///供应商
                 {
-                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, null, eamil, files, null) != null)
+                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, null, eamil, files, null, s, money) != null)
                     {
                         return Json(new { msg = "Y" });
                     }
@@ -673,7 +676,7 @@ namespace DoShineMP.Controllers
                 }
                 else
                 {
-                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
+                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid, s, money) != null)
                     {
                         return Json(new { msg = "Y" });
                     }

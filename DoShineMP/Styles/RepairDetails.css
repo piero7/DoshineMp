@@ -4,287 +4,320 @@
 * @Last Modified by:   晴
 * @Last Modified time: 2016-01-05 15:07:56
 */
-body{
-	font-family: 'Microsoft YaHei','微软雅黑';
-}
-.keep-list{
-	background-color: #ececec;
-}
-.keep-list-in{
-}
-.list-top{
-	padding:20px 15px 20px;
-	background-color: white;
-}
-.keep-list-in .top-title{
-	line-height: 26px;
-	font-size: 14px;
-	color: #a8a8a8;
-	border-bottom:1px solid #ddd;
-}
-.top-content p{
-	min-height:50px;
-	color: #333;
-	font-size: 16px;
-	line-height: 22px;
-	text-indent: 20px;
-	margin-bottom: 20px;
-}
-.list-top .img-content{
-	width:100%;
-	height:100%;
-	text-align: left;
-}
-.img-content img{
-    margin-bottom:5px;
-    height:100px;
-	width: 30%;
-}
-.list-bottom{
-	padding:0px 15px 15px;
-	margin-top:15px;
-    margin-bottom:15px;
-	background-color: white;
-
-}
-.bottom-title{
-	font-size: 16px;
-	color: #797979;
-}
-.bottom-title p{
-	padding:12px 0 0;
-}
-.state{
-	height:80px;
-	position: relative;
-	overflow: hidden;
+body {
+    font-family: 'Microsoft YaHei','微软雅黑';
 }
 
-/* 状态跟踪 圆圈 css*/
-
-
-.state .line{
-	width:100%;
-	position:absolute;
-	top:30px;
-	border-top:2px solid #ccc;
-}
-.state .line-current{
-	width:100%;
-	position:absolute;
-	left:-70%;
-	top:30px;
-	border-top:2px solid #1ec462;
-}
-.state-ul li{
-	position:absolute;
-	top:26px;
-	width:10px;
-	height:10px;
-	background-color: #ccc;
-	border-radius: 50%;
-	z-index: 999;
-}
-.state-ul li.current{
-	background-color:#1ec462;
+.keep-list {
+    background-color: #ececec;
 }
 
-.state-ul li:nth-child(1){
-	left:0;
-}
-.state-ul li:nth-child(2){
-	left:30%;
-}
-.state-ul li:nth-child(3){
-	left:62%;
-}
-.state-time li:nth-child(4){
-	right:0;
-}
-.state-ul li:nth-child(4){
-	width:20px;
-	height:20px;
-	right:0;
-	top:21px;
-	background:url(../Images/wancheng2.jpg) no-repeat;
-	background-size:cover;
-	-webkit-background-size:cover;
+.keep-list-in {
 }
 
-.state span{
-	float: left;
-	width:25%;
-	height:20px;
-	line-height: 20px;
-	text-align: center;
+.list-top {
+    padding: 20px 15px 20px;
+    background-color: white;
+}
+
+.keep-list-in .top-title {
+    line-height: 26px;
+    font-size: 14px;
+    color: #a8a8a8;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-content p {
+    min-height: 50px;
+    color: #333;
+    font-size: 16px;
+    line-height: 22px;
+    text-indent: 20px;
+    margin-bottom: 20px;
+}
+
+.list-top .img-content {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
+
+.img-content img {
+    margin-bottom: 5px;
+    height: 100px;
+    width: 30%;
+}
+
+.list-bottom {
+    padding: 0px 15px 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.bottom-title {
+    font-size: 16px;
+    color: #797979;
+}
+
+    .bottom-title p {
+        padding: 12px 0 0;
+    }
+
+.state {
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* 状态跟踪 圆圈 css*/
+
+
+    .state .line {
+        width: 100%;
+        position: absolute;
+        top: 30px;
+        border-top: 2px solid #ccc;
+    }
+
+    .state .line-current {
+        width: 100%;
+        position: absolute;
+        left: -70%;
+        top: 30px;
+        border-top: 2px solid #1ec462;
+    }
+
+.state-ul li {
+    position: absolute;
+    top: 26px;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+    .state-ul li.current {
+        background-color: #1ec462;
+    }
+
+    .state-ul li:nth-child(1) {
+        left: 0;
+    }
+
+    .state-ul li:nth-child(2) {
+        left: 30%;
+    }
+
+    .state-ul li:nth-child(3) {
+        left: 62%;
+    }
+
+.state-time li:nth-child(4) {
+    right: 0;
+}
+
+.state-ul li:nth-child(4) {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: 21px;
+    background: url(../Images/wancheng2.jpg) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.state span {
+    float: left;
+    width: 25%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
 }
 
 
 /* 状态跟踪 文字 css*/
 
 
-.state-time li{
-	position:absolute;
-	top:55px;
-	z-index: 999;
-	color:#a8a8a8;
-	font-size:16px;
-}
-.state-time li:nth-child(1){
-	left:1%;
-}
-.state-time li:nth-child(2){
-	left:28%;
-}
-.state-time li:nth-child(3){
-	left:58%;
-}
-.state-time li:nth-child(4){
-	right:4%;
-}
-.state-time li.current{
-	color:#1ec462;
+.state-time li {
+    position: absolute;
+    top: 55px;
+    z-index: 999;
+    color: #a8a8a8;
+    font-size: 16px;
 }
 
-.state-ul li.current:nth-child(4){
-	width:20px;
-	height:20px;
-	right:0;
-	top:21px;
-	background:url(../Images/wancheng.jpg) no-repeat;
-	background-size:cover;
-	-webkit-background-size:cover;
+    .state-time li:nth-child(1) {
+        left: 1%;
+    }
+
+    .state-time li:nth-child(2) {
+        left: 28%;
+    }
+
+    .state-time li:nth-child(3) {
+        left: 58%;
+    }
+
+    .state-time li:nth-child(4) {
+        right: 4%;
+    }
+
+    .state-time li.current {
+        color: #1ec462;
+    }
+
+.state-ul li.current:nth-child(4) {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: 21px;
+    background: url(../Images/wancheng.jpg) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
 }
 
 
 /*状态跟踪  横条状态*/
 
-.state .left-one{
-	left:-38%;
+.state .left-one {
+    left: -38%;
 }
-.state .left-two{
-	left:0;
+
+.state .left-two {
+    left: 0;
 }
 
 
 /*back*/
-.back{
-	background-color:#fff;
-	padding:0 15px;
-    padding-bottom:20px;
+.back {
+    background-color: #fff;
+    padding: 0 15px;
+    padding-bottom: 20px;
 }
-.back-title{
-	font-size: 16px;
-	color:#797979;
-	padding:15px 0 5px;
-}
-.back-title p{
-	margin-bottom:0;
-	color: #797979;
-	border-top:1px solid #ddd;
-	margin-top:25px;
-	padding-top:20px;
 
+.back-title {
+    font-size: 16px;
+    color: #797979;
+    padding: 15px 0 5px;
 }
-.back-content{
-	padding:20px 0;
-	color: #a8a8a8;
+
+    .back-title p {
+        margin-bottom: 0;
+        color: #797979;
+        border-top: 1px solid #ddd;
+        margin-top: 25px;
+        padding-top: 20px;
+    }
+
+.back-content {
+    padding: 20px 0;
+    color: #a8a8a8;
 }
-.state-in{
-	width:90%;
-	height:80px;
-	margin:0px auto;
-	overflow: hidden;
-	position: relative;
+
+.state-in {
+    width: 90%;
+    height: 80px;
+    margin: 0px auto;
+    overflow: hidden;
+    position: relative;
 }
-.back-content span{
-	color: #1ec462;
+
+.back-content span {
+    color: #1ec462;
 }
 
 
 /*表单 css*/
 
-.keep-content-t{
-	background-color: white;
-	padding:0 15px;
-}
-.keep-title{
-	font-size: 30px;
-	color:block;
-	width:100%;
-	padding-bottom: 20px;
-	text-align: center;
+.keep-content-t {
+    background-color: white;
+    padding: 0 15px;
 }
 
-.keep-textarea textarea{
-	width: 100%;
-	height:100px;
-	padding:5px;
-	background-color: white;
-	border-color:#bdbdbd;
-	resize:none;
-	border:0;
-	font-size:14px;
+.keep-title {
+    font-size: 30px;
+    color: block;
+    width: 100%;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.keep-textarea textarea {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    background-color: white;
+    border-color: #bdbdbd;
+    resize: none;
+    border: 0;
+    font-size: 14px;
     background: white;
-    border:1px dashed #ddd;
+    border: 1px dashed #ddd;
 }
-.operate{
-	padding-top:10px;
-	padding-bottom: 30px;
-	/*display: table;*/
+
+.operate {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    /*display: table;*/
 }
-.operate input{
-	margin-top:15px;
-	border-radius:5px;
-	outline: none;
-	border:0;
+
+    .operate input {
+        margin-top: 15px;
+        border-radius: 5px;
+        outline: none;
+        border: 0;
+    }
+
+.br {
+    display: block;
+    border-top: 1px solid #d1d1d1;
 }
-.br{
-	display: block;
-	border-top:1px solid #d1d1d1;
-}
+
 .commit,
-.DateTime{
-	width: 100%;
-	display: block;
-	font-size: 16px;
-	text-align: center;
-	line-height:38px;
-	/*display: table-cell;*/
-	color:white; 
-	background-color: #4ca329;
-}
-.operate .countermand{
-	border:1px solid #bdbdbd;
-	background: white;
+.DateTime {
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    line-height: 38px;
+    /*display: table-cell;*/
+    color: white;
+    background-color: #4ca329;
 }
 
-
-
-
-.content{
-	padding:40px 15px 0px;
-	background-color: white;
-	overflow: hidden;
-	
-}
-.demos{
-	height:30px;
-    padding:0 15px;
-    text-align:center;
+.operate .countermand {
+    border: 1px solid #bdbdbd;
+    background: white;
 }
 
-.demos input{
-    margin：0 auto;
-	height:100%;
-	text-align:center;
-	border:0;
-	font-size: 16px;
-	color: #4ca329;
 
+
+
+.content {
+    padding: 40px 15px 0px;
+    background-color: white;
+    overflow: hidden;
 }
+
+.demos {
+    height: 30px;
+    padding: 0 15px;
+    text-align: center;
+}
+
+    .demos input {
+        margin：0 auto;
+        height: 100%;
+        text-align: center;
+        border: 0;
+        font-size: 16px;
+        color: #4ca329;
+    }
+
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: orange;  
+    color: orange;
 }
 
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
@@ -298,83 +331,99 @@ textarea:-ms-input-placeholder {
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-    color:orange;
+    color: orange;
 }
 
-.keep-textarea{
+.keep-textarea {
     padding: 0px 15px 0 15px;
-	text-align: center;
+    text-align: center;
 }
-.marginB{
-	padding-top:30px;
+
+.marginB {
+    padding-top: 30px;
 }
 
 /* informant css*/
-.informant{
-	margin:15px 0;
-	padding:13px 15px;
-	background-color:#fff;
+.informant {
+    margin: 15px 0;
+    padding: 13px 15px;
+    background-color: #fff;
 }
-.informant p{
-	margin:0;
-	line-height: 24px;
-	color:#a8a8a8;
-}
-.informant p a{
-	color: #5bc084;
-	margin-left:10px;
-}
+
+    .informant p {
+        margin: 0;
+        line-height: 24px;
+        color: #a8a8a8;
+    }
+
+        .informant p a {
+            color: #5bc084;
+        }
 
 .choose {
-    width:100%;
-    background-color:white;
-    padding:0 15px 30px;.list-bottom
+    width: 100%;
+    background-color: white;
+    padding: 0 15px 30px;
+    .list-bottom;
 }
-.service{
-    overflow:hidden;
-    padding-bottom:15px;
-    border-bottom:1px solid #ddd;
-}
-.service li{
-    float:left;
-    padding:5px 10px;
-    background-color:white;
-    color:#333;
-    border:1px solid #1ec462;
-    border-radius:15px;
-    margin-right:5px;
-    transition:all .6s linear 0s;
-    -webkit-transition:all .6s linear 0s;
 
+.service {
+    overflow: hidden;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
 }
-.choose h4{
-    font-size:16px;
-    padding:12px 0px 15px 0px ;
-    color:#797979;
+
+    .service li {
+        float: left;
+        padding: 5px 10px;
+        background-color: white;
+        color: #333;
+        border: 1px solid #1ec462;
+        border-radius: 15px;
+        margin-right: 5px;
+        transition: all .6s linear 0s;
+        -webkit-transition: all .6s linear 0s;
+    }
+
+.choose h4 {
+    font-size: 16px;
+    padding: 12px 0px 15px 0px;
+    color: #797979;
 }
-.choose-title .choose-input{
-    width:100%;
-    padding-top:10px;
-    min-height:95px;
-    border:0;
+
+.choose-title .choose-input {
+    width: 100%;
+    padding-top: 10px;
+    min-height: 95px;
+    border: 0;
 }
-.service li.current{
-    background-color:#1ec462;
-    color:white;
+
+.service li.current {
+    background-color: #1ec462;
+    color: white;
 }
+
 .choose-photo {
-    overflow:hidden;
+    overflow: hidden;
 }
-.choose-photo img{
-    width:50px;
-    height:50px;
-   float：left;
-   margin-right:5px;
-   margin-top:5px;
-}
+
+    .choose-photo img {
+        width: 31%;
+        height: 100px;
+        float:left;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
 .add-photo {
     width: 60px;
     height: 60px;
     border: 1px dashed #ccc;
-    margin-right:0px;
+    margin-right: 0px;
+}
+.content-title-b .check5{
+	background:url(../Images/quxiao.png) no-repeat 0 0px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #f1514e;
 }

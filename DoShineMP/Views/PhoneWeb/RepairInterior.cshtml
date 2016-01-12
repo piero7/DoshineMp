@@ -143,7 +143,7 @@
                         <li id="@r.RepairId">
                             <div class="content-title-t">
                                 <!-- <div class="pull-left logo"></div> -->
-                                @if (r.Image == null)
+                                @if (r.ImageFiles.Count == 0)
                                 {
                                     <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                         <p class="wr-content">@r.Contenet</p>
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="pull-right w2">
                                         <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.Image.FileName" class="imgyulan" />
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
                                         </div>
                                     </div>
                                 }
@@ -359,7 +359,7 @@
 
         $('.hd li').tap(function () {
             IndexLi = $(this).index();
-            tab(IndexLi);
+            //tab(IndexLi);
         });
 
 
@@ -368,7 +368,7 @@
             if (IndexLi < tabnumber - 1) {
                 IndexLi++;
                 //TouchSlide({ defaultIndex: IndexLi});
-                tab(IndexLi);
+                //tab(IndexLi);
             }
 
         })
@@ -384,7 +384,7 @@
             if (IndexLi > 0) {
                 IndexLi--;
                 console.log(IndexLi)
-                tab(IndexLi);
+                //tab(IndexLi);
                 //TouchSlide({defaultIndex: IndexLi });
             }
         })

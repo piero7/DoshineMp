@@ -15,8 +15,8 @@
     <div class="inviteDown">
         <div class="itme">
             <h2 class="itme-Title">我能提供的加盟资金</h2>
-            <ul class="itme-select">
-                <li class="">500~1000元</li>
+            <ul class="itme-select" id="moneyselect">
+                <li>500~1000元</li>
                 <li>2000~5000元</li>
                 <li class="current">10000~30000元</li>
                 <li>50000元以上</li>
@@ -193,6 +193,7 @@
                     return;
                 }
                 wx.chooseImage({
+                    count:1,
                     success: function (res) {
                         images.localId = res.localIds;
                         if (images.localId.length == 0) {
@@ -243,6 +244,7 @@
 
             //加盟资金
             Fund = $('.itme-select li.current').text();
+
             //加盟区域
             Jion = $('#Districtid').val();
             //名字
@@ -282,13 +284,12 @@
 
             })
 
-            $.post('@Url.Action("ReginPartnerJson", "PhoneWeb")', { code: code, comName: '', type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: Behaif, email: Mail, files: imgyulanstr, discrictid: Jion }, function (data, status) {
+            $.post('@Url.Action("ReginPartnerJson", "PhoneWeb")', { code: code, comName: '', type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: Behaif, email: Mail, files: imgyulanstr, discrictid: Jion, sextype: 'Man', money: Fund }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         window.location.replace("@Url.Action("Partner","PhoneWeb")");
                     }
-                    else
-                        alert('提交失败!')
+                  
                 }
             })
         })

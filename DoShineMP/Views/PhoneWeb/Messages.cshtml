@@ -8,7 +8,7 @@
 
 <div id="bk"></div>
 <div class="col-xs-12" id="bodycontent">
-    <div class="jumbotron" id="messages">
+    <div class="jumbotron" id="messages" style="padding-bottom:60px;" >
     </div>
 </div>
 
@@ -23,6 +23,7 @@
 <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
 <input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
 <input type="hidden" id="openid" value="@ViewBag.user.OpenId" />
+<input type="hidden" id="welcome" value="@ViewBag.welcome" />
 
 @section scripts{
     <script src="~/Scripts/Models.js"></script>
@@ -60,9 +61,24 @@
                     var dat = new Date();
                     var str = '<div id="alertmess" class="text-center">'
                              + '<span>Hi,非常高兴为您服务~</span><br/><br/>'
-                             + '<span1>' + (dat.getMonth() + 1) + '-' + dat.getDate() + ' ' + dat.getHours() + ':' + dat.getMinutes() + '</span1>'
+                             + '<span1>' + (dat.getMonth() + 1) + '-' + dat.getDate() + ' ' + (dat.getHours().toString().length < 2 ? '0' + dat.getHours() : dat.getHours()) + ':' + (dat.getMinutes().toString().length < 2 ? '0' + dat.getMinutes() : dat.getMinutes()) + '</span1>'
                              + '</div>';
                     document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+
+                    var str = '<div class="media medialeft">'
+                     + '<div class="media-left">'
+                         + '<a href="#">'
+                         + '<img class="media-object img-circle" src="../../doshinemp/Images/logo.png" alt="...">'
+                         + '</a>'
+                     + '</div>'
+                     + '<div class="media-body">'
+                         + '<div class="mediacontent" style="word-break:break-all">' + document.getElementById('welcome').value + '</div>'
+                     + '</div>'
+                     + '</div>';
+
+                    var html = document.getElementById("messages").innerHTML + str;
+                    document.getElementById("messages").innerHTML = html;
+
                 };
 
                 socket.onmessage = function (msg) {
