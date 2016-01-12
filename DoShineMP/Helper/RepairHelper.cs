@@ -248,7 +248,8 @@ namespace DoShineMP.Helper
             rep.FinishHandlendDate = DateTime.Now;
             rep.FinishType = type;
             db.SaveChanges();
-            WechatImageHelper.AddNewImageForHandleRepair(rep.RepairId, mediaIdList);
+           var  cl =  WechatImageHelper.AddNewImageForHandleRepair(rep.RepairId, mediaIdList).ToList();
+            cl.Clear();
             return rep;
         }
 

@@ -281,10 +281,10 @@
                 });
             })
 
-            var indexli = GetQueryString('IndexLi');
-            IndexLi = (indexli != '' && indexli != null) ? (window.localStorage['IndexLi'] == 0 ? indexli : window.localStorage['IndexLi']) : 0;
+            var indexli = GetQueryString('IndexLi1');
+            IndexLi = (indexli == window.localStorage['IndexLi1']) ? indexli : window.localStorage['IndexLi1'];
             TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
-            console.log(IndexLi)
+            //console.log(IndexLi)
             tab(IndexLi);
         })
 
@@ -364,17 +364,11 @@
 
         })
         console.log('初始化' + IndexLi)
-        function repairid(e) {
-            window.localStorage['IndexLi'] = IndexLi;
-            window.history.replaceState(null, null, '?IndexLi=0');
-            window.location.href = '@Url.Action("RepairDetailsInterior", "PhoneWeb")?repairid=' + e + '&IndexLi=' + IndexLi;
-        }
-
         $(window).swipeRight(function () {
             if (IndexLi > 0) {
                 IndexLi--;
                 tab(IndexLi)
-                console.log('之前' + IndexLi);
+                //console.log('之前' + IndexLi);
                 //TouchSlide({defaultIndex: IndexLi });
             }
         })
@@ -406,44 +400,17 @@
         }
 
 
-        //var Px = null, Py = null, Py = null, MPy = null, MPy = null, left = null, right = null, top = null, bottom = null, leftDown = null,rightDown=null,leftUp=null,rightUp=null;
-
-        //document.addEventListener('touchstart', starthanlder);
-        //document.addEventListener('touchmove', movehanlder);
-        //function starthanlder(evt) {
-        //    Px = evt.touches[0].pageX;
-        //    Py = evt.touches[0].pageY;
-        //    this.body.innerHTML = 'px:' + Px + 'py：' + Py
-        //    console.log(this)
-        //}
-        //function movehanlder(evt) {
-        //    console.log(1)
-        //    MPx = evt.touches[0].pageX;
-        //    MPy = evt.touches[0].pageY;
-        //    left = Px - MPx > 50 ? 1 : left;
-        //    right = Px - MPx > 50 ? right : 2;
-        //    top = Py - MPy > 50 ? 3 : top;
-        //    bottom = Py - MPy > 50 ? bottom : 4;
-        //    leftDown = Px - MPx > 50 && Py - MPy > 50;
-        //    //rightDown =
-
-        //    switch(n)
-        //    {
-        //        case 1:;
-        //            break;
-
-        //        case 2:;
-        //            break;
-
-        //        default:
-        //    }
-        //    this.body.innerHTML = 'px:' + Px + 'py:'+Py
-        //}
-
         function repairid(e) {
             var repairid = $(this).attr('tagid');
+            window.localStorage['IndexLi1'] = IndexLi;
+            window.history.replaceState(null, null, '?IndexLi1=' + window.localStorage['IndexLi1'] + '&openid=' + GetQueryString('openid'));
             var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
             window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
+
+
+
+
+
         }
 
     </script>

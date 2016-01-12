@@ -144,7 +144,7 @@ namespace DoShineMP.Models
                 var tmpArr = this.FinishImageFilesStr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var id in tmpArr)
                 {
-                    var file = db.ImageFileSet.FirstOrDefault(item => item.ImageFileId == Convert.ToInt32(id));
+                    var file = db.ImageFileSet.FirstOrDefault(item => item.ImageFileId.ToString() ==id);
                     if (file != null)
                     {
                         ret.Add(file);

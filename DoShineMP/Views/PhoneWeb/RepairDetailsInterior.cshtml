@@ -11,36 +11,31 @@
     <link href="~/Styles/star-rating.css" rel="stylesheet" />
     <style>
         .android-ics.light .dwbc {
-                background-color: #4bc1cd;
+            background-color: #4bc1cd;
         }
 
-       :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #cdcdcd;  
-}
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #cdcdcd;
+        }
 
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #cdcdcd;
-}
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #cdcdcd;
+        }
 
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-    color: #cdcdcd;
-}
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            color: #cdcdcd;
+        }
 
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    color: #cdcdcd;
-}
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            color: #cdcdcd;
+        }
     </style>
 }
 <div class="keep-list">
     <div class="keep-list-in">
         <div class="list-top">
-            @*<div class="top-title">
-                    <span>报修日期：</span>
-                    <em>@ViewBag.RepairDetail.CreateDate</em>
-                </div>*@
-
             <div class="top-content">
                 <p>@ViewBag.RepairDetail.Contenet</p>
                 @if (ViewBag.RepairDetail.ImageFiles != null)
@@ -88,6 +83,37 @@ textarea::-webkit-input-placeholder {
                 </div>
             </div>
         }
+
+        @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle || ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
+        {
+            <div class="choose ">
+                <h4></h4>
+                <ul class="service" id="RepairFinishTypeid">
+                    @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
+                    {
+                        <li class="current" typeid="Fixed">已修复</li>
+                    }
+                    else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
+                    {
+                        <li class="current" typeid="Unfixed">未修复</li>
+                    }
+                    else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
+                    {
+                        <li class="current" typeid="OutOfRange">不属于维保范围</li>
+                    }
+                </ul>
+                <div class="choose-title">
+                    <textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe" disabled style="background-color:white;"></textarea>
+                    <div class="choose-photo" id="choose-photo">
+                        @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
+                        {
+                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
         <div class="list-bottom" style="background-color:white;">
             <div class="bottom-title">
                 <p>状态跟踪</p>
@@ -95,103 +121,84 @@ textarea::-webkit-input-placeholder {
             <div class="state">
 
                 @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Apply)
-            {
-                    <div class="state-in">
-                        <ul class="state-ul">
-                            <li class="current"></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                        <span class="line"></span>
-                        <span class="line-current"></span>
-                    </div>
-                    <ul class="state-time">
-                        <li class="current">提交</li>
-                        <li>受理</li>
-                        <li>确认</li>
-                        <li>完成</li>
+                {
+                <div class="state-in">
+                    <ul class="state-ul">
+                        <li class="current"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
                     </ul>
+                    <span class="line"></span>
+                    <span class="line-current"></span>
+                </div>
+                <ul class="state-time">
+                    <li class="current">提交</li>
+                    <li>受理</li>
+                    <li>确认</li>
+                    <li>完成</li>
+                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
                 {
-                    <div class="state-in">
-                        <ul class="state-ul">
-                            <li class="current"></li>
-                            <li class="current"></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                        <span class="line"></span>
-                        <span class="line-current left-one"></span>
-                    </div>
-                    <ul class="state-time">
-                        <li class="current">提交</li>
-                        <li class="current">受理</li>
-                        <li>确认</li>
-                        <li>完成</li>
+                <div class="state-in">
+                    <ul class="state-ul">
+                        <li class="current"></li>
+                        <li class="current"></li>
+                        <li></li>
+                        <li></li>
                     </ul>
+                    <span class="line"></span>
+                    <span class="line-current left-one"></span>
+                </div>
+                <ul class="state-time">
+                    <li class="current">提交</li>
+                    <li class="current">受理</li>
+                    <li>确认</li>
+                    <li>完成</li>
+                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
                 {
-                    <div class="state-in">
-                        <ul class="state-ul">
-                            <li class="current"></li>
-                            <li class="current"></li>
-                            <li class="current"></li>
-                            <li></li>
-                        </ul>
-                        <span class="line"></span>
-                        <span class="line-current left-two"></span>
-                    </div>
-                    <ul class="state-time">
-                        <li class="current">提交</li>
-                        <li class="current">受理</li>
-                        <li class="current">确认</li>
-                        <li>完成</li>
+                <div class="state-in">
+                    <ul class="state-ul">
+                        <li class="current"></li>
+                        <li class="current"></li>
+                        <li class="current"></li>
+                        <li></li>
                     </ul>
+                    <span class="line"></span>
+                    <span class="line-current left-two"></span>
+                </div>
+                <ul class="state-time">
+                    <li class="current">提交</li>
+                    <li class="current">受理</li>
+                    <li class="current">确认</li>
+                    <li>完成</li>
+                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
                 {
-                    <div class="state-in">
-                        <ul class="state-ul">
-                            <li class="current"></li>
-                            <li class="current"></li>
-                            <li class="current"></li>
-                            <li class="current"></li>
-                        </ul>
-                        <span class="line"></span>
-                        <span class="line-current left-two"></span>
-                    </div>
-                    <ul class="state-time">
-                        <li class="current">提交</li>
-                        <li class="current">受理</li>
-                        <li class="current">确认</li>
-                        <li class="current">完成</li>
+                <div class="state-in">
+                    <ul class="state-ul">
+                        <li class="current"></li>
+                        <li class="current"></li>
+                        <li class="current"></li>
+                        <li class="current"></li>
                     </ul>
+                    <span class="line"></span>
+                    <span class="line-current left-two"></span>
+                </div>
+                <ul class="state-time">
+                    <li class="current">提交</li>
+                    <li class="current">受理</li>
+                    <li class="current">确认</li>
+                    <li class="current">完成</li>
+                </ul>
                 }
 
             </div>
         </div>
-
-        <div class="choose ">
-           <h4>请选择处理状态:</h4>
-            <ul class="service">
-                <li class="current">已修复</li>
-                <li>未修复</li>
-                <li>不属于维保范围</li>
-            </ul>
-            <div class="choose-title">
-                <textarea class="choose-input" placeholder="请描述现场处理概况..."></textarea>
-                <div class="choose-photo">
-                    <img src="~/Images/logo.png" />
-                    <img src="~/Images/logo.png" />
-                    <img src="~/Images/logo.png" />
-                    <img src="~/Images/tianjia2x.png" class="add-photo">
-                </div>
-            </div>
-        </div>
-
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {
@@ -214,7 +221,7 @@ textarea::-webkit-input-placeholder {
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
                     <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
                     @*取消按钮*@
-                    <input type="button" class="commit pull-right" id="applybtn" tag="2" value="取消">
+                    <input type="button" class="commit pull-right" id="applybtn1" value="取消" style="background-color:#dedede">
                 </div>
 
             </div>
@@ -224,9 +231,9 @@ textarea::-webkit-input-placeholder {
             <div class="col-xs-12 operate ">
                 <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成">
                 @*取消按钮*@
-                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="取消" style="background-color:#dedede">
+                <input type="button" class="commit pull-right" id="applybtn1" value="取消" style="background-color:#dedede">
             </div>
-            
+
         }
     </div>
 </div>
@@ -363,10 +370,6 @@ textarea::-webkit-input-placeholder {
             });
         })
 
-
-
-
-
         $(document).on('click', '.imgyulan', function () {
             var imgurl = $(this).attr('src');
             //alert(imgurl)
@@ -401,14 +404,14 @@ textarea::-webkit-input-placeholder {
 
 
             if (type == '1') {
-            $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
-                if (status === 'success') {
-                    if (data.msg != 'N') {
-                        window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
-                        window.history.go(-1);
+                $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
+                    if (status === 'success') {
+                        if (data.msg != 'N') {
+                            window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
+                            window.history.go(-1);
+                        }
                     }
-                }
-            })
+                })
             } else if (type == '2') {
                 $.post('@Url.Action("RepairDetailWJson", "PhoneWeb")', { repaidID: repaidID, serviceid: serviceid, describe: describe, type: RepairFinishTypeid }, function (data, status) {
                     if (status === 'success') {
@@ -422,7 +425,7 @@ textarea::-webkit-input-placeholder {
 
         })
 
-        
+
 
         function GetQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -502,9 +505,18 @@ textarea::-webkit-input-placeholder {
 
         // 处理状态js
         $('.service li').click(function () {
-               $(this).addClass('current').siblings().removeClass('current')
+            $(this).addClass('current').siblings().removeClass('current')
         })
 
+        ///取消
+        $('#applybtn1').click(function () {
+            $.post('@Url.Action("CancelJson","PhoneWeb")', { repairID: GetQueryString('repairid'), reason: "" }, function (data, status) {
+                if (data.msg != 'N') {
+                    window.localStorage['IndexLi'] = 3;
+                    window.history.go(-1);
+                }
+            })
+        })
     </script>
 
 

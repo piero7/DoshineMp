@@ -456,10 +456,18 @@ namespace DoShineMP.Controllers
                         }
                         else
                         {
-                            ViewBag.user = user;
-                            ViewBag.parnter = partner.GetPartnerInfo(openid);
-                            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
-                            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+                            if (partner.GetPartnerInfo(this.openid) == null)
+                            {
+                                ViewBag.user = user;
+                                ViewBag.parnter = partner.GetPartnerInfo(openid);
+                                ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+                                ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+                            }
+                            else
+                            {
+                                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Partner", ""));
+                            }
+
                         }
                     }
                     else
@@ -502,10 +510,17 @@ namespace DoShineMP.Controllers
                         }
                         else
                         {
-                            ViewBag.user = user;
-                            ViewBag.parnter = partner.GetPartnerInfo(openid);
-                            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
-                            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+                            if (partner.GetPartnerInfo(this.openid) == null)
+                            {
+                                ViewBag.user = user;
+                                ViewBag.parnter = partner.GetPartnerInfo(openid);
+                                ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+                                ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+                            }
+                            else
+                            {
+                                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Partner", ""));
+                            }
 
                         }
                     }
@@ -757,7 +772,7 @@ namespace DoShineMP.Controllers
         {
             try
             {
-                if (repairHelper.Response(repairID, response, score) != null)
+                if (repairHelper.Response(repairID, response == null ? "" : response, score) != null)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -810,7 +825,7 @@ namespace DoShineMP.Controllers
         /// <param name="describe"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public JsonResult RepairDetailWJson(int repaidID,string serviceid, string describe,string type)
+        public JsonResult RepairDetailWJson(int repaidID, string serviceid, string describe, string type)
         {
             string msg = "Y";
             try
@@ -819,7 +834,7 @@ namespace DoShineMP.Controllers
                 DoShineMP.Models.RepairFinishType t = (DoShineMP.Models.RepairFinishType)Enum.Parse(typeof(DoShineMP.Models.RepairFinishType), type);
                 List<string> s = new List<string>();
                 var sss = serviceid.Split(',');
-                foreach(var i in sss)
+                foreach (var i in sss)
                 {
                     s.Add(i);
                 }
@@ -827,12 +842,34 @@ namespace DoShineMP.Controllers
 
                 return Json(new { msg = msg });
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return Json(new { msg = msg });
             }
         }
 
+
+        /// <summary>
+        /// 取消
+        /// </summary>
+        /// <param name="repairID"></param>
+        /// <param name="reson"></param>
+        /// <returns></returns>
+        public JsonResult CancelJson(int repairID, string reason)
+        {
+            string msg = "Y";
+            try
+            {
+                repairHelper.Cancel(repairID, reason);
+
+                return Json(new { msg = msg });
+            }
+            catch (Exception e)
+            {
+                msg = "N";
+                return Json(new { msg = msg });
+            }
+        }
 
         #endregion
 
