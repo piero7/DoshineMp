@@ -108,6 +108,8 @@
 </div>
 
 
+<input type="hidden" name="name" id="openid" value="olQmIjjUTPHrAAAQc0aeJ5LRM3qw" />
+
 
 
 
@@ -279,9 +281,10 @@
         })
 
         //  submit js
-        var Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit, ImgSrc = [];
+        var ytpe, code, Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit, ImgSrc = [];
 
         $('.submit-btn').tap(function () {
+            code = $('#openid').val();
             Fund = $('.itme-select li.current').text();
             Jion = $('.select-val').val();
             Name = $('.Name').val();
@@ -302,16 +305,13 @@
                     console.log(document.body.scrollTop = item.offsetTop)
                 }
             })
-
-
-            
-            
+            type = 'Dealer';
 
 
 
 
 
-            $.post(url, { code: code, comName: comName, type: type, realName: Name, Address: comAddress, comPhone: Tel, email: Mail, files }, function (data, status) {
+            $.post(url, { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, email: Mail,  }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         window.location.href = "@Url.Action("Partner","PhoneWeb")";
