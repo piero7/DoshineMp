@@ -435,7 +435,8 @@ namespace DoShineMP.Controllers
         /// <returns></returns> 
         public ActionResult Supplier()
         {
-            //ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
             return View();
         }
 
@@ -445,8 +446,8 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Distributor()
         {
-            //ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
-
+            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
 
             return View();
         }
@@ -568,17 +569,34 @@ namespace DoShineMP.Controllers
             {
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
-
-                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
+                if (salesmanId == 0)
                 {
-                    return Json(new { msg = "Y" });
+                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, null, eamil, files, null) != null)
+                    {
+                        return Json(new { msg = "Y" });
+                    }
+                    else
+                    {
+                        return Json(new { msg = "N" });
+                    }
+
                 }
                 else
                 {
-                    return Json(new { msg = "N" });
+                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
+                    {
+                        return Json(new { msg = "Y" });
+                    }
+                    else
+                    {
+                        return Json(new { msg = "N" });
+                    }
                 }
+
+
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return Json(new { msg = "N" });
             }
@@ -629,7 +647,7 @@ namespace DoShineMP.Controllers
         /// <param name="code"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public JsonResult RepairJson(string code, string content, string mediaid, string address)
+        public JsonResult RepairJson(string code, string content, string mediaid, string address, string phone, int villageid, string name)
         {
             try
             {
@@ -638,7 +656,7 @@ namespace DoShineMP.Controllers
                 wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
 
                 //TODO: 现在的文件为mediaid的列表，用逗号分割！
-                if (repairHelper.Add(code, content, mediaid) != null)
+                if (repairHelper.Add(code, content, mediaid, phone, villageid, name) != null)
                 {
                     return Json(repairHelper.GetHistoryRepair(code));
                 }

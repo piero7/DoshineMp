@@ -16,9 +16,9 @@
         <div class="itme">
             <h2 class="itme-Title">我能提供的加盟资金</h2>
             <ul class="itme-select">
-                <li class="">500-1000元</li>
-                <li>2000-5000元</li>
-                <li class="current">10000-30000元</li>
+                <li class="">500~1000元</li>
+                <li>2000~5000元</li>
+                <li class="current">10000~30000元</li>
                 <li>50000元以上</li>
             </ul>
         </div>
@@ -26,13 +26,15 @@
             <dl class="itme">
                 <dt>加盟区域<ins>*</ins></dt>
                 <dd class="tips-select">
-                    <input type="text" class="select-val" placeholder="请选择" disabled="flase" id="Val" >
-                    <span class='jia'></span>
-                    <ul class="select-ul">
-                        <li>11111</li>
-                        <li>2222</li>
-                        <li>3333</li>
-                    </ul>
+                    <select class="form-control" id="Districtid">
+                        @if (ViewBag.AllDistrict != null)
+                        {
+                            foreach (DoShineMP.Models.District d in ViewBag.AllDistrict as List<DoShineMP.Models.District>)
+                            {
+                                <option value="@d.DistrictId">@d.Name</option>
+                            }
+                        }
+                    </select>
                 </dd>
             </dl>
             <dl class="itme">
@@ -62,10 +64,6 @@
                     <p>人请上传本人真实身份证图片，企业单位上传有效期内营业执照并加盖公章。</p>
                     <div class="title-photo">
                         <div class="photo" id="add-phoneimg_photo">
-                            <span>
-                                <p style="text-align:center;">公司营业执照</p>
-                                <img src="~/Images/logo.png" alt="">
-                            </span>
                         </div>
                         <input placeholder="请输入图片标题或描述" class="Corr" id="title_text"></input>
                         <ins class="add-photo"><img src="~/Images/xiangji.png" alt="" id="add-phoneimg"></ins>
@@ -82,17 +80,15 @@
             <dl class="itme">
                 <dt>服务代表<ins>*</ins></dt>
                 <dd class="tips-select2">
-                    <input type="text" class="select-val2" palceholder="请选择" disabled="flase" id="Val1">
-                    <span class='jia2'></span>
-                    <ul class="select-ul2">
-                        @*@if (ViewBag.Salesman != null)
+                    <select id="Val1" class="form-control">
+                        @if (ViewBag.Salesman != null)
+                        {
+                            foreach (DoShineMP.Models.Salesman s in ViewBag.Salesman as List<DoShineMP.Models.Salesman>)
                             {
-                                foreach (DoShineMP.Models.Salesman s in ViewBag.Salesman as List<DoShineMP.Models.Salesman>)
-                                {
-                                    <li salesmanid="@s.SalesmanId">@s.Name</li>
-                                }
-                            }*@
-                    </ul>
+                                <option value="@s.SalesmanId">@s.Name</option>
+                            }
+                        }
+                    </select>
                 </dd>
             </dl>
             <dl class="itme">
@@ -114,9 +110,9 @@
 
 
 @section scripts{
+    <script src="~/Scripts/zepto.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="~/Scripts/zepto.min.js"></script>
     <script type="text/javascript">
 
         var token;
@@ -132,8 +128,6 @@
                 var timestamp = data.timestamp;
                 var nonceStr = data.nonceStr;
                 var signature = data.signature;
-
-
                 wx.config({
                     debug: debug,
                     appId: appId,
@@ -181,9 +175,6 @@
             })
         })
 
-
-
-
         // 微信
         wx.error(function (res) {
             console.log('验证失败');
@@ -196,6 +187,11 @@
                 serverId: []
             };
             document.querySelector('#add-phoneimg').onclick = function () {
+                var title_text = $('#title_text').val();
+                if (title_text == null) {
+                    alert('请输入标题!')
+                    return;
+                }
                 wx.chooseImage({
                     success: function (res) {
                         images.localId = res.localIds;
@@ -209,16 +205,14 @@
                             wx.uploadImage({
                                 localId: images.localId[i],
                                 success: function (res) {
-                                    i++;
                                     //alert('已上传：' + i + '张');
                                     images.serverId.push(res.serverId);
-
-
-                                    $('#title_text').val();
-
-
-                                    $("#serviceid").val(res.serverId);
-                                    document.getElementById('add-phoneimg').src = images.localId[0];
+                                    var str = ' <span>'
+                                            + '<p style="text-align:center;">' + title_text + '</p>'
+                                            + '<img src="' + images.localId[0] + '" serverid="' + title_text + ':' + res.serverId + ';" alt="" class="imgyulan" >'
+                                            + '</span>';
+                                    $('#add-phoneimg_photo').append(str);
+                                    $('#title_text').val('')
                                 },
                                 fail: function (res) {
                                     alert(JSON.stringify(res));
@@ -235,52 +229,7 @@
 
 
 
-
-
-        var key = true;
-        var Child = null;
-        var Height = $('.select-ul li').length * 51;
-        $('.select-val').tap(function (e) {
-            if (key) {
-                $('.select-ul').css({ 'height': Height + 'px' });
-                $('.jia').addClass('current');
-                key = false;
-            } else {
-                $('.select-ul').css({ 'height': '0' });
-                $('.jia').removeClass('current')
-                key = true;
-            }
-        })
-        $('.select-ul li').tap(function () {
-            $('.select-val').val($(this).text());
-            $('.select-ul').css({ 'height': '0' });
-            $('.jia').removeClass('current')
-            key = true;
-        })
-
-        var key2 = true;
-        var Child = null;
-        var Height = $('.select-ul2 li').length * 51;
-        $('.select-val2').tap(function (e) {
-            if (key2) {
-                $('.select-ul2').css({ 'height': Height + 'px' });
-                $('.jia2').addClass('current')
-                key2 = false;
-            } else {
-                $('.select-ul2').css({ 'height': '0' });
-                $('.jia2').removeClass('current')
-                key2 = true;
-            }
-        })
-        $('.select-ul2 li').tap(function () {
-            $('.select-val2').val($(this).text());
-            $('.select-val2').attr('salesmanid', $(this).attr('salesmanid'));
-            $('.select-ul2').css({ 'height': '0' });
-            $('.jia2').removeClass('current')
-            key2 = true;
-        })
-
-        $('.itme-select li').tap(function (e) {
+        $('.itme-select li').click(function (e) {
             $(this).addClass('current').siblings().removeClass('current');
 
         })
@@ -288,11 +237,14 @@
         //  submit js
         var ytpe, code, Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit, ImgSrc = [];
 
-        $('.submit-btn').tap(function () {
+        $('.submit-btn').click(function () {
+
+            code = $('#openid').val();
+
             //加盟资金
             Fund = $('.itme-select li.current').text();
             //加盟区域
-            Jion = $('.select-val').val();
+            Jion = $('#Districtid').val();
             //名字
             Name = $('.Name').val();
             //手机号
@@ -304,7 +256,7 @@
             //地址
             Site = $('.Site').val();
             //服务代表
-            Behaif = $('.select-val2').val();
+            Behaif = $('#Val1').val();
             //备注
             Commit = $('.conmmit').val();
             //相关资质图片路径
@@ -312,6 +264,7 @@
             $.each(ImgSrcLen, function (i, item) {
                 ImgSrc[i] = item.src
             })
+
             var Inputs = $('.itme dd').find('input');
             $.each(Inputs, function (i, item) {
                 if (Inputs[i].value == '' || Inputs[i].value == null) {
@@ -319,22 +272,42 @@
                     console.log(document.body.scrollTop = item.offsetTop)
                 }
             })
+
             type = 'Dealer';
 
+            imgyulan = document.getElementsByClassName('imgyulan');
+            var imgyulanstr = '';
+            $.each(imgyulan, function (i, item) {
+                imgyulanstr += item.getAttribute('serverid');
 
+            })
 
-
-
-            $.post(url, { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, email: Mail, }, function (data, status) {
+            $.post('@Url.Action("ReginPartnerJson", "PhoneWeb")', { code: code, comName: Name, type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: Behaif, email: Mail, files: imgyulanstr, discrictid: Jion }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
-                        window.location.href = "@Url.Action("Partner","PhoneWeb")";
+                        window.location.replace("@Url.Action("Partner","PhoneWeb")");
                     }
                     else
                         alert('提交失败!')
                 }
             })
         })
+
+
+
+        $(document).on('click', '.imgyulan', function () {
+            var imgurl = $(this).attr('src');
+            //alert(imgurl)
+            wx.previewImage({
+                current: imgurl,
+                urls: [
+                 imgurl
+                ]
+            });
+        })
+
+
+
     </script>
 
 }
