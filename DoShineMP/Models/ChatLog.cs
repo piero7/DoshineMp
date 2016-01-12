@@ -82,7 +82,7 @@ namespace DoShineMP.Models
                     this.UserInfo = "";
                 }
 
-                if (value != this.UserInfoDic)
+                else if (value != this.UserInfoDic)
                 {
                     var res = "";
                     foreach (var item in value)
