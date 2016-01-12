@@ -64,24 +64,7 @@ textarea::-webkit-input-placeholder {
             <p>报修日期：@ViewBag.RepairDetail.CreateDate</p>
             <p>地址：@ViewBag.RepairDetail.User.Address</p>
         </div>
-        <div class="choose ">
-           <h4>请选择处理状态:</h4>
-            <ul class="service">
-                <li class="current">已修复</li>
-                <li>未修复</li>
-                <li>不属于维保范围</li>
-            </ul>
-            <div class="choose-title">
-                <textarea class="choose-input" placeholder="请描述现场处理概况..."></textarea>
-                <div class="choose-photo">
-                    <img src="~/Images/logo.png" />
-                    <img src="~/Images/logo.png" />
-                    <img src="~/Images/logo.png" />
-                    <img src="~/Images/tianjia2x.png" class="add-photo">
-                </div>
-            </div>
-        </div>
-        <div class="list-bottom" style="background-color:white;">
+         <div class="list-bottom" style="background-color:white;">
             <div class="bottom-title">
                 <p>状态跟踪</p>
             </div>
@@ -166,6 +149,25 @@ textarea::-webkit-input-placeholder {
 
             </div>
         </div>
+
+        <div class="choose ">
+           <h4>请选择处理状态:</h4>
+            <ul class="service">
+                <li class="current">已修复</li>
+                <li>未修复</li>
+                <li>不属于维保范围</li>
+            </ul>
+            <div class="choose-title">
+                <textarea class="choose-input" placeholder="请描述现场处理概况..."></textarea>
+                <div class="choose-photo">
+                    <img src="~/Images/logo.png" />
+                    <img src="~/Images/logo.png" />
+                    <img src="~/Images/logo.png" />
+                    <img src="~/Images/tianjia2x.png" class="add-photo">
+                </div>
+            </div>
+        </div>
+       
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {

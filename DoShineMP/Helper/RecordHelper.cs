@@ -21,7 +21,7 @@ namespace DoShineMP.Helper
 
             if (ret == null)
             {
-                return new Record
+                return new Record 
                 {
                     Openid = openid,
                     Type = RecordType.MpRepair,

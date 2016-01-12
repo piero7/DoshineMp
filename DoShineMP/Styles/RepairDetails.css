@@ -40,8 +40,9 @@ body{
 	max-width: 100%;
 }
 .list-bottom{
-	padding:0px 15px;
+	padding:0px 15px 15px;
 	margin-top:15px;
+    margin-bottom:15px;
 	background-color: white;
 
 }
@@ -326,7 +327,7 @@ textarea::-webkit-input-placeholder {
 .choose {
     width:100%;
     background-color:white;
-    padding:0 15px 30px;
+    padding:0 15px 30px;.list-bottom
 }
 .service{
     overflow:hidden;
@@ -337,7 +338,7 @@ textarea::-webkit-input-placeholder {
     float:left;
     padding:5px 10px;
     background-color:white;
-    color:#333;service
+    color:#333;
     border:1px solid #1ec462;
     border-radius:15px;
     margin-right:5px;
@@ -353,7 +354,7 @@ textarea::-webkit-input-placeholder {
 .choose-title .choose-input{
     width:100%;
     padding-top:10px;
-    min-height:70px;
+    min-height:95px;
     border:0;
 }
 .service li.current{
