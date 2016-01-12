@@ -45,13 +45,17 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     /*display: table;*/
+    position:relative;
 }
 
-    .operate .commit {
+    .operate  .commit {
         margin-left: 20px;
         margin-top: 15px;
         border-radius: 10px;
         outline: none;
+        position:absolute;
+        right:20px;
+        top:10px
     }
 
     .operate input {
@@ -293,15 +297,16 @@ body {
     }
     .time-l{
 	margin-right:10px;
-}
+}.housing-l:after
 
     /*@* 新添加 模块 css *@*/
 
   .housing-box{
-      background-color:#ececec;
+      background-color:white;;
       height:40px;
       overflow:hodden;
       position:relative;
+      padding:0 15px;
   }
   .housing-r{
       width:50px;
@@ -314,6 +319,7 @@ body {
       width:100%;
       padding-right:55px;
       float:left;
+      position: relative;
   }
     .housing-l .housing{
         width:100%;
@@ -349,6 +355,8 @@ body {
         background:url(../Images/jiantou.png) no-repeat;
         background-size:cover;
         -webkit-background-size:cover;
+        transform:rotate(90deg);
+       -webkit-transform:rotate(90deg);
     }
     button[disabled], html input[disabled]{
         background-color:white;
@@ -364,7 +372,8 @@ body {
         overflow:hidden;
     }
     .new-page .page-name,
-    .new-page .page-tel{
+    .new-page .page-tel,
+     .new-page .page-cire{
         height:40px;
         border-bottom:1px solid #ddd;
         line-height:30px;
@@ -381,7 +390,7 @@ body {
          background:url(../Images/user2x.png) no-repeat left center;
          background-size:cover;
          -webkit-background-size:cover;
-
+         .new-page .page-cire:before
      }
       .new-page .page-tel:before{
          content:'';
@@ -395,7 +404,22 @@ body {
          -webkit-background-size:cover;
 
      }
-     
+        .new-page .page-cire span {
+            content: '';
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 0px;
+            top: 8px;
+            background: url(../Images/location.png) no-repeat left center;
+            background-size: cover;
+            -webkit-background-size: cover;
+        }
+        .new-page .page-cire select {
+            width:100%;
+            height:100%;
+            border:0;
+        }
       .new-page input{
           width:100%;
           border:0;
@@ -410,27 +434,46 @@ body {
             }   
 select::-ms-expand { display: none; }
 
-.my-Warranty{
+.my-arranty{
     padding:10px 15px;
     font-size:15px;
     background-color:white;
     border-bottom:15px solid #ececec;
     position:relative;
 }
-.my-Warrant:after{
-    content:;
-    width:28px;
-    height:28px;
-    position:absolute;
-    top:6px;
+.my-arranty span{
+    width:20px;
+    height:20px;
+    position:absolute;.commit
+    top:10px;
     right:20px;
    background:url(../Images/jiantou.png) no-repeat;
    background-size:cover;
    -webkit-background-size:cover;
   
-
 }
-
+   
+.new-page .page-cire{
+    padding:0;
+}
+.content-see{
+    color:#898989;
+    font-size:12px;
+    padding:5px 0; 
+}
+.wr-content{
+    height:40px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+/*.tips-title{
+    color:#898989;
+	vertical-align:bottom;
+    padding-left:10px;
+}
+.operate  img{
+    float:left;
+}*/
 /*textarea:disabled, input:not([type]):disabled, input[type="color" i]:disabled, input[type="date" i]:disabled, input[type="datetime" i]:disabled, input[type="datetime-local" i]:disabled, input[type="email" i]:disabled, input[type="month" i]:disabled, input[type="password" i]:disabled, input[type="number" i]:disabled, input[type="search" i]:disabled, input[type="tel" i]:disabled, input[type="text" i]:disabled, input[type="time" i]:disabled, input[type="url" i]:disabled, input[type="week" i]:disabled {
         background-color:#fff !important;
 }*/

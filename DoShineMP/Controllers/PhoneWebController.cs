@@ -159,43 +159,43 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Repair(string code)
         {
-            url.urltype = "Repair";
-            try
-            {
-                if (!string.IsNullOrEmpty(code))
-                {
-                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                    {
-                        var user = wuser.GetUserInfo(this.openid);
-                        if (user.UserInfo != null)
-                        {
-                            ViewBag.user = user;
-                            ViewBag.openid = this.openid;
-                            //历史保修记录
-                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
-                        }
-                        else
-                        {
-                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            //ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
-            //ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-            //ViewBag.RepairList = repairHelper.GetHistoryRepair("ViewBag.RepairList");
+            //url.urltype = "Repair";
+            //try
+            //{
+            //    if (!string.IsNullOrEmpty(code))
+            //    {
+            //        if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //        {
+            //            var user = wuser.GetUserInfo(this.openid);
+            //            if (user.UserInfo != null)
+            //            {
+            //                ViewBag.user = user;
+            //                ViewBag.openid = this.openid;
+            //                //历史保修记录
+            //                ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+            //            }
+            //            else
+            //            {
+            //                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //            }
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+            ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             ViewBag.Title = "自助报修";
             return View();
         }

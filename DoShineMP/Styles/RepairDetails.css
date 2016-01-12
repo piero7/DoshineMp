@@ -35,7 +35,7 @@ body{
 	height:150px;
 	text-align: left;
 }
-.img-content img{
+.img-content img{.choose h4
 	height:100%;
 	max-width: 100%;
 }
@@ -330,14 +330,14 @@ textarea::-webkit-input-placeholder {
 }
 .service{
     overflow:hidden;
-    padding-bottom:10px;
+    padding-bottom:15px;
     border-bottom:1px solid #ddd;
 }
 .service li{
     float:left;
     padding:5px 10px;
     background-color:white;
-    color:#333;
+    color:#333;service
     border:1px solid #1ec462;
     border-radius:15px;
     margin-right:5px;
@@ -346,8 +346,9 @@ textarea::-webkit-input-placeholder {
 
 }
 .choose h4{
-    font-size:14px;
-    padding:12px 0px 10px 0px ;
+    font-size:16px;
+    padding:12px 0px 15px 0px ;
+    color:#797979;
 }
 .choose-title .choose-input{
     width:100%;
