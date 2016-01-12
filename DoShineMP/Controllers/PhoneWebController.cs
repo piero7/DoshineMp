@@ -137,7 +137,7 @@ namespace DoShineMP.Controllers
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             ViewBag.Title = "个人信息";
@@ -187,7 +187,7 @@ namespace DoShineMP.Controllers
                     Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -410,7 +410,7 @@ namespace DoShineMP.Controllers
                     Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "PersonalCenter", ""));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -497,7 +497,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -533,7 +533,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -571,7 +571,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -601,7 +601,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -639,7 +639,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -665,7 +665,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -698,7 +698,7 @@ namespace DoShineMP.Controllers
                 }
                 return Json(new { msg = msg });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = msg });
             }
@@ -730,7 +730,7 @@ namespace DoShineMP.Controllers
                     return Json(new { sendid = sendid });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -815,7 +815,7 @@ namespace DoShineMP.Controllers
                     Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "HomePage", ""));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

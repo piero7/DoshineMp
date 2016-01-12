@@ -69,6 +69,10 @@ namespace DoShineMP.Models
             this.Point = 0;
         }
 
+        public int? DistrictId { get; set; }
+
+        public virtual District District { get; set; }
+
         [NotMapped]
         public Dictionary<int, string> Files
         {
