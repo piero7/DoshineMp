@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DoShineMP.Models
 {
-    class ImageDownloadLog
+    public class ImageDownloadLog
     {
         [Key]
         public int ImageDownLoadLogId { get; set; }

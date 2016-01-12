@@ -88,11 +88,11 @@ namespace DoShineMP.Models
         /// 报修文件列表
         /// </summary>
         [NotMapped]
-        public IEnumerable<ImageFile> ImageFiles
+        public List<ImageFile> ImageFiles
         {
             get
             {
-                if (string.IsNullOrEmpty(this.FinishImageFilesStr))
+                if (string.IsNullOrEmpty(this.ImageFilesStr))
                 {
                     return new List<ImageFile>();
                 }
@@ -102,13 +102,13 @@ namespace DoShineMP.Models
                 var tmpArr = this.ImageFilesStr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var id in tmpArr)
                 {
-                    var file = db.ImageFileSet.FirstOrDefault(item => item.ImageFileId == Convert.ToInt32(id));
+                    var file = db.ImageFileSet.FirstOrDefault(item => item.ImageFileId.ToString() == (id));
                     if (file != null)
                     {
                         ret.Add(file);
                     }
                 }
-                return ret.Distinct();
+                return ret.Distinct().ToList(); ;
             }
             set
             {
@@ -130,7 +130,7 @@ namespace DoShineMP.Models
         /// 完成报修文件列表
         /// </summary>
         [NotMapped]
-        public IEnumerable<ImageFile> FinishImageFiles
+        public List<ImageFile> FinishImageFiles
         {
             get
             {
@@ -150,7 +150,7 @@ namespace DoShineMP.Models
                         ret.Add(file);
                     }
                 }
-                return ret.Distinct();
+                return ret.Distinct().ToList();
             }
             set
             {
