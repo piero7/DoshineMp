@@ -109,7 +109,7 @@ input[disabled='disabled']{
 }
 
 .title-photo{
-	border:1px solid #ddd;
+	/*border:1px solid #ddd;*/
 	/*margin:20px 0px;*/
 	position: relative;
 	overflow: hidden;
@@ -126,23 +126,26 @@ input[disabled='disabled']{
 	border:0;
 	outline:none;
 }
-.photo span{
-	display: block;
-	width:23%;
-	/*height:80px;*/
-	float: left;
-	margin-left:5px;
-	margin-top:5px;
+.photo span {
+    display: block;
+    width: 23%;
+    height: 100px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #333;
 }
-.photo span img{
-	width:100%;
-}
+
+    .photo span img {
+        width: 100%;
+        height: 80%;
+    }
 .add-photo{
 	position:absolute;
-	right:0;
-	top:20px;
-	width:55px;
-	height:55px;
+	right:5px;
+	bottom:5px;
+	width:25px;
+	height:25px;
 }
 .add-photo img{
 	width:100%;
@@ -169,7 +172,7 @@ input[disabled='disabled']{
     text-align:center;
     line-height:40px;
     border-radius:5px;
-    color：white;
+    color:white;
 }
 .submit-btn img{
 	width:100%;
@@ -212,3 +215,15 @@ input[disabled='disabled']{
 .Aan {
     width:120px;height:120px;
 }
+
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url(../Images/jiantou.png) no-repeat scroll right center transparent;
+    padding-right: 14px;
+}
+
+    select::-ms-expand {
+        display: none;
+    }

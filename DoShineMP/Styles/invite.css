@@ -5,51 +5,61 @@
 * @Last Modified time: 2016-01-11 14:25:36
 */
 
-body{
+body {
 	font-family: 'Microsoft yahei';
 }
-.inviteUp img{
-	width:100%;
-	height:auto;
+
+.inviteUp img {
+    width: 100%;
+    height: auto;
 }
-.inviteDown{
-	padding:20px 15px 30px;
+
+.inviteDown {
+    padding: 20px 15px 30px;
 }
-.itme .itme-Title{
-	padding:20px 0;
+
+.itme .itme-Title {
+    padding: 20px 0;
 	font-size: 16px;
-	color:#333;
+    color: #333;
 }
-.itme-select{
-	padding:15px 0px;
+
+.itme-select {
+    padding: 15px 0px;
 	overflow: hidden;
 }
-.itme-select li{
+
+    .itme-select li {
 	float: left;
-	width:50%;
-	padding:10px 0 10px 25px;
+        width: 50%;
+        padding: 10px 0 10px 25px;
 	font-size: 14px;
 	color: #626262;
-	text-align:left;
-	background:url(../Images/face2.png) no-repeat center left;
+        text-align: left;
+        background: url(../Images/face2.png) no-repeat center left;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
-.itme-select li.current{
-	background-image:url(../Images/face.jpg);
+
+        .itme-select li.current {
+            background-image: url(../Images/face.jpg);
 }
-.itme-select li.current{
-	background:url(../Images/face.jpg) no-repeat center left;
+
+        .itme-select li.current {
+            background: url(../Images/face.jpg) no-repeat center left;
 }
-.itme-box .itme dt{
-	padding:20px 0 15px;
-	color:#333;
+
+.itme-box .itme dt {
+    padding: 20px 0 15px;
+    color: #333;
 }
-.itme-box .itme dt ins{
-	color:#f1514e;
-	text-decoration:none;
+
+    .itme-box .itme dt ins {
+        color: #f1514e;
+        text-decoration: none;
 }
-.itme-box .itme dd{
+
+.itme-box .itme dd {
 	width: 100%;
 	/*height:35px;*/
 	/*background:url("../Images/inputbg.png") no-repeat;
@@ -57,162 +67,193 @@ body{
 	background-size: contain;
 	-webkit-background-size: contain;
 }
-.itme-box .itme dd input{
+
+    .itme-box .itme dd input {
 	display: block;
-	border:0;
-	width:100%;
-	height:35px;
+        border: 0;
+        width: 100%;
+        height: 35px;
 	outline: none;
-	background-color:transparent;
-	border:1px solid #ddd;
-	border-radius:6px;
+        background-color: transparent;
+        border: 1px solid #ddd;
+        border-radius: 6px;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-	padding-left:5px;
+        padding-left: 5px;
 }
 /* tips-select*/
 .tips-select,
-.tips-select2{
+.tips-select2 {
 	position: relative;
-	top:0;
-	left:0;
+    top: 0;
+    left: 0;
 	/*overflow: hidden;*/
 }
+
 .tips-select input,
-.tips-select2 input{
+    .tips-select2 input {
 	text-align: left;
-}
-.select-ul,
-.select-ul2{
-	display: block;
-	height:0px;
-	position:absolute;
-	top:37px;
-	left:0px;
-	z-index: 999;
-	width:100%;
-	color:white;
-	transition: all .2s linear 0s;
-	-weikit-transition: all .2s linear 0s;
-    overflow:hidden;
-}
-.select-ul li,
-.select-ul2 li{
-	padding:15px 10px;
-	text-align: left;
-	background-color:#d16c6c;
-	color:white;
-	border-bottom:1px solid white;
-}
-input[disabled='disabled']{
-	background-color:white;
 }
 
-.title-photo{
+.select-ul,
+.select-ul2 {
+	display: block;
+    height: 0px;
+    position: absolute;
+    top: 37px;
+    left: 0px;
+	z-index: 999;
+    width: 100%;
+    color: white;
+	transition: all .2s linear 0s;
+	-weikit-transition: all .2s linear 0s;
+    overflow: hidden;
+}
+
+.select-ul li,
+    .select-ul2 li {
+        padding: 15px 10px;
+	text-align: left;
+        background-color: #d16c6c;
+        color: white;
+        border-bottom: 1px solid white;
+}
+
+input[disabled='disabled'] {
+    background-color: white;
+}
+
+.title-photo {
 	/*border:1px solid #ddd;*/
 	/*margin:20px 0px;*/
 	position: relative;
 	overflow: hidden;
 }
-.photo{
-	overflow:hidden;
-	padding-bottom:25px;
+
+.photo {
+    overflow: hidden;
+    padding-bottom: 25px;
 }
-.Corr{
-    padding-right:30px;
+
+.Corr {
+    padding-right: 30px;
 }
-.title-photo textarea{
-	padding-top:5px;
+
+.title-photo textarea {
+    padding-top: 5px;
 	width: 100%;
-	height:80px;
+    height: 80px;
 	line-height: 20px;
-	border:0;
-	outline:none;
+    border: 0;
+    outline: none;
 }
-.photo span{
+
+.photo span {
 	display: block;
 	width:23%;
 	height:100px;
 	float: left;
-	margin-left:5px;
-	margin-top:5px;
-    color:#333;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #333;
 }
 .photo span img{
 	width:100%;
     height:80%;
 }
-.add-photo{
-	position:absolute;
-	right:5px;
-	bottom:5px;
-	width:25px;
-	height:25px;
+
+.add-photo {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 25px;
+    height: 25px;
 }
-.add-photo img{
-	width:100%;
-	height:100%;
+
+    .add-photo img {
+        width: 100%;
+        height: 100%;
 }
-.itme p{
-	color:#898989;
+
+.itme p {
+    color: #898989;
 	font-size: 12px;
-	padding-bottom:10px;
+    padding-bottom: 10px;
 }
-.conmmit{
-	width:100%;
-	min-height:140px;
-	border:1px solid #ddd;
+
+.conmmit {
+    width: 100%;
+    min-height: 140px;
+    border: 1px solid #ddd;
 	font-size: 14px;
-	color:#333;
+    color: #333;
 }
-.submit-btn{
+
+.submit-btn {
 	display: block;
-	margin:20px auto;
-	width:160px;
-	height:40px;
-    background-color:#59b759;
-    text-align:center;
-    line-height:40px;
-    border-radius:5px;
-    color：white;
+    margin: 20px auto;
+    width: 160px;
+    height: 40px;
+    background-color: #59b759;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
+    color: white;
 }
-.submit-btn img{
-	width:100%;
-	height:100%;
+
+    .submit-btn img {
+        width: 100%;
+        height: 100%;
 }
 
 /* 动画 ul*/
-.select-ul li{
+.select-ul li {
 	/*transition: all .4s linear 0s;
 	-webkit-transition: all .4s linear 0s;*/
 }
-.select-ul{
-    overflow:hidden;
+
+.select-ul {
+    overflow: hidden;
 }
-.select-ul li.active{
-	transform:rotateX(0deg);
-	-webkit-transform:rotateX(0deg);
+
+    .select-ul li.active {
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
 }
+
 .tips-select .jia,
-.tips-select2 .jia2{
+.tips-select2 .jia2 {
 	transform-origin: 50% 50%;
 	-webkit-transform-origin: 50% 50%;
 	transition: rotate .2s linear 0s;
 	-webkit-transition: transform .2s linear 0s;
-	position:absolute;
-	top:50%;
-	right:5px;  
-	margin-top:-10px;
-	width:20px;
-	height:20px;
-	background:url(../Images/jiantou.png) no-repeat;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    background: url(../Images/jiantou.png) no-repeat;
 	background-size: cover;
 	-webkit-background-size: cover;
 }
+
 .tips-select .jia.current,
-.tips-select2 .jia2.current{
-	transform:rotate(90deg);
-	-webkit-transform:rotate(90deg);
+    .tips-select2 .jia2.current {
+        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+    }
+
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url(../Images/jiantou.png) no-repeat scroll right center transparent;
+    padding-right: 14px;
+}
+
+    select::-ms-expand {
+        display: none;
 }
 
 /* 取出莫默认 select 样式 css*/

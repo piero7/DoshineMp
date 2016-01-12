@@ -10,86 +10,24 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
-            @*@if (ViewBag.user.UserInfo.Address != null)
-            {
-                <div class="site-box">
-                    <input type="text" class="site" id="address" value="@ViewBag.user.UserInfo.Address" placeholder="请输入您的地址...">
-                    <span></span>
-                </div>
-            }
-            else
-            {
-                <div class="site-box">
-                    <input type="text" class="site" id="address" placeholder="请输入您的地址...">
-                    <span></span>
-                </div>
-            }*@
-
-
             @* 新添加 模块 *@
             <div class="my-arranty"> 我的报修<span></span></div>
             <div class="housing-box">
               @*<div style="border-bottom:1px solid #ddd;overflow:hidden;">
-                  <div class="housing-l">
-                      <select class="housing">
-                          <option>一棵松小区</option>
-                          <option>2</option>
-                          <option>23</option>
-                      </select>
-                  </div>
-                  <div class="housing-r">
-                      <em class="cire"></em>
-                  </div>
+               <div class="housing-l">
+                    <select class="housing" id="housing"></select>
+               </div>
+                <div class="housing-r">
+                    <em class="cire"></em>
+                </div>
               </div>*@
             </div>
             @* 新添加 姓名 手机号 模块 *@
-            <div  class="new-page">
-                <div class="page-cire">
-                    <span class="locian" ></span>
-                    <select class="housing">
-                        <option>一棵松小区</option>
-                        <option>2</option>
-                        <option>23</option>
-                    </select>
-                </div>
-                <div class="page-name"><input type="text" placeholder="请输入姓名"/></div>
-                <div class="page-tel"><input type="text" placeholder="请输入手机号" /></div>
+            <div class="new-page">
+                <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
+                <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
             </div>
-            <script>
-                //下拉菜单js
-                var Hou = document.getElementsByClassName('housing')[0];
-                var HouSelect = document.getElementsByClassName('housing-ul')[0]
-                var HouLi = HouSelect.getElementsByTagName('li');
-                var HouLiS = null;
-                //一般是固定的高  40px
-                var HouLiH = null;  
-                Hou.addEventListener('touchstart', starthanlder);
-                var Key = true;
-                function starthanlder(){
-                    HouLiS = HouSelect.getElementsByTagName('li').length;
-                    HouLiH = 40 * HouLiS;
-                    if (Key) {
-                        HouSelect.style.height = HouLiH+"px";
-                        Key = false;
-                    }
-                    else {
-                        HouSelect.style.height = "0";
-                        Key = true;
-                    }
-                }
-                console.log(HouLi.length)
-                for (var i; i < HouLi.length;i++) {
                    
-                    HouLi[i].addEventListener('touchstart',Lihanlder)
-                }
-                function Lihanlder() {
-                    alert(1)
-                    Key = false;
-                    console.log(1)
-                }
-                  
-            </script>
-
             <div class="keep-textarea">
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 <em class="br"></em>
@@ -167,7 +105,7 @@
         </div>
     </div>
 </div>
-@*<input type="hidden" value="@ViewBag.openid" id="openid" />*@
+<input type="hidden" value="@ViewBag.openid" id="openid" />
 <input type="hidden" value="" id="serviceid" />
 
 
@@ -242,6 +180,7 @@
             console.log('验证失败');
         });
         wx.ready(function () {
+            addressxiaoqu();
             // 5 图片接口
             // 5.1 拍照、本地选图
             var images = {
@@ -256,18 +195,30 @@
                             alert('请先使用 chooseImage 接口选择图片');
                             return;
                         }
-                        var i = 0, length = 0;
+                        var i = 0, length = images.localId.length;
                         images.serverId = [];
+                        var str = '';
                         function upload() {
                             wx.uploadImage({
                                 localId: images.localId[i],
                                 success: function (res) {
-                                    i++;
+                                    
                                     //alert('已上传：' + i + '张');
                                     images.serverId.push(res.serverId);
-                                    $("#serviceid").val(res.serverId);
-                                    //alert($("#serviceid").val())
-                                    //alert(images.localId[0]);
+
+                                    if (i < length) {
+                                        if (i != 0) {
+                                            str += ',' + res.serverId;
+                                        } else {
+                                            str += res.serverId;
+                                        }
+                                        i++;
+                                        alert(str);
+                                        upload();
+                                    }
+
+
+                                    $("#serviceid").val(str);
                                     document.getElementById('add-phoneimg').src = images.localId[0];
                                 },
                                 fail: function (res) {
@@ -293,7 +244,9 @@
             var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
-            var address = $('#address').val();
+            var housing = $('#housing').val();
+            var name = $('#name').val();
+            var phone = $('#phone').val();
 
             if (keeptext == '' || keeptext == null) {
                 alert('内容不得为空!')
@@ -303,11 +256,13 @@
             $('#btn').attr('disabled', true);
             serviceid = serviceid == null ? '#' : serviceid;
 
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: address }, function (data, status) {
+
+
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
-                        //alert("提交成功！");
+                        alert("提交成功！");
                         var str = '';
                         $.each(data, function (i, item) {
                             var time = $.timeStamp2String(item.CreateDate).split(' ');
@@ -385,26 +340,29 @@
             window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
         }
 
-        $(document).on('click', '#address', function () {
+
+        ///获取附近小区
+        function addressxiaoqu() {
             wx.getLocation({
                 type: 'gcj02', //wgs84 或 gcj02
                 success: function (res) {
                     var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                     var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
 
-                    var thisurl = 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&get_poi=1&key=AGPBZ-N4HCV-7KBPX-UGUGB-XSRBQ-IHBAF';
-                    $.post('@Url.Action("ApiJsonAll","PhoneWeb")', { url: thisurl }, function (data, status) {
-                        //alert(status)
-                        var add = JSON.parse(data.msg)
-                        //alert(add.result.formatted_addresses.recommend);
-                        $('#address').val(add.result.formatted_addresses.recommend);
+                    $.post('@Url.Action("GetAllVillage", "PhoneWeb")', { x: latitude, y: longitude }, function (data, status) {
+                        var str = '';
+
+                        $.each(data, function (i, item) {
+                            str += ' <option value="' + item.VillageId + '">' + item.Name + '</option>';
+                        })
+                        $('#housing').html(str);
                     })
                 },
                 fail: function (res) {
                     alert('获取位置失败');
                 }
             });
-        });
+        }
 
 
     </script>
