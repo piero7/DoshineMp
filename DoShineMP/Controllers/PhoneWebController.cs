@@ -696,7 +696,10 @@ namespace DoShineMP.Controllers
                         msg = repairHelper.Accept(repaidID, date, innderNumber) != null ? "Y" : "N";
                         ; break;
                     case "2":
-                        msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        //msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        msg = "Y";
+
+
                         ; break;
                 }
                 return Json(new { msg = msg });

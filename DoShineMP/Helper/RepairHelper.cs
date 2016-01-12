@@ -221,6 +221,7 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             return rep;
         }
+
         /// <summary>
         /// 完成处理
         /// </summary>
@@ -366,6 +367,7 @@ namespace DoShineMP.Helper
             return ret;
         }
 
+
         /// <summary>
         /// 获取所有小区
         /// </summary>
@@ -397,6 +399,8 @@ namespace DoShineMP.Helper
 
             return ret.OrderBy(item => item.Distance).ToList();
         }
+
+
 
         /// <summary>
         /// 检查是否有未评论的报修，若无返回0，有则返回id，返回小于零的数表示错误！
