@@ -296,30 +296,30 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Messages(string code)
         {
-            //url.urltype = "Messages";
-            //if (!string.IsNullOrEmpty(code))
-            //{
-            //    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-            //    {
-            //        var uuu = wuser.GetUserInfo(this.openid);
-            //        if (uuu.UserInfo != null)
-            //        {
-            //            ViewBag.user = wuser.GetUserInfo(this.openid);
-            //        }
-            //        else
-            //        {
-            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-            //    }
-            //}
-            //else
-            //{
-            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-            //}
+            url.urltype = "Messages";
+            if (!string.IsNullOrEmpty(code))
+            {
+                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                {
+                    var uuu = wuser.GetUserInfo(this.openid);
+                    if (uuu.UserInfo != null)
+                    {
+                        ViewBag.user = wuser.GetUserInfo(this.openid);
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+                }
+            }
+            else
+            {
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+            }
             ViewBag.Title = "在线客服";
             return View();
         }
@@ -441,6 +441,8 @@ namespace DoShineMP.Controllers
         public ActionResult Distributor()
         {
             ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+
+
             return View();
         }
 
@@ -578,6 +580,7 @@ namespace DoShineMP.Controllers
         }
 
 
+
         /// <summary>
         /// 合作伙伴修改
         /// </summary>
@@ -693,7 +696,10 @@ namespace DoShineMP.Controllers
                         msg = repairHelper.Accept(repaidID, date, innderNumber) != null ? "Y" : "N";
                         ; break;
                     case "2":
-                        msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        //msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        msg = "Y";
+
+
                         ; break;
                 }
                 return Json(new { msg = msg });

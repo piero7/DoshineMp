@@ -99,5 +99,16 @@ namespace DoShineMP.Controllers
         }
 
 
+        /// <summary>
+        /// 获得所有常用输入
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IEnumerable<string> GetAllUsefulChat(int id)
+        {
+            return UsefulChatHelper.GetAllUsefulChat();
+        }
+
+
     }
 }
