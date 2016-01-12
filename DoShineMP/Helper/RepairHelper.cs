@@ -58,7 +58,8 @@ namespace DoShineMP.Helper
             //多个
             if (mediaIdArr != null && mediaIdArr.Length > 0)
             {
-                WechatImageHelper.AddNewImageForRepair(mediaIdArr, rep.RepairId, openid);
+                List<ImageDownloadLog> md = WechatImageHelper.AddNewImageForRepair(mediaIdArr, rep.RepairId, openid).ToList();
+                md.Clear();
             }
 
 

@@ -159,43 +159,43 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Repair(string code)
         {
-            //url.urltype = "Repair";
-            //try
-            //{
-            //    if (!string.IsNullOrEmpty(code))
-            //    {
-            //        if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-            //        {
-            //            var user = wuser.GetUserInfo(this.openid);
-            //            if (user.UserInfo != null)
-            //            {
-            //                ViewBag.user = user;
-            //                ViewBag.openid = this.openid;
-            //                //历史保修记录
-            //                ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
-            //            }
-            //            else
-            //            {
-            //                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-            ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
-            ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-            ViewBag.RepairList = repairHelper.GetHistoryRepair("ViewBag.RepairList");
+            url.urltype = "Repair";
+            try
+            {
+                if (!string.IsNullOrEmpty(code))
+                {
+                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                    {
+                        var user = wuser.GetUserInfo(this.openid);
+                        if (user.UserInfo != null)
+                        {
+                            ViewBag.user = user;
+                            ViewBag.openid = this.openid;
+                            //历史保修记录
+                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+                        }
+                        else
+                        {
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            //ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+            //ViewBag.RepairList = repairHelper.GetHistoryRepair("ViewBag.RepairList");
             ViewBag.Title = "自助报修";
             return View();
         }
@@ -652,8 +652,8 @@ namespace DoShineMP.Controllers
             try
             {
                 var user = wuser.GetUserInfo(code);
-                user.UserInfo.Address = address;
-                wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
+                //user.UserInfo.Address = address;
+                //wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
 
                 //TODO: 现在的文件为mediaid的列表，用逗号分割！
                 if (repairHelper.Add(code, content, mediaid, phone, villageid, name) != null)
