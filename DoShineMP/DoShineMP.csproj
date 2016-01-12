@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201601110737333_addOpenidForChatLog.Designer.cs">
       <DependentUpon>201601110737333_addOpenidForChatLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601120323500_update.cs" />
+    <Compile Include="Migrations\201601120323500_update.Designer.cs">
+      <DependentUpon>201601120323500_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
@@ -510,6 +514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601110737333_addOpenidForChatLog.resx">
       <DependentUpon>201601110737333_addOpenidForChatLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601120323500_update.resx">
+      <DependentUpon>201601120323500_update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
