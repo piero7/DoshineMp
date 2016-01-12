@@ -82,6 +82,8 @@ namespace DoShineMP.Models
 
         public RepairFinishType FinishType { get; set; }
 
+        public string Name { get; set; }
+
         /// <summary>
         /// 报修文件列表
         /// </summary>

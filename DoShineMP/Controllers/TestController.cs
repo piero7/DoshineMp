@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoShineMP.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -32,6 +33,13 @@ namespace DoShineMP.Controllers
         {
             Helper.RepairHelper rp = new Helper.RepairHelper();
             return rp.GetHistoryRepair(openid);
+        }
+
+        [HttpGet]
+        public void TestAddRep()
+        {
+            RepairHelper reph = new RepairHelper();
+            //reph.Add(aa,bb,)
         }
     }
 }
