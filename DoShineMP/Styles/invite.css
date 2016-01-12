@@ -109,14 +109,17 @@ input[disabled='disabled']{
 }
 
 .title-photo{
-	border:1px solid #ddd;
+	/*border:1px solid #ddd;*/
 	/*margin:20px 0px;*/
 	position: relative;
 	overflow: hidden;
 }
 .photo{
 	overflow:hidden;
-	padding-bottom:5px;
+	padding-bottom:25px;
+}
+.Corr{
+    padding-right:30px;
 }
 .title-photo textarea{
 	padding-top:5px;
@@ -133,16 +136,17 @@ input[disabled='disabled']{
 	float: left;
 	margin-left:5px;
 	margin-top:5px;
+    color:#333;
 }
 .photo span img{
 	width:100%;
 }
 .add-photo{
 	position:absolute;
-	right:0;
-	top:20px;
-	width:55px;
-	height:55px;
+	right:5px;
+	bottom:5px;
+	width:25px;
+	height:25px;
 }
 .add-photo img{
 	width:100%;
@@ -165,6 +169,11 @@ input[disabled='disabled']{
 	margin:20px auto;
 	width:160px;
 	height:40px;
+    background-color:#59b759;
+    text-align:center;
+    line-height:40px;
+    border-radius:5px;
+    color：white;
 }
 .submit-btn img{
 	width:100%;

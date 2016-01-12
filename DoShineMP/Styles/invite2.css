@@ -165,6 +165,11 @@ input[disabled='disabled']{
 	margin:20px auto;
 	width:160px;
 	height:40px;
+    background-color:#59b759;
+    text-align:center;
+    line-height:40px;
+    border-radius:5px;
+    color：white;
 }
 .submit-btn img{
 	width:100%;
@@ -203,4 +208,7 @@ input[disabled='disabled']{
 .tips-select2 .jia2.current{
 	transform:rotate(90deg);
 	-webkit-transform:rotate(90deg);
+}
+.Aan {
+    width:120px;height:120px;
 }
