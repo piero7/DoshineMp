@@ -82,17 +82,15 @@
             <dl class="itme">
                 <dt>服务代表<ins>*</ins></dt>
                 <dd class="tips-select2">
-                    <input type="text" class="select-val2" palceholder="请选择" disabled="flase" id="Val1">
-                    <span class='jia2'></span>
-                    <ul class="select-ul2">
-                        @if (ViewBag.Salesman != null)
+                    <select class="form-control" id="Districtid">
+                        @if (ViewBag.AllDistrict != null)
                         {
-                            foreach (DoShineMP.Models.Salesman s in ViewBag.Salesman as List<DoShineMP.Models.Salesman>)
+                            foreach (DoShineMP.Models.District d in ViewBag.AllDistrict as List<DoShineMP.Models.District>)
                             {
-                                <li salesmanid="@s.SalesmanId">@s.Name</li>
+                                <option value="@d.DistrictId">@d.Name</option>
                             }
                         }
-                    </ul>
+                        </select>
                 </dd>
             </dl>
             <dl class="itme">

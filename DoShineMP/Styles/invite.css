@@ -213,3 +213,14 @@ input[disabled='disabled']{
 	transform:rotate(90deg);
 	-webkit-transform:rotate(90deg);
 }
+
+/* 取出莫默认 select 样式 css*/
+
+select{
+    appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+   background: url(../Images/jiantou.png) no-repeat scroll right center transparent;
+   padding-right: 14px;
+}
+select::-ms-expand { display: none; }
