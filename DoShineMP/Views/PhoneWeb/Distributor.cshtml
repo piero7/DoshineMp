@@ -26,7 +26,7 @@
             <dl class="itme">
                 <dt>加盟区域<ins>*</ins></dt>
                 <dd class="tips-select">
-                    <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val" >
+                    <input type="text" class="select-val" placeholder="请选择" disabled="flase" id="Val" >
                     <span class='jia'></span>
                     <ul class="select-ul">
                         <li>11111</li>
@@ -94,7 +94,7 @@
             <dl class="itme">
                 <dt>服务代表<ins>*</ins></dt>
                 <dd class="tips-select2">
-                    <input type="text" class="select-val2" palceholder="请选择" disabled="flase" id="Val">
+                    <input type="text" class="select-val2" placeholder="请选择" disabled="flase" id="Val">
                     <span class='jia2'></span>
                     <ul class="select-ul2">
                         <li>11111</li>
@@ -126,7 +126,6 @@
         var key = true;
         var Child = null;
         var Height = $('.select-ul li').length*51;
-        console.log(Height)
         $('.select-val').tap(function (e) {
             if (key) {
                 $('.select-ul').css({ 'height': Height+'px'});
@@ -147,12 +146,11 @@
 
         var key2 = true;
         var Child = null;
-        var Height = $('.select-ul2 li').length*51;
-        console.log(Height)
+        var Height2 = $('.select-ul2 li').length*51;
         console.log($('.select-ul2 li').length)
         $('.select-val2').tap(function (e) {
             if (key2) {
-                $('.select-ul2').css({ 'height': Height + 'px'});
+                $('.select-ul2').css({ 'height': Height2 + 'px'});
                 $('.jia2').addClass('current')
                 key2 = false;
             } else {
@@ -201,19 +199,27 @@
         var Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit,ImgSrc = [];
 
         $('.submit-btn').tap(function () {
+            //加盟资金
             Fund = $('.itme-select li.current').text();
+            //加盟区域
             Jion = $('.select-val').val();
+            //名字
             Name = $('.Name').val();
+            //手机号
             Tel = $('.Tel').val();
+            //Mail
             Mail = $('.Mail').val();
+            //相关资质
             Corr = $('.Corr').val();
+            //地址
             Site = $('.Site').val();
-            Behaif = $('.Behaif').val();
+            //服务代表
+            Behaif = $('.select-val2').val();
+            //备注
             Commit = $('.conmmit').val();
+            //相关资质图片路径
             ImgSrcLen = $('.photo').find('img');
             $.each(ImgSrcLen, function (i, item) {
-                console.log(item)
-                console.log(i)
                 ImgSrc[i] = item.src
             })
             var Inputs = $('.itme dd').find('input');
@@ -223,7 +229,9 @@
                     console.log( document.body.scrollTop = item.offsetTop)
                 }
             })
-           //  alert(Fund + Jion + Name + Tel + Mail + Corr + Site + Behaif + Commit)
+
+
+             //alert(Fund + Jion + Name + Tel + Mail + Corr + Site + Behaif + Commit)
         })
     </script>
 
