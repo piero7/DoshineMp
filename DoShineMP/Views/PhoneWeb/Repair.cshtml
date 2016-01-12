@@ -27,15 +27,23 @@
 
 
             @* 新添加 模块 *@
-
+            <div class="my-Warranty"> 我的报修</div>
             <div class="housing-box">
                <div class="housing-l">
-                   <input type="text" class="housing" placeholder="请选择小区" disabled="disabled"/>
+                   @*<input type="text" class="housing" placeholder="请选择小区" disabled="disabled"/>
                    <ul class="housing-ul">
                        <li>阳光小区</li>
                        <li>星湖小区</li>
                        <li>棵树小区</li>
-                   </ul>
+                       <li>棵树小区</li>
+                       <li>棵树小区</li>
+                       <li>棵树小区</li>
+                   </ul>*@
+                   <select class="housing">
+                       <option>一棵松小区</option>
+                       <option>2</option>
+                       <option>23</option>
+                   </select>
                </div>
                 <div class="housing-r">
                     <em class="cire"></em>
@@ -43,8 +51,8 @@
             </div>
             @* 新添加 姓名 手机号 模块 *@
             <div  class="new-page">
-
-
+                <div class="page-name"><input type="text" placeholder="请输入姓名"/></div>
+                <div class="page-tel"><input type="text" placeholder="请输入手机号" /></div>
             </div>
             <script>
                 //下拉菜单js
@@ -56,18 +64,29 @@
                 var HouLiH = null;  
                 Hou.addEventListener('touchstart', starthanlder);
                 var Key = true;
-                function starthanlder() {
+                function starthanlder(){
                     HouLiS = HouSelect.getElementsByTagName('li').length;
                     HouLiH = 40 * HouLiS;
-                    if (key) {
+                    if (Key) {
                         HouSelect.style.height = HouLiH+"px";
                         Key = false;
                     }
                     else {
                         HouSelect.style.height = "0";
-                        Key = false;
+                        Key = true;
                     }
                 }
+                console.log(HouLi.length)
+                for (var i; i < HouLi.length;i++) {
+                   
+                    HouLi[i].addEventListener('touchstart',Lihanlder)
+                }
+                function Lihanlder() {
+                    alert(1)
+                    Key = false;
+                    console.log(1)
+                }
+                  
             </script>
 
             <div class="keep-textarea">
