@@ -246,10 +246,10 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairInterior()
         {
-            ViewBag.RepairList5 = repairHelper.GetRepairList(Models.RepairStatus.Apply, 10, 0).ToList();
-            ViewBag.RepairList10 = repairHelper.GetRepairList(Models.RepairStatus.Accept, 10, 0).ToList();
-            ViewBag.RepairList20 = repairHelper.GetRepairList(Models.RepairStatus.FinishHandle, 10, 0).ToList();
-            ViewBag.RepairList99 = repairHelper.GetRepairList(Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
             ViewBag.Title = "报修受理";
             return View();
         }
@@ -632,8 +632,8 @@ namespace DoShineMP.Controllers
                 user.UserInfo.Address = address;
                 wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
 
-                //TODO: 添加mediaid
-                if (repairHelper.AddRepair(code, content, mediaid) != null)
+                //TODO: 现在的文件为mediaid的列表，用逗号分割！
+                if (repairHelper.Add(code, content, mediaid) != null)
                 {
                     return Json(repairHelper.GetHistoryRepair(code));
                 }

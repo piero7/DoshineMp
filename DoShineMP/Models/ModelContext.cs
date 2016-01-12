@@ -50,5 +50,7 @@ namespace DoShineMP.Models
         public DbSet<UsefulChat> UsefulChatSet { get; set; }
 
         public DbSet<CustomServer> CustomServerSet { get; set; }
+
+        public DbSet<Village> VillageSet { get; set; }
     }
 }

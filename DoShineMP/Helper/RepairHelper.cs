@@ -15,8 +15,9 @@ namespace DoShineMP.Helper
         /// </summary>
         /// <param name="openid">用户op</param>
         /// <param name="content"></param>
+        /// <param name="mediaidList">图片列表，用逗号分割</param>
         /// <returns></returns>
-        public Repair AddRepair(string openid, string content, string mediaid)
+        public Repair Add(string openid, string content, string mediaidList)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -25,23 +26,48 @@ namespace DoShineMP.Helper
             {
                 return null;
             }
+            var mediaIdArr = mediaidList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
+
+            var number = GetNewInnerNumber();
             var rep = new Repair
             {
                 Contenet = content,
                 CreateDate = DateTime.Now,
                 Status = RepairStatus.Apply,
                 UserId = usr.UserInfoId,
+                InnerNumber = number,
+
             };
+
 
             db.RepairSet.Add(rep);
             db.SaveChanges();
-            if (!string.IsNullOrEmpty(mediaid))
+
+            //下载文件
+
+            //单个
+            //if (!string.IsNullOrEmpty(mediaid))
+            //{
+            //    WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid);
+            //}
+
+            //多个
+            if (mediaIdArr != null && mediaIdArr.Length > 0)
             {
-                WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid);
+                WechatImageHelper.AddNewImageForRepair(mediaIdArr, rep.RepairId, openid);
             }
 
+
             LogHelper.AddLog("Apply a new repair", rep.RepairId.ToString(), openid);
+
+            db.SaveChanges();
+
+            //发送企业号通知
+            var workernamArr = System.Configuration.ConfigurationManager.AppSettings["repairworkers"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var msg = string.Format(System.Configuration.ConfigurationManager.AppSettings["repairnoticemodelforworker"], rep.RepairId);
+            WechatHelper.SendComponyMessage(workernamArr, msg);
+
             return rep;
         }
 
@@ -58,10 +84,11 @@ namespace DoShineMP.Helper
         }
 
         /// <summary>
-        /// 获得历史报修记录，若有则显示，若没有则显示默认
+        /// 获得历史报修记录（限制条数）,仅用于首页展示。
         /// </summary>
         /// <param name="openid"></param>
         /// <returns></returns>
+        //[Obsolete("0.4之前版本使用，之后版本需要区分不同状态，请勿调用！", true)]
         public IEnumerable<Repair> GetHistoryRepair(string openid)
         {
             var wuser = WechatHelper.CheckOpenid(openid);
@@ -86,20 +113,65 @@ namespace DoShineMP.Helper
                 item.IsUserself = true;
             }
 
-            var rCount = tCount - ownhis.Count();
-            if (rCount > 0)
-            {
-                var tmpList = (from r in db.RepairSet
-                               select r).Take(rCount).OrderBy(item => item.RepairId).ToList();
-                foreach (var item in tmpList)
-                {
-                    item.IsUserself = false;
-                }
-                ownhis.AddRange(tmpList);
-            }
+            //var rCount = tCount - ownhis.Count();
+            //if (rCount > 0)
+            //{
+            //    var tmpList = (from r in db.RepairSet
+            //                   select r).Take(rCount).OrderBy(item => item.RepairId).ToList();
+            //    foreach (var item in tmpList)
+            //    {
+            //        item.IsUserself = false;
+            //    }
+            //    ownhis.AddRange(tmpList);
+            //}
 
             return ownhis;
         }
+
+        /// <summary>
+        /// 获得维修记录(用于企业号)
+        /// </summary>
+        /// <param name="sta">需要获取的记录状态(获取 全部状态=0，提交=5,受理=10，处理完成待评价=20，完成=99)</param>
+        /// <param name="count">每页的数量</param>
+        /// <param name="page">当前页数（从0开始计数）</param>
+        /// <returns></returns>
+        public IEnumerable<Repair> GetHistoryRepair(RepairStatus status, int count, int page)
+        {
+            var db = new ModelContext();
+            int skip = count * page;
+            if (status == RepairStatus.Unknow)
+            {
+                return db.RepairSet.OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
+            }
+            else
+            {
+                return db.RepairSet.Where(item => item.Status == status).OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
+            }
+        }
+
+        /// <summary>
+        /// 获得维修记录
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="status">需要获取的记录状态(提交=5,受理=10，处理完成待评价=20，完成=99 ，未知=0)</param>
+        /// <param name="count">每页数量</param>
+        /// <param name="page">当前页数（从0开始计数）</param>
+        /// <returns></returns>
+        public IEnumerable<Repair> GetHistoryRepair(string openid, RepairStatus status, int count, int page)
+        {
+            var wuser = WechatHelper.CheckOpenid(openid);
+            var user = WechatHelper.CheckUser(wuser);
+            if (user == null)
+            {
+                return null;
+            }
+
+            var db = new ModelContext();
+
+            int skip = count * page;
+            return db.RepairSet.Where(item => item.UserId == user.UserInfoId && item.Status == status).OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
+        }
+
 
         /// <summary>
         /// 受理报修
@@ -132,6 +204,7 @@ namespace DoShineMP.Helper
         /// </summary>
         /// <param name="repairId">报修记录id</param>
         /// <returns></returns>
+        [Obsolete("0.4之前版本使用，之后版本需添加相关确认信息！", true)]
         public Repair FinishHandlen(int repairId)
         {
             var db = new ModelContext();
@@ -148,6 +221,32 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             return rep;
         }
+        /// <summary>
+        /// 完成处理
+        /// </summary>
+        /// <param name="repairId">报修记录id</param>
+        /// <param name="mediaIdList">meidia Id列表</param>
+        /// <param name="describe">文字描述</param>
+        /// <param name="type">完成类型</param>
+        /// <returns></returns>
+        public Repair FinishHandlen(int repairId, IEnumerable<string> mediaIdList, string describe, RepairFinishType type)
+        {
+            var db = new ModelContext();
+            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+
+            if (rep == null)
+            {
+                return null;
+            }
+
+            rep.Status = RepairStatus.FinishHandle;
+            rep.FinishHandlendDate = DateTime.Now;
+            rep.FinishType = type;
+            db.SaveChanges();
+            WechatImageHelper.AddNewImageForHandleRepair(rep.RepairId, mediaIdList);
+            return rep;
+        }
+
 
 
         /// <summary>
@@ -175,30 +274,33 @@ namespace DoShineMP.Helper
             return rep;
         }
 
-
         /// <summary>
-        /// 获得维修记录
+        /// 取消报修
         /// </summary>
-        /// <param name="sta">需要获取的记录状态(获取 全部状态=0，提交=5,受理=10，处理完成待评价=20，完成=99)</param>
-        /// <param name="count">每页的数量</param>
-        /// <param name="page">当前页数（从0开始计数）</param>
+        /// <param name="repairId">报修记录id</param>
+        /// <param name="reason">取消原因描述</param>
         /// <returns></returns>
-        public IEnumerable<Repair> GetRepairList(RepairStatus sta, int count, int page)
+        public Repair Cancel(int repairId, string reason)
         {
             var db = new ModelContext();
-            int skip = count * page;
-            if (sta == RepairStatus.Unknow)
+            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+            if (rep == null)
             {
-                return db.RepairSet.OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
+                return null;
             }
-            else
-            {
-                return db.RepairSet.Where(item => item.Status == sta).OrderByDescending(item => item.CreateDate).Skip(skip).Take(count);
-            }
+
+            rep.Status = RepairStatus.Cancel;
+            rep.Response = reason;
+            rep.FinishHandlendDate = DateTime.Now;
+
+            db.SaveChanges();
+
+            return rep;
         }
 
+
         /// <summary>
-        /// 获得某类维修记录的总页数
+        /// 获得某类维修记录的总页数（企业号使用）
         /// </summary>
         /// <param name="sta">需要获取的记录状态(获取 全部状态=0，提交=5,受理=10，处理完成待评价=20，完成=99)</param>
         /// <param name="count">每页的数量</param>
@@ -216,5 +318,114 @@ namespace DoShineMP.Helper
                 return db.RepairSet.Where(item => item.Status == sta).Count() / count + 1;
             }
         }
+
+        /// <summary>
+        /// 获得某类维修记录的总页数（企业号使用）
+        /// </summary>
+        /// <param name="sta">需要获取的记录状态(获取 全部状态=0，提交=5,受理=10，处理完成待评价=20，完成=99)</param>
+        /// <param name="count">每页的数量</param>
+        /// <returns></returns>
+        public int GetAllPageCount(RepairStatus sta, int count, string openid)
+        {
+            var db = new ModelContext();
+            var wuser = WechatHelper.CheckOpenid(openid);
+            var user = WechatHelper.CheckUser(wuser);
+            if (user == null)
+            {
+                return 0;
+            }
+
+            var set = db.RepairSet.Where(item => item.UserId == user.UserInfoId);
+            if (sta == RepairStatus.Unknow)
+            {
+                return set.Count() / count + 1;
+            }
+            else
+            {
+                return set.Where(item => item.Status == sta).Count() / count + 1;
+            }
+        }
+
+        /// <summary>
+        /// 生成维保订单号
+        /// </summary>
+        /// <returns></returns>
+        public string GetNewInnerNumber()
+        {
+            var db = new ModelContext();
+            var ran = new Random();
+            var ret = "WB0";
+            ret += (DateTime.Now.Year % 2000).ToString() + (DateTime.Now.ToString("MMddhhmmss").ToString());
+            getRan: var ranstr = ran.Next(999999).ToString().PadLeft(5, '0').ToString();
+            ret += ranstr;
+            if (db.RepairSet.Any(item => item.InnerNumber == ret))
+            {
+                goto getRan;
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 获取所有小区
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Village> GetAllVillage()
+        {
+            var db = new ModelContext();
+            return (from vil in db.VillageSet
+                    where vil.IsEnable
+                    select vil
+                    ).ToList();
+        }
+
+        /// <summary>
+        /// 根据地理位置距离升序
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public IEnumerable<Village> GetAllVillage(double x, double y)
+        {
+            var db = new ModelContext();
+            var ret = new List<Village>();
+            foreach (var vil in db.VillageSet)
+            {
+                vil.Distance = WechatHelper.GetDistance(x, y, vil.LocationX, vil.LocationY);
+                ret.Add(vil);
+            }
+
+            return ret.OrderBy(item => item.Distance).ToList();
+        }
+
+        /// <summary>
+        /// 检查是否有未评论的报修，若无返回0，有则返回id，返回小于零的数表示错误！
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <returns></returns>
+        public int HasUnFinishedRepair(string openid)
+        {
+            var user = WechatHelper.CheckOpenid(openid);
+            user = WechatHelper.CheckUser(user);
+
+            if (user == null || user.UserInfo == null)
+            {
+                return -1;
+            }
+
+            var db = new ModelContext();
+            var rep = db.RepairSet.Where(item => item.UserId == user.UserInfoId && item.Status == RepairStatus.FinishHandle);
+            if (rep.Count() == 0)
+            {
+                return 0;
+            }
+
+            return rep.OrderBy(item => item.CreateDate).First().RepairId;
+        }
+
+
+
     }
+
+
 }

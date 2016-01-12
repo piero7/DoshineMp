@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DoShineMP.Models
 {
+    /// <summary>
+    /// 地区
+    /// </summary>
     class District
     {
         [Key]

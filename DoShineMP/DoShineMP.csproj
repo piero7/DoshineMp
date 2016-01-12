@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Helper\PartnerHelper.cs" />
+    <Compile Include="Helper\RecordHelper.cs" />
     <Compile Include="Helper\RepairHelper.cs" />
     <Compile Include="Helper\SalesmanHelper.cs" />
     <Compile Include="Helper\ShortMessageHelper.cs" />
