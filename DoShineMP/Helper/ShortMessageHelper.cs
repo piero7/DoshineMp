@@ -43,7 +43,7 @@ namespace DoShineMP.Helper
                 return resp;
             }
 
-            return resp;//是一串 以逗号隔开的字符串。阅读文档查看响应的意思
+            //return resp;//是一串 以逗号隔开的字符串。阅读文档查看响应的意思
         }
 
         /// <summary>

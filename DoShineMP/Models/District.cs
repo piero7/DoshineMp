@@ -10,7 +10,7 @@ namespace DoShineMP.Models
     /// <summary>
     /// 地区
     /// </summary>
-    class District
+    public class District
     {
         [Key]
         public int DistrictId { get; set; }
