@@ -312,6 +312,7 @@
     <Content Include="Images\btn.jpg" />
     <Content Include="Images\bx.png" />
     <Content Include="Images\codeIcon.png" />
+    <Content Include="Images\commit.jpg" />
     <Content Include="Images\complete2x.png" />
     <Content Include="Images\daiqueren2x.png" />
     <Content Include="Images\dingdan.png" />
@@ -330,6 +331,7 @@
     <Content Include="Images\jiantou.png" />
     <Content Include="Images\location.png" />
     <Content Include="Images\location3x.png" />
+    <Content Include="Images\locationcire.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\more.png" />
     <Content Include="Images\phone2x.png" />

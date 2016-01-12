@@ -10,7 +10,7 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
-            @if (ViewBag.user.UserInfo.Address != null)
+            @*@if (ViewBag.user.UserInfo.Address != null)
             {
                 <div class="site-box">
                     <input type="text" class="site" id="address" value="@ViewBag.user.UserInfo.Address" placeholder="请输入您的地址...">
@@ -23,7 +23,26 @@
                     <input type="text" class="site" id="address" placeholder="请输入您的地址...">
                     <span></span>
                 </div>
-            }
+            }*@
+
+
+            @* 新添加 模块 *@
+
+            <div class="housing-box">
+               <div class="housing-l">
+                   <input type="text" class="housing" placeholder="请选择小区" disabled=""/>
+                   <ul class="housing-ul">
+                       <li>阳光小区</li>
+                       <li>星湖小区</li>
+                       <li>棵树小区</li>
+                   </ul>
+               </div>
+                <div class="housing-r">
+                    <em class="cire"></em>
+                </div>
+            </div>
+
+
 
             <div class="keep-textarea">
                 <textarea placeholder="请输入您要报修的内容..." id="keep"></textarea>
