@@ -39,7 +39,7 @@ namespace DoShineMP.Helper
                 InnerNumber = number,
                 PhoneNumber = phone,
                 VillageId = villageid,
-                Name =name,
+                Name = name,
 
             };
 
@@ -197,7 +197,7 @@ namespace DoShineMP.Helper
             rep.Status = RepairStatus.Accept;
             rep.AccepDate = DateTime.Now;
             rep.ExceptHandleDate = exceptDate;
-          //  rep.InnerNumber = innderNumber;
+            //  rep.InnerNumber = innderNumber;
 
             db.SaveChanges();
 
@@ -247,8 +247,9 @@ namespace DoShineMP.Helper
             rep.Status = RepairStatus.FinishHandle;
             rep.FinishHandlendDate = DateTime.Now;
             rep.FinishType = type;
+            rep.Describe = describe;
             db.SaveChanges();
-           var  cl =  WechatImageHelper.AddNewImageForHandleRepair(rep.RepairId, mediaIdList).ToList();
+            var cl = WechatImageHelper.AddNewImageForHandleRepair(rep.RepairId, mediaIdList).ToList();
             cl.Clear();
             return rep;
         }

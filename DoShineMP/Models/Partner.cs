@@ -73,6 +73,10 @@ namespace DoShineMP.Models
 
         public virtual District District { get; set; }
 
+        public Sex Sex { get; set; }
+
+        public string Money { get; set; }
+
         [NotMapped]
         public Dictionary<int, string> Files
         {

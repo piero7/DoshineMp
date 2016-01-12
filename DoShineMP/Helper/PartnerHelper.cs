@@ -22,8 +22,11 @@ namespace DoShineMP.Helper
         /// <param name="email">电子邮件</param>
         /// <param name="salesmanId">对应的销售id</param>
         /// <param name="files">相关资质图片字符串，格式为文件 名称1 :mediaid; eg:经营许可证:000001;组织机构代码:000005;</param>
+        /// <param name="discrictid">区域id</param>
+        /// <param name="money">加盟资金</param>
+        /// <param name="sex">性别</param>
         /// <returns></returns>
-        public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone, int? salesmanId, string email, string files, int? discrictid)
+        public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone, int? salesmanId, string email, string files, int? discrictid, Sex sex, string money)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -50,6 +53,8 @@ namespace DoShineMP.Helper
                 SalesmanId = salesmanId,
                 DistrictId = discrictid,
                 Status = PartnerStatus.Apply,
+                Sex = sex,
+                Money = money,
             };
             db.PartnerSet.Add(pat);
             db.SaveChanges();
