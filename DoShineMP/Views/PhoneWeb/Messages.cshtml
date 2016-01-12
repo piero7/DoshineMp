@@ -4,7 +4,7 @@
 }
 @section styles{
     <link href="~/Styles/Messages.css" rel="stylesheet" />
-        }
+}
 
 <div id="bk"></div>
 <div class="col-xs-12" id="bodycontent">
@@ -31,12 +31,16 @@
         var userid = document.getElementById('userid').value;
         var userimg = document.getElementById('userimg').value;
         var openid = document.getElementById('openid').value;
+        var NickName = username;
         var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
-        var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
-        var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
+        //var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
+        //var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
+        //var NickName = 'luchen';
+        //var userimg = '';
         var socket;
-        var serverIP = '192.168.1.155';//服务器IP
+        var serverIP = '115.159.71.54';//服务器IP
         var serverPort = '9000';//服务器端口
+        var ChatLog = false;
 
 
         window.onload = function () {
@@ -53,8 +57,10 @@
                     //alert("连接成功！");
                     socket.send(JSON.stringify(NewNickIp) + ' ');
 
+                    var dat = new Date();
                     var str = '<div id="alertmess" class="text-center">'
-                             + '<span>连接成功！</span>'
+                             + '<span>Hi,非常高兴为您服务~</span><br/><br/>'
+                             + '<span1>' + (dat.getMonth() + 1) + '-' + dat.getDate() + ' ' + dat.getHours() + ':' + dat.getMinutes() + '</span1>'
                              + '</div>';
                     document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                 };
@@ -67,7 +73,7 @@
                         var str = '<div id="alertmess" class="text-center">'
                              + '<span>非文本信息！</span>'
                              + '</div>';
-                        document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                        //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                     }
                 };
 
@@ -75,23 +81,29 @@
                     var str = '<div id="alertmess" class="text-center" style="margin-top:15px;">'
                              + '<span>连接断开！</span>'
                              + '</div>';
-                    document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                    ///document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                 };
             }
             catch (ex) {
                 var str = '<div id="alertmess" class="text-center">'
                              + '<span>网络错误，连接失败！</span>'
                              + '</div>';
-                document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                // document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
                 log(ex);
             }
         }
 
+        //发送消息
         function send() {
             var msg = document.getElementById('sendText').value + ' ';
             if (msg == ' ' || msg == null) {
                 return;
             } else {
+                if (this.ChatLog == true) {
+                    NewNickIp.NickName = 'ChatLog';
+                } else {
+                    NewNickIp.NickName = this.NickName;
+                }
                 NewNickIp.Msg = msg;
                 NewNickIp.IsFirst = false;
                 socket.send(JSON.stringify(NewNickIp) + ' ');
@@ -148,12 +160,22 @@
             return fmt;
         }
 
+
+        //接受消息
         function displayContent(msg) {
 
             var mes = document.getElementById("messages");
             var last = mes.lastChild;
 
             var msgsss = JSON.parse(msg);
+
+            if (msgsss.NickName == 'ChatLog') {
+                this.ChatLog = true;
+            } else if (msgsss.NickName == 'NoChatLog') {
+                msgsss.Msg = '客服现在为你服务。';
+                this.ChatLog = false;
+            }
+
 
             if (last.className === 'media medialeft') {
                 var textcontent = last.lastChild.getElementsByTagName('div')[0].innerHTML;
@@ -179,8 +201,12 @@
             window.scrollTo(0, div.scrollHeight);
 
         }
-        
+
         function onkey(event) { if (event.keyCode == 13) { send(); } }
+
+
+
+
     </script>
 }
 

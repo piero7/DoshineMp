@@ -23,7 +23,7 @@ namespace DoShineMP.Helper
         /// <param name="salesmanId">对应的销售id</param>
         /// <param name="files">相关资质图片字符串，格式为文件 名称1 :mediaid; eg:经营许可证:000001;组织机构代码:000005;</param>
         /// <returns></returns>
-        public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone, int salesmanId, string email, string files)
+        public Partner ReginPartner(string openid, string comName, PartnerType type, string realname, string address, string comPhone, int salesmanId, string email, string files, int discrictid)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -48,6 +48,8 @@ namespace DoShineMP.Helper
                 Type = type,
                 Email = email,
                 SalesmanId = salesmanId,
+                DistrictId = discrictid,
+                Status = PartnerStatus.Apply,
             };
             db.PartnerSet.Add(pat);
             db.SaveChanges();
@@ -126,6 +128,8 @@ namespace DoShineMP.Helper
             return wuser;
         }
 
+
+
         /// <summary>
         /// 添加相关资质
         /// </summary>
@@ -181,6 +185,16 @@ namespace DoShineMP.Helper
             db.SaveChanges();
 
             return par;
+        }
+
+        /// <summary>
+        /// 获取所有的地区
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<District> GetAllDistrict()
+        {
+            var db = new ModelContext();
+            return db.DistrictSet.ToList();
         }
     }
 }

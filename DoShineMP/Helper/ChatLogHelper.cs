@@ -106,6 +106,7 @@ namespace DoShineMP.Helper
                 UserInfoDic = userinfoDic,
             };
             db.ChatLogSet.Add(cl);
+            db.SaveChanges();
 
             return cl;
         }

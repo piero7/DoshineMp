@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "经销商";
+    ViewBag.Title = "诚邀加盟";
     Layout = "~/Views/Shared/_LayoutQiye.cshtml";
 }
 @section styles{
@@ -61,23 +61,10 @@
                 <dd>
                     <p>人请上传本人真实身份证图片，企业单位上传有效期内营业执照并加盖公章。</p>
                     <div class="title-photo">
-                        <textarea placeholder="请输入图片标题或描述" class="Corr"></textarea>
-                        <ins class="add-photo"><img src="~/Images/xiangji.png" alt=""></ins>
-                        <div class="photo">
+                        <textarea placeholder="请输入图片标题或描述" class="Corr" id="title_text"></textarea>
+                        <ins class="add-photo"><img src="~/Images/xiangji.png" alt="" id="add-phoneimg"></ins>
+                        <div class="photo" id="add-phoneimg_photo">
                             <span>
-                                <img src="~/Images/logo.png" alt="">
-                            </span>
-                            <span>
-                                <img src="~/Images/logo.png" alt="">
-                            </span><span>
-                                <img src="~/Images/logo.png" alt="">
-                            </span><span>
-                                <img src="~/Images/logo.png" alt="">
-                            </span><span>
-                                <img src="~/Images/logo.png" alt="">
-                            </span><span>
-                                <img src="~/Images/logo.png" alt="">
-                            </span><span>
                                 <img src="~/Images/logo.png" alt="">
                             </span>
                         </div>
@@ -94,12 +81,16 @@
             <dl class="itme">
                 <dt>服务代表<ins>*</ins></dt>
                 <dd class="tips-select2">
-                    <input type="text" class="select-val2" placeholder="请选择" disabled="flase" id="Val">
+                    <input type="text" class="select-val2" palceholder="请选择" disabled="flase" id="Val1">
                     <span class='jia2'></span>
                     <ul class="select-ul2">
-                        <li>11111</li>
-                        <li>2222</li>
-                        <li>3333</li>
+                        @if (ViewBag.Salesman != null)
+                        {
+                            foreach (DoShineMP.Models.Salesman s in ViewBag.Salesman as List<DoShineMP.Models.Salesman>)
+                            {
+                                <li salesmanid="@s.SalesmanId">@s.Name</li>
+                            }
+                        }
                     </ul>
                 </dd>
             </dl>
@@ -117,22 +108,140 @@
 </div>
 
 
+<input type="hidden" name="name" id="openid" value="olQmIjjUTPHrAAAQc0aeJ5LRM3qw" />
+
 
 
 
 @section scripts{
     <script src="~/Scripts/zepto.min.js"></script>
     <script type="text/javascript">
+
+        var token;
+
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        $(function () {
+            $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
+                var debug = data.debug;
+                var appId = data.appId;
+                var timestamp = data.timestamp;
+                var nonceStr = data.nonceStr;
+                var signature = data.signature
+
+                wx.config({
+                    debug: debug,
+                    appId: appId,
+                    timestamp: timestamp,
+                    nonceStr: nonceStr,
+                    signature: signature,
+                    jsApiList: [
+                        'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                    ]
+                });
+
+            })
+        })
+
+
+        // 微信
+        wx.error(function (res) {
+            console.log('验证失败');
+        });
+        wx.ready(function () {
+            // 5 图片接口
+            // 5.1 拍照、本地选图
+            var images = {
+                localId: [],
+                serverId: []
+            };
+            document.querySelector('#add-phoneimg').onclick = function () {
+                wx.chooseImage({
+                    success: function (res) {
+                        images.localId = res.localIds;
+                        if (images.localId.length == 0) {
+                            alert('请先使用 chooseImage 接口选择图片');
+                            return;
+                        }
+                        var i = 0, length = 0;
+                        images.serverId = [];
+                        function upload() {
+                            wx.uploadImage({
+                                localId: images.localId[i],
+                                success: function (res) {
+                                    i++;
+                                    //alert('已上传：' + i + '张');
+                                    images.serverId.push(res.serverId);
+
+
+                                    $('#title_text').val();
+
+
+                                    $("#serviceid").val(res.serverId);
+                                    document.getElementById('add-phoneimg').src = images.localId[0];
+                                },
+                                fail: function (res) {
+                                    alert(JSON.stringify(res));
+                                }
+                            });
+                        }
+                        upload();
+
+                    }
+                });
+            };
+
+        });
+
+
+
+
+
         var key = true;
         var Child = null;
-        var Height = $('.select-ul li').length*51;
+        var Height = $('.select-ul li').length * 51;
         $('.select-val').tap(function (e) {
             if (key) {
-                $('.select-ul').css({ 'height': Height+'px'});
+                $('.select-ul').css({ 'height': Height + 'px' });
                 $('.jia').addClass('current');
                 key = false;
             } else {
-                $('.select-ul').css({ 'height': '0'});
+                $('.select-ul').css({ 'height': '0' });
                 $('.jia').removeClass('current')
                 key = true;
             }
@@ -146,21 +255,21 @@
 
         var key2 = true;
         var Child = null;
-        var Height2 = $('.select-ul2 li').length*51;
-        console.log($('.select-ul2 li').length)
+        var Height = $('.select-ul2 li').length * 51;
         $('.select-val2').tap(function (e) {
             if (key2) {
-                $('.select-ul2').css({ 'height': Height2 + 'px'});
+                $('.select-ul2').css({ 'height': Height + 'px' });
                 $('.jia2').addClass('current')
                 key2 = false;
             } else {
-                $('.select-ul2').css({ 'height': '0'});
+                $('.select-ul2').css({ 'height': '0' });
                 $('.jia2').removeClass('current')
                 key2 = true;
             }
         })
         $('.select-ul2 li').tap(function () {
             $('.select-val2').val($(this).text());
+            $('.select-val2').attr('salesmanid', $(this).attr('salesmanid'));
             $('.select-ul2').css({ 'height': '0' });
             $('.jia2').removeClass('current')
             key2 = true;
@@ -171,32 +280,8 @@
 
         })
 
-        //  Select ul js
-        //var Sele = document.getElementsByClassName('select-ul')[0].children;
-        //var Leng = Sele.length;
-        //function InFor(c) {
-        //    var i = 0;
-        //    var timer = null;
-        //    timer = setInterval(function () {
-        //        Sele[i].className = c;
-        //        i++;
-        //        if (i == Leng) {
-        //            clearInterval(timer);
-        //        }
-        //    }, 100)
-        //    $('.select-ul li').tap(function (e) {
-        //        $('.select-val').val($(this).text())
-        //        $('.select-ul').css({ 'height': '0', 'display': 'none' });
-        //        key = true;
-        //        InFor("")
-        //    })
-        //}
-
-
-
-
         //  submit js
-        var Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit,ImgSrc = [];
+        var ytpe, code, Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit, ImgSrc = [];
 
         $('.submit-btn').tap(function () {
             //加盟资金
@@ -223,15 +308,27 @@
                 ImgSrc[i] = item.src
             })
             var Inputs = $('.itme dd').find('input');
-            $.each(Inputs,function (i, item) {
+            $.each(Inputs, function (i, item) {
                 if (Inputs[i].value == '' || Inputs[i].value == null) {
-                    document.body.scrollTop = item.offsetTop+40;
-                    console.log( document.body.scrollTop = item.offsetTop)
+                    document.body.scrollTop = item.offsetTop + 40;
+                    console.log(document.body.scrollTop = item.offsetTop)
                 }
             })
+            type = 'Dealer';
 
 
-             //alert(Fund + Jion + Name + Tel + Mail + Corr + Site + Behaif + Commit)
+
+
+
+            $.post(url, { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, email: Mail,  }, function (data, status) {
+                if (status == 'success') {
+                    if (data.msg == 'Y') {
+                        window.location.href = "@Url.Action("Partner","PhoneWeb")";
+                    }
+                    else
+                        alert('提交失败!')
+                }
+            })
         })
     </script>
 

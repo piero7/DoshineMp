@@ -27,7 +27,6 @@ namespace DoShineMP.Controllers
             return mh.AddCustomMessage(openid, content, isNew, type, detailInfo);
         }
 
-
         /// <summary>
         /// 添加客服端消息记录
         /// </summary>
@@ -41,6 +40,7 @@ namespace DoShineMP.Controllers
             MessageHelper mh = new MessageHelper();
             return mh.AddServerMessage(content, detailInfo, ipStr);
         }
+
 
         /// <summary>
         /// 获取是所有的未读记录
@@ -79,7 +79,7 @@ namespace DoShineMP.Controllers
         /// 添加离线记录
         /// </summary>
         /// <param name="openid">用户openid</param>
-        /// <param name="userinfo">用户信息记录 格式为字段名:内容 eg： 手机号:13699844553;邮件xxx@163.com</param>
+        /// <param name="userinfo">用户信息记录 格式为字段名:内容 eg： 手机号|13699844553;邮件|xxx@163.com</param>
         /// <returns></returns>
         [HttpGet]
         public ChatLog AddLeaveChatLog(string openid, string userinfo)
@@ -88,7 +88,7 @@ namespace DoShineMP.Controllers
             Dictionary<string, string> userInfoDic = new Dictionary<string, string>();
             foreach (var item in infoarr)
             {
-                var tmp = item.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var tmp = item.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
                 if (tmp.Length == 2)
                 {
                     userInfoDic.Add(tmp[0], tmp[1]);
@@ -96,6 +96,17 @@ namespace DoShineMP.Controllers
             }
 
             return ChatLogHelper.AddOfflineChatLog(openid, userInfoDic);
+        }
+
+
+        /// <summary>
+        /// 获得所有常用输入
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IEnumerable<string> GetAllUsefulChat(int id)
+        {
+            return UsefulChatHelper.GetAllUsefulChat();
         }
 
 

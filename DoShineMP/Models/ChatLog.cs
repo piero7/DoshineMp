@@ -47,12 +47,12 @@ namespace DoShineMP.Models
         public ChatStatus Status { get; set; }
 
         /// <summary>
-        /// 记录用户信息，主要用于客服离线。格式为：名称1: 内容1;名称2 eg:手机号:13600000000;微信号:wechatnumber;
+        /// 记录用户信息，主要用于客服离线。格式为：名称1: 内容1;名称2 eg:手机号|13600000000;微信号|wechatnumber;
         /// </summary>
         public string UserInfo { get; set; }
 
         /// <summary>
-        /// 记录用户信息，key为信息名称，value为信息具体内容 eg：eg:手机号:13600000000;微信号:wechatnumber
+        /// 记录用户信息，key为信息名称，value为信息具体内容 eg：eg:手机号|13600000000;微信号|wechatnumber
         /// </summary>
         [NotMapped]
         public Dictionary<string, string> UserInfoDic
@@ -67,7 +67,7 @@ namespace DoShineMP.Models
                 var tmpList = this.UserInfo.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var str in tmpList)
                 {
-                    var tmp = str.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                    var tmp = str.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
                     if (tmp.Length == 2)
                     {
                         ret.Add(tmp[0], tmp[1]);
@@ -82,12 +82,12 @@ namespace DoShineMP.Models
                     this.UserInfo = "";
                 }
 
-                if (value != this.UserInfoDic)
+                else if (value != this.UserInfoDic)
                 {
                     var res = "";
                     foreach (var item in value)
                     {
-                        res += item.Key + ':' + item.Value + ';';
+                        res += item.Key + '|' + item.Value + ';';
                     }
                     this.UserInfo = res;
                 }

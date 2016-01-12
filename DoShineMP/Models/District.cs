@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace DoShineMP.Models
 {
-    class District
+    /// <summary>
+    /// 地区
+    /// </summary>
+    public class District
     {
         [Key]
         public int DistrictId { get; set; }

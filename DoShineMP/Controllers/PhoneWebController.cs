@@ -137,7 +137,7 @@ namespace DoShineMP.Controllers
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             ViewBag.Title = "个人信息";
@@ -187,7 +187,7 @@ namespace DoShineMP.Controllers
                     Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -246,10 +246,10 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairInterior()
         {
-            ViewBag.RepairList5 = repairHelper.GetRepairList(Models.RepairStatus.Apply, 10, 0).ToList();
-            ViewBag.RepairList10 = repairHelper.GetRepairList(Models.RepairStatus.Accept, 10, 0).ToList();
-            ViewBag.RepairList20 = repairHelper.GetRepairList(Models.RepairStatus.FinishHandle, 10, 0).ToList();
-            ViewBag.RepairList99 = repairHelper.GetRepairList(Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
             ViewBag.Title = "报修受理";
             return View();
         }
@@ -410,7 +410,7 @@ namespace DoShineMP.Controllers
                     Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "PersonalCenter", ""));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -441,6 +441,8 @@ namespace DoShineMP.Controllers
         public ActionResult Distributor()
         {
             ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+
+
             return View();
         }
 
@@ -497,7 +499,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -533,7 +535,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -548,21 +550,21 @@ namespace DoShineMP.Controllers
         /// <summary>
         /// 合作伙伴注册
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="comName"></param>
+        /// <param name="code">openid</param>
+        /// <param name="comName">姓名</param>
         /// <param name="Type"> Sub_contractor分包商，Supplier供应商 </param>
         /// <param name="realName"></param>
         /// <param name="Address"></param>
         /// <param name="comPhone"></param>
         /// <returns></returns>
-        public JsonResult ReginPartnerJson(string code, string comName, string type, string realName, string Address, string comPhone, int salesmanId, string eamil, string files)
+        public JsonResult ReginPartnerJson(string code, string comName, string type, string realName, string Address, string comPhone, int salesmanId, string eamil, string files, int discrictid)
         {
             try
             {
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
 
-                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files) != null)
+                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
                 {
                     return Json(new { msg = "Y" });
                 }
@@ -571,11 +573,12 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
         }
+
 
 
         /// <summary>
@@ -601,7 +604,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -629,8 +632,8 @@ namespace DoShineMP.Controllers
                 user.UserInfo.Address = address;
                 wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
 
-                //TODO: 添加mediaid
-                if (repairHelper.AddRepair(code, content, mediaid) != null)
+                //TODO: 现在的文件为mediaid的列表，用逗号分割！
+                if (repairHelper.Add(code, content, mediaid) != null)
                 {
                     return Json(repairHelper.GetHistoryRepair(code));
                 }
@@ -639,7 +642,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -665,7 +668,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -693,12 +696,15 @@ namespace DoShineMP.Controllers
                         msg = repairHelper.Accept(repaidID, date, innderNumber) != null ? "Y" : "N";
                         ; break;
                     case "2":
-                        msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        //msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
+                        msg = "Y";
+
+
                         ; break;
                 }
                 return Json(new { msg = msg });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = msg });
             }
@@ -730,7 +736,7 @@ namespace DoShineMP.Controllers
                     return Json(new { sendid = sendid });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(new { msg = "N" });
             }
@@ -815,7 +821,7 @@ namespace DoShineMP.Controllers
                     Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "HomePage", ""));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

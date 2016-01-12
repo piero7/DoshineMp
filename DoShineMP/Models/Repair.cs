@@ -63,7 +63,110 @@ namespace DoShineMP.Models
         public string PhoneNumber { get; set; }
 
         public string Address { get; set; }
+
+        public int? VillageId { get; set; }
+
+        [ForeignKey("VillageId")]
+        public virtual Village Village { get; set; }
+
+        /// <summary>
+        /// 报修图片,id字符串，用逗号分割
+        /// </summary>
+        public string ImageFilesStr { get; set; }
+
+        /// <summary>
+        /// 报修完成图片，id字符串，用逗号分割
+        /// 
+        /// </summary>
+        public string FinishImageFilesStr { get; set; }
+
+        public RepairFinishType FinishType { get; set; }
+
+        /// <summary>
+        /// 报修文件列表
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<ImageFile> ImageFiles
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.FinishImageFilesStr))
+                {
+                    return new List<ImageFile>();
+                }
+
+                var db = new ModelContext();
+                var ret = new List<ImageFile>();
+                var tmpArr = this.ImageFilesStr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var id in tmpArr)
+                {
+                    var file = db.ImageFileSet.FirstOrDefault(item => item.ImageFileId == Convert.ToInt32(id));
+                    if (file != null)
+                    {
+                        ret.Add(file);
+                    }
+                }
+                return ret.Distinct();
+            }
+            set
+            {
+                this.ImageFilesStr = "";
+                if (value != null && value.Count() != 0)
+                {
+                    foreach (var file in value)
+                    {
+                        if (file != null && file.ImageFileId > 0)
+                        {
+                            this.ImageFilesStr += (file.ImageFileId + ",");
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 完成报修文件列表
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<ImageFile> FinishImageFiles
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.FinishImageFilesStr))
+                {
+                    return new List<ImageFile>();
+                }
+
+                var db = new ModelContext();
+                var ret = new List<ImageFile>();
+                var tmpArr = this.FinishImageFilesStr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var id in tmpArr)
+                {
+                    var file = db.ImageFileSet.FirstOrDefault(item => item.ImageFileId == Convert.ToInt32(id));
+                    if (file != null)
+                    {
+                        ret.Add(file);
+                    }
+                }
+                return ret.Distinct();
+            }
+            set
+            {
+                this.FinishImageFilesStr = "";
+                if (value != null && value.Count() != 0)
+                {
+                    foreach (var file in value)
+                    {
+                        if (file != null && file.ImageFileId > 0)
+                        {
+                            this.FinishImageFilesStr += (file.ImageFileId + ",");
+                        }
+                    }
+                }
+            }
+        }
     }
+
 
     public enum RepairStatus
     {
@@ -88,7 +191,31 @@ namespace DoShineMP.Models
         /// 完成
         /// </summary>
         Finish = 99,
+        /// <summary>
+        /// 已取消
+        /// </summary>
+        Cancel = -1,
+    }
 
+
+    /// <summary>
+    /// 报修完成类型
+    /// </summary>
+    public enum RepairFinishType
+    {
+        Unknown = 0,
+        /// <summary>
+        /// 已修复
+        /// </summary>
+        Fixed = 1,
+        /// <summary>
+        /// 未修复
+        /// </summary>
+        Unfixed = 2,
+        /// <summary>
+        /// 超出范围
+        /// </summary>
+        OutOfRange = 10,
 
     }
 }

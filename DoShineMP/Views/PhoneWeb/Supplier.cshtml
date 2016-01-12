@@ -41,7 +41,7 @@
                         <input type="text" placeholder="请输入您的邮箱..." class="Tel">
                     </dd>
                 </dl>
-              
+
                 <dl class="itme">
                     <dt>公司名称<ins>*</ins></dt>
                     <dd>
@@ -106,6 +106,8 @@
         $('.itme-select li').tap(function (e) {
             $(this).addClass('current').siblings().removeClass('current');
 
+        })
+
         //  submit js
         var Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit,ImgSrc = [];
 
@@ -140,7 +142,19 @@
                     console.log( document.body.scrollTop = item.offsetTop)
                 }
             })
-           //  alert(Fund + Jion + Name + Tel + Mail + Corr + Site + Behaif + Commit)
+            console.log(Fund)
+            console.log(Jion)
+            console.log(Name)
+            console.log(Tel)
+            console.log(Mail)
+            console.log(Corr)
+            console.log(Site)
+            console.log(Behaif)
+            console.log(Commit)
+            console.log(ImgSrc)
+
+
+
         })
     </script>
 
