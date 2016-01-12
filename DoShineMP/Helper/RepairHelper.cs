@@ -52,6 +52,7 @@ namespace DoShineMP.Helper
             //    WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid);
             //}
 
+
             //多个
             if (mediaIdArr != null && mediaIdArr.Length > 0)
             {

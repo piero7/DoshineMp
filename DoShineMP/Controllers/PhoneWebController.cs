@@ -12,6 +12,7 @@ namespace DoShineMP.Controllers
 {
     public class PhoneWebController : Controller
     {
+
         #region 参数
         private WechatUserHelper wuser = new WechatUserHelper();
         private WechatHelper wh = new WechatHelper();
@@ -19,6 +20,7 @@ namespace DoShineMP.Controllers
         private RepairHelper repairHelper = new RepairHelper();
         private IdentifyingCodeController identifyingcode = new IdentifyingCodeController();
         private string openid = string.Empty;
+        private bool isWebDebug = ConfigurationManager.AppSettings["isWebDebug"] == "true" ? true : false;
 
         #endregion
 
@@ -430,7 +432,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns> 
         public ActionResult Supplier()
         {
-            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+            //ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
             return View();
         }
 
@@ -440,7 +442,7 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Distributor()
         {
-            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+            //ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
 
 
             return View();
@@ -712,6 +714,21 @@ namespace DoShineMP.Controllers
 
         #endregion
 
+        #region 地理位置
+
+        /// <summary>
+        /// 获取所有地理位置
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public JsonResult GetAllVillage(double x, double y)
+        {
+            return Json(repairHelper.GetAllVillage(x, y));
+        }
+
+        #endregion
+
         #endregion
 
         #region 杂项功能 --短信
@@ -792,8 +809,17 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult ceshi()
         {
+            try
+            {
+                //ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+                // ViewBag.open = (dynamic)WechatHelper.GetWechatJsConfig(Request.Url.ToString());
+            }
+            catch (Exception e)
+            {
 
-            ViewBag.open = (dynamic)WechatHelper.GetWechatJsConfig(Request.Url.ToString());
+                throw;
+            }
+
             return View();
         }
 

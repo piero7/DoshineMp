@@ -84,13 +84,13 @@
                     <input type="text" class="select-val2" palceholder="请选择" disabled="flase" id="Val1">
                     <span class='jia2'></span>
                     <ul class="select-ul2">
-                        @if (ViewBag.Salesman != null)
-                        {
-                            foreach (DoShineMP.Models.Salesman s in ViewBag.Salesman as List<DoShineMP.Models.Salesman>)
+                        @*@if (ViewBag.Salesman != null)
                             {
-                                <li salesmanid="@s.SalesmanId">@s.Name</li>
-                            }
-                        }
+                                foreach (DoShineMP.Models.Salesman s in ViewBag.Salesman as List<DoShineMP.Models.Salesman>)
+                                {
+                                    <li salesmanid="@s.SalesmanId">@s.Name</li>
+                                }
+                            }*@
                     </ul>
                 </dd>
             </dl>
@@ -107,13 +107,14 @@
     </div>
 </div>
 
-
 <input type="hidden" name="name" id="openid" value="olQmIjjUTPHrAAAQc0aeJ5LRM3qw" />
 
 
 
 
 @section scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/zepto.min.js"></script>
     <script type="text/javascript">
 
@@ -129,7 +130,8 @@
                 var appId = data.appId;
                 var timestamp = data.timestamp;
                 var nonceStr = data.nonceStr;
-                var signature = data.signature
+                var signature = data.signature;
+
 
                 wx.config({
                     debug: debug,
@@ -177,6 +179,8 @@
 
             })
         })
+
+
 
 
         // 微信
@@ -311,7 +315,7 @@
 
 
 
-            $.post(url, { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, email: Mail,  }, function (data, status) {
+            $.post(url, { code: code, comName: comName, type: type, realName: Name, Address: Site, comPhone: Tel, email: Mail, }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         window.location.href = "@Url.Action("Partner","PhoneWeb")";
