@@ -638,7 +638,7 @@ namespace DoShineMP.Controllers
                 wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
 
                 //TODO: 现在的文件为mediaid的列表，用逗号分割！
-                if (repairHelper.Add(code, content, mediaid) != null)
+                if (repairHelper.Add(code, content, mediaid, "", 0, "") != null)
                 {
                     return Json(repairHelper.GetHistoryRepair(code));
                 }
