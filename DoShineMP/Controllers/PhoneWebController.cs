@@ -557,14 +557,14 @@ namespace DoShineMP.Controllers
         /// <param name="Address"></param>
         /// <param name="comPhone"></param>
         /// <returns></returns>
-        public JsonResult ReginPartnerJson(string code, string comName, string type, string realName, string Address, string comPhone, int salesmanId, string eamil, string files)
+        public JsonResult ReginPartnerJson(string code, string comName, string type, string realName, string Address, string comPhone, int salesmanId, string eamil, string files, int discrictid)
         {
             try
             {
                 DoShineMP.Models.PartnerType p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
 
 
-                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files) != null)
+                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
                 {
                     return Json(new { msg = "Y" });
                 }
