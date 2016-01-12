@@ -13,11 +13,11 @@ namespace DoShineMP.Helper
         /// <summary>
         /// 提交一个新的报修申请
         /// </summary>
-        /// <param name="openid">用户op</param>
+        /// <param name="openid">用户openid</param>
         /// <param name="content"></param>
         /// <param name="mediaidList">图片列表，用逗号分割</param>
         /// <returns></returns>
-        public Repair Add(string openid, string content, string mediaidList)
+        public Repair Add(string openid, string content, string mediaidList, string phone, int villageid, string name)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -37,6 +37,8 @@ namespace DoShineMP.Helper
                 Status = RepairStatus.Apply,
                 UserId = usr.UserInfoId,
                 InnerNumber = number,
+                PhoneNumber = phone,
+                VillageId = villageid,
 
             };
 
@@ -51,6 +53,7 @@ namespace DoShineMP.Helper
             //{
             //    WechatImageHelper.AddNewImageForRepair(mediaid, rep.RepairId, openid);
             //}
+
 
             //多个
             if (mediaIdArr != null && mediaIdArr.Length > 0)
@@ -221,7 +224,6 @@ namespace DoShineMP.Helper
             db.SaveChanges();
             return rep;
         }
-
         /// <summary>
         /// 完成处理
         /// </summary>
@@ -367,7 +369,6 @@ namespace DoShineMP.Helper
             return ret;
         }
 
-
         /// <summary>
         /// 获取所有小区
         /// </summary>
@@ -399,8 +400,6 @@ namespace DoShineMP.Helper
 
             return ret.OrderBy(item => item.Distance).ToList();
         }
-
-
 
         /// <summary>
         /// 检查是否有未评论的报修，若无返回0，有则返回id，返回小于零的数表示错误！
