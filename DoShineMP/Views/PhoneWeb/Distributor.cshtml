@@ -104,7 +104,7 @@
     </div>
 </div>
 
-<input type="hidden" name="name" id="openid" value="olQmIjjUTPHrAAAQc0aeJ5LRM3qw" />
+<input type="hidden" name="name" id="openid" value="@ViewBag.openid" />
 
 
 
@@ -282,7 +282,7 @@
 
             })
 
-            $.post('@Url.Action("ReginPartnerJson", "PhoneWeb")', { code: code, comName: Name, type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: Behaif, email: Mail, files: imgyulanstr, discrictid: Jion }, function (data, status) {
+            $.post('@Url.Action("ReginPartnerJson", "PhoneWeb")', { code: code, comName: '', type: type, realName: Name, Address: Site, comPhone: Tel, salesmanId: Behaif, email: Mail, files: imgyulanstr, discrictid: Jion }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         window.location.replace("@Url.Action("Partner","PhoneWeb")");

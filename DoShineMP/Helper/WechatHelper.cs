@@ -589,9 +589,9 @@ namespace DoShineMP.Helper
             account.Remove(account.Length - 1);
 
 
-            var send = "{{\"touser\": \"{0}\",\"msgtype\": \"text\",\"agentid\": \"{2}\",\"text\": {{\"content\": \"{1}\"}},\"safe\":\"0\"}}";
+            var send = "{{\"touser\": \"{0}\",\"msgtype\": \"text\",\"agentid\": \"{1}\",\"text\": {{\"content\": \"{2}\"}},\"safe\":\"0\"}}";
 
-            send = string.Format(send, account, msg, System.Configuration.ConfigurationManager.AppSettings["agentid"]);
+            send = string.Format(send, account, System.Configuration.ConfigurationManager.AppSettings["repairhelperagentid"], msg);
 
             var token = WechatHelper.GetToken(AccountType.Company);
             var url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + token;

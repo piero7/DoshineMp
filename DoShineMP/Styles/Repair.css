@@ -45,17 +45,17 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     /*display: table;*/
-    position:relative;
+    position: relative;
 }
 
-    .operate  .commit {
+    .operate .commit {
         margin-left: 20px;
         margin-top: 15px;
         border-radius: 10px;
         outline: none;
-        position:absolute;
+        /*position:absolute;
         right:20px;
-        top:10px
+        top:10px*/
     }
 
     .operate input {
@@ -97,6 +97,14 @@ body {
 }
 
 #add-phoneimg {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 1px dashed #ccc;
+    outline: none;
+}
+
+.addimages {
     width: 60px;
     height: 60px;
     background: white;
@@ -295,114 +303,128 @@ body {
         transform: scale(1,0.5);
         -webkit-transform: scale(1,0.5);
     }
-    .time-l{
-	margin-right:10px;
-}.housing-l:after
 
+.time-l {
+    margin-right: 10px;
+}
+
+.housing-l:after
     /*@* 新添加 模块 css *@*/
+.housing-box {
+    background-color: white;
+    ;
+    height: 40px;
+    overflow: hodden;
+    position: relative;
+    padding: 0 15px;
+}
 
-  .housing-box{
-      background-color:white;;
-      height:40px;
-      overflow:hodden;
-      position:relative;
-      padding:0 15px;
+.housing-r {
+    width: 50px;
+    height: 40px;
+    float: right;
+    margin-left: -100%;
+    background-color: white;
   }
-  .housing-r{
-      width:50px;
-      height:40px;
-      float:right;
-      margin-left:-100%;
-      background-color:white;
-  }
-  .housing-l{
-      width:100%;
-      padding-right:55px;
-      float:left;
+
+.housing-l {
+    width: 100%;
+    padding-right: 55px;
+    float: left;
       position: relative;
   }
-    .housing-l .housing{
-        width:100%;
-        height:40px;
-        border:0;
-        outline:none;
-        padding-left:15px;
-    }
-     .housing-l .housing-ul li{
-         height:40px;
-         line-height:40px;
-         background-color:white;
-         padding-left:15px;
 
+    .housing-l .housing {
+        width: 100%;
+        height: 40px;
+        border: 0;
+        outline: none;
+        padding-left: 15px;
+    }
+
+    .housing-l .housing-ul li {
+        height: 40px;
+        line-height: 40px;
+        background-color: white;
+        padding-left: 15px;
       }
-    .cire{
-        width:35px;
-        height:35px;
-        display:block;
-        background:url(../Images/locationcire.png) no-repeat ;
-        background-size:cover;
-        -webkit-background-size:cover;
-        margin-top:3px;
-        margin-left:5px;
+
+.cire {
+    width: 35px;
+    height: 35px;
+    display: block;
+    background: url(../Images/locationcire.png) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    margin-top: 3px;
+    margin-left: 5px;
     }
-    .housing-l:after{
-        content:"";
-        width:20px;
-        height:20px;
-        position:absolute;
-        right:65px;
-        top:10px;
-        background:url(../Images/jiantou.png) no-repeat;
-        background-size:cover;
-        -webkit-background-size:cover;
-        transform:rotate(90deg);
-       -webkit-transform:rotate(90deg);
+
+.housing-l:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 65px;
+    top: 10px;
+    background: url(../Images/jiantou.png) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
     }
-    button[disabled], html input[disabled]{
-        background-color:white;
+
+button[disabled], html input[disabled] {
+    background-color: white;
     }
-    .housing-ul{
-        height:0;
-        overflow:hidden;
-        transition:height .6s linear 0s;
-        -webkit-transition:height .6s linear 0s;
+
+.housing-ul {
+    height: 0;
+    overflow: hidden;
+    transition: height .6s linear 0s;
+    -webkit-transition: height .6s linear 0s;
     }
-    .new-page{
-        padding:5px 15px;
-        overflow:hidden;
+
+.new-page {
+    padding: 5px 15px;
+    overflow: hidden;
     }
+
     .new-page .page-name,
     .new-page .page-tel,
-     .new-page .page-cire{
-        height:40px;
-        border-bottom:1px solid #ddd;
-        padding-left:30px;
-        position:relative;
+    .new-page .page-cire {
+        height: 45px;
+        line-height: 44px;
+        border-bottom: 1px solid #ddd;
+        padding-left: 30px;
+        position: relative;
     }
-     .new-page .page-name:before{
-         content:'';
-         width:23px;
-         height:23px;
-         position:absolute;
-         left:0px;
-         top:8px;
-         background:url(../Images/user2x.png) no-repeat left center;
-         background-size:cover;
-         -webkit-background-size:cover;
-         .new-page .page-cire:before
-     }
-      .new-page .page-tel:before{
-         content:'';
-         width:23px;
-         height:23px;
-         position:absolute;
-         left:0px;
-         top:8px;
-         background:url(../Images/phone2x.png) no-repeat left center;
-         background-size:cover;
-         -webkit-background-size:cover;
 
+        .new-page .page-name:before {
+            content: '';
+            width: 23px;
+            height: 23px;
+            position: absolute;
+            left: 0px;
+            top: 8px;
+            background: url(../Images/user2x.png) no-repeat left center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            .new-page .page-cire:before;
      }
+
+        .new-page .page-tel:before {
+            content: '';
+            width: 23px;
+            height: 23px;
+            position: absolute;
+            left: 0px;
+            top: 8px;
+            background: url(../Images/phone2x.png) no-repeat left center;
+            background-size: cover;
+            -webkit-background-size: cover;
+     }
+
         .new-page .page-cire span {
             content: '';
             width: 25px;
@@ -414,56 +436,63 @@ body {
             background-size: cover;
             -webkit-background-size: cover;
         }
+
         .new-page .page-cire select {
-            width:100%;
-            height:100%;
-            border:0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
-      .new-page input{
-          width:100%;
-          border:0;
-          line-height:38px;
+
+    .new-page input {
+        width: 100%;
+        border: 0;
       }
 
-      select{
-                appearance:none;
-              -moz-appearance:none;
-              -webkit-appearance:none;
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
                padding-right: 14px;
             }   
-select::-ms-expand { display: none; }
 
-.my-arranty{
-    padding:10px 15px;
-    font-size:15px;
-    background-color:white;
-    border-bottom:15px solid #ececec;
-    position:relative;
+    select::-ms-expand {
+        display: none;
+    }
+
+.my-arranty {
+    padding: 10px 15px;
+    font-size: 15px;
+    background-color: white;
+    border-bottom: 15px solid #ececec;
+    position: relative;
 }
-.my-arranty span{
-    width:20px;
-    height:20px;
-    position:absolute;.commit
-    top:10px;
-    right:20px;
-   background:url(../Images/jiantou.png) no-repeat;
-   background-size:cover;
-   -webkit-background-size:cover;
   
+    .my-arranty span {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        .commit top:10px;
+        right: 20px;
+        background: url(../Images/jiantou.png) no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
 }
    
-.new-page .page-cire{
-    padding:0;
+.new-page .page-cire {
+    padding: 0;
 }
-.content-see{
-    color:#898989;
-    font-size:12px;
-    padding:5px 0; 
+
+.content-see {
+    width:68%;
+    color: #898989;
+    font-size: 12px;
+    padding: 5px 0;
 }
-.wr-content{
-    height:40px;
-    overflow:hidden;
-    text-overflow:ellipsis;
+
+.wr-content {
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 /*.tips-title{
     color:#898989;

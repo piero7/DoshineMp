@@ -159,43 +159,45 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Repair(string code)
         {
-            //url.urltype = "Repair";
-            //try
-            //{
-            //    if (!string.IsNullOrEmpty(code))
-            //    {
-            //        if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-            //        {
-            //            var user = wuser.GetUserInfo(this.openid);
-            //            if (user.UserInfo != null)
-            //            {
-            //                ViewBag.user = user;
-            //                ViewBag.openid = this.openid;
-            //                //历史保修记录
-            //                ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
-            //            }
-            //            else
-            //            {
-            //                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-            ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
-            ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-            ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            url.urltype = "Repair";
+            try
+            {
+                if (!string.IsNullOrEmpty(code))
+                {
+                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                    {
+                        var user = wuser.GetUserInfo(this.openid);
+                        if (user.UserInfo != null)
+                        {
+                            ViewBag.user = user;
+                            ViewBag.openid = this.openid;
+                            //历史报修记录
+                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+                            ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
+
+                        }
+                        else
+                        {
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            //ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+            //ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             ViewBag.Title = "自助报修";
             return View();
         }
@@ -205,9 +207,14 @@ namespace DoShineMP.Controllers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public ActionResult RepairHistory(string code)
+        public ActionResult RepairHistory(string openid)
         {
-            ViewBag.Title = "保修历史";
+            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
+            ViewBag.Title = "报修历史";
             return View();
         }
 
@@ -224,10 +231,7 @@ namespace DoShineMP.Controllers
                 var repairdetail = repairHelper.GetDetail(a);
                 if (repairdetail != null)
                 {
-                    if (repairdetail.Image != null)
-                    {
-                        repairdetail.Image.FileName = System.Configuration.ConfigurationManager.AppSettings["httpimgpath"] + repairdetail.Image.FileName;
-                    }
+
                     ViewBag.RepairDetail = repairdetail;
                 }
                 else
@@ -255,6 +259,8 @@ namespace DoShineMP.Controllers
             ViewBag.RepairList10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
             ViewBag.RepairList20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
             ViewBag.RepairList99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
+
             ViewBag.Title = "报修受理";
             return View();
         }
@@ -433,10 +439,44 @@ namespace DoShineMP.Controllers
         /// 供应商
         /// </summary>
         /// <returns></returns> 
-        public ActionResult Supplier()
+        public ActionResult Supplier(string code)
         {
-            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
-            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+            url.urltype = "PersonalCenter";
+            try
+            {
+                if (!string.IsNullOrEmpty(code))
+                {
+                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                    {
+                        var user = wuser.GetUserInfo(this.openid);
+
+                        if (user.UserInfo == null)
+                        {
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        }
+                        else
+                        {
+                            ViewBag.user = user;
+                            ViewBag.parnter = partner.GetPartnerInfo(openid);
+                            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+                            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Supplier", ""));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            ViewBag.openid = this.openid;
             return View();
         }
 
@@ -444,11 +484,46 @@ namespace DoShineMP.Controllers
         /// 经销商
         /// </summary>
         /// <returns></returns>
-        public ActionResult Distributor()
+        public ActionResult Distributor(string code)
         {
-            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
-            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
 
+            url.urltype = "PersonalCenter";
+            try
+            {
+                if (!string.IsNullOrEmpty(code))
+                {
+                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                    {
+                        var user = wuser.GetUserInfo(this.openid);
+
+                        if (user.UserInfo == null)
+                        {
+                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                        }
+                        else
+                        {
+                            ViewBag.user = user;
+                            ViewBag.parnter = partner.GetPartnerInfo(openid);
+                            ViewBag.Salesman = SalesmanHelper.GetAllSalesman();//获取所有销售
+                            ViewBag.AllDistrict = partner.GetAllDistrict();//获取所有地区
+
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Supplier", ""));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            ViewBag.openid = this.openid;
             return View();
         }
 
@@ -583,14 +658,14 @@ namespace DoShineMP.Controllers
                 }
                 else
                 {
-                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
-                {
-                    return Json(new { msg = "Y" });
-                }
-                else
-                {
-                    return Json(new { msg = "N" });
-                }
+                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
+                    {
+                        return Json(new { msg = "Y" });
+                    }
+                    else
+                    {
+                        return Json(new { msg = "N" });
+                    }
                 }
 
 
@@ -642,7 +717,7 @@ namespace DoShineMP.Controllers
 
         #region 用户
         /// <summary>
-        /// 添加保修记录返回数据
+        /// 添加报修记录返回数据
         /// </summary>
         /// <param name="code"></param>
         /// <param name="content"></param>
@@ -702,7 +777,7 @@ namespace DoShineMP.Controllers
         #region 内部人员
 
         /// <summary>
-        /// 保修受理
+        /// 报修受理
         /// </summary>
         /// <returns></returns>
         public JsonResult RepairDetailJson(int repaidID, string exceptDate, string innderNumber, string type)
@@ -710,19 +785,12 @@ namespace DoShineMP.Controllers
             string msg = "Y";
             try
             {
-
                 switch (type)
                 {
                     case "1":
                         DateTime date;
                         DateTime.TryParse(exceptDate, out date);
                         msg = repairHelper.Accept(repaidID, date, innderNumber) != null ? "Y" : "N";
-                        ; break;
-                    case "2":
-                        //msg = repairHelper.FinishHandlen(repaidID) != null ? "Y" : "N";
-                        msg = "Y";
-
-
                         ; break;
                 }
                 return Json(new { msg = msg });
@@ -732,6 +800,39 @@ namespace DoShineMP.Controllers
                 return Json(new { msg = msg });
             }
         }
+
+
+        /// <summary>
+        /// 确认完成
+        /// </summary>
+        /// <param name="repaidID"></param>
+        /// <param name="serviceid"></param>
+        /// <param name="describe"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public JsonResult RepairDetailWJson(int repaidID,string serviceid, string describe,string type)
+        {
+            string msg = "Y";
+            try
+            {
+                ///DoShineMP.re p = (DoShineMP.Models.PartnerType)Enum.Parse(typeof(DoShineMP.Models.PartnerType), type);
+                DoShineMP.Models.RepairFinishType t = (DoShineMP.Models.RepairFinishType)Enum.Parse(typeof(DoShineMP.Models.RepairFinishType), type);
+                List<string> s = new List<string>();
+                var sss = serviceid.Split(',');
+                foreach(var i in sss)
+                {
+                    s.Add(i);
+                }
+                repairHelper.FinishHandlen(repaidID, s, describe, t);
+
+                return Json(new { msg = msg });
+            }
+            catch (Exception)
+            {
+                return Json(new { msg = msg });
+            }
+        }
+
 
         #endregion
 

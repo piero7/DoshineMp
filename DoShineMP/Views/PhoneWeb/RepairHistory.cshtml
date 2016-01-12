@@ -5,265 +5,221 @@
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/history.css" rel="stylesheet" />
-    }
+}
 <div id="content">
     <div id="leftTabBox" class="tabBox">
         <div class="hd">
             <ul>
                 <li><a href="#">已提交</a></li>
                 <li><a href="#">已受理</a></li>
+                <li><a href="#">待评价</a></li>
                 <li><a href="#">已完成</a></li>
-                <li><a href="#">已取消</a></li>
                 <li><a href="#">已取消</a></li>
             </ul>
         </div>
         <div class="bd">
-            <ul class="Padding" id="one">
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check1 pull-left">已提交</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li id="22">
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">22趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check2 pull-left">已受理</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check1 pull-left">已提交</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check2 pull-left">已受理</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li id="11">
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">11趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check1 pull-left">已提交</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check2 pull-left">已受理</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check1 pull-left">已提交</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li id="222">
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check2 pull-left">已受理</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
+            @*已提交*@
+            <ul class="Padding">
+                @if (ViewBag.RepairList5 != null)
+                {
+                    foreach (DoShineMP.Models.Repair r in ViewBag.RepairList5 as List<DoShineMP.Models.Repair>)
+                    {
+                        <li id="@r.RepairId">
+                            <div class="content-title-t">
+                                @if (r.ImageFiles.Count == 0)
+                                {
+                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="content-title-b">
+                                <ins class="check check1 pull-left">已提交</ins>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
+                            </div>
+                        </li>
+                    }
+                }
             </ul>
-            <ul class="Padding" id="two" style="overflow:hidden;">
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check3 pull-left">处理中</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check4 pull-left">已完成</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
+            @*已受理*@
+            <ul class="Padding">
+                @if (ViewBag.RepairList10 != null)
+                {
+                    foreach (DoShineMP.Models.Repair r in ViewBag.RepairList10 as List<DoShineMP.Models.Repair>)
+                    {
+                        <li id="@r.RepairId">
+                            <div class="content-title-t">
+                                @if (r.ImageFiles.Count == 0)
+                                {
+                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="content-title-b">
+                                <ins class="check check2 pull-left">已受理</ins>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
+                            </div>
+                        </li>
+                    }
+                }
             </ul>
-            <ul class="Padding" id="three" style="overflow: hidden;">
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">jfajjdjsljsjjj是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check3 pull-left">处理中</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check4 pull-left">已完成</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">jfajjdjsljsjjj是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check3 pull-left">处理中</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
+            @*待评价*@
+            <ul class="Padding">
+                @if (ViewBag.RepairList20 != null)
+                {
+                    foreach (DoShineMP.Models.Repair r in ViewBag.RepairList20 as List<DoShineMP.Models.Repair>)
+                    {
+                        <li id="@r.RepairId">
+                            <div class="content-title-t">
+                                @if (r.ImageFiles.Count == 0)
+                                {
+                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="content-title-b">
+                                <ins class="check check3 pull-left">待评价</ins>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
+                            </div>
+                        </li>
+                    }
+                }
             </ul>
-            <ul class="Padding" id="three" style="overflow: hidden;">
-               
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">人人趣学是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check5 pull-left">已取消</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
-                <li>
-                    <div class="content-title-t">
-                        <!-- <div class="pull-left logo"></div> -->
-                        <div class="pull-left w8">
-                            <p class="wr-content">jfajjdjsljsjjj是以艺体教育为核心的综合在线教育平台</p>
-                        </div>
-                        <div class="pull-right w2">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <div class="content-title-b">
-                        <ins class="check check5 pull-left">已取消</ins>
-                        <span class="time pull-right">2015-12-28<span>
-                    </div>
-                </li>
+            @*已完成*@
+            <ul class="Padding">
+                @if (ViewBag.RepairList99 != null)
+                {
+                    foreach (DoShineMP.Models.Repair r in ViewBag.RepairList99 as List<DoShineMP.Models.Repair>)
+                    {
+                        <li id="@r.RepairId">
+                            <div class="content-title-t">
+                                @if (r.ImageFiles.Count == 0)
+                                {
+                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="content-title-b">
+                                <ins class="check check4 pull-left">已完成</ins>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+            @*已取消*@
+            <ul class="Padding">
+                @if (ViewBag.RepairList_1 != null)
+                {
+                    foreach (DoShineMP.Models.Repair r in ViewBag.RepairList_1 as List<DoShineMP.Models.Repair>)
+                    {
+                        <li id="@r.RepairId">
+                            <div class="content-title-t">
+                                @if (r.ImageFiles.Count == 0)
+                                {
+                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                        <p class="wr-content">@r.Contenet</p>
+                                    </div>
+                                    <div class="pull-right w2">
+                                        <div class="img">
+                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="content-title-b">
+                                <ins class="check check5 pull-left">已取消</ins>
+                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @if (r.User.Name != null)
+                                {
+                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                }
+                            </div>
+                        </li>
+                    }
+                }
             </ul>
         </div>
     </div>
+</div>
 
-
-    @section scripts{
-        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-        <script src="~/Scripts/TouchSlide.1.1.js"></script>
-        <script src="~/Scripts/zepto.min.js"></script>
-        <script src="~/Scripts/cookiecode.js"></script>
-        <script src="~/Scripts/locales/touch.js"></script>
-        <script type="text/javascript">
-        var tabnumber = 4;//分页tab数量
+@section scripts{
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/TouchSlide.1.1.js"></script>
+    <script src="~/Scripts/zepto.min.js"></script>
+    <script src="~/Scripts/cookiecode.js"></script>
+    <script src="~/Scripts/locales/touch.js"></script>
+    <script type="text/javascript">
+        var tabnumber = 5;//分页tab数量
         var IndexLi = 0;
 
         var token;
@@ -407,7 +363,7 @@
             }
 
         })
-        console.log('初始化'+IndexLi)
+        console.log('初始化' + IndexLi)
         function repairid(e) {
             window.localStorage['IndexLi'] = IndexLi;
             window.history.replaceState(null, null, '?IndexLi=0');
@@ -422,7 +378,7 @@
                 //TouchSlide({defaultIndex: IndexLi });
             }
         })
-        
+
 
         function tab(enumber) {
             Lilength = $('.Padding').eq(enumber).find('li').length
@@ -436,10 +392,10 @@
             //    console.log('window高' + windowHeight)
             //    console.log(Height - windowHeight)
             //    console.log('之后' + enumber);
-                $('.tempWrap .bd').css({ 'height': Height + 'px', 'overflow': 'hidden' })
+            $('.tempWrap .bd').css({ 'height': Height + 'px', 'overflow': 'hidden' })
             //}
-            
-           
+
+
         }
 
 
@@ -449,7 +405,7 @@
             if (r != null) return unescape(r[2]); return null;
         }
 
-        
+
         //var Px = null, Py = null, Py = null, MPy = null, MPy = null, left = null, right = null, top = null, bottom = null, leftDown = null,rightDown=null,leftUp=null,rightUp=null;
 
         //document.addEventListener('touchstart', starthanlder);
@@ -469,7 +425,7 @@
         //    top = Py - MPy > 50 ? 3 : top;
         //    bottom = Py - MPy > 50 ? bottom : 4;
         //    leftDown = Px - MPx > 50 && Py - MPy > 50;
-        //    //rightDown = 
+        //    //rightDown =
 
         //    switch(n)
         //    {
@@ -484,7 +440,12 @@
         //    this.body.innerHTML = 'px:' + Px + 'py:'+Py
         //}
 
+        function repairid(e) {
+            var repairid = $(this).attr('tagid');
+            var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
+            window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
+        }
 
-        </script>
+    </script>
 
-    }
+}

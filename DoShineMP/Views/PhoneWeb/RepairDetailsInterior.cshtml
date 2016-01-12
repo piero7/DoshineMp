@@ -10,9 +10,10 @@
     <link href="~/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" />
     <link href="~/Styles/star-rating.css" rel="stylesheet" />
     <style>
-        .android-ics.light .dwbc{
+        .android-ics.light .dwbc {
                 background-color: #4bc1cd;
         }
+
        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #cdcdcd;  
 }
@@ -42,29 +43,52 @@ textarea::-webkit-input-placeholder {
 
             <div class="top-content">
                 <p>@ViewBag.RepairDetail.Contenet</p>
-                @if (ViewBag.RepairDetail.Image != null)
+                @if (ViewBag.RepairDetail.ImageFiles != null)
                 {
                     <div class="img-content">
-                        <img src="@ViewBag.RepairDetail.Image.FileName" class="imgyulan" />
+                        @foreach (DoShineMP.Models.ImageFile I in ViewBag.RepairDetail.ImageFiles as List<DoShineMP.Models.ImageFile>)
+                        {
+
+                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@I.FileName" class="imgyulan" />
+
+                        }
                     </div>
                 }
             </div>
         </div>
 
         <div class="informant">
-            <p>手机号：<a href="tel:@ViewBag.RepairDetail.User.PhoneNumber">@ViewBag.RepairDetail.User.PhoneNumber</a></p>
-            @if (ViewBag.RepairDetail.User.Name != null)
+            <p>手机号：<a href="tel:@ViewBag.RepairDetail.PhoneNumber">@ViewBag.RepairDetail.PhoneNumber</a></p>
+            @if (ViewBag.RepairDetail.Name != null)
             {
-                <p>申请人：@ViewBag.RepairDetail.User.Name </p>
+                <p>申请人：@ViewBag.RepairDetail.Name </p>
             }
             else
             {
                 <p>申请人： </p>
             }
-            <p>报修日期：@ViewBag.RepairDetail.CreateDate</p>
-            <p>地址：@ViewBag.RepairDetail.User.Address</p>
+            <p>报修日期：@(ViewBag.RepairDetail.CreateDate != null ? ViewBag.RepairDetail.CreateDate : "")</p>
+            <p>小区：@(ViewBag.RepairDetail.Village.Name != null ? ViewBag.RepairDetail.Village.Name : "")</p>
+            <p>订单号：@(ViewBag.RepairDetail.InnerNumber != null ? ViewBag.RepairDetail.InnerNumber : "")</p>
         </div>
-         <div class="list-bottom" style="background-color:white;">
+        @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
+        {
+            <div class="choose ">
+                <h4>请选择处理状态:</h4>
+                <ul class="service" id="RepairFinishTypeid">
+                    <li class="current" typeid="Fixed">已修复</li>
+                    <li typeid="Unfixed">未修复</li>
+                    <li typeid="OutOfRange">不属于维保范围</li>
+                </ul>
+                <div class="choose-title">
+                    <textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe"></textarea>
+                    <div class="choose-photo" id="choose-photo">
+                        <img src="~/Images/tianjia2x.png" class="add-photo" id="add-photo">
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="list-bottom" style="background-color:white;">
             <div class="bottom-title">
                 <p>状态跟踪</p>
             </div>
@@ -167,7 +191,7 @@ textarea::-webkit-input-placeholder {
                 </div>
             </div>
         </div>
-       
+
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {
@@ -185,7 +209,7 @@ textarea::-webkit-input-placeholder {
         {
             <div class="content">
                 <div class="demos">
-                    <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()"/>
+                    <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()" />
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
                     <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
@@ -194,14 +218,11 @@ textarea::-webkit-input-placeholder {
                 </div>
 
             </div>
-
-
-
         }
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate ">
-                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成" >
+                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成">
                 @*取消按钮*@
                 <input type="button" class="commit pull-right" id="applybtn" tag="2" value="取消" style="background-color:#dedede">
             </div>
@@ -211,6 +232,7 @@ textarea::-webkit-input-placeholder {
 </div>
 
 <input type="hidden" value="@ViewBag.RepairDetail.RepairId" id="repairID" />
+<input type="hidden" value="" id="serviceid" />
 
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -222,14 +244,12 @@ textarea::-webkit-input-placeholder {
     <script src="~/Scripts/star-rating.js"></script>
     <script type="text/javascript">
         var token;
-
+        var imglength = 3;
         var images = {
             localId: [],
             serverId: []
         };
         $(function () {
-            //console.log( window.localStorage['RepairId'])
-            // console.log( window.localStorage['IndexLi'])
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -281,7 +301,71 @@ textarea::-webkit-input-placeholder {
                     ]
                 });
             })
+            // 微信
+            wx.error(function (res) {
+                console.log('验证失败');
+            });
+            wx.ready(function () {
+                // 5 图片接口
+                // 5.1 拍照、本地选图
+                var images = {
+                    localId: [],
+                    serverId: []
+                };
+                document.querySelector('#add-photo').onclick = function () {
+                    wx.chooseImage({
+                        count: imglength,
+                        success: function (res) {
+                            images.localId = res.localIds;
+                            if (images.localId.length == 0) {
+                                alert('请先使用 chooseImage 接口选择图片');
+                                return;
+                            }
+
+
+                            var i = 0, length = 3;
+                            images.serverId = [];
+                            var str = '';
+                            var htmlstr = '';
+                            function upload() {
+                                wx.uploadImage({
+                                    localId: images.localId[i],
+                                    success: function (res) {
+                                        images.serverId.push(res.serverId);
+                                        if (i < length) {
+                                            if (i == 0 && imglength == length) {
+                                                $("#serviceid").val($("#serviceid").val() + res.serverId);
+                                            } else {
+                                                $("#serviceid").val($("#serviceid").val() + ',' + res.serverId);
+                                            }
+                                            //alert(imglength);
+                                            htmlstr = ' <img src="' + images.localId[i] + '" class="imgyulan"  />';
+                                            i++;
+                                            $('#choose-photo').prepend(htmlstr);
+                                            imglength--;
+                                            if (imglength == 0) {
+                                                $('#add-photo').hide();
+                                                return;
+                                            }
+                                            upload();
+                                        }
+                                    },
+                                    fail: function (res) {
+                                    }
+                                });
+                            }
+                            upload();
+
+                        }
+                    });
+                };
+
+            });
         })
+
+
+
+
 
         $(document).on('click', '.imgyulan', function () {
             var imgurl = $(this).attr('src');
@@ -293,6 +377,7 @@ textarea::-webkit-input-placeholder {
                 ]
             });
         })
+
 
         //初始化时间控件
         $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
@@ -309,6 +394,13 @@ textarea::-webkit-input-placeholder {
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
 
+
+            var serviceid = $('#serviceid').val();
+            var describe = $('#describe').val();
+            var RepairFinishTypeid = $('#RepairFinishTypeid').find('.current').attr('typeid');
+
+
+            if (type == '1') {
             $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg != 'N') {
@@ -317,6 +409,17 @@ textarea::-webkit-input-placeholder {
                     }
                 }
             })
+            } else if (type == '2') {
+                $.post('@Url.Action("RepairDetailWJson", "PhoneWeb")', { repaidID: repaidID, serviceid: serviceid, describe: describe, type: RepairFinishTypeid }, function (data, status) {
+                    if (status === 'success') {
+                        if (data.msg != 'N') {
+                            window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
+                            window.history.go(-1);
+                        }
+                    }
+                })
+            }
+
         })
 
         
@@ -330,6 +433,9 @@ textarea::-webkit-input-placeholder {
 
 
     </script>
+
+
+
 
     <script type="text/javascript">
         $(function () {
@@ -386,11 +492,11 @@ textarea::-webkit-input-placeholder {
             //rows: 3}
         });
 
-        $('#applybtn[tag="1"]').css('background-color','#ddd')
+        $('#applybtn[tag="1"]').css('background-color', '#ddd')
         function Time() {
 
             if ($('#appDateTime').val() != null && $('#appDateTime').val() != '') {
-                $('#applybtn').attr({ 'disabled': false}).css( 'background-color','#4ca329')
+                $('#applybtn').attr({ 'disabled': false }).css('background-color', '#4ca329')
             }
         }
 
