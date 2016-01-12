@@ -591,7 +591,7 @@ namespace DoShineMP.Helper
 
             var send = "{{\"touser\": \"{0}\",\"msgtype\": \"text\",\"agentid\": \"{2}\",\"text\": {{\"content\": \"{1}\"}},\"safe\":\"0\"}}";
 
-            send = string.Format(send, account, msg, System.Configuration.ConfigurationManager.AppSettings["agentid"]);
+            send = string.Format(send, account, msg, System.Configuration.ConfigurationManager.AppSettings["repairhelperagentid"]);
 
             var token = WechatHelper.GetToken(AccountType.Company);
             var url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + token;
