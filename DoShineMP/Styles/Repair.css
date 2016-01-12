@@ -298,10 +298,10 @@ body {
     /*@* 新添加 模块 css *@*/
 
   .housing-box{
-      height:200px;
-      background-color:#4ca329;
-      overflow:hidd
-
+      background-color:#ececec;
+      height:40px;
+      overflow:hodden;
+      position:relative;
   }
   .housing-r{
       width:50px;
@@ -312,7 +312,7 @@ body {
   }
   .housing-l{
       width:100%;
-      padding-right:65px;
+      padding-right:55px;
       float:left;
   }
     .housing-l .housing{
@@ -321,8 +321,14 @@ body {
         border:0;
         outline:none;
         padding-left:15px;
-
     }
+     .housing-l .housing-ul li{
+         height:40px;
+         line-height:40px;
+         background-color:white;
+         padding-left:15px;
+
+      }
     .cire{
         width:35px;
         height:35px;
@@ -333,3 +339,98 @@ body {
         margin-top:3px;
         margin-left:5px;
     }
+    .housing-l:after{
+        content:"";
+        width:20px;
+        height:20px;
+        position:absolute;
+        right:65px;
+        top:10px;
+        background:url(../Images/jiantou.png) no-repeat;
+        background-size:cover;
+        -webkit-background-size:cover;
+    }
+    button[disabled], html input[disabled]{
+        background-color:white;
+    }
+    .housing-ul{
+        height:0;
+        overflow:hidden;
+        transition:height .6s linear 0s;
+        -webkit-transition:height .6s linear 0s;
+    }
+    .new-page{
+        padding:5px 15px;
+        overflow:hidden;
+    }
+    .new-page .page-name,
+    .new-page .page-tel{
+        height:40px;
+        border-bottom:1px solid #ddd;
+        line-height:30px;
+        padding-left:30px;
+        position:relative;
+    }
+     .new-page .page-name:before{
+         content:'';
+         width:23px;
+         height:23px;
+         position:absolute;
+         left:0px;
+         top:8px;
+         background:url(../Images/user2x.png) no-repeat left center;
+         background-size:cover;
+         -webkit-background-size:cover;
+
+     }
+      .new-page .page-tel:before{
+         content:'';
+         width:23px;
+         height:23px;
+         position:absolute;
+         left:0px;
+         top:8px;
+         background:url(../Images/phone2x.png) no-repeat left center;
+         background-size:cover;
+         -webkit-background-size:cover;
+
+     }
+     
+      .new-page input{
+          width:100%;
+          border:0;
+          line-height:38px;
+      }
+
+      select{
+                appearance:none;
+              -moz-appearance:none;
+              -webkit-appearance:none;
+               padding-right: 14px;
+            }   
+select::-ms-expand { display: none; }
+
+.my-Warranty{
+    padding:10px 15px;
+    font-size:15px;
+    background-color:white;
+    border-bottom:15px solid #ececec;
+    position:relative;
+}
+.my-Warrant:after{
+    content:;
+    width:28px;
+    height:28px;
+    position:absolute;
+    top:6px;
+    right:20px;
+   background:url(../Images/jiantou.png) no-repeat;
+   background-size:cover;
+   -webkit-background-size:cover;
+  
+
+}
+
+/*textarea:disabled, input:not([type]):disabled, input[type="color" i]:disabled, input[type="date" i]:disabled, input[type="datetime" i]:disabled, input[type="datetime-local" i]:disabled, input[type="email" i]:disabled, input[type="month" i]:disabled, input[type="password" i]:disabled, input[type="number" i]:disabled, input[type="search" i]:disabled, input[type="tel" i]:disabled, input[type="text" i]:disabled, input[type="time" i]:disabled, input[type="url" i]:disabled, input[type="week" i]:disabled {
+        background-color:#fff !important;
+}*/

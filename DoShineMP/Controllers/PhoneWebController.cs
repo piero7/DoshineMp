@@ -583,14 +583,14 @@ namespace DoShineMP.Controllers
                 }
                 else
                 {
-                    if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
-                    {
-                        return Json(new { msg = "Y" });
-                    }
-                    else
-                    {
-                        return Json(new { msg = "N" });
-                    }
+                if (partner.ReginPartner(code, comName, p, realName, Address, comPhone, salesmanId, eamil, files, discrictid) != null)
+                {
+                    return Json(new { msg = "Y" });
+                }
+                else
+                {
+                    return Json(new { msg = "N" });
+                }
                 }
 
 

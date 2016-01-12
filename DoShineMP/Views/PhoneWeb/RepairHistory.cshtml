@@ -14,6 +14,7 @@
                 <li><a href="#">已受理</a></li>
                 <li><a href="#">已完成</a></li>
                 <li><a href="#">已取消</a></li>
+                <li><a href="#">已取消</a></li>
             </ul>
         </div>
         <div class="bd">
@@ -449,39 +450,39 @@
         }
 
         
-        var Px = null, Py = null, Py = null, MPy = null, MPy = null, left = null, right = null, top = null, bottom = null, leftDown = null,rightDown=null,leftUp=null,rightUp=null;
+        //var Px = null, Py = null, Py = null, MPy = null, MPy = null, left = null, right = null, top = null, bottom = null, leftDown = null,rightDown=null,leftUp=null,rightUp=null;
 
-        document.addEventListener('touchstart', starthanlder);
-        document.addEventListener('touchmove', movehanlder);
-        function starthanlder(evt) {
-            Px = evt.touches[0].pageX;
-            Py = evt.touches[0].pageY;
-            this.body.innerHTML = 'px:' + Px + 'py：' + Py
-            console.log(this)
-        }
-        function movehanlder(evt) {
-            console.log(1)
-            MPx = evt.touches[0].pageX;
-            MPy = evt.touches[0].pageY;
-            left = Px - MPx > 50 ? 1 : left;
-            right = Px - MPx > 50 ? right : 2;
-            top = Py - MPy > 50 ? 3 : top;
-            bottom = Py - MPy > 50 ? bottom : 4;
-            leftDown = Px - MPx > 50 && Py - MPy > 50;
-            //rightDown = 
+        //document.addEventListener('touchstart', starthanlder);
+        //document.addEventListener('touchmove', movehanlder);
+        //function starthanlder(evt) {
+        //    Px = evt.touches[0].pageX;
+        //    Py = evt.touches[0].pageY;
+        //    this.body.innerHTML = 'px:' + Px + 'py：' + Py
+        //    console.log(this)
+        //}
+        //function movehanlder(evt) {
+        //    console.log(1)
+        //    MPx = evt.touches[0].pageX;
+        //    MPy = evt.touches[0].pageY;
+        //    left = Px - MPx > 50 ? 1 : left;
+        //    right = Px - MPx > 50 ? right : 2;
+        //    top = Py - MPy > 50 ? 3 : top;
+        //    bottom = Py - MPy > 50 ? bottom : 4;
+        //    leftDown = Px - MPx > 50 && Py - MPy > 50;
+        //    //rightDown = 
 
-            switch(n)
-            {
-                case 1:;
-                    break;
+        //    switch(n)
+        //    {
+        //        case 1:;
+        //            break;
 
-                case 2:;
-                    break;
+        //        case 2:;
+        //            break;
 
-                default:
-            }
-            this.body.innerHTML = 'px:' + Px + 'py:'+Py
-        }
+        //        default:
+        //    }
+        //    this.body.innerHTML = 'px:' + Px + 'py:'+Py
+        //}
 
 
         </script>

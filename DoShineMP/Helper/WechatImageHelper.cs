@@ -109,8 +109,7 @@ namespace DoShineMP.Helper
                 db.SaveChanges();
 
                 //将下载的文件关联到报修记录中
-                //rep.ImageFileId = file.ImageFileId;
-                rep.ImageFiles.Concat(new ImageFile[] { file });
+                rep.ImageFiles = rep.ImageFiles.Concat(new ImageFile[] { file }).ToList();
                 log.FileId = file.ImageFileId;
 
                 db.SaveChanges();
@@ -167,7 +166,7 @@ namespace DoShineMP.Helper
 
                 //将下载的文件关联到报修记录中
                 //rep.ImageFileId = file.ImageFileId;
-                rep.FinishImageFiles.Concat(new ImageFile[] { file });
+                rep.FinishImageFiles = rep.FinishImageFiles.Concat(new ImageFile[] { file }).ToList();
                 log.FileId = file.ImageFileId;
 
                 db.SaveChanges();
@@ -228,7 +227,7 @@ namespace DoShineMP.Helper
                 {
                     pat.Files = new Dictionary<int, string>();
                 }
-                pat.Files.Add(file.ImageFileId, media.Key);
+                pat.Files = pat.Files.Concat(new KeyValuePair<int, string>[] { new KeyValuePair<int, string>(file.ImageFileId, media.Key) }).ToDictionary(item => item.Key, item => item.Value);
                 log.FileId = file.ImageFileId;
 
                 db.SaveChanges();

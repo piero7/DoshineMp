@@ -6,7 +6,7 @@
 */
 
 body {
-    font-family: 'Microsoft yahei';
+	font-family: 'Microsoft yahei';
 }
 
 .inviteUp img {
@@ -20,34 +20,34 @@ body {
 
 .itme .itme-Title {
     padding: 20px 0;
-    font-size: 16px;
+	font-size: 16px;
     color: #333;
 }
 
 .itme-select {
     padding: 15px 0px;
-    overflow: hidden;
+	overflow: hidden;
 }
 
     .itme-select li {
-        float: left;
+	float: left;
         width: 50%;
         padding: 10px 0 10px 25px;
-        font-size: 14px;
-        color: #626262;
+	font-size: 14px;
+	color: #626262;
         text-align: left;
         background: url(../Images/face2.png) no-repeat center left;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-    }
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
 
         .itme-select li.current {
             background-image: url(../Images/face.jpg);
-        }
+}
 
         .itme-select li.current {
             background: url(../Images/face.jpg) no-repeat center left;
-        }
+}
 
 .itme-box .itme dt {
     padding: 20px 0 15px;
@@ -57,77 +57,77 @@ body {
     .itme-box .itme dt ins {
         color: #f1514e;
         text-decoration: none;
-    }
+}
 
 .itme-box .itme dd {
-    width: 100%;
-    /*height:35px;*/
-    /*background:url("../Images/inputbg.png") no-repeat;
+	width: 100%;
+	/*height:35px;*/
+	/*background:url("../Images/inputbg.png") no-repeat;
 	*/
-    background-size: contain;
-    -webkit-background-size: contain;
+	background-size: contain;
+	-webkit-background-size: contain;
 }
 
     .itme-box .itme dd input {
-        display: block;
+	display: block;
         border: 0;
         width: 100%;
         height: 35px;
-        outline: none;
+	outline: none;
         background-color: transparent;
         border: 1px solid #ddd;
         border-radius: 6px;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
         padding-left: 5px;
-    }
+}
 /* tips-select*/
 .tips-select,
 .tips-select2 {
-    position: relative;
+	position: relative;
     top: 0;
     left: 0;
-    /*overflow: hidden;*/
+	/*overflow: hidden;*/
 }
 
-    .tips-select input,
+.tips-select input,
     .tips-select2 input {
-        text-align: left;
-    }
+	text-align: left;
+}
 
 .select-ul,
 .select-ul2 {
-    display: block;
+	display: block;
     height: 0px;
     position: absolute;
     top: 37px;
     left: 0px;
-    z-index: 999;
+	z-index: 999;
     width: 100%;
     color: white;
-    transition: all .2s linear 0s;
-    -weikit-transition: all .2s linear 0s;
+	transition: all .2s linear 0s;
+	-weikit-transition: all .2s linear 0s;
     overflow: hidden;
 }
 
-    .select-ul li,
+.select-ul li,
     .select-ul2 li {
         padding: 15px 10px;
-        text-align: left;
+	text-align: left;
         background-color: #d16c6c;
         color: white;
         border-bottom: 1px solid white;
-    }
+}
 
 input[disabled='disabled'] {
     background-color: white;
 }
 
 .title-photo {
-    /*border:1px solid #ddd;*/
-    /*margin:20px 0px;*/
-    position: relative;
-    overflow: hidden;
+	/*border:1px solid #ddd;*/
+	/*margin:20px 0px;*/
+	position: relative;
+	overflow: hidden;
 }
 
 .photo {
@@ -141,26 +141,26 @@ input[disabled='disabled'] {
 
 .title-photo textarea {
     padding-top: 5px;
-    width: 100%;
+	width: 100%;
     height: 80px;
-    line-height: 20px;
+	line-height: 20px;
     border: 0;
     outline: none;
 }
 
 .photo span {
-    display: block;
-    width: 23%;
-    /*height:80px;*/
-    float: left;
+	display: block;
+	width:23%;
+	height:100px;
+	float: left;
     margin-left: 5px;
     margin-top: 5px;
     color: #333;
 }
-
-    .photo span img {
-        width: 100%;
-    }
+.photo span img{
+	width:100%;
+    height:80%;
+}
 
 .add-photo {
     position: absolute;
@@ -173,11 +173,11 @@ input[disabled='disabled'] {
     .add-photo img {
         width: 100%;
         height: 100%;
-    }
+}
 
 .itme p {
     color: #898989;
-    font-size: 12px;
+	font-size: 12px;
     padding-bottom: 10px;
 }
 
@@ -185,12 +185,12 @@ input[disabled='disabled'] {
     width: 100%;
     min-height: 140px;
     border: 1px solid #ddd;
-    font-size: 14px;
+	font-size: 14px;
     color: #333;
 }
 
 .submit-btn {
-    display: block;
+	display: block;
     margin: 20px auto;
     width: 160px;
     height: 40px;
@@ -204,11 +204,11 @@ input[disabled='disabled'] {
     .submit-btn img {
         width: 100%;
         height: 100%;
-    }
+}
 
 /* 动画 ul*/
 .select-ul li {
-    /*transition: all .4s linear 0s;
+	/*transition: all .4s linear 0s;
 	-webkit-transition: all .4s linear 0s;*/
 }
 
@@ -219,14 +219,14 @@ input[disabled='disabled'] {
     .select-ul li.active {
         transform: rotateX(0deg);
         -webkit-transform: rotateX(0deg);
-    }
+}
 
 .tips-select .jia,
 .tips-select2 .jia2 {
-    transform-origin: 50% 50%;
-    -webkit-transform-origin: 50% 50%;
-    transition: rotate .2s linear 0s;
-    -webkit-transition: transform .2s linear 0s;
+	transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
+	transition: rotate .2s linear 0s;
+	-webkit-transition: transform .2s linear 0s;
     position: absolute;
     top: 50%;
     right: 5px;
@@ -234,11 +234,11 @@ input[disabled='disabled'] {
     width: 20px;
     height: 20px;
     background: url(../Images/jiantou.png) no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
+	background-size: cover;
+	-webkit-background-size: cover;
 }
 
-    .tips-select .jia.current,
+.tips-select .jia.current,
     .tips-select2 .jia2.current {
         transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
@@ -254,4 +254,15 @@ select {
 
     select::-ms-expand {
         display: none;
-    }
+}
+
+/* 取出莫默认 select 样式 css*/
+
+select{
+    appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+   background: url(../Images/jiantou.png) no-repeat scroll right center transparent;
+   padding-right: 14px;
+}
+select::-ms-expand { display: none; }
