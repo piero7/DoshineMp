@@ -27,30 +27,31 @@
 
 
             @* 新添加 模块 *@
-            <div class="my-Warranty"> 我的报修</div>
+            <div class="my-arranty"> 我的报修<span></span></div>
             <div class="housing-box">
-               <div class="housing-l">
-                   @*<input type="text" class="housing" placeholder="请选择小区" disabled="disabled"/>
-                   <ul class="housing-ul">
-                       <li>阳光小区</li>
-                       <li>星湖小区</li>
-                       <li>棵树小区</li>
-                       <li>棵树小区</li>
-                       <li>棵树小区</li>
-                       <li>棵树小区</li>
-                   </ul>*@
-                   <select class="housing">
-                       <option>一棵松小区</option>
-                       <option>2</option>
-                       <option>23</option>
-                   </select>
-               </div>
-                <div class="housing-r">
-                    <em class="cire"></em>
-                </div>
+              @*<div style="border-bottom:1px solid #ddd;overflow:hidden;">
+                  <div class="housing-l">
+                      <select class="housing">
+                          <option>一棵松小区</option>
+                          <option>2</option>
+                          <option>23</option>
+                      </select>
+                  </div>
+                  <div class="housing-r">
+                      <em class="cire"></em>
+                  </div>
+              </div>*@
             </div>
             @* 新添加 姓名 手机号 模块 *@
             <div  class="new-page">
+                <div class="page-cire">
+                    <span class="locian" ></span>
+                    <select class="housing">
+                        <option>一棵松小区</option>
+                        <option>2</option>
+                        <option>23</option>
+                    </select>
+                </div>
                 <div class="page-name"><input type="text" placeholder="请输入姓名"/></div>
                 <div class="page-tel"><input type="text" placeholder="请输入手机号" /></div>
             </div>
@@ -90,14 +91,16 @@
             </script>
 
             <div class="keep-textarea">
-                <textarea placeholder="请输入您要报修的内容..." id="keep"></textarea>
+                <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 <em class="br"></em>
             </div>
 
             <div class="col-xs-12 operate ">
                 <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg" />
+                <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg" />
                 <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交" style="margin-top:10px;">
             </div>
+            <p style="padding-left:15px; padding-bottom:10px; color:#898989;">最多可以上传5张</p>
         </div>
 
         <div class="keep-content-b">
@@ -118,6 +121,7 @@
                                         <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                             <p class="wr-content">@r.Contenet</p>
                                         </div>
+
                                     }
                                     else
                                     {
@@ -130,6 +134,8 @@
                                             </div>
                                         </div>
                                     }
+                                    <p class="content-see">订单号：123456789</p>
+
                                 </div>
                                 <div class="content-title-b">
                                     @switch (r.Status)

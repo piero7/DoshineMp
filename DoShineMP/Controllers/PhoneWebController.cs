@@ -195,7 +195,7 @@ namespace DoShineMP.Controllers
             //}
             ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-            ViewBag.RepairList = repairHelper.GetHistoryRepair("ViewBag.RepairList");
+            ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             ViewBag.Title = "自助报修";
             return View();
         }
