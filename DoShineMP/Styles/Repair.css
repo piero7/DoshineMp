@@ -294,3 +294,42 @@ body {
     .time-l{
 	margin-right:10px;
 }
+
+    /*@* 新添加 模块 css *@*/
+
+  .housing-box{
+      height:200px;
+      background-color:#4ca329;
+      overflow:hidd
+
+  }
+  .housing-r{
+      width:50px;
+      height:40px;
+      float:right;
+      margin-left:-100%;
+      background-color:white;
+  }
+  .housing-l{
+      width:100%;
+      padding-right:65px;
+      float:left;
+  }
+    .housing-l .housing{
+        width:100%;
+        height:40px;
+        border:0;
+        outline:none;
+        padding-left:15px;
+
+    }
+    .cire{
+        width:35px;
+        height:35px;
+        display:block;
+        background:url(../Images/locationcire.png) no-repeat ;
+        background-size:cover;
+        -webkit-background-size:cover;
+        margin-top:3px;
+        margin-left:5px;
+    }

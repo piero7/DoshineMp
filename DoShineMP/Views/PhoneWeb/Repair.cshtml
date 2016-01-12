@@ -10,12 +10,40 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
+            @*@if (ViewBag.user.UserInfo.Address != null)
+            {
+                <div class="site-box">
+                    <input type="text" class="site" id="address" value="@ViewBag.user.UserInfo.Address" placeholder="请输入您的地址...">
+                    <span></span>
+                </div>
+            }
+            else
+            {
+                <div class="site-box">
+                    <input type="text" class="site" id="address" placeholder="请输入您的地址...">
+                    <span></span>
+                </div>
+            }*@
 
-            <div class="site-box">
-                <!--<input type="text" class="site" id="address" placeholder="请输入您的地址...">-->
-                <select id="address" style="width:100%;"></select>
-                <span></span>
+
+            @* 新添加 模块 *@
+
+            <div class="housing-box">
+               <div class="housing-l">
+                   <input type="text" class="housing" placeholder="请选择小区" disabled=""/>
+                   <ul class="housing-ul">
+                       <li>阳光小区</li>
+                       <li>星湖小区</li>
+                       <li>棵树小区</li>
+                   </ul>
+               </div>
+                <div class="housing-r">
+                    <em class="cire"></em>
+                </div>
             </div>
+
+
+
             <div class="keep-textarea">
                 <textarea placeholder="请输入您要报修的内容..." id="keep"></textarea>
                 <em class="br"></em>
@@ -88,7 +116,7 @@
         </div>
     </div>
 </div>
-<input type="hidden" value="@ViewBag.openid" id="openid" />
+@*<input type="hidden" value="@ViewBag.openid" id="openid" />*@
 <input type="hidden" value="" id="serviceid" />
 
 
@@ -154,7 +182,6 @@
                     ]
                 });
 
-
             })
         })
 
@@ -164,7 +191,6 @@
             console.log('验证失败');
         });
         wx.ready(function () {
-
             // 5 图片接口
             // 5.1 拍照、本地选图
             var images = {
@@ -175,28 +201,22 @@
                 wx.chooseImage({
                     success: function (res) {
                         images.localId = res.localIds;
-                        alert(res.localIds.length)
                         if (images.localId.length == 0) {
                             alert('请先使用 chooseImage 接口选择图片');
                             return;
                         }
-
-                        var i = 0, length = images.localId.length;
-                        var str = '';
+                        var i = 0, length = 0;
                         images.serverId = [];
                         function upload() {
                             wx.uploadImage({
                                 localId: images.localId[i],
                                 success: function (res) {
                                     i++;
-                                    alert('已上传：' + i + '张');
+                                    //alert('已上传：' + i + '张');
                                     images.serverId.push(res.serverId);
-                                    str.length != 0 ? (str = str + ',' + res.serverId) : (str = str + res.serverId)
-                                    if (i < length) {
-                                        upload();
-                                    }
-                                    $("#serviceid").val(str);
-                                    alert($("#serviceid").val())
+                                    $("#serviceid").val(res.serverId);
+                                    //alert($("#serviceid").val())
+                                    //alert(images.localId[0]);
                                     document.getElementById('add-phoneimg').src = images.localId[0];
                                 },
                                 fail: function (res) {
@@ -209,8 +229,6 @@
                     }
                 });
             };
-
-            xiaoqu();
 
         });
 
@@ -233,17 +251,12 @@
 
             $('#btn').attr('disabled', true);
             serviceid = serviceid == null ? '#' : serviceid;
-            alert(code);
-
 
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: address }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
                         //alert("提交成功！");
-
-
-
                         var str = '';
                         $.each(data, function (i, item) {
                             var time = $.timeStamp2String(item.CreateDate).split(' ');
@@ -302,8 +315,6 @@
             })
         }
 
-
-        ///点击放大图片
         $(document).on('click', '.imgyulan', function () {
             var imgurl = $(this).attr('src');
             //alert(imgurl)
@@ -315,39 +326,34 @@
             });
         })
 
-
-
-        //跳转详细页面
         function repairid(e) {
+            //alert(1);
+            //alert(e);
             var repairid = $(this).attr('tagid');
+            var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
             window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
         }
 
-
-
-
-        ///加载小区信息
-        function xiaoqu() {
+        $(document).on('click', '#address', function () {
             wx.getLocation({
                 type: 'gcj02', //wgs84 或 gcj02
                 success: function (res) {
                     var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                     var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                    $.post('@Url.Action("GetAllVillage","PhoneWeb")', { x: latitude, y: longitude }, function (data, status) {
-                        var str = '';
-                        $.each(data, function (i, item) {
-                            str += '<option value="' + item.VillageId + '">' + item.Name + '</option>';
-                        })
-                        $('#address').html(str);
+
+                    var thisurl = 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&get_poi=1&key=AGPBZ-N4HCV-7KBPX-UGUGB-XSRBQ-IHBAF';
+                    $.post('@Url.Action("ApiJsonAll","PhoneWeb")', { url: thisurl }, function (data, status) {
+                        //alert(status)
+                        var add = JSON.parse(data.msg)
+                        //alert(add.result.formatted_addresses.recommend);
+                        $('#address').val(add.result.formatted_addresses.recommend);
                     })
                 },
                 fail: function (res) {
                     alert('获取位置失败');
                 }
             });
-        }
-
-
+        });
 
 
     </script>

@@ -29,42 +29,23 @@
                 </ul>
             </div>
             <div class="itme-box">
-
+                <dl class="itme">
+                    <dt>手机<ins>*</ins></dt>
+                    <dd>
+                        <input type="text" placeholder="请输入您的手机号..." class="Mail">
+                    </dd>
+                </dl>
                 <dl class="itme">
                     <dt>E-mail<ins>*</ins></dt>
                     <dd>
-                        <input type="text" placeholder="请输入您的手机号..." class="Tel">
-                    </dd>
-                </dl>
-                <dl class="itme">
-                    <dt>电子邮箱<ins>*</ins></dt>
-                    <dd>
-                        <input type="text" placeholder="请输入您的邮箱..." class="Mail">
+                        <input type="text" placeholder="请输入您的邮箱..." class="Tel">
                     </dd>
                 </dl>
 
-                <dl class="itme">
-                    <dt>加盟区域<ins>*</ins></dt>
-                    <dd class="tips-select">
-                        <input type="text" class="select-val" palceholder="请选择" disabled="flase" id="Val" style="padding:0px">
-                        <span class='jia'></span>
-                        <ul class="select-ul">
-                            <li>11111</li>
-                            <li>2222</li>
-                            <li>3333</li>
-                        </ul>
-                    </dd>
-                </dl>
                 <dl class="itme">
                     <dt>公司名称<ins>*</ins></dt>
                     <dd>
                         <input type="text" placeholder="请输入您的公司名..." class="Tel">
-                    </dd>
-                </dl>
-                <dl class="itme">
-                    <dt>电子邮箱<ins>*</ins></dt>
-                    <dd>
-                        <input type="text" placeholder="请输入您的邮箱..." class="Mail">
                     </dd>
                 </dl>
                 <dl class="itme" style="overflow:hidden">
@@ -109,7 +90,11 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dd><span class="submit-btn"><img src="~/Images/btn.jpg" alt=""></span></dd>
+                    <dt style="text-align:center; color：#333; padding-top:20px;">长按扫码加关注</dt>
+                    <dd style="text-align:center;"><img src="~/Images/commit.jpg" alt=""/ class="Aan"></dd>
+                </dl>
+                <dl>
+                    <dd><span class="submit-btn">提交</span></dd>
                 </dl>
             </div>
         </div>
@@ -122,51 +107,6 @@
 @section scripts{
     <script src="~/Scripts/zepto.min.js"></script>
     <script type="text/javascript">
-        var key = true;
-        var Child = null;
-        var Height = $('.select-ul li').length*51;
-        console.log(Height)
-        $('.select-val').tap(function (e) {
-            if (key) {
-                $('.select-ul').css({ 'height': Height+'px'});
-                $('.jia').addClass('current');
-                key = false;
-            } else {
-                $('.select-ul').css({ 'height': '0'});
-                $('.jia').removeClass('current')
-                key = true;
-            }
-        })
-        $('.select-ul li').tap(function () {
-            $('.select-val').val($(this).text());
-            $('.select-ul').css({ 'height': '0' });
-            $('.jia').removeClass('current')
-            key = true;
-        })
-
-        var key2 = true;
-        var Child = null;
-        var Height = $('.select-ul2 li').length*51;
-        console.log(Height)
-        console.log($('.select-ul2 li').length)
-        $('.select-val2').tap(function (e) {
-            if (key2) {
-                $('.select-ul2').css({ 'height': Height + 'px'});
-                $('.jia2').addClass('current')
-                key2 = false;
-            } else {
-                $('.select-ul2').css({ 'height': '0'});
-                $('.jia2').removeClass('current')
-                key2 = true;
-            }
-        })
-        $('.select-ul2 li').tap(function () {
-            $('.select-val2').val($(this).text());
-            $('.select-ul2').css({ 'height': '0' });
-            $('.jia2').removeClass('current')
-            key2 = true;
-        })
-
         $('.itme-select li').tap(function (e) {
             $(this).addClass('current').siblings().removeClass('current');
 
@@ -176,15 +116,22 @@
         var Fund, Jion, Name, Tel, Mail, Corr, Site, Behaif, Commit,ImgSrc = [];
 
         $('.submit-btn').tap(function () {
+            //性别
             Fund = $('.itme-select li.current').text();
-            Jion = $('.select-val').val();
+            //姓名
             Name = $('.Name').val();
+            //手机号
             Tel = $('.Tel').val();
+            //邮箱
             Mail = $('.Mail').val();
+            //公司证件
             Corr = $('.Corr').val();
+            //通讯地址
             Site = $('.Site').val();
-            Behaif = $('.Behaif').val();
+            //期望
             Commit = $('.conmmit').val();
+
+            //公司证件 图片路径
             ImgSrcLen = $('.photo').find('img');
             $.each(ImgSrcLen, function (i, item) {
                 console.log(item)
@@ -192,6 +139,7 @@
                 ImgSrc[i] = item.src
             })
             var Inputs = $('.itme dd').find('input');
+
             $.each(Inputs,function (i, item) {
                 if (Inputs[i].value == '' || Inputs[i].value == null) {
                     document.body.scrollTop = item.offsetTop+40;
