@@ -14,8 +14,7 @@
             <div class="my-Warranty"> 我的报修</div>
             <div class="housing-box">
                 <div class="housing-l">
-                    <select class="housing" id="housing">
-                    </select>
+                    <select class="housing" id="housing"></select>
                 </div>
                 <div class="housing-r">
                     <em class="cire"></em>
@@ -196,17 +195,22 @@
                             wx.uploadImage({
                                 localId: images.localId[i],
                                 success: function (res) {
-                                    i++;
-                                    alert('已上传：' + i + '张');
-                                    images.serverId.push(res.serverId);
                                     
+                                    //alert('已上传：' + i + '张');
+                                    images.serverId.push(res.serverId);
+
                                     if (i < length) {
                                         if (i != 0) {
                                             str += ',' + res.serverId;
+                                        } else {
+                                            str += res.serverId;
                                         }
+                                        i++;
+                                        alert(str);
                                         upload();
                                     }
-                                    
+
+
                                     $("#serviceid").val(str);
                                     document.getElementById('add-phoneimg').src = images.localId[0];
                                 },
@@ -236,7 +240,7 @@
             var housing = $('#housing').val();
             var name = $('#name').val();
             var phone = $('#phone').val();
-                
+
             if (keeptext == '' || keeptext == null) {
                 alert('内容不得为空!')
                 return false;
@@ -245,9 +249,9 @@
             $('#btn').attr('disabled', true);
             serviceid = serviceid == null ? '#' : serviceid;
 
-            
 
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name:name }, function (data, status) {
+
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
