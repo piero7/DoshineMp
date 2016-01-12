@@ -39,6 +39,7 @@ namespace DoShineMP.Helper
                 InnerNumber = number,
                 PhoneNumber = phone,
                 VillageId = villageid,
+                Name =name,
 
             };
 
@@ -83,7 +84,7 @@ namespace DoShineMP.Helper
         public Repair GetDetail(int id)
         {
             var db = new ModelContext();
-            Repair rep = db.RepairSet.FirstOrDefault(item => item.RepairId == id);
+            Repair rep = db.RepairSet.Include("Village").FirstOrDefault(item => item.RepairId == id);
             return rep;
         }
 
@@ -110,7 +111,7 @@ namespace DoShineMP.Helper
                           from r in db.RepairSet
                           where r.UserId == user.UserInfoId
                           orderby r.CreateDate descending
-                          select r).ToList();
+                          select r).Take(tCount).ToList();
 
             foreach (var item in ownhis)
             {
@@ -180,7 +181,7 @@ namespace DoShineMP.Helper
         /// <summary>
         /// 受理报修
         /// </summary>
-        /// <param name="repairId">保修记录id</param>
+        /// <param name="repairId">报修记录id</param>
         /// <param name="exceptDate">预计上门时间</param>
         /// <returns></returns>
         public Repair Accept(int repairId, DateTime exceptDate, string innderNumber)
@@ -196,7 +197,7 @@ namespace DoShineMP.Helper
             rep.Status = RepairStatus.Accept;
             rep.AccepDate = DateTime.Now;
             rep.ExceptHandleDate = exceptDate;
-            rep.InnerNumber = innderNumber;
+          //  rep.InnerNumber = innderNumber;
 
             db.SaveChanges();
 

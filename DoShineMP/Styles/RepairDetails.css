@@ -31,13 +31,14 @@ body{
 	margin-bottom: 20px;
 }
 .list-top .img-content{
-	width:170px;
-	height:150px;
+	width:100%;
+	height:100%;
 	text-align: left;
 }
-.img-content img{.choose h4
-	height:100%;
-	max-width: 100%;
+.img-content img{
+    margin-bottom:5px;
+    height:100px;
+	width: 30%;
 }
 .list-bottom{
 	padding:0px 15px;
