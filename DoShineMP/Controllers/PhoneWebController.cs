@@ -741,7 +741,7 @@ namespace DoShineMP.Controllers
         /// <param name="code"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public JsonResult RepairJson(string code, string content, string mediaid, string address, string phone, int villageid, string name,int recordid)
+        public JsonResult RepairJson(string code, string content, string mediaid, string address, string phone, int villageid, string name, int recordid)
         {
             try
             {
@@ -840,7 +840,10 @@ namespace DoShineMP.Controllers
                 var sss = serviceid.Split(',');
                 foreach (var i in sss)
                 {
-                    s.Add(i);
+                    if (i != "")
+                    {
+                        s.Add(i);
+                    }
                 }
                 repairHelper.FinishHandlen(repaidID, s, describe, t);
 

@@ -419,7 +419,7 @@ body {
     background-color: #eee;
     border: 0;
     padding: 5px 10px;
-    color:#797979;
+    color: #797979;
 }
 
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
@@ -440,13 +440,19 @@ textarea::-webkit-input-placeholder {
     color: #797979;
 }
 
-.state .left-two2{
-	left:0;
-	border-color:#f1514e;
+.state .left-two2 {
+    left: 0;
+    border-color: #f1514e;
 }
-.state-time li.current2{
-	color:#f1514e;
+
+.state-time li.current2 {
+    color: #f1514e;
 }
-.state-ul li.current2{
-	background-color:#f1514e;
+
+.state-ul li.current2 {
+    background-color: #f1514e;
+}
+
+.bd ul.current {
+    background: url(../../Images/weiyou.png) no-repeat center center;
 }

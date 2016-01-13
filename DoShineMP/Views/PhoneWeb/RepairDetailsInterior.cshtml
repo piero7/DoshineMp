@@ -105,15 +105,21 @@
                     </ul>
                 </div>
                 <div class="choose-title">
-                    <p class="back-content">
-                        @ViewBag.RepairDetail.Describe
-                    </p>
-                    <div class="choose-photo" id="choose-photo">
-                        @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
-                        {
-                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
-                        }
-                    </div>
+                    @if (ViewBag.RepairDetail.Describe != null && ViewBag.RepairDetail.Describe != "")
+                    {
+                        <p class="back-content">
+                            @ViewBag.RepairDetail.Describe
+                        </p>
+                    }
+                    @if (ViewBag.RepairDetail.FinishImageFiles != null)
+                    {
+                        <div class="choose-photo" id="choose-photo">
+                            @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
+                            {
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         }
@@ -446,13 +452,12 @@
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
 
-
             var serviceid = $('#serviceid').val();
             var describe = $('#describe').val();
             var RepairFinishTypeid = $('#RepairFinishTypeid').find('.current').attr('typeid');
 
 
-            if (type == '1') {
+            if (type == '1') {//受理
                 $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
@@ -461,7 +466,7 @@
                         }
                     }
                 })
-            } else if (type == '2') {
+            } else if (type == '2') {//确认完成
                 $.post('@Url.Action("RepairDetailWJson", "PhoneWeb")', { repaidID: repaidID, serviceid: serviceid, describe: describe, type: RepairFinishTypeid }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
