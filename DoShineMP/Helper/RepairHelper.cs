@@ -17,7 +17,7 @@ namespace DoShineMP.Helper
         /// <param name="content"></param>
         /// <param name="mediaidList">图片列表，用逗号分割</param>
         /// <returns></returns>
-        public Repair Add(string openid, string content, string mediaidList, string phone, int villageid, string name)
+        public Repair Add(string openid, string content, string mediaidList, string phone, int villageid, string name, int recordid)
         {
             var db = new ModelContext();
             var usr = WechatHelper.CheckOpenid(openid);
@@ -67,6 +67,9 @@ namespace DoShineMP.Helper
             LogHelper.AddLog("Apply a new repair", rep.RepairId.ToString(), openid);
 
             db.SaveChanges();
+
+            var vill = db.VillageSet.Find(villageid);
+            RecordHelper.UpdateRecord(recordid, openid, RecordType.MpRepair, phone, name, vill.Name);
 
             //发送企业号通知
             var workernamArr = System.Configuration.ConfigurationManager.AppSettings["repairworkers"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

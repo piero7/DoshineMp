@@ -21,7 +21,7 @@ namespace DoShineMP.Helper
 
             if (ret == null)
             {
-                return new Record 
+                return new Record
                 {
                     Openid = openid,
                     Type = RecordType.MpRepair,
@@ -54,6 +54,36 @@ namespace DoShineMP.Helper
 
             db.SaveChanges();
             return rec;
+        }
+
+        public static Record UpdateRecord(int id, string openid, RecordType type, string phone, string name, string address)
+        {
+            if (id == 0)
+            {
+                return UpdateRecord(new Record
+                {
+                    RecordId = 0,
+                    CreateDate = DateTime.Now,
+                    Name = name,
+                    PhoneNumber = phone,
+                    Type = type,
+                    Openid = openid,
+                    Address = address,
+                });
+            }
+
+            var db = new ModelContext();
+            var rec = db.RecordSet.FirstOrDefault(item => item.RecordId == id);
+            if (rec == null)
+            {
+                return null;
+            }
+
+            rec.Name = name;
+            rec.Address = address;
+            rec.PhoneNumber = phone;
+            return UpdateRecord(rec);
+
         }
     }
 }
