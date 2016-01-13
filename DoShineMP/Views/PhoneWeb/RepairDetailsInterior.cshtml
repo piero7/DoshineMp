@@ -87,23 +87,24 @@
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle || ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {
             <div class="choose ">
-                <h4></h4>
-                <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;">
-                    @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
-                    {
-                        <li class="current" typeid="Fixed">已修复</li>
-                    }
-                    else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
-                    {
-                        <li class="current" typeid="Unfixed">未修复</li>
-                    }
-                    else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
-                    {
-                        <li class="current" typeid="OutOfRange">不属于维保范围</li>
-                    }
-                </ul>
-                <div class="choose-title" >
-                    @*<textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe" disabled style="background-color:white;"></textarea>*@
+                <div style="position:relative;">
+                    <h4>维修反馈:</h4>
+                    <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;position:absolute;top:5px;left:80px;">
+                        @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
+                        {
+                            <li class="current" typeid="Fixed">已修复</li>
+                        }
+                        else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
+                        {
+                            <li class="current" typeid="Unfixed">未修复</li>
+                        }
+                        else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
+                        {
+                            <li class="current" typeid="OutOfRange">不属于维保范围</li>
+                        }
+                    </ul>
+                </div>
+                <div class="choose-title">
                     <p class="back-content">
                         @ViewBag.RepairDetail.Describe
                     </p>
@@ -122,7 +123,6 @@
                 <p>状态跟踪</p>
             </div>
             <div class="state">
-
                 @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Apply)
                 {
                 <div class="state-in">
@@ -199,16 +199,44 @@
                     <li class="current">完成</li>
                 </ul>
                 }
+                else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Cancel)
+                {
+                <div class="state-in">
+                    <ul class="state-ul">
+                        <li class="current2"></li>
+                        <li style="display:none;"></li>
+                        <li style="display:none;"></li>
+                        <li class="quxiao" style="background-image:url(../../Doshinemp/Images/quxiao.jpg)"></li>
+                    </ul>
+                    <span class="line"></span>
+                    <span class="line-current left-two2"></span>
+                </div>
+                <ul class="state-time">
+                    <li class="current2">提交</li>
+                    <li></li>
+                    <li></li>
+                    <li style="color:#f1514e;">取消</li>
+                </ul>
+                }
 
             </div>
+            @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Cancel)
+            {
+                if (ViewBag.RepairDetail.Response != null && ViewBag.RepairDetail.Response != "")
+                {
+                    <p style="padding:20px 5px;color:#797979;">@ViewBag.RepairDetail.Response</p>
+                }
+            }
         </div>
-
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {
             <div class="keep-content-t clearfix marginB">
                 <div class="bottom-title">
-                    <p>服务评分</p>
+                    <p>反馈评分</p>
                 </div>
+                <p class="back-content">
+                    @ViewBag.RepairDetail.Response
+                </p>
                 <div class="keep-textarea">
                     <input id="input-21d" value="@ViewBag.RepairDetail.Score" type="number" class="rating" min=0 max=5 step=1 data-size="sm" disabled="disabled">
                 </div>
@@ -224,7 +252,7 @@
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
                     <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
                     @*取消按钮*@
-                    <input type="button" class="commit pull-right" id="applybtn1" value="取消" style="background-color:#dedede">
+                    <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
                 </div>
 
             </div>
@@ -234,7 +262,7 @@
             <div class="col-xs-12 operate ">
                 <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成">
                 @*取消按钮*@
-                <input type="button" class="commit pull-right" id="applybtn1" value="取消" style="background-color:#dedede">
+                <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
             </div>
 
         }
@@ -243,6 +271,24 @@
 
 <input type="hidden" value="@ViewBag.RepairDetail.RepairId" id="repairID" />
 <input type="hidden" value="" id="serviceid" />
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="padding-top:35%;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <textarea class="choose-input" placeholder="请填写取消原因..." id="reasontext" style="border:none;width:100%;"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="applybtn1">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -513,7 +559,8 @@
 
         ///取消
         $('#applybtn1').click(function () {
-            $.post('@Url.Action("CancelJson","PhoneWeb")', { repairID: GetQueryString('repairid'), reason: "" }, function (data, status) {
+            var reasontext = $('#reasontext').val();
+            $.post('@Url.Action("CancelJson","PhoneWeb")', { repairID: GetQueryString('repairid'), reason: reasontext }, function (data, status) {
                 if (data.msg != 'N') {
                     window.localStorage['IndexLi'] = 3;
                     window.history.go(-1);

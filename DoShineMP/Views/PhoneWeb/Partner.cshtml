@@ -14,7 +14,19 @@
     </div>
     <div class="pull-left Mymessage-name">
         <p>@ViewBag.wuser.NickName</p>
-        <span class="tel">@ViewBag.wuser.PartnerInfo.CompanyName</span>
+        <span class="tel">
+            @{
+                string name = ViewBag.wuser.PartnerInfo.CompanyName;
+                if (name.Length > 7)
+                {
+                    @(name.Substring(0, 7)+"...");
+                }
+                else
+                {
+                   @(name);
+                }
+            }
+        </span>
         <div class="tel">
             <span>@ViewBag.wuser.UserInfo.PhoneNumber</span>
         </div>

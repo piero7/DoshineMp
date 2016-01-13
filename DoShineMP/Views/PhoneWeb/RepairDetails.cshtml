@@ -43,28 +43,30 @@
             <p>小区：@ViewBag.RepairDetail.Village.Name</p>
             <p>订单号：@ViewBag.RepairDetail.InnerNumber</p>
         </div>
-        @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle|| ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
+        @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle || ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
         {
             <div class="choose ">
-                <h4></h4>
-                <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;">
-                    @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
-                    {
-                        <li class="current" typeid="Fixed">已修复</li>
-                    }
-                    else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
-                    {
-                        <li class="current" typeid="Unfixed">未修复</li>
-                    }
-                    else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
-                    {
-                        <li class="current" typeid="OutOfRange">不属于维保范围</li>
-                    }
-                </ul>
+                <div style="position:relative;">
+                    <h4>维修反馈:</h4>
+                    <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;position:absolute;top:5px;left:80px;">
+                        @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
+                        {
+                            <li class="current" typeid="Fixed">已修复</li>
+                        }
+                        else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
+                        {
+                            <li class="current" typeid="Unfixed">未修复</li>
+                        }
+                        else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
+                        {
+                            <li class="current" typeid="OutOfRange">不属于维保范围</li>
+                        }
+                    </ul>
+                </div>
                 <div class="choose-title">
                     @*<textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe" disabled style="background-color:white;"></textarea>*@
                     <p class="back-content">
-                       @ViewBag.RepairDetail.Describe
+                        @ViewBag.RepairDetail.Describe
                     </p>
                     <div class="choose-photo" id="choose-photo">
                         @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
@@ -158,8 +160,38 @@
                         <li class="current">完成</li>
                     </ul>
                 }
+                else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Cancel)
+                {
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current2"></li>
+                            <li style="display:none;"></li>
+                            <li style="display:none;"></li>
+                            <li class="quxiao" style="background-image:url(../../Doshinemp/Images/quxiao.jpg)"></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-two2"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current2">提交</li>
+                        <li></li>
+                        <li></li>
+                        <li style="color:#f1514e;">取消</li>
+                    </ul>
 
+                }
             </div>
+            @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Cancel)
+            {
+                if (ViewBag.RepairDetail.Response != null&& ViewBag.RepairDetail.Response!="")
+                {
+                    <p style="padding:20px 5px;color:#797979;">@ViewBag.RepairDetail.Response</p>
+                }
+                else
+                {
+                    <p style="padding:20px 5px;color:#797979;">亲爱的顾客,您的订单已经取消，如有其他疑问，请咨询客服人员。</p>
+                }
+            }
         </div>
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept && ViewBag.RepairDetail.ExceptHandleDate != null)
@@ -179,25 +211,31 @@
         {
             <div class="back">
                 <div class="bottom-title">
-                    <p>服务评分</p>
+                    <p>反馈评分</p>
                 </div>
+                <p class="back-content">
+                    @ViewBag.RepairDetail.Response
+                </p>
                 <div class="keep-textarea">
                     <input id="input-21d" value="@ViewBag.RepairDetail.Score" type="number" class="rating" min=0 max=5 step=1 data-size="sm" disabled="disabled">
                 </div>
             </div>
         }
-
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
         {
+            <!-- 反馈评分 -->
             <div class="keep-content-t clearfix marginB">
                 <div class="bottom-title">
-                    <p>服务评分</p>
+                    <p>反馈评分</p>
                 </div>
                 <div class="keep-textarea">
                     <input id="input-21d" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="sm">
                 </div>
+                <div class="keep-textarea">
+                    <textarea class="getplay" placeholder="亲爱的顾客,写点什么吧,您的意见对其他顾客很大帮助！" id="getplay"></textarea>
+                </div>
                 <div class="col-xs-12 operate ">
-                    <input type="button" class="commit pull-right" id="btn" value="提交">
+                    <input type="button" class="commit pull-right" value="提交" id="btn">
                 </div>
             </div>
         }
@@ -219,6 +257,9 @@
             serverId: []
         };
         $(function () {
+            if ($('#input-21d').val() == 0) {
+                $('.label').html('请先点击评分');
+            }
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -295,7 +336,17 @@
             var repairID = $('#repairID').val();
             var response = $('#repaircontent').val();
             var score = $('#input-21d').val();
-            $.post('@Url.Action("RepairsponJson", "PhoneWeb")', { repairID: repairID, response: response, score: score }, function (data, status) {
+            var getplay = $('#getplay').val();
+
+            if (score == 0) {
+                $('.label').html('请先点击评分');
+                $('.label').css('color', 'red');
+
+                $(this).attr('disabled', false);
+                return;
+            }
+
+            $.post('@Url.Action("RepairsponJson", "PhoneWeb")', { repairID: repairID, response: getplay, score: score }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
                         window.localStorage['IndexLi1'] = new Number(window.localStorage['IndexLi1']) + 1;

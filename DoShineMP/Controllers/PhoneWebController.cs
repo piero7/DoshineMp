@@ -174,6 +174,7 @@ namespace DoShineMP.Controllers
                             ViewBag.openid = this.openid;
                             //历史报修记录
                             ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+                            ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
 
                         }
@@ -740,7 +741,7 @@ namespace DoShineMP.Controllers
         /// <param name="code"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public JsonResult RepairJson(string code, string content, string mediaid, string address, string phone, int villageid, string name)
+        public JsonResult RepairJson(string code, string content, string mediaid, string address, string phone, int villageid, string name,int recordid)
         {
             try
             {
@@ -749,7 +750,7 @@ namespace DoShineMP.Controllers
                 //wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
 
                 //TODO: 现在的文件为mediaid的列表，用逗号分割！
-                if (repairHelper.Add(code, content, mediaid, phone, villageid, name) != null)
+                if (repairHelper.Add(code, content, mediaid, phone, villageid, name, recordid) != null)
                 {
                     return Json(repairHelper.GetHistoryRepair(code));
                 }
@@ -758,7 +759,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return Json(new { msg = "N" });
             }

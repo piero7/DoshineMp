@@ -23,15 +23,36 @@
                     </div>*@
             </div>
             @* 新添加 姓名 手机号 模块 *@
-            <div class="new-page">
-                <div class="page-cire">
-                    <span class="locian"></span>
-                    <select class="housing" id="housing"></select>
+            @if (ViewBag.Recordid.RecordId != 0)
+            {
+                <div class="new-page">
+                    <div class="page-cire">
+                        <div class="locian" onclick="addressxiaoqu();">
+                            <span><img src="~/Images/location.png" /></span>
+                        </div>
+                        <select class="housing" id="housing">
+                            @*<option value="@ViewBag.RepairList[0].Village.VillageId">@ViewBag.Recordid.Name</option>*@
+                        </select>
+                    </div>
+                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.RecordId.Name" /></div>
+                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.RecordId.PhoneNumber" /></div>
                 </div>
-                <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
-                <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
-            </div>
-
+            }
+            else
+            {
+                <div class="new-page">
+                    <div class="page-cire">
+                        <div class="locian" onclick="addressxiaoqu();">
+                            <span><img src="~/Images/location.png" /></span>
+                        </div>
+                        <select class="housing" id="housing">
+                            @*<option value="@ViewBag.RepairList[0].Village.VillageId">@ViewBag.Recordid.Name</option>*@
+                        </select>
+                    </div>
+                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
+                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
+                </div>
+            }
             <div class="keep-textarea">
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 <em class="br"></em>
@@ -56,51 +77,53 @@
 
                         @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
                         {
-                        <li>
-                            <div class="content-title-t">
-                                @if (r.ImageFiles.Count == 0)
+                            <li>
+                                <div class="content-title-t">
+                                    @if (r.ImageFiles.Count == 0)
                                     {
-                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-
+                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
                                     }
                                     else
                                     {
-                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
                                         </div>
-                                    </div>
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                            </div>
+                                        </div>
                                     }
-                                <p class="content-see">订单号:@r.InnerNumber</p>
-                            </div>
-                            <div class="content-title-b">
-                                @switch (r.Status)
+                                    <p class="content-see">订单号:@r.InnerNumber</p>
+                                </div>
+                                <div class="content-title-b">
+                                    @switch (r.Status)
                                     {
                                         case DoShineMP.Models.RepairStatus.Apply:
-                                    <ins class="check check1 pull-left">已提交</ins>;
+                                            <ins class="check check1 pull-left">已提交</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.Accept:
-                                    <ins class="check check2 pull-left">已受理</ins>;
+                                            <ins class="check check2 pull-left">已受理</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.FinishHandle:
-                                    <ins class="check check3 pull-left">待确认</ins>;
+                                            <ins class="check check3 pull-left">待确认</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.Finish:
-                                    <ins class="check check4 pull-left">已完成</ins>;
+                                            <ins class="check check4 pull-left">已完成</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Cancel:
+                                            <ins class="check check5 pull-left">已取消</ins>;
                                             break;
                                     }
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                @if (r.User.Name != null)
+                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                    @if (r.User.Name != null)
                                     {
-                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                        <span class="time-l time pull-right">@r.User.Name</span>
                                     }
-                            </div>
-                        </li>
+                                </div>
+                            </li>
                         }
 
                     </ul>
@@ -113,6 +136,7 @@
 <input type="hidden" value="@ViewBag.openid" id="openid" />
 <input type="hidden" value="" id="serviceid" />
 <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
+<input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
 
 
 @section scripts{
@@ -185,7 +209,6 @@
             console.log('验证失败');
         });
         wx.ready(function () {
-            addressxiaoqu();
             // 5 图片接口
             // 5.1 拍照、本地选图
             var images = {
@@ -254,6 +277,7 @@
                 $('#imgtext').text('有未完成的报修！');
                 return false;
             }
+
             var serviceid = $('#serviceid').val();
             var keeptext = $('#keep').val();
             var code = $('#openid').val();
@@ -261,23 +285,33 @@
             var name = $('#name').val();
             var phone = $('#phone').val();
 
+            var regu = /^[1][0-9]{10}$/;
+            var re = new RegExp(regu);
+
             if (keeptext == '' || keeptext == null) {
                 $('#imgtext').text('内容不得为空！');
                 return false;
             } else if (name == '' || name == null || phone == '' || phone == null) {
                 $('#imgtext').text('姓名、手机号不得为空！');
                 return false;
+            } else if (!re.test(phone)) {
+                $('#imgtext').text('请输入正确手机号！');
+                return false;
             }
 
             $('#btn').attr('disabled', true);
             serviceid = serviceid == null ? '#' : serviceid;
             //alert(serviceid)
+            var RecordId = $('#RecordId').val();
+            //alert(RecordId);
 
-
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name }, function (data, status) {
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name, recordid: RecordId }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
+
+                        window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + data[0].RepairId;
+
                         //alert("提交成功！");
                         var str = '';
                         $.each(data, function (i, item) {
@@ -373,11 +407,13 @@
 
                     $.post('@Url.Action("GetAllVillage", "PhoneWeb")', { x: latitude, y: longitude }, function (data, status) {
                         var str = '';
-
                         $.each(data, function (i, item) {
                             str += ' <option value="' + item.VillageId + '">' + item.Name + '</option>';
                         })
-                        $('#housing').html(str);
+
+                        $('#housing').empty().append(str);
+                        //$('#housing')[0].onchange();
+                        //if ($('#housing').checked == true) $('#housing').removeAttribute('disabled');
                     })
                 },
                 fail: function (res) {
@@ -385,7 +421,6 @@
                 }
             });
         }
-
 
     </script>
 }

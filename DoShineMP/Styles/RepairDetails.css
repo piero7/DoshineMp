@@ -32,7 +32,6 @@ body {
     color: #333;
     font-size: 16px;
     line-height: 22px;
-    text-indent: 20px;
     margin-bottom: 20px;
 }
 
@@ -316,24 +315,6 @@ body {
         color: #4ca329;
     }
 
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: orange;
-}
-
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: orange;
-}
-
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-    color: orange;
-}
-
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    color: orange;
-}
-
 .keep-textarea {
     padding: 0px 15px 0 15px;
     text-align: center;
@@ -410,7 +391,7 @@ textarea::-webkit-input-placeholder {
     .choose-photo img {
         width: 31%;
         height: 100px;
-        float:left;
+        float: left;
         margin-right: 5px;
         margin-top: 5px;
     }
@@ -421,9 +402,51 @@ textarea::-webkit-input-placeholder {
     border: 1px dashed #ccc;
     margin-right: 0px;
 }
-.content-title-b .check5{
-	background:url(../Images/quxiao.png) no-repeat 0 0px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #f1514e;
+
+.content-title-b .check5 {
+    background: url(../Images/quxiao.png) no-repeat 0 0px;
+    background-size: contain;
+    -webkit-background-size: contain;
+    color: #f1514e;
+}
+
+.label {
+    color: #797979;
+}
+
+.keep-textarea .getplay {
+    height: 50px;
+    background-color: #eee;
+    border: 0;
+    padding: 5px 10px;
+    color:#797979;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #797979;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #797979;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #797979;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #797979;
+}
+
+.state .left-two2{
+	left:0;
+	border-color:#f1514e;
+}
+.state-time li.current2{
+	color:#f1514e;
+}
+.state-ul li.current2{
+	background-color:#f1514e;
 }

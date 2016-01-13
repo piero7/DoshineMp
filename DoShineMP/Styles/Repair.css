@@ -425,17 +425,19 @@ button[disabled], html input[disabled] {
             -webkit-background-size: cover;
      }
 
-        .new-page .page-cire span {
-            content: '';
-            width: 25px;
-            height: 25px;
+       .new-page .page-cire .locian{
             position: absolute;
             right: 0px;
-            top: 8px;
-            background: url(../Images/location.png) no-repeat left center;
-            background-size: cover;
-            -webkit-background-size: cover;
+            top: 0px;
         }
+         .new-page .page-cire span{
+             width: 25px;
+            height: 25px;
+        }
+         .new-page .page-cire span img{
+             width:60%;
+             height:60%;
+         }
 
         .new-page .page-cire select {
             width: 100%;
@@ -505,3 +507,9 @@ select {
 /*textarea:disabled, input:not([type]):disabled, input[type="color" i]:disabled, input[type="date" i]:disabled, input[type="datetime" i]:disabled, input[type="datetime-local" i]:disabled, input[type="email" i]:disabled, input[type="month" i]:disabled, input[type="password" i]:disabled, input[type="number" i]:disabled, input[type="search" i]:disabled, input[type="tel" i]:disabled, input[type="text" i]:disabled, input[type="time" i]:disabled, input[type="url" i]:disabled, input[type="week" i]:disabled {
         background-color:#fff !important;
 }*/
+.content-title-b .check5{
+	background:url(../Images/quxiao.png) no-repeat 0 0px;
+	background-size: contain;
+	-webkit-background-size: contain;
+	color: #f1514e;
+}

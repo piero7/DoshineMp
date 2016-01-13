@@ -168,3 +168,11 @@
 .star-rating-rtl .caption {
     padding-right: 5px;
 }
+.caption .label{
+    color:#797979;
+    font-weight:normal;
+    vertical-align:top;
+}
+.caption{
+    width:100%;
+}

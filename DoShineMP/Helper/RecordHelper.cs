@@ -46,15 +46,28 @@ namespace DoShineMP.Helper
             }
 
             var nrec = db.RecordSet.FirstOrDefault(item => item.RecordId == rec.RecordId);
-            if (!(rec.Name == nrec.Name && rec.PhoneNumber == nrec.PhoneNumber && rec.Address == nrec.Address))
+            if (!(nrec != null && rec.Name == nrec.Name && rec.PhoneNumber == nrec.PhoneNumber && rec.Address == nrec.Address))
             {
                 rec.RecordId = 0;
-                db.RecordSet.Add(rec);
+                db.RecordSet.Add(new Record
+                {
+                    Name = rec.Name,
+                    CreateDate = rec.CreateDate,
+                    Address = rec.Address,
+                    PhoneNumber = rec.PhoneNumber,
+                    Remarks = rec.Remarks,
+                    Type = rec.Type,
+                    Openid = rec.Openid,
+                    UserInfoId = rec.UserInfoId,
+                    UserInfo = rec.UserInfo
+                });
             }
 
             db.SaveChanges();
             return rec;
+
         }
+
 
         public static Record UpdateRecord(int id, string openid, RecordType type, string phone, string name, string address)
         {
