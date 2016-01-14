@@ -31,12 +31,13 @@ namespace DoShineMP.Helper
                 {
                     code.IsUsed = true;
                     db.SaveChanges();
-                }
-                if (code.OpenId == openid && code.PhoneNumber == phone && code.IsSendSuccess)
-                {
-                    if (DateTime.Now.Subtract(code.CreateDate).TotalMinutes < 30)
+
+                    if (code.OpenId == openid && code.PhoneNumber == phone && code.IsSendSuccess)
                     {
-                        return true;
+                        if (DateTime.Now.Subtract(code.CreateDate).TotalMinutes < 30)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
