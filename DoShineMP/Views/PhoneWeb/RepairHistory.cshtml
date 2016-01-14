@@ -354,6 +354,8 @@
 
 
         $(window).swipeLeft(function () {
+            document.body.scrollTop = 0;
+
             console.log(666)
 
             if (IndexLi < tabnumber - 1) {
@@ -365,6 +367,7 @@
         })
         console.log('初始化' + IndexLi)
         $(window).swipeRight(function () {
+            document.body.scrollTop = 0;
             if (IndexLi > 0) {
                 IndexLi--;
                 //tab(IndexLi)
