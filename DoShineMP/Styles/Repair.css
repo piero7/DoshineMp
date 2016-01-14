@@ -38,7 +38,7 @@ body {
         border-color: #bdbdbd;
         resize: none;
         border: 0;
-        font-size: 16px;
+        font-size: 14px;
     }
 
 .operate {
@@ -142,6 +142,7 @@ body {
 
 .content-title-t {
     overflow: hidden;
+    min-height:75px;
 }
 
 .new-keep ul {
@@ -156,14 +157,14 @@ body {
     }
 
 .content-title-t .w8 {
-    width: 65%;
+    width: 70%;
     /*padding-top:10px;*/
     /*padding-left: 20px;*/
 }
 
 .w10 {
     width: 100%;
-    height: 55px;
+    max-height: 55px;
 }
 
 .content-title-b {
@@ -215,15 +216,18 @@ body {
     color: #a8a8a8;
 }
 
-.w8 .wr-content {
+.w8 .wr-content,
+ .w10 .wr-content{
     width: 100%;
     min-width: 55px;
-    height: 55px;
+    max-height:55px;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     overflow: hidden;
     color: #626262;
     margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
 }
 /*.commit:hover{
 	color:#f06343;
@@ -394,7 +398,6 @@ button[disabled], html input[disabled] {
     .new-page .page-tel,
     .new-page .page-cire {
         height: 45px;
-        line-height: 44px;
         border-bottom: 1px solid #ddd;
         padding-left: 30px;
         position: relative;
@@ -406,7 +409,7 @@ button[disabled], html input[disabled] {
             height: 23px;
             position: absolute;
             left: 0px;
-            top: 8px;
+            top: 10px;
             background: url(../Images/user2x.png) no-repeat left center;
             background-size: cover;
             -webkit-background-size: cover;
@@ -419,7 +422,7 @@ button[disabled], html input[disabled] {
             height: 23px;
             position: absolute;
             left: 0px;
-            top: 8px;
+            top: 10px;
             background: url(../Images/phone2x.png) no-repeat left center;
             background-size: cover;
             -webkit-background-size: cover;
@@ -429,14 +432,19 @@ button[disabled], html input[disabled] {
             position: absolute;
             right: 0px;
             top: 0px;
+            width:45px;
+            height:45px;
         }
          .new-page .page-cire span{
-             width: 25px;
-            height: 25px;
+                width: 25px;
+                height: 25px;
+                margin-top: 8px;
+                margin-left: 15px;
+                display: block;
         }
          .new-page .page-cire span img{
-             width:60%;
-             height:60%;
+             width:100%;
+             height:100%;
          }
 
         .new-page .page-cire select {
@@ -447,6 +455,7 @@ button[disabled], html input[disabled] {
 
     .new-page input {
         width: 100%;
+        height:44px;
         border: 0;
       }
 
@@ -462,7 +471,7 @@ select {
     }
 
 .my-arranty {
-    padding: 10px 15px;
+    padding:15px;
     font-size: 15px;
     background-color: white;
     border-bottom: 15px solid #ececec;
@@ -470,10 +479,10 @@ select {
 }
   
     .my-arranty span {
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         position: absolute;
-        .commit top:10px;
+        top: 16px;
         right: 20px;
         background: url(../Images/jiantou.png) no-repeat;
         background-size: cover;
@@ -485,15 +494,14 @@ select {
 }
 
 .content-see {
-    width:68%;
+    width:70%;
     color: #898989;
     font-size: 12px;
-    padding: 5px 0;
+    margin-top:25px;
 }
 
 .wr-content {
-    height: 40px;
-    overflow: hidden;
+    height: 55px;
     text-overflow: ellipsis;
 }
 /*.tips-title{

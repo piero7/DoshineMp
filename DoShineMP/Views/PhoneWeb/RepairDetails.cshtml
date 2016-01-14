@@ -64,16 +64,21 @@
                     </ul>
                 </div>
                 <div class="choose-title">
-                    @*<textarea class="choose-input" placeholder="请描述现场处理概况..." id="describe" disabled style="background-color:white;"></textarea>*@
-                    <p class="back-content">
-                        @ViewBag.RepairDetail.Describe
-                    </p>
-                    <div class="choose-photo" id="choose-photo">
-                        @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
-                        {
-                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
-                        }
-                    </div>
+                    @if (ViewBag.RepairDetail.Describe != null && ViewBag.RepairDetail.Describe != "")
+                    {
+                        <p class="back-content">
+                            @ViewBag.RepairDetail.Describe
+                        </p>
+                    }
+                    @if (ViewBag.RepairDetail.FinishImageFiles != null)
+                    {
+                        <div class="choose-photo" id="choose-photo">
+                            @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
+                            {
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         }
@@ -183,7 +188,7 @@
             </div>
             @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Cancel)
             {
-                if (ViewBag.RepairDetail.Response != null&& ViewBag.RepairDetail.Response!="")
+                if (ViewBag.RepairDetail.Response != null && ViewBag.RepairDetail.Response != "")
                 {
                     <p style="padding:20px 5px;color:#797979;">@ViewBag.RepairDetail.Response</p>
                 }

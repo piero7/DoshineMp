@@ -23,19 +23,18 @@
                     </div>*@
             </div>
             @* 新添加 姓名 手机号 模块 *@
-            @if (ViewBag.Recordid.RecordId != 0)
+            @*@if (ViewBag.RecordId.RecordId != 0)
             {
                 <div class="new-page">
                     <div class="page-cire">
-                        <div class="locian" onclick="addressxiaoqu();">
+                        <div class="locian" onclick="addressxiaoqu()">
                             <span><img src="~/Images/location.png" /></span>
                         </div>
                         <select class="housing" id="housing">
-                            @*<option value="@ViewBag.RepairList[0].Village.VillageId">@ViewBag.Recordid.Name</option>*@
                         </select>
                     </div>
-                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.RecordId.Name" /></div>
-                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.RecordId.PhoneNumber" /></div>
+                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
+                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" /></div>
                 </div>
             }
             else
@@ -46,16 +45,25 @@
                             <span><img src="~/Images/location.png" /></span>
                         </div>
                         <select class="housing" id="housing">
-                            @*<option value="@ViewBag.RepairList[0].Village.VillageId">@ViewBag.Recordid.Name</option>*@
                         </select>
                     </div>
                     <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
                     <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
                 </div>
-            }
+            }*@
+            <div class="new-page">
+                <div class="page-cire">
+                    <div class="locian" onclick="addressxiaoqu();">
+                        <span><img src="~/Images/location.png" /></span>
+                    </div>
+                    <select class="housing" id="housing"></select>
+                </div>
+                <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
+                <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
+            </div>
             <div class="keep-textarea">
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
-                <em class="br"></em>
+                @*<em class="br"></em>*@
             </div>
 
             <div class="col-xs-12 operate " id="imgdiv">
@@ -96,7 +104,6 @@
                                             </div>
                                         </div>
                                     }
-                                    <p class="content-see">订单号:@r.InnerNumber</p>
                                 </div>
                                 <div class="content-title-b">
                                     @switch (r.Status)
@@ -131,7 +138,6 @@
             </div>
         }
     </div>
-
 </div>
 <input type="hidden" value="@ViewBag.openid" id="openid" />
 <input type="hidden" value="" id="serviceid" />
@@ -272,7 +278,6 @@
         function btn() {
 
             var HasUnFinishedRepair = $('#HasUnFinishedRepair').val();
-
             if (HasUnFinishedRepair != '0') {
                 $('#imgtext').text('有未完成的报修！');
                 return false;
@@ -333,7 +338,6 @@
                                             + '<p class="wr-content">' + item.Contenet + '</p>'
                                         + '</div>'
                                    + ' </div>'
-                                   + '<p class="content-see">订单号:' + item.InnerNumber + '</p>'
                                    + ' <div class="content-title-b">'
                                         + statusstr
                                         + '<span class="time pull-right">' + time[0] + '</span>'
@@ -352,7 +356,6 @@
                                            + '</div>'
                                        + ' </div>'
                                    + ' </div>'
-                                   + '<p class="content-see">订单号:' + item.InnerNumber + '</p>'
                                    + ' <div class="content-title-b">'
                                         + statusstr
                                         + '<span class="time pull-right">' + time[0] + '</span>'
@@ -421,6 +424,10 @@
                 }
             });
         }
-
+        document.getElementsByClassName('commit')[0].ontouchustart = function () {
+            this.style.backgroundColor = '#4ca329';
+            this.style.color = '#fff';
+        }
+        window.onload = function () { if (document.isPrototypeOf("ontouchstart")) { alert("浏览器支持触屏"); } else { alert("浏览器不支持触屏"); } };
     </script>
 }
