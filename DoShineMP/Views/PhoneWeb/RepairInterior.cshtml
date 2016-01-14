@@ -97,8 +97,10 @@
                     }
                 }
             </ul>
-            @*已完成*@
+           
+            @*待确认&&已完成*@
             <ul class="Padding">
+                @*待确认*@
                 @if (ViewBag.RepairList20 != null)
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList20 as List<DoShineMP.Models.Repair>)
@@ -136,7 +138,7 @@
                     }
                 }
 
-
+                @*已完成*@
                 @if (ViewBag.RepairList99 != null)
                 {
                     foreach (DoShineMP.Models.Repair r in ViewBag.RepairList99 as List<DoShineMP.Models.Repair>)
@@ -239,6 +241,7 @@
             localId: [],
             serverId: []
         };
+
         $(function () {
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
