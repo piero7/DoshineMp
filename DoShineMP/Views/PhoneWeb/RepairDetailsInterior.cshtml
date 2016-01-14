@@ -253,10 +253,10 @@
         {
             <div class="content">
                 <div class="demos">
-                    <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()" />
+                    <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()"  />
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
-                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
+                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" >
                     @*取消按钮*@
                     <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
                 </div>
@@ -266,7 +266,7 @@
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate ">
-                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成">
+                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成" >
                 @*取消按钮*@
                 <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
             </div>
@@ -446,7 +446,7 @@
 
         //提交
         $('#applybtn').click(function () {
-            $(this).attr('disabled', true);
+            //$(this).attr('disabled', true);
             var repaidID = $('#repairID').val();
             var exceptDate = $('#appDateTime').val();
             var innderNumber = $('#input-21d').val();
@@ -455,6 +455,10 @@
             var serviceid = $('#serviceid').val();
             var describe = $('#describe').val();
             var RepairFinishTypeid = $('#RepairFinishTypeid').find('.current').attr('typeid');
+            if ($('#appDateTime').val() == '' || $('#appDateTime').val() == null) {
+                $('#appDateTime').removeClass().addClass('animated');
+                return false;
+            }
 
 
             if (type == '1') {//受理
@@ -496,7 +500,7 @@
 
     <script type="text/javascript">
         $(function () {
-            setInterval(Time, 1000);
+            //setInterval(Time, 1000);
             var currYear = (new Date()).getFullYear();
             var opt = {};
             opt.date = { preset: 'date' };
@@ -549,13 +553,13 @@
             //rows: 3}
         });
 
-        $('#applybtn[tag="1"]').css('background-color', '#ddd')
-        function Time() {
+        //$('#applybtn[tag="1"]').css('background-color', '#ddd')
+        //function Time() {
 
-            if ($('#appDateTime').val() != null && $('#appDateTime').val() != '') {
-                $('#applybtn').attr({ 'disabled': false }).css('background-color', '#4ca329')
-            }
-        }
+        //    if ($('#appDateTime').val() != null && $('#appDateTime').val() != '') {
+        //        $('#applybtn').attr({ 'disabled': false }).css('background-color', '#4ca329')
+        //    }
+        //}
 
         // 处理状态js
         $('.service li').click(function () {
@@ -572,6 +576,7 @@
                 }
             })
         })
+        
     </script>
 
 

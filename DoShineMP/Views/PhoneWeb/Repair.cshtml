@@ -424,10 +424,112 @@
                 }
             });
         }
-        document.getElementsByClassName('commit')[0].ontouchustart = function () {
-            this.style.backgroundColor = '#4ca329';
-            this.style.color = '#fff';
-        }
-        window.onload = function () { if (document.isPrototypeOf("ontouchstart")) { alert("浏览器支持触屏"); } else { alert("浏览器不支持触屏"); } };
+        //document.getElementsByClassName('')[0].onmouseup = function () {
+        //    this.style.backgroundColor = '#4ca329';
+        //    this.style.color = '#fff';
+        //}
+        $('commit').click(function () {
+
+        })
+        //function autorun() {
+
+        //    //初始值
+
+        //    var default_width = 20;
+
+        //    var default_dpr = 1;
+
+        //    var dpr = window.devicePixelRatio;
+
+        //    var width = screen.width;
+
+        //    var html_style = '';
+
+        //    var body_style = '';
+
+
+
+        //    //dpr倍数
+
+        //    var difference = dpr / default_dpr;
+
+
+
+        //    //计算
+
+        //    if (difference === 1 || difference === 2 || difference === 3) {
+
+        //        var default_min_size = 20 * difference;
+
+        //        var default_max_size = 33.75 * difference;
+
+        //        var default_coefficient = 0.0625 * difference;
+
+        //        html_style = get_font_size(width, default_min_size, default_max_size, default_coefficient);
+
+        //        body_style = 'font-size:' + difference * 12 + 'px';
+
+        //    } else {
+
+        //        html_style = get_font_size(width, 20, 33.75, 0.0625);
+
+        //        body_style = 'font-size:12px';
+
+        //    }
+
+
+
+        //    //进行dom操作
+
+        //    $("html").attr('style', html_style);
+
+        //    $("body").attr('style', body_style);
+
+        //}
+
+
+
+        //function get_font_size(width, default_min_size, default_max_size, default_coefficient) {
+
+        //    var style = '';
+
+        //    //屏幕宽度需要在320-540之间进行计算
+
+        //    if (width < 320) {
+
+        //        style = 'font-size:' + default_min_size + 'px';
+
+        //    } else if (width > 540) {
+
+        //        style = 'font-size:' + default_max_size + 'px';
+
+        //    } else {
+
+        //        var difference = width - 320;
+
+        //        var fontsize = default_min_size + difference * default_coefficient;
+
+        //        style = 'font-size:' + fontsize + 'px';
+
+        //    }
+
+        //    return style;
+
+        //}
+        //autorun();
+        //function pressButton(evt) {
+        //    var key;
+        //    switch (evt.button) {
+        //        case 1: key = "左键"; break;
+        //        case 2: key = "右键"; break;
+        //        case 3: key = "左键和右键"; break;
+        //        case 4: key = "中键"; break;
+        //        case 5: key = "左键和中键"; break;
+        //        case 6: key = "中键和右键"; break;
+        //        case 7: key = "所有键"; break;
+        //    }
+        //    alert(key + "点击了图片！");
+        //}
+        //window.onload = function () { if (document.isPrototypeOf("ontouchstart")) { alert("浏览器支持触屏"); } else { alert("浏览器不支持触屏"); } };
     </script>
 }
