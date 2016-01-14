@@ -31,6 +31,10 @@
                             <span><img src="~/Images/location.png" /></span>
                         </div>
                         <select class="housing" id="housing">
+                            @if (ViewBag.Village != null)
+                            {
+                                <option value="@ViewBag.Village.VillageId">@ViewBag.Village.Name</option>
+                            }
                         </select>
                     </div>
                     <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
@@ -44,8 +48,7 @@
                         <div class="locian" onclick="addressxiaoqu();">
                             <span><img src="~/Images/location.png" /></span>
                         </div>
-                        <select class="housing" id="housing">
-                        </select>
+                        <select class="housing" id="housing"></select>
                     </div>
                     <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
                     <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>

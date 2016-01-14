@@ -176,7 +176,7 @@ namespace DoShineMP.Controllers
                             ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
                             ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
-
+                            ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
                         }
                         else
                         {
@@ -979,6 +979,8 @@ namespace DoShineMP.Controllers
             {
                 //ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
                 // ViewBag.open = (dynamic)WechatHelper.GetWechatJsConfig(Request.Url.ToString());
+                //ViewBag.Recordid = RecordHelper.GetRecord("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+                //ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
             }
             catch (Exception e)
             {
