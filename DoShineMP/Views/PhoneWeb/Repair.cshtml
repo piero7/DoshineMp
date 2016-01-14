@@ -23,14 +23,14 @@
                     </div>*@
             </div>
             @* 新添加 姓名 手机号 模块 *@
-            @*@if (ViewBag.RecordId.RecordId != 0)
+            @if (ViewBag.RecordId.RecordId != 0)
             {
                 <div class="new-page">
                     <div class="page-cire">
-                        <div class="locian" onclick="addressxiaoqu()">
+                        <div class="locian">
                             <span><img src="~/Images/location.png" /></span>
                         </div>
-                        <select class="housing" id="housing">
+                        <select class="housing" id="housing" onclick="addressxiaoqu()">
                             @if (ViewBag.Village != null)
                             {
                                 <option value="@ViewBag.Village.VillageId">@ViewBag.Village.Name</option>
@@ -45,25 +45,16 @@
             {
                 <div class="new-page">
                     <div class="page-cire">
-                        <div class="locian" onclick="addressxiaoqu();">
+                        <div class="locian">
                             <span><img src="~/Images/location.png" /></span>
                         </div>
-                        <select class="housing" id="housing"></select>
+                        <select class="housing" id="housing" onclick="addressxiaoqu()"></select>
                     </div>
                     <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
                     <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
                 </div>
-            }*@
-            <div class="new-page">
-                <div class="page-cire">
-                    <div class="locian" onclick="addressxiaoqu();">
-                        <span><img src="~/Images/location.png" /></span>
-                    </div>
-                    <select class="housing" id="housing"></select>
-                </div>
-                <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
-                <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
-            </div>
+            }
+
             <div class="keep-textarea">
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 @*<em class="br"></em>*@
@@ -307,7 +298,11 @@
                 return false;
             }
 
+            $('#btn').css('border-color', '#ccc');
+            $('#btn').css('color', '#ccc');
             $('#btn').attr('disabled', true);
+           
+
             serviceid = serviceid == null ? '#' : serviceid;
             //alert(serviceid)
             var RecordId = $('#RecordId').val();
@@ -317,56 +312,55 @@
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
-
                         window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + data[0].RepairId;
 
                         //alert("提交成功！");
-                        var str = '';
-                        $.each(data, function (i, item) {
-                            var time = $.timeStamp2String(item.CreateDate).split(' ');
-                            var statusstr = '';
-                            switch (item.Status) {
-                                case 5: statusstr = '<ins class="check check1 pull-left">已提交</ins>'; break;
-                                case 10: statusstr = '<ins class="check check2 pull-left">已受理</ins>'; break;
-                                case 15: statusstr = '<ins class="check check3 pull-left">处理中</ins>'; break;
-                                case 20: statusstr = '<ins class="check check4 pull-left">已完成</ins>'; break;
-                                case 99: statusstr = '<ins class="check check4 pull-left">待确认</ins>'; break;
-                            }
+                        //var str = '';
+                        //$.each(data, function (i, item) {
+                        //    var time = $.timeStamp2String(item.CreateDate).split(' ');
+                        //    var statusstr = '';
+                        //    switch (item.Status) {
+                        //        case 5: statusstr = '<ins class="check check1 pull-left">已提交</ins>'; break;
+                        //        case 10: statusstr = '<ins class="check check2 pull-left">已受理</ins>'; break;
+                        //        case 15: statusstr = '<ins class="check check3 pull-left">处理中</ins>'; break;
+                        //        case 20: statusstr = '<ins class="check check4 pull-left">已完成</ins>'; break;
+                        //        case 99: statusstr = '<ins class="check check4 pull-left">待确认</ins>'; break;
+                        //    }
 
-                            //alert(item.ImageFiles.length == 0)
-                            if (item.ImageFiles.length == 0) {
-                                str += '<li>'
-                                    + '<div class="content-title-t">'
-                                        + '<div class="pull-left w10" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
-                                            + '<p class="wr-content">' + item.Contenet + '</p>'
-                                        + '</div>'
-                                   + ' </div>'
-                                   + ' <div class="content-title-b">'
-                                        + statusstr
-                                        + '<span class="time pull-right">' + time[0] + '</span>'
-                                        + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
-                                   + ' </div>'
-                                + '</li>';
-                            } else {
-                                str += '<li>'
-                                    + '<div class="content-title-t">'
-                                        + '<div class="pull-left w8" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
-                                            + '<p class="wr-content">' + item.Contenet + '</p>'
-                                        + '</div>'
-                                        + '<div class="pull-right w2">'
-                                           + ' <div class="img">'
-                                           + '<img src="http://115.159.71.54/DoShineMP/Uploadimgs/' + item.ImageFiles[0].FileName + '" class="imgyulan"/>'
-                                           + '</div>'
-                                       + ' </div>'
-                                   + ' </div>'
-                                   + ' <div class="content-title-b">'
-                                        + statusstr
-                                        + '<span class="time pull-right">' + time[0] + '</span>'
-                                        + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
-                                   + ' </div>'
-                                + '</li>';
-                            }
-                        })
+                        //    //alert(item.ImageFiles.length == 0)
+                        //    if (item.ImageFiles.length == 0) {
+                        //        str += '<li>'
+                        //            + '<div class="content-title-t">'
+                        //                + '<div class="pull-left w10" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
+                        //                    + '<p class="wr-content">' + item.Contenet + '</p>'
+                        //                + '</div>'
+                        //           + ' </div>'
+                        //           + ' <div class="content-title-b">'
+                        //                + statusstr
+                        //                + '<span class="time pull-right">' + time[0] + '</span>'
+                        //                + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
+                        //           + ' </div>'
+                        //        + '</li>';
+                        //    } else {
+                        //        str += '<li>'
+                        //            + '<div class="content-title-t">'
+                        //                + '<div class="pull-left w8" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
+                        //                    + '<p class="wr-content">' + item.Contenet + '</p>'
+                        //                + '</div>'
+                        //                + '<div class="pull-right w2">'
+                        //                   + ' <div class="img">'
+                        //                   + '<img src="http://115.159.71.54/DoShineMP/Uploadimgs/' + item.ImageFiles[0].FileName + '" class="imgyulan"/>'
+                        //                   + '</div>'
+                        //               + ' </div>'
+                        //           + ' </div>'
+                        //           + ' <div class="content-title-b">'
+                        //                + statusstr
+                        //                + '<span class="time pull-right">' + time[0] + '</span>'
+                        //                + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
+                        //           + ' </div>'
+                        //        + '</li>';
+                        //    }
+                        //})
                         //alert(str)
                         $('#messagenew').html(str);
                         document.getElementById('btn').style.borderColor = '#4ca329';
@@ -431,6 +425,6 @@
             this.style.backgroundColor = '#4ca329';
             this.style.color = '#fff';
         }
-        window.onload = function () { if (document.isPrototypeOf("ontouchstart")) { alert("浏览器支持触屏"); } else { alert("浏览器不支持触屏"); } };
+         
     </script>
 }

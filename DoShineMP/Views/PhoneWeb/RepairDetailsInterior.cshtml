@@ -81,7 +81,9 @@
                         <img src="~/Images/tianjia2x.png" class="add-photo" id="add-photo">
                     </div>
                 </div>
+                <div style="margin-top:20px;margin-bottom:-10px;color:red;display:none;" id="messagetitle">请填写现场处理概况!</div>
             </div>
+
         }
 
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle || ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
@@ -92,33 +94,33 @@
                     <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;position:absolute;top:5px;left:80px;">
                         @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
                         {
-                            <li class="current" typeid="Fixed">已修复</li>
+                        <li class="current" typeid="Fixed">已修复</li>
                         }
                         else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
                         {
-                            <li class="current" typeid="Unfixed">未修复</li>
+                        <li class="current" typeid="Unfixed">未修复</li>
                         }
                         else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
                         {
-                            <li class="current" typeid="OutOfRange">不属于维保范围</li>
+                        <li class="current" typeid="OutOfRange">不属于维保范围</li>
                         }
                     </ul>
                 </div>
                 <div class="choose-title">
                     @if (ViewBag.RepairDetail.Describe != null && ViewBag.RepairDetail.Describe != "")
                     {
-                        <p class="back-content">
-                            @ViewBag.RepairDetail.Describe
-                        </p>
+                    <p class="back-content">
+                        @ViewBag.RepairDetail.Describe
+                    </p>
                     }
                     @if (ViewBag.RepairDetail.FinishImageFiles != null)
                     {
-                        <div class="choose-photo" id="choose-photo">
-                            @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
+                    <div class="choose-photo" id="choose-photo">
+                        @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
                             {
-                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
+                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
                             }
-                        </div>
+                    </div>
                     }
                 </div>
             </div>
@@ -286,7 +288,8 @@
                 <textarea class="choose-input" placeholder="请填写取消原因..." id="reasontext" style="border:none;width:100%;"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <span class="pull-left" style="color:red;" id="querentext"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalquxiao">取消</button>
                 <button type="button" class="btn btn-primary" id="applybtn1">确认</button>
             </div>
         </div>
@@ -451,10 +454,11 @@
             var exceptDate = $('#appDateTime').val();
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
-
             var serviceid = $('#serviceid').val();
             var describe = $('#describe').val();
             var RepairFinishTypeid = $('#RepairFinishTypeid').find('.current').attr('typeid');
+
+
 
 
             if (type == '1') {//受理
@@ -467,6 +471,13 @@
                     }
                 })
             } else if (type == '2') {//确认完成
+                if (describe == null || describe == '') {
+                    $('#messagetitle').show();
+                    $(this).attr('disabled', false);
+                    return false;
+                }
+
+
                 $.post('@Url.Action("RepairDetailWJson", "PhoneWeb")', { repaidID: repaidID, serviceid: serviceid, describe: describe, type: RepairFinishTypeid }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
@@ -516,37 +527,6 @@
             var optDateTime = $.extend(opt['datetime'], opt['default']);
             var optTime = $.extend(opt['time'], opt['default']);
             $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
-
-
-            // $("#appTime").mobiscroll(optTime).time(optTime);
-
-            //下面注释部分是上面的参数可以替换改变它的样式
-            //希望一起研究插件的朋友加我个人QQ也可以，本人也建个群 291464597 欢迎进群交流。哈哈。这个不能算广告。
-            // 直接写参数方法
-            //$("#scroller").mobiscroll(opt).date();
-            // Shorthand for: $("#scroller").mobiscroll({ preset: 'date' });
-            //具体参数定义如下
-            //{
-            //preset: 'date', //日期类型--datatime --time,
-            //theme: 'ios', //皮肤其他参数【android-ics light】【android-ics】【ios】【jqm】【sense-ui】【sense-ui】【sense-ui】
-            //【wp light】【wp】
-            //mode: "scroller",//操作方式【scroller】【clickpick】【mixed】
-            //display: 'bubble', //显示方【modal】【inline】【bubble】【top】【bottom】
-            //dateFormat: 'yyyy-mm-dd', // 日期格式
-            //setText: '确定', //确认按钮名称
-            //cancelText: '清空',//取消按钮名籍我
-            //dateOrder: 'yymmdd', //面板中日期排列格
-            //dayText: '日',
-            //monthText: '月',
-            //yearText: '年', //面板中年月日文字
-            //startYear: (new Date()).getFullYear(), //开始年份
-            //endYear: (new Date()).getFullYear() + 9, //结束年份
-            //showNow: true,
-            //nowText: "明天",  //
-            //showOnFocus: false,
-            //height: 45,
-            //width: 90,
-            //rows: 3}
         });
 
         $('#applybtn[tag="1"]').css('background-color', '#ddd')
@@ -564,7 +544,12 @@
 
         ///取消
         $('#applybtn1').click(function () {
+
             var reasontext = $('#reasontext').val();
+            if (reasontext == null || reasontext == '') {
+                $('#querentext').text('请填写原因!')
+                return false;
+            }
             $.post('@Url.Action("CancelJson","PhoneWeb")', { repairID: GetQueryString('repairid'), reason: reasontext }, function (data, status) {
                 if (data.msg != 'N') {
                     window.localStorage['IndexLi'] = 3;
@@ -572,6 +557,11 @@
                 }
             })
         })
+
+        $('#modalquxiao').click(function () {
+            $('#querentext').empty();
+        })
+
     </script>
 
 
