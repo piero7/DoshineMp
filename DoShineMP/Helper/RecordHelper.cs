@@ -21,12 +21,25 @@ namespace DoShineMP.Helper
 
             if (ret == null)
             {
-                return new Record
+
+                var usr = WechatHelper.CheckOpenid(openid);
+                usr = WechatHelper.CheckUser(usr);
+
+
+                var rec = new Record
                 {
                     Openid = openid,
                     Type = RecordType.MpRepair,
                     RecordId = 0
                 };
+
+                if (usr != null && usr.UserInfo != null)
+                {
+                    rec.PhoneNumber = usr.UserInfo.PhoneNumber;
+                    rec.Name = usr.UserInfo.Name;
+                }
+
+                return rec;
             }
             return ret;
         }
