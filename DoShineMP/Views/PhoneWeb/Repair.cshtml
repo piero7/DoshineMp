@@ -11,6 +11,9 @@
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
             @* 新添加 模块 *@
+            <div class="demonstrate">
+                <img src="~/Images/xiaoqu.png"/ >
+            </div>
             <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
             <div class="housing-box">
                 @*<div style="border-bottom:1px solid #ddd;overflow:hidden;">
@@ -268,7 +271,14 @@
 
         });
 
-
+        document.getElementById('btn').addEventListener('touchstart', btnstart)
+        document.getElementById('btn').addEventListener('touchend', btnend)
+        function btnstart(){
+            $('#btn').css({'background-color': '#4ca329','color':'#fff'});
+        }
+        function btnend () {
+            $('#btn').css({ 'background-color': '#fff', 'border': '1px solid #4ca329', 'color': ' #4ca329' });
+        }
         function btn() {
 
             var HasUnFinishedRepair = $('#HasUnFinishedRepair').val();

@@ -521,3 +521,12 @@ select {
 	-webkit-background-size: contain;
 	color: #f1514e;
 }
+.demonstrate{
+    width:100%;
+    height:140px;
+
+}
+.demonstrate img{
+    width:100%;
+    height:100%;
+}

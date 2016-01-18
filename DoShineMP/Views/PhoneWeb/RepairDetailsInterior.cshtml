@@ -258,7 +258,7 @@
                     <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()" />
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
-                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" disabled="disabled">
+                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" >
                     @*取消按钮*@
                     <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
                 </div>
@@ -449,9 +449,13 @@
 
         //提交
         $('#applybtn').click(function () {
+            if ($('#appDateTime').val() ==''||$('#appDateTime').val() == null) {
+                $('#appDateTime').removeClass('animated').addClass('animated');
+                return;
+            }
             $(this).attr('disabled', true);
             var repaidID = $('#repairID').val();
-            var exceptDate = $('#appDateTime').val();
+            var exceptDate = $('#appDateTime').val();s
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
             var serviceid = $('#serviceid').val();
@@ -529,7 +533,7 @@
             $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
         });
 
-        $('#applybtn[tag="1"]').css('background-color', '#ddd')
+        //$('#applybtn[tag="1"]').css('background-color', '#ddd')
         function Time() {
 
             if ($('#appDateTime').val() != null && $('#appDateTime').val() != '') {

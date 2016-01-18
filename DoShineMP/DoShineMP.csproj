@@ -386,6 +386,7 @@
     <Content Include="Images\wancheng2x.png" />
     <Content Include="Images\weiyou.png" />
     <Content Include="Images\xiangji.png" />
+    <Content Include="Images\xiaoqu.png" />
     <Content Include="Images\xing.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
