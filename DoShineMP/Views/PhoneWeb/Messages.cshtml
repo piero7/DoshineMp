@@ -4,45 +4,77 @@
 }
 @section styles{
     <link href="~/Styles/Messages.css" rel="stylesheet" />
+    <style type="text/css">
+        #myModal {
+            padding-top: 30%;
+            z-index: 99999;
+        }
+    </style>
 }
 
 <div id="bk"></div>
 <div class="col-xs-12" id="bodycontent">
-    <div class="jumbotron" id="messages" style="padding-bottom:60px;" >
+    <div class="jumbotron" id="messages" style="padding-bottom:60px;">
     </div>
 </div>
 
 <div class="bg-input" id="foottext">
     <input type="text" class="sendInput" id="sendText" placeholder="输入信息">
     <span class="sendSpan text-center">
-        <input class="sendBtn" onclick="send()" id="btnSend" type="button" value="发送" />
+        <input class="sendBtn" onclick="send()" id="btnSend" type="button" value="发送" @*data-toggle="modal" data-target="#myModal"*@ />
     </span>
 </div>
 
-<input type="hidden" id="username" value="@ViewBag.user.NickName" />
-<input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
-<input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
-<input type="hidden" id="openid" value="@ViewBag.user.OpenId" />
+
+<!-- Modal -->
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    @*<label for="exampleInputEmail1">手机号</label>*@
+                    <input type="text" class="form-control" id="exampleInputPhone" placeholder="请输入手机号或邮箱">
+                </div>
+                <div class="form-group">
+                    @*<label for="exampleInputPassword1">电子邮箱</label>*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="quxiao">取消</button>
+                <button type="button" class="btn btn-primary" id="queren">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<input type="hidden" id="username" value="@ViewBag.user.NickName" />
+    <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
+    <input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
+    <input type="hidden" id="openid" value="@ViewBag.user.OpenId" />*@
 <input type="hidden" id="welcome" value="@ViewBag.welcome" />
 
 @section scripts{
     <script src="~/Scripts/Models.js"></script>
     <script type="text/javascript">
-        var username = document.getElementById('username').value;
-        var userid = document.getElementById('userid').value;
-        var userimg = document.getElementById('userimg').value;
-        var openid = document.getElementById('openid').value;
-        var NickName = username;
-        var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
-        //var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
-        //var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
-        //var NickName = 'luchen';
-        //var userimg = '';
-        var socket;
+        //var username = document.getElementById('username').value;
+        //var userid = document.getElementById('userid').value;
+        //var userimg = document.getElementById('userimg').value;
+        //var openid = document.getElementById('openid').value;
+        //var NickName = username;
+        //var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
         var serverIP = '115.159.71.54';//服务器IP
+
+        //var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
+        var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
+        var NickName = 'luchen';
+        var userimg = '';
+        //var serverIP = '192.168.1.121'; //本机测试IP
+
+        var socket;
         var serverPort = '9000';//服务器端口
         var ChatLog = false;
-
+        var ChatLogModal = true;
 
         window.onload = function () {
             connect();
@@ -208,9 +240,12 @@
                          + '<div class="mediacontent" style="word-break:break-all">' + msgsss.Msg + '</div>'
                      + '</div>'
                      + '</div>';
-
                 var html = document.getElementById("messages").innerHTML + str;
                 document.getElementById("messages").innerHTML = html;
+            }
+
+            if (msgsss.NickName == 'ChatLog' && this.ChatLogModal == true) {
+                isChatLog();
             }
 
             var div = document.getElementById('messages');
@@ -223,8 +258,37 @@
 
 
 
+
+
+
+        document.getElementById('queren').onclick = function () {
+            document.getElementById('myModal').style.display = 'none';
+
+            var exampleInputPhone = document.getElementById('exampleInputPhone').value;
+            document.getElementById('sendText').value = exampleInputPhone;
+
+            send();
+
+
+        }
+
+
+        document.getElementById('quxiao').onclick = function () {
+            document.getElementById('myModal').style.display = 'none';
+            this.ChatLogModal = true;
+        }
+
+
+        function isChatLog() {
+            this.ChatLogModal = false;
+            setTimeout(function () {
+                document.getElementById('myModal').style.display = 'block';
+            }, 1000)
+        }
+
     </script>
 }
+
 
 
 

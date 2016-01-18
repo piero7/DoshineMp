@@ -380,6 +380,14 @@
     <Content Include="Images\usertwo.png" />
     <Content Include="Images\user_bg.PNG" />
     <Content Include="Images\user_phonebg.png" />
+    <Content Include="Images\Vill\huayuan.jpg" />
+    <Content Include="Images\Vill\huayuan.png" />
+    <Content Include="Images\Vill\jiaoda.jpg" />
+    <Content Include="Images\Vill\jiaoda.png" />
+    <Content Include="Images\Vill\shangda.jpg" />
+    <Content Include="Images\Vill\shangda.png" />
+    <Content Include="Images\Vill\tongji.jpg" />
+    <Content Include="Images\Vill\tongji.png" />
     <Content Include="Images\wancheng.jpg" />
     <Content Include="Images\wancheng.png" />
     <Content Include="Images\wancheng2.jpg" />
@@ -411,6 +419,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\star-rating.js" />
+    <Content Include="Scripts\sucai.js" />
     <Content Include="Scripts\TouchSlide.1.1.js" />
     <Content Include="Scripts\zepto.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -428,6 +437,7 @@
     <Content Include="Styles\Repair.css" />
     <Content Include="Styles\RepairDetails.css" />
     <Content Include="Styles\rest.css" />
+    <Content Include="Styles\shake.css" />
     <Content Include="Styles\sign-in.css" />
     <Content Include="Styles\sign-in20160105.css" />
     <Content Include="Styles\star-rating.css" />
