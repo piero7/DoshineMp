@@ -8,7 +8,7 @@
 
 <div id="bk"></div>
 <div class="col-xs-12" id="bodycontent">
-    <div class="jumbotron" id="messages" style="padding-bottom:60px;" >
+    <div class="jumbotron" id="messages" style="padding-bottom:60px;">
     </div>
 </div>
 
@@ -19,10 +19,10 @@
     </span>
 </div>
 
-<input type="hidden" id="username" value="@ViewBag.user.NickName" />
-<input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
-<input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
-<input type="hidden" id="openid" value="@ViewBag.user.OpenId" />
+@*<input type="hidden" id="username" value="@ViewBag.user.NickName" />
+    <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
+    <input type="hidden" id="userimg" value="@ViewBag.user.Headimgurl" />
+    <input type="hidden" id="openid" value="@ViewBag.user.OpenId" />*@
 <input type="hidden" id="welcome" value="@ViewBag.welcome" />
 
 @section scripts{
@@ -34,12 +34,15 @@
         var openid = document.getElementById('openid').value;
         var NickName = username;
         var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
+        var serverIP = '115.159.71.54';//服务器IP
+
         //var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
         //var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
         //var NickName = 'luchen';
         //var userimg = '';
+        //var serverIP = '192.168.1.121'; //本机测试IP
+
         var socket;
-        var serverIP = '115.159.71.54';//服务器IP
         var serverPort = '9000';//服务器端口
         var ChatLog = false;
 

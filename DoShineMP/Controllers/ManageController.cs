@@ -32,9 +32,9 @@ namespace DoShineMP.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -331,7 +331,7 @@ namespace DoShineMP.Controllers
             base.Dispose(disposing);
         }
 
-#region 帮助程序
+        #region 帮助程序
         // 用于在添加外部登录名时提供 XSRF 保护
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +382,6 @@ namespace DoShineMP.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

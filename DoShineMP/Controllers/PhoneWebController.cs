@@ -173,7 +173,8 @@ namespace DoShineMP.Controllers
                             ViewBag.user = user;
                             ViewBag.openid = this.openid;
                             //历史报修记录
-                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+                            var RepairLists = repairHelper.GetHistoryRepair(this.openid);
+                            ViewBag.RepairList = RepairLists.Count() == 0 ? null : RepairLists;
                             ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
                             ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
@@ -211,11 +212,18 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairHistory(string openid)
         {
-            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Apply, 10, 0).ToList();
-            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Accept, 10, 0).ToList();
-            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.FinishHandle, 10, 0).ToList();
-            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
-            ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
+
+            var list5 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Apply, 10, 0).ToList();
+            var list10 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Accept, 10, 0).ToList();
+            var list20 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            var list99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
+            var list_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
+
+            ViewBag.RepairList5 = list5.Count() == 0 ? null : list5;
+            ViewBag.RepairList10 = list10.Count() == 0 ? null : list10;
+            ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
+            ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
+            ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
             ViewBag.Title = "报修历史";
             return View();
         }
@@ -257,11 +265,17 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairInterior()
         {
-            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(Models.RepairStatus.Apply, 10, 0).ToList();
-            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
-            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
-            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
-            ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
+            var list5 = repairHelper.GetHistoryRepair(Models.RepairStatus.Apply, 10, 0).ToList();
+            var list10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
+            var list20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            var list99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
+            var list_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
+
+            ViewBag.RepairList5 = list5.Count() == 0 ? null : list5;
+            ViewBag.RepairList10 = list10.Count() == 0 ? null : list10;
+            ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
+            ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
+            ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
 
             ViewBag.Title = "报修受理";
             return View();

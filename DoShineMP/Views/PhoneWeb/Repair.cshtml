@@ -10,6 +10,9 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
+            <div class="demonstrate">
+                <img src="~/Images/xiaoqu.png" />
+            </div>
             @* 新添加 模块 *@
             <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
             <div class="housing-box">
@@ -50,8 +53,27 @@
                         </div>
                         <select class="housing" id="housing" onclick="addressxiaoqu()"></select>
                     </div>
-                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
-                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
+                    <div class="page-name">
+                        @if (ViewBag.Recordid.Name != null)
+                        {
+                            <input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" />
+                        }
+                        else
+                        {
+                            <input type="text" placeholder="请输入姓名" id="name" />
+                        }
+
+                    </div>
+                    <div class="page-tel">
+                        @if (ViewBag.Recordid.PhoneNumber != null)
+                        {
+                            <input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" />
+                        }
+                        else
+                        {
+                            <input type="text" placeholder="请输入手机号" id="phone" />
+                        }
+                    </div>
                 </div>
             }
 
@@ -67,11 +89,12 @@
             <p style="padding-left:15px; padding-bottom:10px; color:red;" id="imgtext"></p>
         </div>
 
+
         @if (ViewBag.RepairList != null)
         {
             <div class="keep-content-b">
                 <p class="panel panel-default new-title">
-                    <span>最新报修消息</span>
+                    <span>最近报修消息</span>
                     <ins></ins>
                 </p>
                 <div class="panel panel-default new-keep">
@@ -150,6 +173,7 @@
             serverId: []
         };
         $(function () {
+
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -266,6 +290,7 @@
                 });
             };
 
+            isaddress();
         });
 
 
@@ -301,7 +326,7 @@
             $('#btn').css('border-color', '#ccc');
             $('#btn').css('color', '#ccc');
             $('#btn').attr('disabled', true);
-           
+
 
             serviceid = serviceid == null ? '#' : serviceid;
             //alert(serviceid)
@@ -397,6 +422,15 @@
             window.location.href = '@Url.Action("RepairHistory", "PhoneWeb")?IndexLi1=0&openid=' + $('#openid').val();
         })
 
+        //一开始没有地址，则默认拉取
+        function isaddress() {
+            if ($('#housing').text() == null || $('#housing').text() == '') {
+                addressxiaoqu();
+            }
+        }
+
+
+
         ///获取附近小区
         function addressxiaoqu() {
             wx.getLocation({
@@ -425,6 +459,6 @@
             this.style.backgroundColor = '#4ca329';
             this.style.color = '#fff';
         }
-         
+
     </script>
 }

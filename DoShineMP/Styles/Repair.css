@@ -142,7 +142,7 @@ body {
 
 .content-title-t {
     overflow: hidden;
-    min-height:75px;
+    min-height: 75px;
 }
 
 .new-keep ul {
@@ -217,10 +217,10 @@ body {
 }
 
 .w8 .wr-content,
- .w10 .wr-content{
+.w10 .wr-content {
     width: 100%;
     min-width: 55px;
-    max-height:55px;
+    max-height: 55px;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     overflow: hidden;
@@ -313,7 +313,7 @@ body {
 }
 
 .housing-l:after
-    /*@* 新添加 模块 css *@*/
+/*@* 新添加 模块 css *@*/
 .housing-box {
     background-color: white;
     ;
@@ -329,14 +329,14 @@ body {
     float: right;
     margin-left: -100%;
     background-color: white;
-  }
+}
 
 .housing-l {
     width: 100%;
     padding-right: 55px;
     float: left;
-      position: relative;
-  }
+    position: relative;
+}
 
     .housing-l .housing {
         width: 100%;
@@ -351,7 +351,7 @@ body {
         line-height: 40px;
         background-color: white;
         padding-left: 15px;
-      }
+    }
 
 .cire {
     width: 35px;
@@ -362,7 +362,7 @@ body {
     -webkit-background-size: cover;
     margin-top: 3px;
     margin-left: 5px;
-    }
+}
 
 .housing-l:after {
     content: "";
@@ -376,23 +376,23 @@ body {
     -webkit-background-size: cover;
     transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
-    }
+}
 
 button[disabled], html input[disabled] {
     background-color: white;
-    }
+}
 
 .housing-ul {
     height: 0;
     overflow: hidden;
     transition: height .6s linear 0s;
     -webkit-transition: height .6s linear 0s;
-    }
+}
 
 .new-page {
     padding: 5px 15px;
     overflow: hidden;
-    }
+}
 
     .new-page .page-name,
     .new-page .page-tel,
@@ -414,7 +414,7 @@ button[disabled], html input[disabled] {
             background-size: cover;
             -webkit-background-size: cover;
             .new-page .page-cire:before;
-     }
+        }
 
         .new-page .page-tel:before {
             content: '';
@@ -426,26 +426,28 @@ button[disabled], html input[disabled] {
             background: url(../Images/phone2x.png) no-repeat left center;
             background-size: cover;
             -webkit-background-size: cover;
-     }
+        }
 
-       .new-page .page-cire .locian{
+        .new-page .page-cire .locian {
             position: absolute;
             right: 0px;
             top: 0px;
-            width:45px;
-            height:45px;
+            width: 45px;
+            height: 45px;
         }
-         .new-page .page-cire span{
-                width: 25px;
-                height: 25px;
-                margin-top: 8px;
-                margin-left: 15px;
-                display: block;
+
+        .new-page .page-cire span {
+            width: 25px;
+            height: 25px;
+            margin-top: 8px;
+            margin-left: 15px;
+            display: block;
         }
-         .new-page .page-cire span img{
-             width:100%;
-             height:100%;
-         }
+
+            .new-page .page-cire span img {
+                width: 100%;
+                height: 100%;
+            }
 
         .new-page .page-cire select {
             width: 100%;
@@ -455,29 +457,29 @@ button[disabled], html input[disabled] {
 
     .new-page input {
         width: 100%;
-        height:44px;
+        height: 44px;
         border: 0;
-      }
+    }
 
 select {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-               padding-right: 14px;
-            }   
+    padding-right: 14px;
+}
 
     select::-ms-expand {
         display: none;
     }
 
 .my-arranty {
-    padding:15px;
+    padding: 15px;
     font-size: 15px;
     background-color: white;
     border-bottom: 15px solid #ececec;
     position: relative;
 }
-  
+
     .my-arranty span {
         width: 15px;
         height: 15px;
@@ -487,37 +489,37 @@ select {
         background: url(../Images/jiantou.png) no-repeat;
         background-size: cover;
         -webkit-background-size: cover;
-}
-   
+    }
+
 .new-page .page-cire {
     padding: 0;
 }
 
 .content-see {
-    width:70%;
+    width: 70%;
     color: #898989;
     font-size: 12px;
-    margin-top:25px;
+    margin-top: 25px;
 }
 
 .wr-content {
     height: 55px;
     text-overflow: ellipsis;
 }
-/*.tips-title{
-    color:#898989;
-	vertical-align:bottom;
-    padding-left:10px;
+
+.content-title-b .check5 {
+    background: url(../Images/quxiao.png) no-repeat 0 0px;
+    background-size: contain;
+    -webkit-background-size: contain;
+    color: #f1514e;
 }
-.operate  img{
-    float:left;
-}*/
-/*textarea:disabled, input:not([type]):disabled, input[type="color" i]:disabled, input[type="date" i]:disabled, input[type="datetime" i]:disabled, input[type="datetime-local" i]:disabled, input[type="email" i]:disabled, input[type="month" i]:disabled, input[type="password" i]:disabled, input[type="number" i]:disabled, input[type="search" i]:disabled, input[type="tel" i]:disabled, input[type="text" i]:disabled, input[type="time" i]:disabled, input[type="url" i]:disabled, input[type="week" i]:disabled {
-        background-color:#fff !important;
-}*/
-.content-title-b .check5{
-	background:url(../Images/quxiao.png) no-repeat 0 0px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #f1514e;
+
+.demonstrate {
+    width: 100%;
+    height: 140px;
 }
+
+    .demonstrate img {
+        width: 100%;
+        height: 100%;
+    }
