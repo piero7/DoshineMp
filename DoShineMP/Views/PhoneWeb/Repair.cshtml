@@ -10,12 +10,16 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
-            <div class="demonstrate">
-                <img src="~/Images/xiaoqu.png" />
-            </div>
             @* 新添加 模块 *@
             <div class="demonstrate">
-                <img src="~/Images/xiaoqu.png"/ >
+                @if (ViewBag.Village != null)
+                {
+                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                }
+                else
+                {
+                    <img src="~/Images/xiaoqu.png" />
+                }
             </div>
             <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
             <div class="housing-box">
@@ -34,7 +38,7 @@
                 <div class="new-page">
                     <div class="page-cire">
                         <div class="locian">
-                            <span><img src="~/Images/location.png" /></span>
+                            @*<span><img src="~/Images/location.png" /></span>*@
                         </div>
                         <select class="housing" id="housing" onclick="addressxiaoqu()">
                             @if (ViewBag.Village != null)
@@ -52,7 +56,7 @@
                 <div class="new-page">
                     <div class="page-cire">
                         <div class="locian">
-                            <span><img src="~/Images/location.png" /></span>
+                            @*<span><img src="~/Images/location.png" /></span>*@
                         </div>
                         <select class="housing" id="housing" onclick="addressxiaoqu()"></select>
                     </div>
@@ -163,6 +167,9 @@
 <input type="hidden" value="" id="serviceid" />
 <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
 <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
+
+
+
 
 
 @section scripts{
@@ -298,10 +305,10 @@
 
         document.getElementById('btn').addEventListener('touchstart', btnstart)
         document.getElementById('btn').addEventListener('touchend', btnend)
-        function btnstart(){
-            $('#btn').css({'background-color': '#4ca329','color':'#fff'});
+        function btnstart() {
+            $('#btn').css({ 'background-color': '#4ca329', 'color': '#fff' });
         }
-        function btnend () {
+        function btnend() {
             $('#btn').css({ 'background-color': '#fff', 'border': '1px solid #4ca329', 'color': ' #4ca329' });
         }
         function btn() {
@@ -324,12 +331,15 @@
 
             if (keeptext == '' || keeptext == null) {
                 $('#imgtext').text('内容不得为空！');
+                $('#btn').attr('disabled', false);
                 return false;
             } else if (name == '' || name == null || phone == '' || phone == null) {
                 $('#imgtext').text('姓名、手机号不得为空！');
+                $('#btn').attr('disabled', false);
                 return false;
             } else if (!re.test(phone)) {
                 $('#imgtext').text('请输入正确手机号！');
+                $('#btn').attr('disabled', false);
                 return false;
             }
 

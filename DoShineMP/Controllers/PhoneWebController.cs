@@ -219,9 +219,19 @@ namespace DoShineMP.Controllers
             var list99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
             var list_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
 
+            List<Models.Repair> ListAll = new List<Models.Repair>();
+
+            ListAll = list5;
+            ListAll.AddRange(list10);
+            ListAll.AddRange(list20);
+            ListAll = ListAll.OrderBy(item => item.CreateDate).ToList();
+
             ViewBag.RepairList5 = list5.Count() == 0 ? null : list5;
             ViewBag.RepairList10 = list10.Count() == 0 ? null : list10;
             ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
+            ViewBag.RepairListAll = ListAll.Count() == 0 ? null : ListAll;
+
+
             ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
             ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
             ViewBag.Title = "报修历史";
@@ -271,9 +281,19 @@ namespace DoShineMP.Controllers
             var list99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
             var list_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
 
+            List<Models.Repair> ListAll = new List<Models.Repair>();
+
+            ListAll = list5;
+            ListAll.AddRange(list10);
+            ListAll.AddRange(list20);
+            ListAll = ListAll.OrderBy(item => item.CreateDate).ToList();
+
+
             ViewBag.RepairList5 = list5.Count() == 0 ? null : list5;
             ViewBag.RepairList10 = list10.Count() == 0 ? null : list10;
             ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
+            ViewBag.RepairListAll = ListAll.Count() == 0 ? null : ListAll;
+
             ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
             ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
 
@@ -323,30 +343,30 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Messages(string code)
         {
-            url.urltype = "Messages";
-            if (!string.IsNullOrEmpty(code))
-            {
-                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                {
-                    var uuu = wuser.GetUserInfo(this.openid);
-                    if (uuu.UserInfo != null)
-                    {
-                        ViewBag.user = wuser.GetUserInfo(this.openid);
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-                }
-            }
-            else
-            {
-                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-            }
+            //url.urltype = "Messages";
+            //if (!string.IsNullOrEmpty(code))
+            //{
+            //    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //    {
+            //        var uuu = wuser.GetUserInfo(this.openid);
+            //        if (uuu.UserInfo != null)
+            //        {
+            //            ViewBag.user = wuser.GetUserInfo(this.openid);
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+            //    }
+            //}
+            //else
+            //{
+            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+            //}
             ViewBag.welcome = ConfigurationManager.AppSettings["welcome"];
             ViewBag.Title = "在线客服";
             return View();
