@@ -9,17 +9,31 @@
 <input type="text" value="@ViewBag.open.timestamp" />
 <input type="text" value="@ViewBag.open.nonceStr" />
 <input type="text" value="@ViewBag.open.signature" />*@
+@section styles{
+    <link href="~/Styles/rest.css" rel="stylesheet" />
+    <link href="~/Styles/ceshi.css" rel="stylesheet" />
+    <link href="~/Styles/animate.min.css"/ rel="stylesheet">
+}
+
+
+
+
+
+
+<div class="fadein-box fadeIn animated">
+    <div class="box-in">
+        <ul>
+            <li class="bounceInLeft animated">小区一号</li>
+            <li class="bounceInLeft animated">小区二号</li>
+            <li class="bounceInLeft animated">小区三号</li>
+            <li class="bounceInLeft animated">小区四号</li>
+        </ul>
+    </div>
+</div>
 
 @section scripts{
     <script type="text/javascript">
-        $(function () {
-
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: 'olQmIjjUTPHrAAAQc0aeJ5LRM3qw', content: 'djsldjls', mediaid: '', address: "", phone: '13061960809', villageid: 1, name: 'luchen', recordid: 2 }, function (data, status) {
-
-            })
-
-
-        })
+       
 
     </script>
 }

@@ -94,33 +94,33 @@
                     <ul class="service" id="RepairFinishTypeid" style="border:none;padding-bottom:0;position:absolute;top:5px;left:80px;">
                         @if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Fixed)
                         {
-                        <li class="current" typeid="Fixed">已修复</li>
+                            <li class="current" typeid="Fixed">已修复</li>
                         }
                         else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.Unfixed)
                         {
-                        <li class="current" typeid="Unfixed">未修复</li>
+                            <li class="current" typeid="Unfixed">未修复</li>
                         }
                         else if (ViewBag.RepairDetail.FinishType == DoShineMP.Models.RepairFinishType.OutOfRange)
                         {
-                        <li class="current" typeid="OutOfRange">不属于维保范围</li>
+                            <li class="current" typeid="OutOfRange">不属于维保范围</li>
                         }
                     </ul>
                 </div>
                 <div class="choose-title">
                     @if (ViewBag.RepairDetail.Describe != null && ViewBag.RepairDetail.Describe != "")
                     {
-                    <p class="back-content">
-                        @ViewBag.RepairDetail.Describe
-                    </p>
+                        <p class="back-content">
+                            @ViewBag.RepairDetail.Describe
+                        </p>
                     }
                     @if (ViewBag.RepairDetail.FinishImageFiles != null)
                     {
-                    <div class="choose-photo" id="choose-photo">
-                        @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
+                        <div class="choose-photo" id="choose-photo">
+                            @foreach (DoShineMP.Models.ImageFile i in ViewBag.RepairDetail.FinishImageFiles as List<DoShineMP.Models.ImageFile>)
                             {
-                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@i.FileName" class="imgyulan" />
                             }
-                    </div>
+                        </div>
                     }
                 </div>
             </div>
@@ -133,98 +133,98 @@
             <div class="state">
                 @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Apply)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li>受理</li>
+                        <li>确认</li>
+                        <li>完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li>受理</li>
-                    <li>确认</li>
-                    <li>完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li></li>
-                        <li></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-one"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li class="current">受理</li>
+                        <li>确认</li>
+                        <li>完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-one"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li class="current">受理</li>
-                    <li>确认</li>
-                    <li>完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-two"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li class="current">受理</li>
+                        <li class="current">确认</li>
+                        <li>完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-two"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li class="current">受理</li>
-                    <li class="current">确认</li>
-                    <li>完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li class="current"></li>
-                        <li class="current"></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li class="current"></li>
+                            <li class="current"></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-two"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current">提交</li>
+                        <li class="current">受理</li>
+                        <li class="current">确认</li>
+                        <li class="current">完成</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-two"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current">提交</li>
-                    <li class="current">受理</li>
-                    <li class="current">确认</li>
-                    <li class="current">完成</li>
-                </ul>
                 }
                 else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Cancel)
                 {
-                <div class="state-in">
-                    <ul class="state-ul">
-                        <li class="current2"></li>
-                        <li style="display:none;"></li>
-                        <li style="display:none;"></li>
-                        <li class="quxiao" style="background-image:url(../../Doshinemp/Images/quxiao.jpg)"></li>
+                    <div class="state-in">
+                        <ul class="state-ul">
+                            <li class="current2"></li>
+                            <li style="display:none;"></li>
+                            <li style="display:none;"></li>
+                            <li class="quxiao" style="background-image:url(../../Doshinemp/Images/quxiao.jpg)"></li>
+                        </ul>
+                        <span class="line"></span>
+                        <span class="line-current left-two2"></span>
+                    </div>
+                    <ul class="state-time">
+                        <li class="current2">提交</li>
+                        <li></li>
+                        <li></li>
+                        <li style="color:#f1514e;">取消</li>
                     </ul>
-                    <span class="line"></span>
-                    <span class="line-current left-two2"></span>
-                </div>
-                <ul class="state-time">
-                    <li class="current2">提交</li>
-                    <li></li>
-                    <li></li>
-                    <li style="color:#f1514e;">取消</li>
-                </ul>
                 }
 
             </div>
@@ -258,7 +258,7 @@
                     <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()" />
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
-                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理" >
+                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理">
                     @*取消按钮*@
                     <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
                 </div>
@@ -307,6 +307,7 @@
     <script src="~/dev/js/mobiscroll.datetime-2.5.1-zh.js"></script>
     <script src="~/dev/js/mobiscroll.android-ics-2.5.2.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
+    <script src="~/Scripts/sucai.js"></script>
     <script type="text/javascript">
         var token;
         var imglength = 3;
@@ -448,29 +449,35 @@
         });
 
         //提交
-        $('#applybtn').click(function () {
-            if ($('#appDateTime').val() ==''||$('#appDateTime').val() == null) {
-                $('#appDateTime').removeClass('animated').addClass('animated');
-                return;
-            }
+        $(document).on('click', '#applybtn', function () {
             $(this).attr('disabled', true);
             var repaidID = $('#repairID').val();
-            var exceptDate = $('#appDateTime').val();s
+            var exceptDate = $('#appDateTime').val();
             var innderNumber = $('#input-21d').val();
             var type = $(this).attr('tag');
             var serviceid = $('#serviceid').val();
             var describe = $('#describe').val();
             var RepairFinishTypeid = $('#RepairFinishTypeid').find('.current').attr('typeid');
 
-
-
-
             if (type == '1') {//受理
+                if ($('#appDateTime').val() == '' || $('#appDateTime').val() == null) {
+                    $('#appDateTime').removeClass('animated').addClass('animated');
+                    //var time = document.getElementById('appDateTime');
+                    //convertStyle(time);
+                    //shake(time);
+
+                    return;
+                }
                 $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
-                            window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
-                            window.history.go(-1);
+                            windowlength = window.history.length;
+                            if (windowlength == 1) {
+                                window.location.reload();
+                            } else {
+                                window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
+                                window.history.go(-1);
+                            }
                         }
                     }
                 })
@@ -481,18 +488,22 @@
                     return false;
                 }
 
-
                 $.post('@Url.Action("RepairDetailWJson", "PhoneWeb")', { repaidID: repaidID, serviceid: serviceid, describe: describe, type: RepairFinishTypeid }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
-                            window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
-                            window.history.go(-1);
+                            windowlength = window.history.length;
+                            if (windowlength == 1) {
+                                window.location.reload();
+                            } else {
+                                window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
+                                window.history.go(-1);
+                            }
                         }
                     }
                 })
             }
-
         })
+
 
 
 

@@ -21,7 +21,7 @@
     margin-bottom: 0;
     border: none;
     border-bottom: 1px solid #ddd;
-    color: #626262;
+    color: #333;
 }
 
 input {
@@ -47,11 +47,26 @@ input {
         font-size: 14px;
     }
 
-.panel-body {
+.panel-body{
     padding-left: 0;
     padding-right: 0;
 }
-
+.edit{
+    position:relative;
+    overflow:hidden;
+}
+.edit:after {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: url(../Images/more.png) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    display: block;
+}
 .phone {
     text-align: left;
 }

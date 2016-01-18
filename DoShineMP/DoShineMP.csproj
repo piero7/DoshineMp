@@ -414,6 +414,8 @@
     <Content Include="Scripts\TouchSlide.1.1.js" />
     <Content Include="Scripts\zepto.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\animate.min.css" />
+    <Content Include="Styles\ceshi.css" />
     <Content Include="Styles\chat.css" />
     <Content Include="Styles\history.css" />
     <Content Include="Styles\invite2.css" />
