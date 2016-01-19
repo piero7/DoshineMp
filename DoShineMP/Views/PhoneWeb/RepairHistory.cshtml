@@ -7,7 +7,7 @@
     <link href="~/Styles/history.css" rel="stylesheet" />
 }
 <div id="content">
-    <div id="leftTabBox" class="tabBox">
+    <div id="tabBox1" class="tabBox">
         <div class="hd">
             <ul>
                 <li><a href="#">进行中</a></li>
@@ -15,315 +15,178 @@
                 <li><a href="#">已取消</a></li>
             </ul>
         </div>
-        <div class="bd">
-            
-            @*已提交*@
-            @*@if (ViewBag.RepairList5 != null)
+        <div class="bd" id="tabBox1-bd">
+            <div>
+                @*进行中*@
+                @if (ViewBag.RepairListAll != null)
             {
-                <ul class="Padding">
-                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList5 as List<DoShineMP.Models.Repair>)
-                    {
-                    <li id="@r.RepairId">
-                        <div class="content-title-t">
-                            @if (r.ImageFiles.Count == 0)
-                                {
-                            <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                <p class="wr-content">@r.Contenet</p>
-                            </div>
-                                }
-                                else
-                                {
-                            <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                <p class="wr-content">@r.Contenet</p>
-                            </div>
-                            <div class="pull-right w2">
-                                <div class="img">
-                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
-                                </div>
-                            </div>
-                                }
-                        </div>
-                        <div class="content-title-b">
-                            <ins class="check check1 pull-left">已提交</ins>
-                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                            @if (r.User.Name != null)
-                                {
-                            <span class="time-l time pull-right">@r.User.Name</span>
-                                }
-                        </div>
-                    </li>
-                    }
-
-                </ul>
-            }
-            else
-            {
-                <ul class="Padding">
-                    <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
-                </ul>
-            }*@
-
-            @*已受理*@
-            @*@if (ViewBag.RepairList10 != null)
-            {
-                <ul class="Padding">
-                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList10 as List<DoShineMP.Models.Repair>)
-                    {
-                        <li id="@r.RepairId">
-                            <div class="content-title-t">
-                                @if (r.ImageFiles.Count == 0)
-                                {
-                            <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                <p class="wr-content">@r.Contenet</p>
-                            </div>
-                                }
-                                else
-                                {
-                            <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                <p class="wr-content">@r.Contenet</p>
-                            </div>
-                            <div class="pull-right w2">
-                                <div class="img">
-                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
-                                </div>
-                            </div>
-                                }
-                            </div>
-                            <div class="content-title-b">
-                                <ins class="check check2 pull-left">已受理</ins>
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                @if (r.User.Name != null)
-                                {
-                            <span class="time-l time pull-right">@r.User.Name</span>
-                                }
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <ul class="Padding">
-                    <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
-                </ul>
-            }*@
-
-
-            @*待评价*@
-            @*@if (ViewBag.RepairList20 != null)
-            {
-                <ul class="Padding">
-                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList20 as List<DoShineMP.Models.Repair>)
-                    {
-                    <li id="@r.RepairId">
-                        <div class="content-title-t">
-                            @if (r.ImageFiles.Count == 0)
-                                {
-                            <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                <p class="wr-content">@r.Contenet</p>
-                            </div>
-                                }
-                                else
-                                {
-                            <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                <p class="wr-content">@r.Contenet</p>
-                            </div>
-                            <div class="pull-right w2">
-                                <div class="img">
-                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
-                                </div>
-                            </div>
-                                }
-                        </div>
-                        <div class="content-title-b">
-                            <ins class="check check3 pull-left">待评价</ins>
-                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                            @if (r.User.Name != null)
-                                {
-                            <span class="time-l time pull-right">@r.User.Name</span>
-                                }
-                        </div>
-                    </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <ul class="Padding">
-                    <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
-                </ul>
-            }*@
-
-            @*进行中*@
-            @if (ViewBag.RepairListAll != null)
-            {
-                <ul class="Padding">
-                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairListAll as List<DoShineMP.Models.Repair>)
-                    {
-                        <li id="@r.RepairId">
-                            <div class="content-title-t">
-                                @if (r.ImageFiles.Count == 0)
-                                {
-                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                    <ul class="Padding">
+                        @foreach (DoShineMP.Models.Repair r in ViewBag.RepairListAll as List<DoShineMP.Models.Repair>)
+                        {
+                            <li id="@r.RepairId">
+                                <div class="content-title-t">
+                                    @if (r.ImageFiles.Count == 0)
+                                    {
+                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
                                         </div>
-                                    </div>
-                                }
-                            </div>
-                            <div class="content-title-b">
-                                @switch (r.Status)
-                                {
-                                    case DoShineMP.Models.RepairStatus.Apply:
-                                        <ins class="check check1 pull-left">已提交</ins>;
-                                        break;
-                                    case DoShineMP.Models.RepairStatus.Accept:
-                                        <ins class="check check2 pull-left">已受理</ins>;
-                                        break;
-                                    case DoShineMP.Models.RepairStatus.FinishHandle:
-                                        <ins class="check check3 pull-left">待评价</ins>;
-                                        break;
-                                }
-
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                @if (r.User.Name != null)
-                                        {
-                                    <span class="time-l time pull-right">@r.User.Name</span>
                                     }
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <ul class="Padding">
-                    <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
-                </ul>
-            }
+                                    else
+                                    {
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="content-title-b">
+                                    @switch (r.Status)
+                                    {
+                                        case DoShineMP.Models.RepairStatus.Apply:
+                                            <ins class="check check1 pull-left">已提交</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Accept:
+                                            <ins class="check check2 pull-left">已受理</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.FinishHandle:
+                                            <ins class="check check3 pull-left">待评价</ins>;
+                                            break;
+                                    }
 
+                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                    @if (r.User.Name != null)
+                                    {
+                                        <span class="time-l time pull-right">@r.User.Name</span>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <ul class="Padding">
+                        <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
+                    </ul>
+                }
+            </div>
 
 
             @*已完成*@
-            @if (ViewBag.RepairList99 != null)
-                                {
-                <ul class="Padding">
-                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList99 as List<DoShineMP.Models.Repair>)
-                                {
-                        <li id="@r.RepairId">
-                            <div class="content-title-t">
-                                @if (r.ImageFiles.Count == 0)
-                                {
-                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+            <div>
+                @if (ViewBag.RepairList99 != null)
+                {
+                    <ul class="Padding">
+                        @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList99 as List<DoShineMP.Models.Repair>)
+                        {
+                            <li id="@r.RepairId">
+                                <div class="content-title-t">
+                                    @if (r.ImageFiles.Count == 0)
+                                    {
+                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
                                         </div>
-                                    </div>
-                                }
-                            </div>
-                            <div class="content-title-b">
-                                <ins class="check check4 pull-left">已完成</ins>
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                @if (r.User.Name != null)
-                                {
-                                    <span class="time-l time pull-right">@r.User.Name</span>
-                                }
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <ul class="Padding">
-                    <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
-                </ul>
-            }
-
-            @*已取消*@
-            @if (ViewBag.RepairList_1 != null)
-                                {
-                <ul class="Padding">
-                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList_1 as List<DoShineMP.Models.Repair>)
-                                {
-                        <li id="@r.RepairId">
-                            <div class="content-title-t">
-                                @if (r.ImageFiles.Count == 0)
-                                {
-                                    <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@r.Contenet</p>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                    }
+                                    else
+                                    {
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
                                         </div>
-                                    </div>
-                                }
-                            </div>
-                            <div class="content-title-b">
-                                <ins class="check check5 pull-left">已取消</ins>
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                @if (r.User.Name != null)
-                                {
-                                    <span class="time-l time pull-right">@r.User.Name</span>
-                                }
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <ul class="Padding">
-                    <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
-                </ul>
-            }
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="content-title-b">
+                                    <ins class="check check4 pull-left">已完成</ins>
+                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                    @if (r.User.Name != null)
+                                    {
+                                        <span class="time-l time pull-right">@r.User.Name</span>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <ul class="Padding">
+                        <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
+                    </ul>
+                }
+            </div>
+            <div>
+                @*已取消*@
+                @if (ViewBag.RepairList_1 != null)
+                {
+                    <ul class="Padding">
+                        @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList_1 as List<DoShineMP.Models.Repair>)
+                        {
+                            <li id="@r.RepairId">
+                                <div class="content-title-t">
+                                    @if (r.ImageFiles.Count == 0)
+                                    {
+                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="content-title-b">
+                                    <ins class="check check5 pull-left">已取消</ins>
+                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                    @if (r.User.Name != null)
+                                    {
+                                        <span class="time-l time pull-right">@r.User.Name</span>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <ul class="Padding">
+                        <li style="text-align:center;border:none;padding-top:40%;"><img src="~/Images/weiyou.png" /></li>
+                    </ul>
+                }
+            </div>
         </div>
     </div>
 </div>
 
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/TouchSlide.1.1.js"></script>
-    <script src="~/Scripts/zepto.min.js"></script>
-    <script src="~/Scripts/cookiecode.js"></script>
-    <script src="~/Scripts/locales/touch.js"></script>
     <script type="text/javascript">
         var tabnumber = 3;//分页tab数量
-                                    var IndexLi = 0;
+        var IndexLi = 0;
 
-                                    var token;
+        var token;
 
-                                    var images = {
-                                        localId: [],
+        var images = {
+            localId: [],
             serverId: []
-                                    };
+        };
         $(function () {
-            read();
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -378,9 +241,21 @@
 
             var indexli = GetQueryString('IndexLi1');
             IndexLi = (indexli == window.localStorage['IndexLi1']) ? indexli : window.localStorage['IndexLi1'];
-            TouchSlide({ slideCell: "#leftTabBox", defaultIndex: IndexLi });
-            //console.log(IndexLi)
-            //tab(IndexLi);
+             TouchSlide({
+                slideCell: "#tabBox1",
+                endFun: function (i) { //高度自适应
+                    window.localStorage['IndexLi'] = i;
+                    IndexLi = i;
+                    var bd = document.getElementById("tabBox1-bd");
+                    var bdheight = bd.children[i].children[0].offsetHeight;
+                    var wheight = window.screen.availHeight;
+                    //bd.parentNode.style.height = bdheight < wheight ? wheight : bdheight + "px";
+                    bd.parentNode.style.height = bdheight + 'px';
+                    if (i > 0) bd.parentNode.style.transition = "200ms";//添加动画效果
+                },
+                defaultIndex: IndexLi
+            });
+            
         })
 
 
@@ -440,41 +315,6 @@
                 ]
             });
         })
-
-        $('.hd li').click(function () {
-            IndexLi = $(this).index();
-            window.localStorage['IndexLi1'] = IndexLi;
-            //tab(IndexLi);
-
-        })
-
-
-        $(window).swipeLeft(function () {
-            document.body.scrollTop = 0;
-            if (IndexLi < tabnumber - 1) {
-                IndexLi++;
-                window.localStorage['IndexLi1'] = IndexLi;
-            }
-
-        })
-        console.log('初始化' + IndexLi)
-        $(window).swipeRight(function () {
-            document.body.scrollTop = 0;
-            if (IndexLi > 0) {
-                IndexLi--;
-                window.localStorage['IndexLi1'] = IndexLi;
-            }
-        })
-
-
-        function tab(enumber) {
-            Lilength = $('.Padding').eq(enumber).find('li').length
-            var windowHeight = $(window).height();
-            LiHeight = 140;
-            Height = (Lilength * LiHeight + 10) < (windowHeight - 50) ? (windowHeight - 50) : (Lilength * LiHeight + 10);
-            $('.tempWrap .bd').css({ 'height': Height + 'px', 'overflow': 'hidden' })
-        }
-
 
         function GetQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

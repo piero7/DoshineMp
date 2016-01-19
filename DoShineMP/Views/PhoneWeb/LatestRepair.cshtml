@@ -10,20 +10,20 @@
 
 <div class="keep">
     <div class="keep-in">
-            @* 新添加 模块 *@
-            <div class="demonstrate">
-                @if (ViewBag.Village != null)
-                {
-                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
-                }
-                else
-                {
-                    <img src="~/Images/xiaoqu.png" />
-                }
-            </div>
-            <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
-           
-        
+        @* 新添加 模块 *@
+        <div class="demonstrate">
+            @if (ViewBag.Village != null)
+            {
+                <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+            }
+            else
+            {
+                <img src="~/Images/xiaoqu.png" />
+            }
+        </div>
+        <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
+
+
 
 
         @if (ViewBag.RepairList != null)
@@ -258,8 +258,8 @@
             window.location.href = '@Url.Action("RepairHistory", "PhoneWeb")?IndexLi1=0&openid=' + $('#openid').val();
         })
 
-        
-       
+
+
 
     </script>
 }
