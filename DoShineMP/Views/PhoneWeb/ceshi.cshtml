@@ -32,8 +32,235 @@
 </div>
 
 @section scripts{
-    <script type="text/javascript">
-       
+   <script type="text/javascript">
+        //var username = document.getElementById('username').value;
+        //var userid = document.getElementById('userid').value;
+        //var userimg = document.getElementById('userimg').value;
+        //var openid = document.getElementById('openid').value;
+        //var NickName = username;
+        //var NewNickIp = new NickIp(openid, username, '', true, true, '100001', '0000000001', '', '', userimg);
+        var serverIP = '115.159.71.54';//服务器IP
 
-    </script>
+        //var NewNickIp = new NickIp('olQmIjjUTPHrAAAQc0aeJ5LRM3qw', 'luchen', '', true, true, '100001', '0000000001', '', '', "");
+        var NewNickIp = new NickIp('olQmIjkhpd5dDunhGK2H4qtapKk4', 'xiaoertu', '', true, true, '100001', '0000000001', '', '', "");
+        var NickName = 'luchen';
+        var userimg = '';
+        //var serverIP = '192.168.1.121'; //本机测试IP
+
+        var socket;
+        var serverPort = '9000';//服务器端口
+        var ChatLog = false;
+        var ChatLogModal = true;
+
+        window.onload = function () {
+            connect();
+        }
+
+        function connect() {
+            var host = "ws://" + serverIP + ":" + serverPort + "/"
+            socket = new WebSocket(host);
+
+            try {
+                socket.onopen = function (msg) {
+                    //$("btnConnect").disabled = true;
+                    //alert("连接成功！");
+                    socket.send(JSON.stringify(NewNickIp) + ' ');
+
+                    var dat = new Date();
+                    var str = '<div id="alertmess" class="text-center">'
+                             + '<span>Hi,非常高兴为您服务~</span><br/><br/>'
+                             + '<span1>' + (dat.getMonth() + 1) + '-' + dat.getDate() + ' ' + (dat.getHours().toString().length < 2 ? '0' + dat.getHours() : dat.getHours()) + ':' + (dat.getMinutes().toString().length < 2 ? '0' + dat.getMinutes() : dat.getMinutes()) + '</span1>'
+                             + '</div>';
+                    document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+
+                    var str = '<div class="media medialeft">'
+                     + '<div class="media-left">'
+                         + '<a href="#">'
+                         + '<img class="media-object img-circle" src="../../doshinemp/Images/logo.png" alt="...">'
+                         + '</a>'
+                     + '</div>'
+                     + '<div class="media-body">'
+                         + '<div class="mediacontent" style="word-break:break-all">' + document.getElementById('welcome').value + '</div>'
+                     + '</div>'
+                     + '</div>';
+
+                    var html = document.getElementById("messages").innerHTML + str;
+                    document.getElementById("messages").innerHTML = html;
+
+                };
+
+                socket.onmessage = function (msg) {
+                    if (typeof msg.data == "string") {
+                        displayContent(msg.data);
+                    }
+                    else {
+                        var str = '<div id="alertmess" class="text-center">'
+                             + '<span>非文本信息！</span>'
+                             + '</div>';
+                        //document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                    }
+                };
+
+                socket.onclose = function (msg) {
+                    var str = '<div id="alertmess" class="text-center" style="margin-top:15px;">'
+                             + '<span>连接断开！</span>'
+                             + '</div>';
+                    ///document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                };
+            }
+            catch (ex) {
+                var str = '<div id="alertmess" class="text-center">'
+                             + '<span>网络错误，连接失败！</span>'
+                             + '</div>';
+                // document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;
+                log(ex);
+            }
+        }
+
+        //发送消息
+        function send() {
+            var msg = document.getElementById('sendText').value + ' ';
+            if (msg == ' ' || msg == null) {
+                return;
+            } else {
+                if (this.ChatLog == true) {
+                    NewNickIp.NickName = 'ChatLog';
+                } else {
+                    NewNickIp.NickName = this.NickName;
+                }
+                NewNickIp.Msg = msg;
+                NewNickIp.IsFirst = false;
+                socket.send(JSON.stringify(NewNickIp) + ' ');
+                var mes = document.getElementById("messages");
+                var last = mes.lastChild;
+                if (last.className === 'media mediaright') {
+                    var textcontent = last.firstChild.getElementsByTagName('div')[0].innerHTML;
+                    textcontent = textcontent + '<br>' + msg;
+                    last.firstChild.getElementsByTagName('div')[0].innerHTML = textcontent;
+                } else {
+                    var str = '<div class="media mediaright">'
+                           + '<div class="media-body">'
+                               + '<div class="pull-right mediacontent" style="word-break:break-all">' + msg + '</div>'
+                           + '</div>'
+                           + '<div class="media-right">'
+                               + '<a href="#">'
+                                   + '<img class="media-object img-circle" src="' + userimg + '" alt="...">'
+                               + '</a>'
+                           + '</div>'
+                       + '</div>';
+                    var html = document.getElementById("messages").innerHTML + str;
+                    document.getElementById("messages").innerHTML = html;
+                }
+                var div = document.getElementById('messages');
+                window.scrollTo(0, div.scrollHeight);
+                document.getElementById('sendText').value = '';
+            }
+        }
+
+        window.onbeforeunload = function () {
+            try {
+                socket.close();
+                socket = null;
+            }
+            catch (ex) {
+            }
+        };
+
+        function $(id) { return document.getElementById(id); }
+
+        Date.prototype.Format = function (fmt) { //author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+
+
+        //接受消息
+        function displayContent(msg) {
+
+            var mes = document.getElementById("messages");
+            var last = mes.lastChild;
+
+            var msgsss = JSON.parse(msg);
+
+            if (msgsss.NickName == 'ChatLog') {
+                this.ChatLog = true;
+            } else if (msgsss.NickName == 'NoChatLog') {
+                msgsss.Msg = '客服现在为你服务。';
+                this.ChatLog = false;
+            }
+
+
+            if (last.className === 'media medialeft') {
+                var textcontent = last.lastChild.getElementsByTagName('div')[0].innerHTML;
+                textcontent = textcontent + '<br>' + msgsss.Msg;
+                last.lastChild.getElementsByTagName('div')[0].innerHTML = textcontent;
+            } else {
+                var str = '<div class="media medialeft">'
+                     + '<div class="media-left">'
+                         + '<a href="#">'
+                         + '<img class="media-object img-circle" src="../../doshinemp/Images/logo.png" alt="...">'
+                         + '</a>'
+                     + '</div>'
+                     + '<div class="media-body">'
+                         + '<div class="mediacontent" style="word-break:break-all">' + msgsss.Msg + '</div>'
+                     + '</div>'
+                     + '</div>';
+                var html = document.getElementById("messages").innerHTML + str;
+                document.getElementById("messages").innerHTML = html;
+            }
+
+            if (msgsss.NickName == 'ChatLog' && this.ChatLogModal == true) {
+                //isChatLog();
+            }
+
+            var div = document.getElementById('messages');
+            window.scrollTo(0, div.scrollHeight);
+
+        }
+
+        function onkey(event) { if (event.keyCode == 13) { send(); } }
+
+
+
+
+
+
+
+        document.getElementById('queren').onclick = function () {
+            document.getElementById('myModal').style.display = 'none';
+
+            var exampleInputPhone = document.getElementById('exampleInputPhone').value;
+            document.getElementById('sendText').value = exampleInputPhone;
+
+            send();
+
+
+        }
+
+
+        document.getElementById('quxiao').onclick = function () {
+            document.getElementById('myModal').style.display = 'none';
+            this.ChatLogModal = true;
+        }
+
+
+        function isChatLog() {
+            this.ChatLogModal = false;
+            setTimeout(function () {
+                document.getElementById('myModal').style.display = 'block';
+            }, 1000)
+        }
+
+</script>
 }
