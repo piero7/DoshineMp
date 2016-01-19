@@ -77,28 +77,29 @@ namespace DoShineMP.Controllers
         public ActionResult MyMessage(string code)
         {
             Models.WechatUser user = new Models.WechatUser();
-            url.urltype = "MyMessage";
-            if (!string.IsNullOrEmpty(code))
-            {
-                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                {
-                    user = wuser.GetUserInfo(CodeJjudgeByOpenid(code));
-                    if (user.UserInfo == null)
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                    }
-                    ViewBag.user = user;
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
-                }
-            }
-            else
-            {
-                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
-            }
+            //url.urltype = "MyMessage";
+            //if (!string.IsNullOrEmpty(code))
+            //{
+            //    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //    {
+            //        user = wuser.GetUserInfo(CodeJjudgeByOpenid(code));
+            //        if (user.UserInfo == null)
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //        }
+            //        ViewBag.user = user;
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+            //    }
+            //}
+            //else
+            //{
+            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
+            //}
 
+            ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             ViewBag.Title = "个人信息";
             return View();
         }
@@ -110,39 +111,40 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult UserUpdate(string code)
         {
-            url.urltype = "MyMessage";
-            try
-            {
-                if (!string.IsNullOrEmpty(code))
-                {
-                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                    {
-                        var user = wuser.GetUserInfo(this.openid);
+            //url.urltype = "MyMessage";
+            //try
+            //{
+            //    if (!string.IsNullOrEmpty(code))
+            //    {
+            //        if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //        {
+            //            var user = wuser.GetUserInfo(this.openid);
 
-                        if (user.UserInfo == null)
-                        {
-                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                        }
-                        else
-                        {
-                            ViewBag.user = user;
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "UserUpdate", ""));
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            //            if (user.UserInfo == null)
+            //            {
+            //                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //            }
+            //            else
+            //            {
+            //                ViewBag.user = user;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "UserUpdate", ""));
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
 
+            ViewBag.user= wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw"); 
             ViewBag.Title = "个人信息";
             ViewBag.openid = this.openid;
             return View();
@@ -160,47 +162,49 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Repair(string code)
         {
-            url.urltype = "Repair";
-            try
-            {
-                if (!string.IsNullOrEmpty(code))
-                {
-                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                    {
-                        var user = wuser.GetUserInfo(this.openid);
-                        if (user.UserInfo != null)
-                        {
-                            ViewBag.user = user;
-                            ViewBag.openid = this.openid;
-                            //历史报修记录
-                            var RepairLists = repairHelper.GetHistoryRepair(this.openid);
-                            ViewBag.RepairList = RepairLists.Count() == 0 ? null : RepairLists;
-                            ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
-                            ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
-                            ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
-                        }
-                        else
-                        {
-                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            //ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
-            //ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
-            //ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //url.urltype = "Repair";
+            //try
+            //{
+            //    if (!string.IsNullOrEmpty(code))
+            //    {
+            //        if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //        {
+            //            var user = wuser.GetUserInfo(this.openid);
+            //            if (user.UserInfo != null)
+            //            {
+            //                ViewBag.user = user;
+            //                ViewBag.openid = this.openid;
+            //                //历史报修记录
+            //                ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+            //                ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
+            //                ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
+            //                ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
+            //            }
+            //            else
+            //            {
+            //                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //            }
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Repair", ""));
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
+            ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            ViewBag.Recordid = RecordHelper.GetRecord("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
             ViewBag.Title = "自助报修";
             return View();
         }
@@ -212,28 +216,11 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairHistory(string openid)
         {
-
-            var list5 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Apply, 10, 0).ToList();
-            var list10 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Accept, 10, 0).ToList();
-            var list20 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.FinishHandle, 10, 0).ToList();
-            var list99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
-            var list_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
-
-            List<Models.Repair> ListAll = new List<Models.Repair>();
-
-            ListAll = list5;
-            ListAll.AddRange(list10);
-            ListAll.AddRange(list20);
-            ListAll = ListAll.OrderBy(item => item.CreateDate).ToList();
-
-            ViewBag.RepairList5 = list5.Count() == 0 ? null : list5;
-            ViewBag.RepairList10 = list10.Count() == 0 ? null : list10;
-            ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
-            ViewBag.RepairListAll = ListAll.Count() == 0 ? null : ListAll;
-
-
-            ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
-            ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
+            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
             ViewBag.Title = "报修历史";
             return View();
         }
@@ -275,27 +262,11 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairInterior()
         {
-            var list5 = repairHelper.GetHistoryRepair(Models.RepairStatus.Apply, 10, 0).ToList();
-            var list10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
-            var list20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
-            var list99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
-            var list_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
-
-            List<Models.Repair> ListAll = new List<Models.Repair>();
-
-            ListAll = list5;
-            ListAll.AddRange(list10);
-            ListAll.AddRange(list20);
-            ListAll = ListAll.OrderBy(item => item.CreateDate).ToList();
-
-
-            ViewBag.RepairList5 = list5.Count() == 0 ? null : list5;
-            ViewBag.RepairList10 = list10.Count() == 0 ? null : list10;
-            ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
-            ViewBag.RepairListAll = ListAll.Count() == 0 ? null : ListAll;
-
-            ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
-            ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
+            ViewBag.RepairList5 = repairHelper.GetHistoryRepair(Models.RepairStatus.Apply, 10, 0).ToList();
+            ViewBag.RepairList10 = repairHelper.GetHistoryRepair(Models.RepairStatus.Accept, 10, 0).ToList();
+            ViewBag.RepairList20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
+            ViewBag.RepairList99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
+            ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
 
             ViewBag.Title = "报修受理";
             return View();
@@ -343,30 +314,30 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Messages(string code)
         {
-            //url.urltype = "Messages";
-            //if (!string.IsNullOrEmpty(code))
-            //{
-            //    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-            //    {
-            //        var uuu = wuser.GetUserInfo(this.openid);
-            //        if (uuu.UserInfo != null)
-            //        {
-            //            ViewBag.user = wuser.GetUserInfo(this.openid);
-            //        }
-            //        else
-            //        {
-            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-            //    }
-            //}
-            //else
-            //{
-            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-            //}
+            url.urltype = "Messages";
+            if (!string.IsNullOrEmpty(code))
+            {
+                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                {
+                    var uuu = wuser.GetUserInfo(this.openid);
+                    if (uuu.UserInfo != null)
+                    {
+                        ViewBag.user = wuser.GetUserInfo(this.openid);
+                    }
+                    else
+                    {
+                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+                }
+            }
+            else
+            {
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+            }
             ViewBag.welcome = ConfigurationManager.AppSettings["welcome"];
             ViewBag.Title = "在线客服";
             return View();
