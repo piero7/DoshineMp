@@ -269,11 +269,15 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult RepairHistory(string openid)
         {
+
+            openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
             ViewBag.RepairList5 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Apply, 10, 0).ToList();
             ViewBag.RepairList10 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Accept, 10, 0).ToList();
             ViewBag.RepairList20 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.FinishHandle, 10, 0).ToList();
             ViewBag.RepairList99 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Finish, 10, 0).ToList();
             ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(openid, Models.RepairStatus.Cancel, 10, 0).ToList();
+
+
             ViewBag.Title = "报修历史";
             return View();
         }
@@ -320,6 +324,9 @@ namespace DoShineMP.Controllers
             ViewBag.RepairList20 = repairHelper.GetHistoryRepair(Models.RepairStatus.FinishHandle, 10, 0).ToList();
             ViewBag.RepairList99 = repairHelper.GetHistoryRepair(Models.RepairStatus.Finish, 10, 0).ToList();
             ViewBag.RepairList_1 = repairHelper.GetHistoryRepair(Models.RepairStatus.Cancel, 10, 0).ToList();
+
+
+
 
             ViewBag.Title = "报修受理";
             return View();
