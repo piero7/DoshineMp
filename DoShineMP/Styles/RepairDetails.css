@@ -205,9 +205,9 @@ body {
     .back-title p {
         margin-bottom: 0;
         color: #797979;
-        border-top: 1px solid #ddd;
+        /*border-top: 1px solid #ddd;
         margin-top: 25px;
-        padding-top: 20px;
+        padding-top: 20px;*/
     }
 
 .back-content {

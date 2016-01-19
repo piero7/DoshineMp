@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "最新报修";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link href="~/Styles/rest.css" rel="stylesheet" />
+    <link href="~/Styles/Repair.css" rel="stylesheet" />
+}
+
+<div class="keep">
+    <div class="keep-in">
+            @* 新添加 模块 *@
+            <div class="demonstrate">
+                @if (ViewBag.Village != null)
+                {
+                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                }
+                else
+                {
+                    <img src="~/Images/xiaoqu.png" />
+                }
+            </div>
+            <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
+           
+        
+
+
+        @if (ViewBag.RepairList != null)
+        {
+            <div class="keep-content-b">
+                <p class="panel panel-default new-title">
+                    <span>最近报修消息</span>
+                    <ins></ins>
+                </p>
+                <div class="panel panel-default new-keep">
+                    <ul id="messagenew">
+
+                        @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
+                        {
+                            <li>
+                                <div class="content-title-t">
+                                    @if (r.ImageFiles.Count == 0)
+                                    {
+                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@r.Contenet</p>
+                                        </div>
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="content-title-b">
+                                    @switch (r.Status)
+                                    {
+                                        case DoShineMP.Models.RepairStatus.Apply:
+                                            <ins class="check check1 pull-left">已提交</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Accept:
+                                            <ins class="check check2 pull-left">已受理</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.FinishHandle:
+                                            <ins class="check check3 pull-left">待确认</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Finish:
+                                            <ins class="check check4 pull-left">已完成</ins>;
+                                            break;
+                                        case DoShineMP.Models.RepairStatus.Cancel:
+                                            <ins class="check check5 pull-left">已取消</ins>;
+                                            break;
+                                    }
+                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                    @if (r.User.Name != null)
+                                    {
+                                        <span class="time-l time pull-right">@r.User.Name</span>
+                                    }
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.openid" id="openid" />
+<input type="hidden" value="" id="serviceid" />
+<input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
+<input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
+
+
+
+@section scripts{
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/Commons.js"></script>
+    <script type="text/javascript">
+        var token;
+        var imglength = 9;
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        $(function () {
+
+            $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
+                var debug = data.debug;
+                var appId = data.appId;
+                var timestamp = data.timestamp;
+                var nonceStr = data.nonceStr;
+                var signature = data.signature
+
+                wx.config({
+                    debug: debug,
+                    appId: appId,
+                    timestamp: timestamp,
+                    nonceStr: nonceStr,
+                    signature: signature,
+                    jsApiList: [
+                        'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                    ]
+                });
+
+            })
+        })
+
+        // 微信
+        wx.error(function (res) {
+            console.log('验证失败');
+        });
+        wx.ready(function () {
+            // 5 图片接口
+            // 5.1 拍照、本地选图
+            var images = {
+                localId: [],
+                serverId: []
+            };
+            document.querySelector('#add-phoneimg1').onclick = function () {
+                wx.chooseImage({
+                    count: imglength,
+                    success: function (res) {
+                        images.localId = res.localIds;
+                        if (images.localId.length == 0) {
+                            alert('请先使用 chooseImage 接口选择图片');
+                            return;
+                        }
+
+
+                        var i = 0, length = 9;
+                        images.serverId = [];
+                        var str = '';
+                        var htmlstr = '';
+                        function upload() {
+                            wx.uploadImage({
+                                localId: images.localId[i],
+                                success: function (res) {
+                                    //alert('已上传：' + i + '张');
+                                    images.serverId.push(res.serverId);
+                                    if (i < length) {
+                                        if (i == 0 && imglength == length) {
+                                            $("#serviceid").val($("#serviceid").val() + res.serverId);
+                                        } else {
+                                            $("#serviceid").val($("#serviceid").val() + ',' + res.serverId);
+                                        }
+                                        //alert(imglength);
+                                        htmlstr = ' <img src="' + images.localId[i] + '" class="addimages imagesdelete"  />';
+                                        i++;
+                                        $('#imgdiv').prepend(htmlstr);
+                                        imglength--;
+                                        if (imglength == 0) {
+                                            $('#add-phoneimg1').hide();
+                                            return;
+                                        }
+                                        //alert($("#serviceid").val());
+                                        upload();
+                                    }
+                                },
+                                fail: function (res) {
+                                    //alert(JSON.stringify(res));
+                                }
+                            });
+                        }
+                        upload();
+
+                    }
+                });
+            };
+
+            isaddress();
+        });
+
+        function btnstart() {
+            $('#btn').css({ 'background-color': '#4ca329', 'color': '#fff' });
+        }
+        function btnend() {
+            $('#btn').css({ 'background-color': '#fff', 'border': '1px solid #4ca329', 'color': ' #4ca329' });
+        }
+
+        $(document).on('click', '.imgyulan', function () {
+            var imgurl = $(this).attr('src');
+            //alert(imgurl)
+            wx.previewImage({
+                current: imgurl,
+                urls: [
+                 imgurl
+                ]
+            });
+        })
+
+        function repairid(e) {
+            var repairid = $(this).attr('tagid');
+            var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
+            window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;
+        }
+
+        $('#MyRepair').click(function () {
+            window.location.href = '@Url.Action("RepairHistory", "PhoneWeb")?IndexLi1=0&openid=' + $('#openid').val();
+        })
+
+        
+       
+
+    </script>
+}
