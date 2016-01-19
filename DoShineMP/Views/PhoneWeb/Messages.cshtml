@@ -21,25 +21,15 @@
 
 @*信息输入*@
 <div class="bg-input" id="foottext">
-    <input type="text" class="sendInput" id="sendText" placeholder="输入信息">
-    <span class="sendSpan text-center">
-        <input class="sendBtn" onclick="send()" id="btnSend" type="button" value="发送"  />
-    </span>
-</div>
-
-<div id="Demo" style="text-align:center;">
-    <div class="Main">
-        <div class="Input_Box">
-            <div class="Input_Foot"> 
-                <textarea class="Input_text"></textarea>
-                <a class="imgBtn" href="javascript:void(0);"></a>
-                <a class="postBtn">确定</a> 
-            </div>
-        </div>
-        <div class="faceDiv"> </div>
+    <div class="input-in">
+        <a class="imgBtn" href="javascript:void(0);"></a>
+        <input type="text" class="sendInput Input_text" id="sendText" placeholder="输入信息">
+        <span class="sendSpan text-center">
+            <input class="sendBtn" onclick="send()" id="btnSend" type="button" value="发送" />
+        </span>
     </div>
+    <div class="faceDiv"> </div>
 </div>
-
 
 @*<input type="hidden" id="username" value="@ViewBag.user.NickName" />
     <input type="hidden" id="userid" value="@ViewBag.user.UserInfo.UserInfoId" />
@@ -170,7 +160,8 @@
                 $(".imgBtn").click(function () {
                     if (isShowImg == false) {
                         isShowImg = true;
-                        $(this).parent().prev().animate({ marginTop: "35px" }, 300);
+                        $(this).parent().siblings().animate({ 'height': "260px" }, 300);
+                        console.log($(this).parent().prev())
                         if ($(".faceDiv").children().length == 0) {
                             for (var i = 0; i < ImgIputHandler.facePath.length; i++) {
                                 $(".faceDiv").append("<img title=\"" + ImgIputHandler.facePath[i].faceName + "\" src=\"../../face/" + ImgIputHandler.facePath[i].facePath + "\" />");
@@ -178,13 +169,13 @@
                             $(".faceDiv>img").click(function () {
 
                                 isShowImg = false;
-                                $(this).parent().animate({ marginTop: "-135px" }, 300);
+                                $(this).parent().animate({ 'height': "0px" }, 300);
                                 ImgIputHandler.insertAtCursor($(".Input_text")[0], "[" + $(this).attr("title") + "]");
                             });
                         }
                     } else {
                         isShowImg = false;
-                        $(this).parent().prev().animate({ marginTop: "-135px" }, 300);
+                        $(this).parent().siblings().animate({ 'height': "0px" }, 300);
                     }
                 });
                 $(".postBtn").click(function () {

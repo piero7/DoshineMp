@@ -10,7 +10,8 @@ a
 	color:#333;
 }
 #content{
-	background:#fff;
+	background:#ececec;
+    height:100%;
 }
 	.path{
 	padding:0 0 5px 5px;
@@ -48,7 +49,6 @@ a
 	.tabBox .hd{
 	height:42px;
 	line-height:40px;
-	padding:0 10px;
 	font-size:16px;
 	background:#F3F3F3;
 	border-bottom:1px solid #CECECE;
@@ -72,7 +72,7 @@ a
 	/* 修复Android 4.0.x 默认浏览器当前样色无效果bug */;
 }
 	.tabBox .bd ul{
-	padding:10px 10px 10px 10px;
+    background-color:#ececec;
 }
 	/*.tabBox .bd li{
 	height:33px;
@@ -135,28 +135,27 @@ body{
 }
 .content-title-t{
 	overflow: hidden;
+     min-height: 80px;
 }
 .new-keep ul{
 	background-color: #fff;
 	padding:0 20px;
 }
 .Padding li{
-    /*height:140px;*/
-	padding: 20px 0 8px;
-	border-bottom: 1px solid #e3e1e1;
-	background-color: white;
+     padding: 15px 12px 5px;
+    border: 1px solid #e3e1e1;
+    background-color: white;
+    transition: all 0.3s linear 0s;
+    -webkit-transition: all 0.3s linear 0s;
+    box-shadow: -5px -2px 5px 0px #eee inset;
+    margin-bottom: 10px;
    
 }
 .Padding{
 	display: none;
 }
 .content-title-t .w8{
-	width: 65%;
-    height:
-	/*padding-top:10px;
-	*/
-	/*padding-left: 20px;
-	*/;
+	width: 68%;
 }
 .content-title-b{
 	overflow: hidden;
@@ -187,8 +186,8 @@ body{
 	*/;
 }
 .w2 .img{
-	width:75px;
-	height:75px;
+    width: 85px;
+    height: 65px;
 	background-color: #ccc;
 }
 .w2 .img img{
@@ -201,9 +200,7 @@ body{
 }
 .w8 .wr-content{
 	width: 100%;
-	height:75px;
-	text-overflow:ellipsis;
-	-o-text-overflow:ellipsis;
+     min-height: 45px;
 	overflow:hidden;
 	color: #626262;
 	margin-bottom:0;
@@ -221,7 +218,7 @@ body{
 }
 
 .content-title-b{
-	padding-top:15px;
+	padding-top:5px;
 }
 /*.content-title-b ins:before{
 	content: "";
@@ -261,13 +258,13 @@ body{
 	-webkit-background-size: contain;
 	color: #1ec462;
 }
+.operate span.current{
+	color:#f06343;
+	border-color:  #f06343;
+}
 .content-title-b .check5{
 	background:url(../Images/quxiao.png) no-repeat 0 0px;
 	background-size: contain;
 	-webkit-background-size: contain;
 	color: #f1514e;
-}
-.operate span.current{
-	color:#f06343;
-	border-color:  #f06343;
 }

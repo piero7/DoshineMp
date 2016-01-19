@@ -395,6 +395,7 @@
     <Content Include="Images\complete2x.png" />
     <Content Include="Images\daiqueren2x.png" />
     <Content Include="Images\dingdan.png" />
+    <Content Include="Images\dizhi.png" />
     <Content Include="Images\error.png" />
     <Content Include="Images\gonying.png" />
     <Content Include="Images\grade.png" />
@@ -408,11 +409,14 @@
     <Content Include="Images\invite.png" />
     <Content Include="Images\iphone3x.png" />
     <Content Include="Images\jiantou.png" />
+    <Content Include="Images\lishi.png" />
     <Content Include="Images\location.png" />
     <Content Include="Images\location3x.png" />
     <Content Include="Images\locationcire.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\logo22.png" />
     <Content Include="Images\more.png" />
+    <Content Include="Images\mybaoxiu.png" />
     <Content Include="Images\newqiu.png" />
     <Content Include="Images\phone2x.png" />
     <Content Include="Images\por.png" />

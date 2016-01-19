@@ -15,13 +15,19 @@
                 @if (ViewBag.Village != null)
                 {
                     <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                     <p><span class="locian">上海滩花园</span></p>
                 }
                 else
                 {
                     <img src="~/Images/xiaoqu.png" />
+                    <span class="locian"></span>
                 }
             </div>
-            <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
+        @*  id MyRepair *@
+            <div class="my-arranty" id="">
+                <a href="javascript:;" style="border-right:1px solid #e3e3e3;">我要保修</a>
+                <a href="javascript:;" >历史保修</a>
+            </div>
            
         
 
@@ -39,17 +45,74 @@
                         @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
                         {
                             <li>
+
                                 <div class="content-title-t">
                                     @if (r.ImageFiles.Count == 0)
                                     {
-                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@(r.Contenet.Length > 20 ? r.Contenet.Substring(0, 20) + "..." : r.Contenet)</p>
+                                            <div class="content-title-b">
+                                                @switch (r.Status)
+                                                {
+                                                    case DoShineMP.Models.RepairStatus.Apply:
+                                                        <ins class="check check1 pull-right">已提交</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.Accept:
+                                                        <ins class="check check2 pull-right">已受理</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.FinishHandle:
+                                                        <ins class="check check3 pull-right">待确认</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.Finish:
+                                                        <ins class="check check4 pull-right">已完成</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.Cancel:
+                                                        <ins class="check check5 pull-right">已取消</ins>;
+                                                        break;
+                                                }
+                                                <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                                @if (r.User.Name != null)
+                                                {
+                                                    <span class="time-l time pull-left">@r.User.Name</span>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="~/Images/logo.png" class="imgyulan" />
+                                            </div>
                                         </div>
                                     }
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                            <p class="wr-content"> @(r.Contenet.Length>20?r.Contenet.Substring(0,20)+"...":r.Contenet)</p>
+                                            <div class="content-title-b">
+                                                @if (r.User.Name != null)
+                                                {
+                                                    <span class="time-l time pull-left">@r.User.Name</span>
+                                                }
+                                                @switch (r.Status)
+                                                {
+                                                    case DoShineMP.Models.RepairStatus.Apply:
+                                                        <ins class="check check1 pull-right">已提交</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.Accept:
+                                                        <ins class="check check2 pull-right">已受理</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.FinishHandle:
+                                                        <ins class="check check3 pull-right">待确认</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.Finish:
+                                                        <ins class="check check4 pull-right">已完成</ins>;
+                                                        break;
+                                                    case DoShineMP.Models.RepairStatus.Cancel:
+                                                        <ins class="check check5 pull-right">已取消</ins>;
+                                                        break;
+                                                }
+                                                <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                               
+                                            </div>
                                         </div>
                                         <div class="pull-right w2">
                                             <div class="img">
@@ -58,31 +121,7 @@
                                         </div>
                                     }
                                 </div>
-                                <div class="content-title-b">
-                                    @switch (r.Status)
-                                    {
-                                        case DoShineMP.Models.RepairStatus.Apply:
-                                            <ins class="check check1 pull-left">已提交</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.Accept:
-                                            <ins class="check check2 pull-left">已受理</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.FinishHandle:
-                                            <ins class="check check3 pull-left">待确认</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.Finish:
-                                            <ins class="check check4 pull-left">已完成</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.Cancel:
-                                            <ins class="check check5 pull-left">已取消</ins>;
-                                            break;
-                                    }
-                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                    @if (r.User.Name != null)
-                                    {
-                                        <span class="time-l time pull-right">@r.User.Name</span>
-                                    }
-                                </div>
+
                             </li>
                         }
 
@@ -90,6 +129,9 @@
                 </div>
             </div>
         }
+        <div class="footer">
+            <p class="serve"><a href="javascript:;">桑田智能工程技术(上海)有限公司</a></p>
+            <p class="service"><a href="tel:021-66081296;">客服电话：021-66081296</a></p>
     </div>
 </div>
 <input type="hidden" value="@ViewBag.openid" id="openid" />
@@ -257,6 +299,7 @@
         $('#MyRepair').click(function () {
             window.location.href = '@Url.Action("RepairHistory", "PhoneWeb")?IndexLi1=0&openid=' + $('#openid').val();
         })
+
 
         
        

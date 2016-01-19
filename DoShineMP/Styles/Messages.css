@@ -130,7 +130,6 @@
 
 
 .bg-input{
-    padding:10px 0px 10px 10px ;
     background-color:#dedede;
     border:1px solid #d0d0d0;
     box-sizing:border-box;
@@ -139,7 +138,7 @@
 .sendInput{
     width:75%;
     height:40px;
-    padding-left:5px;
+    padding-left:35px;
     border-radius:5px;
     border:0;
 }
@@ -209,9 +208,13 @@
 	position: absolute;
 }
 .imgBtn {
-	float: left;
-	margin-top: 8px;
-	margin-left: 10px;
+    /*background-origin:content-box;
+    -webkit-background-origin:padding-box;*/
+    position:absolute;
+    top: 22px;
+    left: 18px;
+    /*padding-top:22px;
+    padding-left:18px;*/
 	background-image: url('../Images/imgs.png');
 	background-repeat: no-repeat;
 	background-position: 0 -13px;
@@ -244,24 +247,19 @@
 	padding: 10px 20px 6px 20px;
 }
 .faceDiv {
-	width: 500px;
-	height: 120px;
 	border-top: 1px solid #ccc;
-	position: absolute;
-	background-color: #fff;
+	background-color: #dedede;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
-    bottom:0px
+    bottom:0px;
+    overflow:hidden;
 }
 .faceDiv>img {
 	border: 1px solid #ccc;
 	float: left;
-	margin-left: -1px;
-	margin-top: -1px;
 	position: relative;
-	width: 35px;
-	height: 35px;
+	width: 10%;
 	padding: 3px 3px 3px 3px;
 	cursor: pointer;
 }
@@ -277,5 +275,9 @@
     width:100%;
 }
 .Demo{
+    position:relative;
+}
+.input-in{
+    padding: 10px 0px 10px 10px;
     position:relative;
 }

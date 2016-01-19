@@ -113,25 +113,27 @@ body {
 }
 /*new keep css*/
 .keep-content-b {
-    background-color: white;
+    background-color: #ececec;
 }
 
 .new-title {
-    padding: 15px 15px 0px 15px;
-    border-bottom: 1px solid #aaa;
+    padding: 15px 12px 0px 12px;
     background: white;
     margin-bottom: 0;
 }
 
     .new-title ins {
         display: block;
-        border-bottom: 1px dashed #ccc;
+        border-top:1px solid #ddd;
+        transform:scale(0.5);
+        -webkit-transform:scale(0.5);
     }
 
     .new-title span {
         display: block;
         padding: 0 0px 5px;
-        font-size: 16px;
+        font-size: 15px;
+        color:#a8a8a8;
     }
 
 .logo {
@@ -142,25 +144,34 @@ body {
 
 .content-title-t {
     overflow: hidden;
-    min-height:75px;
+    min-height:80px;
 }
-
+.new-keep{
+        background-color: #ececec;
+}
 .new-keep ul {
-    background-color: #fff;
-       padding: 15px 15px 0;
+
 }
 
     .new-keep ul li {
-        padding: 10px 0 10px;
-        border-bottom: 1px solid #e3e1e1;
+        padding: 15px 12px 5px;
+        border: 1px solid #e3e1e1;
         background-color: white;
         transition:all 0.3s linear 0s;
         -webkit-transition:all 0.3s linear 0s;
-        box-shadow: 5px 5px 5px 0px lightgray;
+        box-shadow: -5px -2px 5px 0px #eee inset;
          margin-bottom: 10px;
     }
+    .new-keep ul li:hover{
+        box-shadow: 5px 5px 5px 0px lightgray;
+         position:relative;
+         top:10px;
+    }
+    .new-keep ul li:nth-child(1){
+        border-top:0px;
+    }
 .content-title-t .w8 {
-    width: 70%;
+    width: 68%;
     /*padding-top:10px;*/
     /*padding-left: 20px;*/
 }
@@ -189,6 +200,7 @@ body {
 
 .panel {
     border: 0;
+
 }
 
 .w8 p {
@@ -203,9 +215,9 @@ body {
     /*width: 30%;*/
 }
 
-    .w2 .img {
-        width: 75px;
-        height: 75px;
+ .w2 .img {
+        width: 85px;
+        height: 65px;
         background-color: #ccc;
     }
 
@@ -219,17 +231,27 @@ body {
     color: #a8a8a8;
 }
 
+@media (min-width:375px) and (max-width:410px){
+    .content-title-t .w8{
+        width: 72%;
+    }
+}
+@media screen and (min-width:411px){
+    .content-title-t .w8{
+        width: 74%;
+    }
+}
 .w8 .wr-content,
  .w10 .wr-content{
     width: 100%;
-    min-width: 55px;
-    max-height:55px;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
+    /*min-width: 55px;*/
+    max-height:45px;   
+    /*text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;*/
     overflow: hidden;
     color: #626262;
     margin-bottom: 0;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;
 }
 /*.commit:hover{
@@ -241,7 +263,7 @@ body {
 }
 
 .content-title-b {
-    padding-top: 15px;
+    padding-top: 5px;
 }
     /*.content-title-b ins:before{
 	content: "";
@@ -497,7 +519,7 @@ select {
 }
 
 .content-see {
-    width:70%;
+    width:70%;locian
     color: #898989;
     font-size: 12px;
     margin-top:25px;
@@ -527,6 +549,7 @@ select {
 .demonstrate{
     width:100%;
     height:140px;
+    position:relative;
 
 }
 .demonstrate img{
@@ -547,3 +570,80 @@ select {
     display: block;
 }
 /*  fadein -box css*/
+.my-arranty{
+    overflow:hidden;
+}
+.my-arranty a{
+    float:left;
+    width:46%;
+    height:100%;
+    text-align:center;
+    color:#333;
+    background:url(../Images/mybaoxiu.png)no-repeat 15% 0%;
+}
+.my-arranty a:nth-child(2){
+    background-image:url(../Images/lishi.png);
+     float:right;
+}
+@media screen and (max-width:320px){
+    .my-arranty a{
+        background-position:10% 0%;
+    }
+}
+.demonstrate p{
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    height:40px;
+    width:100%;
+    background-color:rgba(0,0,0,.4);
+}
+.demonstrate .locian{
+    position:absolute;
+    bottom:0px;
+    left:20px;
+    width:125px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:white;
+    font-size: 14px;
+}
+.demonstrate .locian::before{
+    content:'';
+    width:16px;
+    height:16px;
+    position:absolute;
+    top:13px;
+    left:0px;
+   background:url('../Images/dizhi.png') no-repeat;
+   background-size:cover;
+  -webkit- background-size:cover;
+
+}
+/* footer*/
+.footer{
+    width:100%;
+    height:75px;
+    padding-top:10px;
+    background-color:#666;
+    color:#ddd;
+    font-size:12px;
+}
+.footer p{
+    width:260px;
+    margin:0 auto;
+    text-align:center;
+}
+ .footer .serve{
+    padding:10px 0 10px;
+    text-align:center;
+    background:url(../Images/logo22.png) no-repeat;
+    /*padding:10px 0px 10px 40px;*/
+}
+ .content-title-b{
+     font-size:13px;
+ }
+ .footer a{
+      color:#ddd;
+ }
