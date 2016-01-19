@@ -388,6 +388,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\accept2x.png" />
+    <Content Include="Images\baox.jpg" />
     <Content Include="Images\bj.png" />
     <Content Include="Images\btn.jpg" />
     <Content Include="Images\bx.png" />

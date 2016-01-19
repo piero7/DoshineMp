@@ -10,28 +10,6 @@
 <div class="keep">
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
-            @* 新添加 模块 *@
-            <div class="demonstrate">
-                @if (ViewBag.Village != null)
-                {
-                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
-                }
-                else
-                {
-                    <img src="~/Images/xiaoqu.png" />
-                }
-            </div>
-            <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
-            <div class="housing-box">
-                @*<div style="border-bottom:1px solid #ddd;overflow:hidden;">
-                 <div class="housing-l">
-                      <select class="housing" id="housing"></select>
-                 </div>
-                  <div class="housing-r">
-                      <em class="cire"></em>
-                  </div>
-                </div>*@
-            </div>
             @* 新添加 姓名 手机号 模块 *@
             @if (ViewBag.RecordId.RecordId != 0)
             {
@@ -40,7 +18,7 @@
                         <div class="locian">
                             @*<span><img src="~/Images/location.png" /></span>*@
                         </div>
-                        <select class="housing" id="housing" onclick="addressxiaoqu()">
+                        <select class="housing" id="housing">
                             @if (ViewBag.Village != null)
                 {
                                 <option value="@ViewBag.Village.VillageId">@ViewBag.Village.Name</option>
@@ -83,11 +61,28 @@
                     </div>
                 </div>
             }
-
             <div class="keep-textarea">
+                <ul class="service" id="RepairFinishTypeid">
+                    @if (ViewBag.OveruseRepair != null)
+                    {
+                        foreach (KeyValuePair<string, List<string>> dd in ViewBag.OveruseRepair)
+                        {
+
+                            foreach (string str in dd.Value as List<string>)
+                            {
+                                <li style="margin-bottom:5px;">@str</li>
+                            }
+                        }
+                    }
+                    <li id="orqt">其他</li>
+                </ul>
+            </div>
+
+            <div class="keep-textarea" id="keepnei" style="display:none;">
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 @*<em class="br"></em>*@
             </div>
+
 
             <div class="col-xs-12 operate " id="imgdiv">
                 <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg1" />
@@ -95,79 +90,13 @@
             </div>
             <p style="padding-left:15px; padding-bottom:10px; color:red;" id="imgtext"></p>
         </div>
-
-
-        @if (ViewBag.RepairList != null)
-        {
-            <div class="keep-content-b">
-                <p class="panel panel-default new-title">
-                    <span>最近报修消息</span>
-                    <ins></ins>
-                </p>
-                <div class="panel panel-default new-keep">
-                    <ul id="messagenew">
-
-                        @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
-                        {
-                            <li>
-                                <div class="content-title-t">
-                                    @if (r.ImageFiles.Count == 0)
-                                    {
-                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
-                                        </div>
-                                        <div class="pull-right w2">
-                                            <div class="img">
-                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                                <div class="content-title-b">
-                                    @switch (r.Status)
-                                    {
-                                        case DoShineMP.Models.RepairStatus.Apply:
-                                            <ins class="check check1 pull-left">已提交</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.Accept:
-                                            <ins class="check check2 pull-left">已受理</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.FinishHandle:
-                                            <ins class="check check3 pull-left">待确认</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.Finish:
-                                            <ins class="check check4 pull-left">已完成</ins>;
-                                            break;
-                                        case DoShineMP.Models.RepairStatus.Cancel:
-                                            <ins class="check check5 pull-left">已取消</ins>;
-                                            break;
-                                    }
-                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                    @if (r.User.Name != null)
-                                    {
-                                        <span class="time-l time pull-right">@r.User.Name</span>
-                                    }
-                                </div>
-                            </li>
-                        }
-
-                    </ul>
-                </div>
-            </div>
-        }
     </div>
 </div>
 <input type="hidden" value="@ViewBag.openid" id="openid" />
 <input type="hidden" value="" id="serviceid" />
 <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
 <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
-
+<input type="hidden" value="" id="ortext" />
 
 
 
@@ -299,7 +228,6 @@
                     }
                 });
             };
-
             isaddress();
         });
 
@@ -329,8 +257,11 @@
             var regu = /^[1][0-9]{10}$/;
             var re = new RegExp(regu);
 
-            if (keeptext == '' || keeptext == null) {
-                $('#imgtext').text('内容不得为空！');
+            var ortext = $('#ortext').val() + keeptext; //快捷语言和其他合并
+
+
+            if (ortext == '' || ortext == null) {
+                $('#imgtext').text('报修内容不得为空！');
                 $('#btn').attr('disabled', false);
                 return false;
             } else if (name == '' || name == null || phone == '' || phone == null) {
@@ -352,23 +283,26 @@
             //alert(serviceid)
             var RecordId = $('#RecordId').val();
             //alert(RecordId);
+            
+            console.log(ortext);
+            //$('#btn').attr('disabled', false);
 
-            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: keeptext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name, recordid: RecordId }, function (data, status) {
+            $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: ortext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name, recordid: RecordId }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
                         $('#keep').val('');
-                        window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + data[0].RepairId;
+                        window.location.replace('@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + data[0].RepairId);
 
-                       
-                        $('#messagenew').html(str);
-                        document.getElementById('btn').style.borderColor = '#4ca329';
-                        document.getElementById('btn').style.color = '#4ca329';
-                        $('#serviceid').val('');
-                        $('#btn').attr('disabled', false);
-                        $('.imagesdelete').remove();
-                        $('#add-phoneimg1').show();
-                        $('#name').val('');
-                        $('#phone').val('');
+
+                        //$('#messagenew').html(str);
+                        //document.getElementById('btn').style.borderColor = '#4ca329';
+                        //document.getElementById('btn').style.color = '#4ca329';
+                        //$('#serviceid').val('');
+                        //$('#btn').attr('disabled', false);
+                        //$('.imagesdelete').remove();
+                        //$('#add-phoneimg1').show();
+                        //$('#name').val('');
+                        //$('#phone').val('');
                     }
                 }
             })
@@ -395,14 +329,17 @@
             window.location.href = '@Url.Action("RepairHistory", "PhoneWeb")?IndexLi1=0&openid=' + $('#openid').val();
         })
 
+
+
+
         //一开始没有地址，则默认拉取
         function isaddress() {
             if ($('#housing').text() == null || $('#housing').text() == '') {
                 addressxiaoqu();
+            } else {
+                addressxiaoqu();
             }
         }
-
-
 
         ///获取附近小区
         function addressxiaoqu() {
@@ -418,10 +355,14 @@
                         $.each(data, function (i, item) {
                             str += ' <option value="' + item.VillageId + '">' + item.Name + '</option>';
                         })
+                        if ($('#housing').text() == null || $('#housing').text() == '') {
+                            $('#housing').empty().append(str);
+                        } else {
+                            var housingvalue = $('#housing').val();
+                            $('#housing').empty().append(str);
+                            $('#housing').val(housingvalue);
+                        }
 
-                        $('#housing').empty().append(str);
-                        //$('#housing')[0].onchange();
-                        //if ($('#housing').checked == true) $('#housing').removeAttribute('disabled');
                     })
                 },
                 fail: function (res) {
@@ -434,5 +375,34 @@
             this.style.color = '#fff';
         }
 
+
+        // 处理状态js
+        $('.service li').click(function () {
+            if ($(this).hasClass('current')) {
+                $(this).removeClass('current');
+                if ($(this).text() == '其他') {
+                    return false;
+                }
+                var str = $('#ortext').val().replace($(this).text() + '\r\n','')
+                $('#ortext').val(str);
+                //console.log( $('#ortext').val())
+            } else {
+                $(this).addClass('current');
+                if ($(this).text() == '其他') {
+                    return false;
+                }
+                $('#ortext').val($(this).text() + '\r\n' + $('#ortext').val());
+                //console.log($('#ortext').val())
+            }
+        })
+
+        $('#orqt').click(function () {
+            if ($(this).hasClass('current')) {
+                $('#keepnei').show();
+            } else {
+                $('#keepnei').hide();
+            }
+
+        })
     </script>
 }
