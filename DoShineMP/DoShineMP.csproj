@@ -381,13 +381,9 @@
     <Content Include="Images\user_bg.PNG" />
     <Content Include="Images\user_phonebg.png" />
     <Content Include="Images\Vill\huayuan.jpg" />
-    <Content Include="Images\Vill\huayuan.png" />
     <Content Include="Images\Vill\jiaoda.jpg" />
-    <Content Include="Images\Vill\jiaoda.png" />
     <Content Include="Images\Vill\shangda.jpg" />
-    <Content Include="Images\Vill\shangda.png" />
     <Content Include="Images\Vill\tongji.jpg" />
-    <Content Include="Images\Vill\tongji.png" />
     <Content Include="Images\wancheng.jpg" />
     <Content Include="Images\wancheng.png" />
     <Content Include="Images\wancheng2.jpg" />
