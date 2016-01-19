@@ -83,6 +83,16 @@ namespace DoShineMP.Helper
         }
 
 
+        /// <summary>
+        /// 更新各人记录
+        /// </summary>
+        /// <param name="id">原有记录id，0为新纪录</param>
+        /// <param name="openid"></param>
+        /// <param name="type">记录类型</param>
+        /// <param name="phone">电话</param>
+        /// <param name="name">姓名</param>
+        /// <param name="address">地址（小区名称）</param>
+        /// <returns></returns>
         public static Record UpdateRecord(int id, string openid, RecordType type, string phone, string name, string address)
         {
             if (id == 0)

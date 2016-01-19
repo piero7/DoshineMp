@@ -147,15 +147,18 @@ body {
 
 .new-keep ul {
     background-color: #fff;
-    padding: 0 20px;
+       padding: 15px 15px 0;
 }
 
     .new-keep ul li {
-        padding: 20px 0 8px;
+        padding: 10px 0 10px;
         border-bottom: 1px solid #e3e1e1;
         background-color: white;
+        transition:all 0.3s linear 0s;
+        -webkit-transition:all 0.3s linear 0s;
+        box-shadow: 5px 5px 5px 0px lightgray;
+         margin-bottom: 10px;
     }
-
 .content-title-t .w8 {
     width: 70%;
     /*padding-top:10px;*/
