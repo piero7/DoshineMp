@@ -564,6 +564,7 @@
     <Content Include="Views\PhoneWeb\ceshi.cshtml" />
     <Content Include="Views\PhoneWeb\Supplier.cshtml" />
     <Content Include="Views\PhoneWeb\Distributor.cshtml" />
+    <Content Include="Views\PhoneWeb\LatestRepair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
