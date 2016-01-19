@@ -314,30 +314,30 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult Messages(string code)
         {
-            url.urltype = "Messages";
-            if (!string.IsNullOrEmpty(code))
-            {
-                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                {
-                    var uuu = wuser.GetUserInfo(this.openid);
-                    if (uuu.UserInfo != null)
-                    {
-                        ViewBag.user = wuser.GetUserInfo(this.openid);
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-                }
-            }
-            else
-            {
-                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
-            }
+            //url.urltype = "Messages";
+            //if (!string.IsNullOrEmpty(code))
+            //{
+            //    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //    {
+            //        var uuu = wuser.GetUserInfo(this.openid);
+            //        if (uuu.UserInfo != null)
+            //        {
+            //            ViewBag.user = wuser.GetUserInfo(this.openid);
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+            //    }
+            //}
+            //else
+            //{
+            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+            //}
             ViewBag.welcome = ConfigurationManager.AppSettings["welcome"];
             ViewBag.Title = "在线客服";
             return View();
