@@ -433,9 +433,30 @@ namespace DoShineMP.Helper
             return rep.OrderBy(item => item.CreateDate).First().RepairId;
         }
 
+        /// <summary>
+        /// 获取常用报修选项
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, List<string>> GetOveruseRepair()
+        {
+            var ret = new Dictionary<string, List<string>>();
 
+            var db = new ModelContext();
+            var fList = db.OveruseRepairSet.Where(item => item.Level != 1);
 
+            foreach (var item in fList)
+            {
+                ret.Add(item.Content, (
+                    from s in db.OveruseRepairSet
+                    where s.Level == 1 && s.FatherItem != null && s.FatherItem == item.OverusRepairId
+                    select s.Content).ToList());
+            }
+
+            return ret;
+        }
     }
+
+
 
 
 }

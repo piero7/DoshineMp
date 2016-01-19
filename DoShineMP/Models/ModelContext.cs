@@ -52,5 +52,7 @@ namespace DoShineMP.Models
         public DbSet<CustomServer> CustomServerSet { get; set; }
 
         public DbSet<Village> VillageSet { get; set; }
+
+        public DbSet<OveruseRepair> OveruseRepairSet { get; set; }
     }
 }
