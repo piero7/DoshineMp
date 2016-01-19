@@ -359,54 +359,7 @@
                         $('#keep').val('');
                         window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + data[0].RepairId;
 
-                        //alert("提交成功！");
-                        //var str = '';
-                        //$.each(data, function (i, item) {
-                        //    var time = $.timeStamp2String(item.CreateDate).split(' ');
-                        //    var statusstr = '';
-                        //    switch (item.Status) {
-                        //        case 5: statusstr = '<ins class="check check1 pull-left">已提交</ins>'; break;
-                        //        case 10: statusstr = '<ins class="check check2 pull-left">已受理</ins>'; break;
-                        //        case 15: statusstr = '<ins class="check check3 pull-left">处理中</ins>'; break;
-                        //        case 20: statusstr = '<ins class="check check4 pull-left">已完成</ins>'; break;
-                        //        case 99: statusstr = '<ins class="check check4 pull-left">待确认</ins>'; break;
-                        //    }
-
-                        //    //alert(item.ImageFiles.length == 0)
-                        //    if (item.ImageFiles.length == 0) {
-                        //        str += '<li>'
-                        //            + '<div class="content-title-t">'
-                        //                + '<div class="pull-left w10" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
-                        //                    + '<p class="wr-content">' + item.Contenet + '</p>'
-                        //                + '</div>'
-                        //           + ' </div>'
-                        //           + ' <div class="content-title-b">'
-                        //                + statusstr
-                        //                + '<span class="time pull-right">' + time[0] + '</span>'
-                        //                + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
-                        //           + ' </div>'
-                        //        + '</li>';
-                        //    } else {
-                        //        str += '<li>'
-                        //            + '<div class="content-title-t">'
-                        //                + '<div class="pull-left w8" tagid="' + item.RepairId + '" onclick="repairid(' + item.RepairId + ')">'
-                        //                    + '<p class="wr-content">' + item.Contenet + '</p>'
-                        //                + '</div>'
-                        //                + '<div class="pull-right w2">'
-                        //                   + ' <div class="img">'
-                        //                   + '<img src="http://115.159.71.54/DoShineMP/Uploadimgs/' + item.ImageFiles[0].FileName + '" class="imgyulan"/>'
-                        //                   + '</div>'
-                        //               + ' </div>'
-                        //           + ' </div>'
-                        //           + ' <div class="content-title-b">'
-                        //                + statusstr
-                        //                + '<span class="time pull-right">' + time[0] + '</span>'
-                        //                + '<span class="time-l time pull-right">' + item.User.Name + '</span>'
-                        //           + ' </div>'
-                        //        + '</li>';
-                        //    }
-                        //})
-                        //alert(str)
+                       
                         $('#messagenew').html(str);
                         document.getElementById('btn').style.borderColor = '#4ca329';
                         document.getElementById('btn').style.color = '#4ca329';
@@ -456,6 +409,7 @@
             wx.getLocation({
                 type: 'gcj02', //wgs84 或 gcj02
                 success: function (res) {
+
                     var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                     var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
 
