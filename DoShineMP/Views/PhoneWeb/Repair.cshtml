@@ -11,6 +11,16 @@
     <div class="keep-in">
         <div class="keep-content-t clearfix marginB">
             @* 新添加 模块 *@
+            <div class="demonstrate">
+                @if (ViewBag.Village != null)
+                {
+                <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                }
+                else
+                {
+                <img src="~/Images/xiaoqu.png" />
+                }
+            </div>
             <div class="my-arranty" id="MyRepair"> 我的报修<span></span></div>
             <div class="housing-box">
                 @*<div style="border-bottom:1px solid #ddd;overflow:hidden;">
@@ -25,34 +35,53 @@
             @* 新添加 姓名 手机号 模块 *@
             @if (ViewBag.RecordId.RecordId != 0)
             {
-                <div class="new-page">
-                    <div class="page-cire">
-                        <div class="locian">
-                            <span><img src="~/Images/location.png" /></span>
-                        </div>
-                        <select class="housing" id="housing" onclick="addressxiaoqu()">
-                            @if (ViewBag.Village != null)
-                            {
-                                <option value="@ViewBag.Village.VillageId">@ViewBag.Village.Name</option>
-                            }
-                        </select>
+            <div class="new-page">
+                <div class="page-cire">
+                    <div class="locian">
+                        @*<span><img src="~/Images/location.png" /></span>*@
                     </div>
-                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
-                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" /></div>
+                    <select class="housing" id="housing" onclick="addressxiaoqu()">
+                        @if (ViewBag.Village != null)
+                            {
+                        <option value="@ViewBag.Village.VillageId">@ViewBag.Village.Name</option>
+                            }
+                    </select>
                 </div>
+                <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
+                <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" /></div>
+            </div>
             }
             else
             {
-                <div class="new-page">
-                    <div class="page-cire">
-                        <div class="locian">
-                            <span><img src="~/Images/location.png" /></span>
-                        </div>
-                        <select class="housing" id="housing" onclick="addressxiaoqu()"></select>
+            <div class="new-page">
+                <div class="page-cire">
+                    <div class="locian">
+                        @*<span><img src="~/Images/location.png" /></span>*@
                     </div>
-                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" /></div>
-                    <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" /></div>
+                    <select class="housing" id="housing" onclick="addressxiaoqu()"></select>
                 </div>
+                <div class="page-name">
+                    @if (ViewBag.Recordid.Name != null)
+                        {
+                    <input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" />
+                        }
+                        else
+                        {
+                    <input type="text" placeholder="请输入姓名" id="name" />
+                        }
+
+                </div>
+                <div class="page-tel">
+                    @if (ViewBag.Recordid.PhoneNumber != null)
+                        {
+                    <input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" />
+                        }
+                        else
+                        {
+                    <input type="text" placeholder="请输入手机号" id="phone" />
+                        }
+                </div>
+            </div>
             }
 
             <div class="keep-textarea">
@@ -67,69 +96,70 @@
             <p style="padding-left:15px; padding-bottom:10px; color:red;" id="imgtext"></p>
         </div>
 
+
         @if (ViewBag.RepairList != null)
         {
-            <div class="keep-content-b">
-                <p class="panel panel-default new-title">
-                    <span>最新报修消息</span>
-                    <ins></ins>
-                </p>
-                <div class="panel panel-default new-keep">
-                    <ul id="messagenew">
+        <div class="keep-content-b">
+            <p class="panel panel-default new-title">
+                <span>最近报修消息</span>
+                <ins></ins>
+            </p>
+            <div class="panel panel-default new-keep">
+                <ul id="messagenew">
 
-                        @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
+                    @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
                         {
-                            <li>
-                                <div class="content-title-t">
-                                    @if (r.ImageFiles.Count == 0)
+                    <li>
+                        <div class="content-title-t">
+                            @if (r.ImageFiles.Count == 0)
                                     {
-                                        <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
-                                        </div>
+                            <div class="pull-left w10 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                <p class="wr-content">@r.Contenet</p>
+                            </div>
                                     }
                                     else
                                     {
-                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
-                                        </div>
-                                        <div class="pull-right w2">
-                                            <div class="img">
-                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
-                                            </div>
-                                        </div>
-                                    }
+                            <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                <p class="wr-content">@r.Contenet</p>
+                            </div>
+                            <div class="pull-right w2">
+                                <div class="img">
+                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
                                 </div>
-                                <div class="content-title-b">
-                                    @switch (r.Status)
+                            </div>
+                                    }
+                        </div>
+                        <div class="content-title-b">
+                            @switch (r.Status)
                                     {
                                         case DoShineMP.Models.RepairStatus.Apply:
-                                            <ins class="check check1 pull-left">已提交</ins>;
+                            <ins class="check check1 pull-left">已提交</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.Accept:
-                                            <ins class="check check2 pull-left">已受理</ins>;
+                            <ins class="check check2 pull-left">已受理</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.FinishHandle:
-                                            <ins class="check check3 pull-left">待确认</ins>;
+                            <ins class="check check3 pull-left">待确认</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.Finish:
-                                            <ins class="check check4 pull-left">已完成</ins>;
+                            <ins class="check check4 pull-left">已完成</ins>;
                                             break;
                                         case DoShineMP.Models.RepairStatus.Cancel:
-                                            <ins class="check check5 pull-left">已取消</ins>;
+                            <ins class="check check5 pull-left">已取消</ins>;
                                             break;
                                     }
-                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                    @if (r.User.Name != null)
+                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                            @if (r.User.Name != null)
                                     {
-                                        <span class="time-l time pull-right">@r.User.Name</span>
+                            <span class="time-l time pull-right">@r.User.Name</span>
                                     }
-                                </div>
-                            </li>
+                        </div>
+                    </li>
                         }
 
-                    </ul>
-                </div>
+                </ul>
             </div>
+        </div>
         }
     </div>
 </div>
@@ -139,17 +169,21 @@
 <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
 
 
+
+
+
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/Commons.js"></script>
     <script type="text/javascript">
         var token;
-        var imglength = 5;
+        var imglength = 9;
         var images = {
             localId: [],
             serverId: []
         };
         $(function () {
+
             $.post('@Url.Action("WechatJsConfigJson","PhoneWeb")', { url: window.location.href }, function (data, status) {
                 var debug = data.debug;
                 var appId = data.appId;
@@ -226,7 +260,7 @@
                         }
 
 
-                        var i = 0, length = 5;
+                        var i = 0, length = 9;
                         images.serverId = [];
                         var str = '';
                         var htmlstr = '';
@@ -237,7 +271,7 @@
                                     //alert('已上传：' + i + '张');
                                     images.serverId.push(res.serverId);
                                     if (i < length) {
-                                        if (i == 0 && imglength == 5) {
+                                        if (i == 0 && imglength == length) {
                                             $("#serviceid").val($("#serviceid").val() + res.serverId);
                                         } else {
                                             $("#serviceid").val($("#serviceid").val() + ',' + res.serverId);
@@ -266,9 +300,17 @@
                 });
             };
 
+            isaddress();
         });
 
-
+        document.getElementById('btn').addEventListener('touchstart', btnstart)
+        document.getElementById('btn').addEventListener('touchend', btnend)
+        function btnstart() {
+            $('#btn').css({ 'background-color': '#4ca329', 'color': '#fff' });
+        }
+        function btnend() {
+            $('#btn').css({ 'background-color': '#fff', 'border': '1px solid #4ca329', 'color': ' #4ca329' });
+        }
         function btn() {
 
             var HasUnFinishedRepair = $('#HasUnFinishedRepair').val();
@@ -289,19 +331,22 @@
 
             if (keeptext == '' || keeptext == null) {
                 $('#imgtext').text('内容不得为空！');
+                $('#btn').attr('disabled', false);
                 return false;
             } else if (name == '' || name == null || phone == '' || phone == null) {
                 $('#imgtext').text('姓名、手机号不得为空！');
+                $('#btn').attr('disabled', false);
                 return false;
             } else if (!re.test(phone)) {
                 $('#imgtext').text('请输入正确手机号！');
+                $('#btn').attr('disabled', false);
                 return false;
             }
 
             $('#btn').css('border-color', '#ccc');
             $('#btn').css('color', '#ccc');
             $('#btn').attr('disabled', true);
-           
+
 
             serviceid = serviceid == null ? '#' : serviceid;
             //alert(serviceid)
@@ -397,6 +442,15 @@
             window.location.href = '@Url.Action("RepairHistory", "PhoneWeb")?IndexLi1=0&openid=' + $('#openid').val();
         })
 
+        //一开始没有地址，则默认拉取
+        function isaddress() {
+            if ($('#housing').text() == null || $('#housing').text() == '') {
+                addressxiaoqu();
+            }
+        }
+
+
+
         ///获取附近小区
         function addressxiaoqu() {
             wx.getLocation({
@@ -425,6 +479,6 @@
             this.style.backgroundColor = '#4ca329';
             this.style.color = '#fff';
         }
-         
+
     </script>
 }
