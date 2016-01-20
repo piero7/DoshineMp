@@ -125,8 +125,8 @@ body {
     .new-title ins {
         display: block;
         border-top:1px solid #ddd;
-        transform:scale(0.5);
-        -webkit-transform:scale(0.5);
+        transform:scale(1,0.5);
+        -webkit-transform:scale(1,0.5);
     }
 
     .new-title span {
@@ -159,14 +159,14 @@ body {
         background-color: white;
         transition:all 0.3s linear 0s;
         -webkit-transition:all 0.3s linear 0s;
-        box-shadow: -5px -2px 5px 0px #eee inset;
+        box-shadow: 5px 3px 5px 0px #ddd;
          margin-bottom: 10px;
     }
-    .new-keep ul li:hover{
+    /*.new-keep ul li:hover{
         box-shadow: 5px 5px 5px 0px lightgray;
          position:relative;
          top:10px;
-    }
+    }*/
     .new-keep ul li:nth-child(1){
         border-top:0px;
     }
@@ -647,3 +647,27 @@ select {
  .footer a{
       color:#ddd;
  }
+
+ 
+.service {
+    overflow: hidden;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.service li {
+    float: left;
+    padding: 5px 10px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #1ec462;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: all .6s linear 0s;
+    -webkit-transition: all .6s linear 0s;
+}
+
+.service li.current {
+    background-color: #1ec462;
+    color: white;
+}

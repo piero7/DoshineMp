@@ -23,7 +23,7 @@
 <div class="bg-input" id="foottext">
     <div class="input-in">
         <a class="imgBtn" href="javascript:void(0);"></a>
-        <input type="text" class="sendInput Input_text" id="sendText" placeholder="输入信息">
+        <div  contenteditable="true" class="sendInput Input_text" id="sendText" placeholder="请输入内容..."></div>
         <span class="sendSpan text-center">
             <input class="sendBtn" onclick="send()" id="btnSend" type="button" value="发送" />
         </span>
@@ -72,6 +72,7 @@
 
 
     <script type="text/javascript">
+        var Src = '';
         $(document).ready(function (e) {
             ImgIputHandler.Init();
         });
@@ -145,6 +146,7 @@
             ,
             Init: function () {
                 var isShowImg = false;
+                $(this).css('background-position', '0 -40px')
                 $(".Input_text").focusout(function () {
                     $(this).parent().css("border-color", "#cccccc");
                     $(this).parent().css("box-shadow", "none");
@@ -159,22 +161,29 @@
                 });
                 $(".imgBtn").click(function () {
                     if (isShowImg == false) {
+                        $(this).css('background-position', '0 -40px')
+                        console.log(1)
                         isShowImg = true;
                         $(this).parent().siblings().animate({ 'height': "260px" }, 300);
-                        console.log($(this).parent().prev())
                         if ($(".faceDiv").children().length == 0) {
                             for (var i = 0; i < ImgIputHandler.facePath.length; i++) {
                                 $(".faceDiv").append("<img title=\"" + ImgIputHandler.facePath[i].faceName + "\" src=\"../../face/" + ImgIputHandler.facePath[i].facePath + "\" />");
                             }
                             $(".faceDiv>img").click(function () {
-
+                                console.log(2)
                                 isShowImg = false;
+                                $('.imgBtn').css('background-position', '0px 0px')
                                 $(this).parent().animate({ 'height': "0px" }, 300);
-                                ImgIputHandler.insertAtCursor($(".Input_text")[0], "[" + $(this).attr("title") + "]");
+                                Src = "<img title=" + $(this).attr('title') + " src=" + $(this).attr('src') + ">";
+                                $('.Input_text')[0].innerHTML += Src;
                             });
                         }
                     } else {
+                        console.log(2)
+
                         isShowImg = false;
+                        $(this).css('background-position', '0 0');
+
                         $(this).parent().siblings().animate({ 'height': "0px" }, 300);
                     }
                 });
