@@ -14,16 +14,12 @@
         <div class="demonstrate">
             @if (ViewBag.Village != null)
             {
-                <a href="@System.Configuration.ConfigurationManager.AppSettings["titleurl"]">
-                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
-                </a>
+                <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
                 <p><span class="locian">@ViewBag.Village.Name</span></p>
             }
             else
             {
-                <a href="@System.Configuration.ConfigurationManager.AppSettings["titleurl"]">
-                    <img src="~/Images/xiaoqu.png" />
-                </a>
+                <img src="~/Images/xiaoqu.png" />
             }
         </div>
         @*  id MyRepair *@
@@ -35,9 +31,9 @@
         @if (ViewBag.RepairList != null)
         {
             <div class="keep-content-b">
-                <p class="panel panel-default new-title">
+                <p class=" panel-default new-title" style="border-radius:0; border-bottom:0">
                     <span>最近报修消息</span>
-                    <ins></ins>
+                    @*<ins></ins>*@
                 </p>
                 <div class="panel panel-default new-keep">
                     <ul id="messagenew">
@@ -50,7 +46,7 @@
                                     @if (r.ImageFiles.Count == 0)
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@(r.Contenet.Replace("<br />", "").Length > 25 ? r.Contenet.Replace("<br />", "").Substring(0, 25) + "..." : r.Contenet.Replace("<br />", ""))</p>
+                                            <p class="wr-content">@(r.Contenet.Replace("<br />", "").Length > 20 ? r.Contenet.Replace("<br />", "").Substring(0, 20) + "..." : r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 @switch (r.Status)
                                                 {
@@ -79,14 +75,14 @@
                                         </div>
                                         <div class="pull-right w2">
                                             <div class="img">
-                                                <img src="http://115.159.71.54/DoShineMP/Images/baox.jpg" class="imgyulan" />
+                                                <img src="~/Images/baox.jpg" class="imgyulan" />
                                             </div>
                                         </div>
                                     }
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@(r.Contenet.Replace("<br />", "").Length > 25 ? r.Contenet.Replace("<br />", "").Substring(0, 25) + "..." : r.Contenet.Replace("<br />", ""))</p>
+                                            <p class="wr-content">@(r.Contenet.Replace("<br />", "").Length > 20 ? r.Contenet.Replace("<br />", "").Substring(0, 20) + "..." : r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 @if (r.User.Name != null)
                                                 {
@@ -131,21 +127,20 @@
         }
         <div class="footer">
             <p class="serve"><a href="javascript:;">桑田智能工程技术(上海)有限公司</a></p>
-            <p class="service"><a href="tel:021-66081296">客服电话：021-66081296</a></p>
+            <p class="service"><a href="tel:021-66081296;">客服电话：021-66081296</a></p>
         </div>
     </div>
-</div>
-<input type="hidden" value="@ViewBag.openid" id="openid" />
-<input type="hidden" value="" id="serviceid" />
-<input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
-<input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
+    <input type="hidden" value="@ViewBag.openid" id="openid" />
+    <input type="hidden" value="" id="serviceid" />
+    <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
+    <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
 
 
 
-@section scripts{
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="~/Scripts/Commons.js"></script>
-    <script type="text/javascript">
+    @section scripts{
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script src="~/Scripts/Commons.js"></script>
+        <script type="text/javascript">
         var token;
         var imglength = 9;
         var images = {
@@ -269,6 +264,7 @@
                     }
                 });
             };
+
             isaddress();
         });
 
@@ -304,5 +300,5 @@
 
 
 
-    </script>
-}
+        </script>
+    }

@@ -66,14 +66,14 @@ namespace DoShineMP.Helper
                     db.RecordSet.Add(new Record
                     {
                         Name = rec.Name,
-                        CreateDate = rec.CreateDate,
+                        CreateDate = DateTime.Now,
                         Address = rec.Address,
                         PhoneNumber = rec.PhoneNumber,
                         Remarks = rec.Remarks,
                         Type = rec.Type,
                         Openid = rec.Openid,
                         UserInfoId = rec.UserInfoId,
-                        UserInfo = rec.UserInfo
+                        UserInfo = rec.UserInfo,
                     });
                 }
             }

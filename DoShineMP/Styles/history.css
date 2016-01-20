@@ -4,222 +4,255 @@
 * @Last Modified by:   晴
 * @Last Modified time: 2016-01-06 15:19:53
 */
-a
-{
-	text-decoration: none !important;
-	color:#333;
-}
-#content{
-	background:#ececec;
-    height:100%;
-}
-	.path{
-	padding:0 0 5px 5px;
+a {
+    text-decoration: none !important;
+    color: #333;
 }
 
-	/* 效果导航 */
-	.effectNav{
-	margin-top:10px;
-	border-top:1px solid #666;
-	background:#999;
-	padding-bottom:10px;
-}
-	.effectNav h3{
-	padding:0 10px;
-	background:#ddd;
-	background:#333;
-	color:#fff;
-}
-	.effectNav ul{
-	font-size:0;
-}
-	.effectNav li{
-	display:inline-block;
-	font-size:12px;
-	padding:0 10px;
-	margin:10px 0 0 10px;
-	background:#cdcdcd;
-}
-	.effectNav li.new{
-	background:#fce8cd;
+#content {
+    background: #ececec;
+    height: 100%;
 }
 
+.path {
+    padding: 0 0 5px 5px;
+}
 
-	/* 本例子css -------------------------------------- */
-	.tabBox .hd{
-	height:42px;
-	line-height:40px;
-	font-size:16px;
-	background:#F3F3F3;
-	border-bottom:1px solid #CECECE;
+/* 效果导航 */
+.effectNav {
+    margin-top: 10px;
+    border-top: 1px solid #666;
+    background: #999;
+    padding-bottom: 10px;
 }
-	.tabBox .hd ul{
-	overflow:hidden;
+
+    .effectNav h3 {
+        padding: 0 10px;
+        background: #ddd;
+        background: #333;
+        color: #fff;
+    }
+
+    .effectNav ul {
+        font-size: 0;
+    }
+
+    .effectNav li {
+        display: inline-block;
+        font-size: 12px;
+        padding: 0 10px;
+        margin: 10px 0 0 10px;
+        background: #cdcdcd;
+    }
+
+        .effectNav li.new {
+            background: #fce8cd;
+        }
+
+
+/* 本例子css -------------------------------------- */
+.tabBox .hd {
+    height: 42px;
+    line-height: 40px;
+    font-size: 16px;
+    background: #F3F3F3;
+    border-bottom: 1px solid #CECECE;
 }
-	.tabBox .hd ul li{
-	float:left;
-	width: 33.33%;
-	color:#515151;
-	text-align: center;
+
+    .tabBox .hd ul {
+        overflow: hidden;
+    }
+
+        .tabBox .hd ul li {
+            float: left;
+            width: 33.33%;
+            color: #515151;
+            text-align: center;
+        }
+
+        .tabBox .hd ul .on a {
+            border-bottom: 2px solid #4ca329;
+            color: #BA2636;
+        }
+
+        .tabBox .hd ul .on a {
+            display: block;
+            color: #35c670;
+            /* 修复Android 4.0.x 默认浏览器当前样色无效果bug */;
+        }
+
+.tabBox .bd ul {
+    min-height: 400px;
+    background-color: #ececec;
+    padding: 6px 6px;
 }
-	.tabBox .hd ul .on a{
-	border-bottom:2px solid #4ca329;
-	color:#BA2636;
-}
-	.tabBox .hd ul .on a{
-	display:block;
-	color: #35c670;
-	/* 修复Android 4.0.x 默认浏览器当前样色无效果bug */;
-}
-	.tabBox .bd ul{
-    background-color:#ececec;
-    padding:6px 6px;
-}
-	/*.tabBox .bd li{
+/*.tabBox .bd li{
 	height:33px;
 	line-height:33px;
 }*/
-	.tabBox .bd a{
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-}  /* 去掉链接触摸高亮 */
-	.tabBox .bd li a{
-	color:#555;
+.tabBox .bd a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-	.tabBox .bd .t{
-	height:85px;
-	overflow:hidden;
-}
-	.tabBox .bd .t .pic{
-	width:130px;
-	float:left;
-}
-	.tabBox .bd .t .con{
-	margin-left:130px;
-	line-height:20px;
-}
-	.tabBox .bd .t .con p{
-	font-size:12px;
-	color:#999;
+/* 去掉链接触摸高亮 */
+.tabBox .bd li a {
+    color: #555;
 }
 
-	/*  keep  克隆*/
+.tabBox .bd .t {
+    height: 85px;
+    overflow: hidden;
+}
 
-body{
-	font-family: 'Microsoft YaHei';
-	background-color:#fff;
+    .tabBox .bd .t .pic {
+        width: 130px;
+        float: left;
+    }
+
+    .tabBox .bd .t .con {
+        margin-left: 130px;
+        line-height: 20px;
+    }
+
+        .tabBox .bd .t .con p {
+            font-size: 12px;
+            color: #999;
+        }
+
+/*  keep  克隆*/
+
+body {
+    font-family: 'Microsoft YaHei';
+    background-color: #fff;
 }
 
 /*new keep css*/
-.keep-content-b{
-	background-color:white;
-}
-.new-title {
-	padding:15px 15px 0px 15px;
-	border-bottom:1px solid #aaa;
-	background: white;
-	margin-bottom:0;
-}
-.new-title ins{
-	display: block;
-	border-bottom:1px dashed #ccc;
+.keep-content-b {
+    background-color: white;
 }
 
-.new-title span{
-	display: block;
-	padding:0 0px 5px;
-	font-size: 16px;
+.new-title {
+    padding: 15px 15px 0px 15px;
+    border-bottom: 1px solid #aaa;
+    background: white;
+    margin-bottom: 0;
 }
-.logo{
-	width:80px;
-	height:80px;
-	background-color:#ccc;
+
+    .new-title ins {
+        display: block;
+        border-bottom: 1px dashed #ccc;
+    }
+
+    .new-title span {
+        display: block;
+        padding: 0 0px 5px;
+        font-size: 16px;
+    }
+
+.logo {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
 }
-.content-title-t{
-	overflow: hidden;
-     min-height: 80px;
+
+.content-title-t {
+    overflow: hidden;
+    min-height: 80px;
 }
-.new-keep ul{
-	background-color: #fff;
-	padding:0 20px;
+
+.new-keep ul {
+    background-color: #fff;
+    padding: 0 20px;
 }
-.Padding li{
-     padding: 15px 12px 5px;
+
+.Padding li {
+    padding: 15px 12px 5px;
     border: 1px solid #e3e1e1;
     background-color: white;
     transition: all 0.3s linear 0s;
     -webkit-transition: all 0.3s linear 0s;
     box-shadow: 2px 2px 5px 0px #AFAFAF;
     margin-bottom: 10px;
-   
 }
 
-.content-title-t .w8{
-	width: 68%;
+.content-title-t .w8 {
+    width: 68%;
 }
-.content-title-b{
-	overflow: hidden;
+
+.content-title-b {
+    overflow: hidden;
 }
-.content-title-b p{
-	width:100%;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-	-o-text-overflow:ellipsis;
-	overflow:hidden;
+
+    .content-title-b p {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+.marginB {
+    margin-bottom: 20px;
+    background: white;
 }
-.marginB{
-	margin-bottom: 20px;
-	background: white;
+
+.panel {
+    border: 0;
 }
-.panel{
-	border:0;
-}
-.w8 p{
-	/*font-weight: bold;
+
+.w8 p {
+    /*font-weight: bold;
 	*/;
 }
-.w8 b{
-	font-weight: normal;
+
+.w8 b {
+    font-weight: normal;
 }
+
 .w2 {
-	/*width: 30%;
+    /*width: 30%;
 	*/;
 }
-.w2 .img{
-    width: 85px;
-    height: 65px;
-	background-color: #ccc;
+
+    .w2 .img {
+        width: 85px;
+        height: 65px;
+        background-color: #ccc;
+    }
+
+        .w2 .img img {
+            width: 100%;
+            height: 100%;
+        }
+
+.time {
+    display: block;
+    color: #a8a8a8;
 }
-.w2 .img img{
-	width: 100%;
-	height:100%;
+
+.w8 .wr-content {
+    width: 100%;
+    min-height: 45px;
+    overflow: hidden;
+    color: #626262;
+    margin-bottom: 0;
 }
-.time{
-	display: block;
-	color: #a8a8a8;
-}
-.w8 .wr-content{
-	width: 100%;
-     min-height: 45px;
-	overflow:hidden;
-	color: #626262;
-	margin-bottom:0;
-}
-.content-title-t .w10{
-    width:100%;
-	height:75px;
+
+.content-title-t .w10 {
+    width: 100%;
+    height: 75px;
 }
 /*.commit:hover{
 	color:#f06343;
 	border-color:  #f06343;
 }*/
-.content-title-b .check{
-	text-decoration: none;
+.content-title-b .check {
+    text-decoration: none;
 }
 
-.content-title-b{
-	padding-top:5px;
+.content-title-b {
+    padding-top: 5px;
 }
-/*.content-title-b ins:before{
+    /*.content-title-b ins:before{
 	content: "";
 	width:16px;
 	height:16px;
@@ -227,43 +260,48 @@ body{
 	margin-top:2px;
 	vertical-align: middle;
 }*/
-.content-title-b .check{
-	height:16px;
-	line-height: 16px;
-	padding-left:20px;
+    .content-title-b .check {
+        height: 16px;
+        line-height: 16px;
+        padding-left: 20px;
+    }
+
+    .content-title-b .check1 {
+        background: url(../Images/submitIcon2x.png) no-repeat left center;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #ffc600;
+    }
+
+    .content-title-b .check2 {
+        background: url(../Images/accept2x.png) no-repeat;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #ffc600;
+    }
+
+    .content-title-b .check3 {
+        background: url(../Images/daiqueren2x.png) no-repeat;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #1ec462;
+    }
+
+    .content-title-b .check4 {
+        background: url(../Images/complete2x.png) no-repeat 0 0px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        color: #1ec462;
+    }
+
+.operate span.current {
+    color: #f06343;
+    border-color: #f06343;
 }
 
-.content-title-b .check1{
-	background:url(../Images/submitIcon2x.png) no-repeat left center;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #ffc600;
-}
-.content-title-b .check2{
-	background:url(../Images/accept2x.png) no-repeat;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #ffc600;
-}
-.content-title-b .check3{
-	background:url(../Images/daiqueren2x.png) no-repeat;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #1ec462;
-}
-.content-title-b .check4{
-	background:url(../Images/complete2x.png) no-repeat 0 0px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #1ec462;
-}
-.operate span.current{
-	color:#f06343;
-	border-color:  #f06343;
-}
-.content-title-b .check5{
-	background:url(../Images/quxiao.png) no-repeat 0 0px;
-	background-size: contain;
-	-webkit-background-size: contain;
-	color: #f1514e;
+.content-title-b .check5 {
+    background: url(../Images/quxiao.png) no-repeat 0 0px;
+    background-size: contain;
+    -webkit-background-size: contain;
+    color: #f1514e;
 }
