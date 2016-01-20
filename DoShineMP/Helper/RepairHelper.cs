@@ -190,7 +190,7 @@ namespace DoShineMP.Helper
         public Repair Accept(int repairId, DateTime exceptDate, string innderNumber)
         {
             var db = new ModelContext();
-            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+            var rep = db.RepairSet.Include("Village").FirstOrDefault(item => item.RepairId == repairId);
 
             if (rep == null)
             {
@@ -215,7 +215,7 @@ namespace DoShineMP.Helper
                     url,
                     "qg8GNMOl1vwqU_1ks2p5UJqkrO6eg1bqak1qANGMkNU",
                     string.Format("\"first\":{{\"value\":\"您好，您的报修申请已被成功受理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"keyword3\":{{\"value\":\"{2}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"我们将于 {3} 上门，敬请做好准备。\",\"color\":\"#173177\"}}",
-                    rep.Address,
+                    rep.Village.Name,
                     content,
                     rep.CreateDate.ToLongDateString() + " " + rep.CreateDate.ToShortTimeString(),
                     rep.ExceptHandleDate.Value.ToLongDateString() + " " + rep.ExceptHandleDate.Value.ToShortTimeString()));
