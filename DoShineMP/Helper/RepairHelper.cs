@@ -214,7 +214,7 @@ namespace DoShineMP.Helper
                     wuser.OpenId,
                     url,
                     "qg8GNMOl1vwqU_1ks2p5UJqkrO6eg1bqak1qANGMkNU",
-                    string.Format("\"first\":{{\"value\":\"你好，你的报修申请已被成功受理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"keyword3\":{{\"value\":\"{2}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"我们将于 {3} 上门，敬请做好准备。点击查看详情>>>\",\"color\":\"#173177\"}}",
+                    string.Format("\"first\":{{\"value\":\"您好，您的报修申请已被成功受理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"keyword3\":{{\"value\":\"{2}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"我们将于 {3} 上门，敬请做好准备。\",\"color\":\"#173177\"}}",
                     rep.Address,
                     content,
                     rep.CreateDate.ToLongDateString() + " " + rep.CreateDate.ToShortTimeString(),
@@ -256,7 +256,7 @@ namespace DoShineMP.Helper
         public Repair FinishHandlen(int repairId, IEnumerable<string> mediaIdList, string describe, RepairFinishType type)
         {
             var db = new ModelContext();
-            var rep = db.RepairSet.FirstOrDefault(item => item.RepairId == repairId);
+            var rep = db.RepairSet.Include("Village").FirstOrDefault(item => item.RepairId == repairId);
 
             if (rep == null)
             {
@@ -281,11 +281,11 @@ namespace DoShineMP.Helper
                     wuser.OpenId,
                     url,
                     "qg8GNMOl1vwqU_1ks2p5UJqkrO6eg1bqak1qANGMkNU",
-                    string.Format("\"first\":{{\"value\":\"你好，你的报修申请已完成处理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"keyword3\":{{\"value\":\"{2}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"处理结果为：{3}点击查看详情>>>\",\"color\":\"#173177\"}}",
-                    rep.Address,
+                    string.Format("\"first\":{{\"value\":\"您好，您的报修申请已完成处理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"keyword3\":{{\"value\":\"{2}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"处理结果为：{3}\",\"color\":\"#173177\"}}",
+                    rep.Village.Name,
                     content,
                     rep.CreateDate.ToLongDateString() + " " + rep.CreateDate.ToShortTimeString(),
-                    rep.FinishType.ToString()));
+                   EnumFormat.GetDescription(rep.FinishType)));
             }
             return rep;
         }
@@ -349,7 +349,7 @@ namespace DoShineMP.Helper
                     wuser.OpenId,
                     url,
                     "EPg0GWHMJR0xupn1IV4VRz3iVrsFakORJ-hxqQ5CZ-U",
-                    string.Format("\"first\":{{\"value\":\"抱歉，您的报修订单已经被取消\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"期待下次再为您服务。点击查看详情>>>\",\"color\":\"#173177\"}}",
+                    string.Format("\"first\":{{\"value\":\"抱歉，您的报修订单已经被取消\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"期待下次再为您服务。\",\"color\":\"#173177\"}}",
                     content,
                     rep.CreateDate.ToLongDateString() + " " + rep.CreateDate.ToShortTimeString()
                    ));
@@ -492,7 +492,7 @@ namespace DoShineMP.Helper
             var ret = new Dictionary<string, List<string>>();
 
             var db = new ModelContext();
-            var fList =  db.OveruseRepairSet.Where(item => item.Level != 1).ToList();
+            var fList = db.OveruseRepairSet.Where(item => item.Level != 1).ToList();
 
             foreach (var item in fList)
             {
