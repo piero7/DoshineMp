@@ -9,9 +9,9 @@
 
 <div class="keep">
     <div class="keep-in">
-        <div class="keep-content-t clearfix marginB">
+        <div class="keep-content-t clearfix ">
             @* 新添加 姓名 手机号 模块 *@
-            @if (ViewBag.RecordId.RecordId != 0)
+            @if (ViewBag.Recordid.RecordId != 0)
             {
                 <div class="new-page">
                     <div class="page-cire">
@@ -25,8 +25,6 @@
                             }
                         </select>
                     </div>
-                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
-                    <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
                     <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
                     <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" /></div>
                 </div>
@@ -63,6 +61,7 @@
                     </div>
                 </div>
             }
+            <p style="padding:10px 15px 0px; color:#333;font-size:13px; font-weight:bold;">快捷选择</p>
             <div class="keep-textarea">
                 <ul class="service" id="RepairFinishTypeid">
                     @if (ViewBag.OveruseRepair != null)
@@ -72,7 +71,7 @@
 
                             foreach (string str in dd.Value as List<string>)
                             {
-                                <li style="margin-bottom:5px;">@str</li>
+                                <li>@str</li>
                             }
                         }
                     }
@@ -84,13 +83,13 @@
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 @*<em class="br"></em>*@
             </div>
-
-
             <div class="col-xs-12 operate " id="imgdiv">
                 <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg1" />
-                <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交" style="margin-top:10px;">
             </div>
-            <p style="padding-left:15px; padding-bottom:10px; color:red;" id="imgtext"></p>
+            <p style="padding-left:15px; padding-bottom:10px; color:red;font-size:16px;" id="imgtext"></p>
+            <div class="col-xs-12 operate " id="imgdiv">
+                <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交">
+            </div>
         </div>
     </div>
 </div>
@@ -236,10 +235,10 @@
         document.getElementById('btn').addEventListener('touchstart', btnstart)
         document.getElementById('btn').addEventListener('touchend', btnend)
         function btnstart() {
-            $('#btn').css({ 'background-color': '#4ca329', 'color': '#fff' });
+            $('#btn').css({ 'background-color': '#11c354' });
         }
         function btnend() {
-            $('#btn').css({ 'background-color': '#fff', 'border': '1px solid #4ca329', 'color': ' #4ca329' });
+            $('#btn').css({ 'background-color': '#4ca329', 'border': '1px solid #4ca329' });
         }
         function btn() {
 
@@ -285,7 +284,7 @@
             //alert(serviceid)
             var RecordId = $('#RecordId').val();
             //alert(RecordId);
-            
+
             console.log(ortext);
             //$('#btn').attr('disabled', false);
 
@@ -385,26 +384,20 @@
                 if ($(this).text() == '其他') {
                     return false;
                 }
-                var str = $('#ortext').val().replace($(this).text() + '\r\n','')
+                var str = $('#ortext').val().replace($(this).text() + '\r\n', '')
                 $('#ortext').val(str);
-                //console.log( $('#ortext').val())
+                if ($('.service li').find('.current').length == 0) {
+                    $('#keepnei').slideUp();
+                }
             } else {
                 $(this).addClass('current');
                 if ($(this).text() == '其他') {
                     return false;
                 }
                 $('#ortext').val($(this).text() + '\r\n' + $('#ortext').val());
-                //console.log($('#ortext').val())
+              
+                $('#keepnei').slideDown();
             }
-        })
-
-        $('#orqt').click(function () {
-            if ($(this).hasClass('current')) {
-                $('#keepnei').show();
-            } else {
-                $('#keepnei').hide();
-            }
-
         })
     </script>
 }

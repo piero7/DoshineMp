@@ -205,7 +205,7 @@ namespace DoShineMP.Helper
             db.SaveChanges();
 
             //发送模板消息
-            string content = rep.Contenet.Length > 7 ? rep.Contenet.Substring(0, 6) + "..." : rep.Contenet;
+            string content = rep.Contenet.Replace("<br />", "").Length > 7 ? rep.Contenet.Replace("<br />", "").Substring(0, 6) + "..." : rep.Contenet.Replace("<br />", "");
             var wuser = WechatHelper.CheckWechatUser(rep.UserId ?? 0);
             if (wuser != null && !string.IsNullOrEmpty(wuser.OpenId))
             {
@@ -272,7 +272,7 @@ namespace DoShineMP.Helper
             cl.Clear();
 
             //发送模板消息
-            string content = rep.Contenet.Length > 7 ? rep.Contenet.Substring(0, 6) + "..." : rep.Contenet;
+            string content = rep.Contenet.Replace("<br />", "").Length > 7 ? rep.Contenet.Replace("<br />", "").Substring(0, 6) + "..." : rep.Contenet.Replace("<br />", "");
             var wuser = WechatHelper.CheckWechatUser(rep.UserId ?? 0);
             if (wuser != null && !string.IsNullOrEmpty(wuser.OpenId))
             {
@@ -492,7 +492,7 @@ namespace DoShineMP.Helper
             var ret = new Dictionary<string, List<string>>();
 
             var db = new ModelContext();
-            var fList =  db.OveruseRepairSet.Where(item => item.Level != 1).ToList();
+            var fList = db.OveruseRepairSet.Where(item => item.Level != 1).ToList();
 
             foreach (var item in fList)
             {

@@ -37,7 +37,7 @@
     <div class="keep-list-in">
         <div class="list-top">
             <div class="top-content">
-                <p>@ViewBag.RepairDetail.Contenet</p>
+                @(new MvcHtmlString(ViewBag.RepairDetail.Contenet))
                 @if (ViewBag.RepairDetail.ImageFiles != null)
                 {
                     <div class="img-content">
@@ -258,7 +258,7 @@
                     <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()" />
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
-                    <input type="button" class="commit pull-right applybtn" id="applybtn" tag="1" value="受理" >
+                    <input type="button" class="commit pull-right applybtn" id="applybtn" tag="1" value="受理">
                     @*取消按钮*@
                     <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
                 </div>
@@ -268,7 +268,7 @@
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate ">
-                <input type="button" class="commit pull-right applybtn" id="applybtn" tag="2" value="确认完成" >
+                <input type="button" class="commit pull-right applybtn" id="applybtn" tag="2" value="确认完成">
                 @*取消按钮*@
                 <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
             </div>
@@ -296,6 +296,8 @@
     </div>
 </div>
 
+
+<input type="hidden" value="@DateTime.Now" id="NowDateTime" />
 
 
 
@@ -388,8 +390,6 @@
                                 //alert('请先使用 chooseImage 接口选择图片');
                                 return;
                             }
-
-
                             var i = 0, length = 3;
                             images.serverId = [];
                             var str = '';
@@ -465,7 +465,7 @@
                     //var time = document.getElementById('appDateTime');
                     //convertStyle(time);
                     //shake(time);
-
+                    $(this).attr('disabled', false);
                     return;
                 }
                 ////alert(windowlength);
@@ -475,7 +475,8 @@
                             windowlength = window.history.length;
                             ////alert(windowlength);
                             if (windowlength == 1) {
-                                window.location.reload();
+                                window.localStorage['IndexLi'] = 1;
+                                window.location.replace('@Url.Action("RepairInterior","PhoneWeb")?IndexLi=1');
                             } else {
                                 window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
                                 window.history.go(-1);
@@ -496,7 +497,8 @@
                             windowlength = window.history.length;
                             //alert(windowlength);
                             if (windowlength == 1) {
-                                window.location.reload();
+                                window.localStorage['IndexLi'] = 2;
+                                window.location.replace(@Url.Action("RepairInterior","PhoneWeb")+'?IndexLi=2');
                             } else {
                                 window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
                                 window.history.go(-1);
@@ -512,7 +514,7 @@
 
         //提交
         //$(document).on('click', '#applybtn', function () {
-           
+
         //})
 
 

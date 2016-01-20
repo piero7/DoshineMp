@@ -788,7 +788,7 @@ namespace DoShineMP.Controllers
                     return Json(new { msg = "N" });
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return Json(new { msg = "N" });
             }
