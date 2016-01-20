@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -207,19 +209,42 @@ namespace DoShineMP.Models
     /// </summary>
     public enum RepairFinishType
     {
+        [Description("未知")]
         Unknown = 0,
         /// <summary>
         /// 已修复
         /// </summary>
+        [Description("已修复")]
         Fixed = 1,
         /// <summary>
         /// 未修复
         /// </summary>
+        [Description("未修复")]
         Unfixed = 2,
         /// <summary>
         /// 超出范围
         /// </summary>
+        [Description("超出维保范围")]
         OutOfRange = 10,
 
     }
+
+    public class EnumFormat
+    {
+        public static string GetDescription(Enum en)
+        {
+            Type type = en.GetType();
+            MemberInfo[] memInfo = type.GetMember(en.ToString());
+            if (memInfo != null && memInfo.Length > 0)
+            {
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                if (attrs != null && attrs.Length > 0)
+                {
+                    return ((DescriptionAttribute)attrs[0]).Description;
+                }
+            }
+            return en.ToString();
+        }
+    }
+
 }
