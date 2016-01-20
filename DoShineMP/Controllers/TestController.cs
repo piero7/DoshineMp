@@ -52,5 +52,12 @@ namespace DoShineMP.Controllers
             var msg = string.Format(System.Configuration.ConfigurationManager.AppSettings["repairnoticemodelforworker"], id.ToString());
             WechatHelper.SendComponyMessage(workernamArr, msg);
         }
+
+        [HttpGet]
+        public void TestAccept(int repid)
+        {
+            var rh = new RepairHelper();
+            rh.Accept(repid, DateTime.Now, "");
+        }
     }
 }

@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201601122000478_update041.Designer.cs">
       <DependentUpon>201601122000478_update041.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601191149135_addOverusrReapair.cs" />
+    <Compile Include="Migrations\201601191149135_addOverusrReapair.Designer.cs">
+      <DependentUpon>201601191149135_addOverusrReapair.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLog.cs" />
@@ -628,6 +632,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601122000478_update041.resx">
       <DependentUpon>201601122000478_update041.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601191149135_addOverusrReapair.resx">
+      <DependentUpon>201601191149135_addOverusrReapair.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

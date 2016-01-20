@@ -365,6 +365,17 @@ namespace DoShineMP.Helper
         }
 
         /// <summary>
+        /// 通过userid找微信用户
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public static WechatUser CheckWechatUser(int userid)
+        {
+            var db = new ModelContext();
+            return db.WechatUserSet.FirstOrDefault(item => item.UserInfoId == userid);
+        }
+
+        /// <summary>
         /// 检查用户是否注册为经销商
         /// </summary>
         /// <param name="wuser">微信用户信息</param>
@@ -604,9 +615,16 @@ namespace DoShineMP.Helper
         /// <param name="openid"></param>
         /// <param name="templateId"></param>
         /// <param name="dataStr"></param>
-        public static void SendModelMessage(string openid, string templateId, string dataStr)
+        public static void SendModelMessage(string openid, string url, string templateId, string dataStr)
         {
-            throw new NotImplementedException();
+            var token = WechatHelper.GetToken(AccountType.Service);
+            string msgModle = "{{\"touser\":\"{0}\",\"template_id\":\"{1}\",\"url\":\"{2}\",\"data\":{{{3}}}}}";
+            string msg = string.Format(msgModle, openid, templateId, url, dataStr);
+
+            string turl = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + token;
+            string  ret = WechatHelper.GetResponse(msg, turl);
+
+            //throw new NotImplementedException();
         }
 
     }

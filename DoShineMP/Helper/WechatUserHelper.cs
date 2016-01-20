@@ -81,7 +81,5 @@ namespace DoShineMP.Helper
             }
             return user;
         }
-
-
     }
 }
