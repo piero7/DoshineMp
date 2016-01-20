@@ -47,7 +47,7 @@
                                     @if (r.ImageFiles.Count == 0)
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@(r.Contenet.Length > 20 ? r.Contenet.Substring(0, 20) + "..." : r.Contenet)</p>
+                                          <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 @switch (r.Status)
                                                 {
@@ -83,7 +83,7 @@
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content"> @(r.Contenet.Length > 20 ? r.Contenet.Substring(0, 20) + "..." : r.Contenet)</p>
+                                            <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 @if (r.User.Name != null)
                                                 {

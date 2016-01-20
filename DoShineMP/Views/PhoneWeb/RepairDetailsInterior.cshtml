@@ -385,7 +385,7 @@
                         success: function (res) {
                             images.localId = res.localIds;
                             if (images.localId.length == 0) {
-                                alert('请先使用 chooseImage 接口选择图片');
+                                //alert('请先使用 chooseImage 接口选择图片');
                                 return;
                             }
 
@@ -405,7 +405,7 @@
                                             } else {
                                                 $("#serviceid").val($("#serviceid").val() + ',' + res.serverId);
                                             }
-                                            //alert(imglength);
+                                            ////alert(imglength);
                                             htmlstr = ' <img src="' + images.localId[i] + '" class="imgyulan"  />';
                                             i++;
                                             $('#choose-photo').prepend(htmlstr);
@@ -432,7 +432,7 @@
 
         $(document).on('click', '.imgyulan', function () {
             var imgurl = $(this).attr('src');
-            //alert(imgurl)
+            ////alert(imgurl)
             wx.previewImage({
                 current: imgurl,
                 urls: [
@@ -468,12 +468,12 @@
 
                     return;
                 }
-                alert(windowlength);
+                ////alert(windowlength);
                 $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
                             windowlength = window.history.length;
-                            alert(windowlength);
+                            ////alert(windowlength);
                             if (windowlength == 1) {
                                 window.location.reload();
                             } else {
@@ -494,7 +494,7 @@
                     if (status === 'success') {
                         if (data.msg != 'N') {
                             windowlength = window.history.length;
-                            alert(windowlength);
+                            //alert(windowlength);
                             if (windowlength == 1) {
                                 window.location.reload();
                             } else {
