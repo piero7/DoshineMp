@@ -17,7 +17,7 @@ namespace DoShineMP.Helper
         public static Record GetRecord(string openid)
         {
             var db = new ModelContext();
-            var ret = db.RecordSet.OrderByDescending(item => item.Address).FirstOrDefault(item => item.Type == RecordType.MpRepair && item.Openid == openid);
+            var ret = db.RecordSet.OrderByDescending(item => item.CreateDate).FirstOrDefault(item => item.Type == RecordType.MpRepair && item.Openid == openid);
 
             if (ret == null)
             {
