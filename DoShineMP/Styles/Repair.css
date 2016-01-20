@@ -150,15 +150,16 @@ body {
 }
 
     .new-keep ul {
+        padding:6px 6px;
     }
 
         .new-keep ul li {
             padding: 15px 12px 5px;
-            border: 1px solid #e3e1e1;
+            border: 1px solid #ccc;
             background-color: white;
             transition: all 0.3s linear 0s;
             -webkit-transition: all 0.3s linear 0s;
-            box-shadow: 5px 3px 5px 0px #ddd;
+            box-shadow: 2px 2px 5px 0px #AFAFAF;
             margin-bottom: 10px;
         }
             /*.new-keep ul li:hover{
@@ -679,12 +680,11 @@ select {
 
     .service li {
         float: left;
-        padding: 5px 10px;
-        background-color: white;
-        color: #333;
-        border: 1px solid #1ec462;
-        border-radius: 15px;
-        margin-right: 6px;
+        padding:8px 12px;
+        background-color: #DBF3DC;
+        color: #16B452;
+        border-radius: 6px;
+        margin-right: 8px;
         margin-bottom:7px;
     }
 

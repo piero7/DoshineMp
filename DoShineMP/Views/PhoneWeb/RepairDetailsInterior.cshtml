@@ -498,7 +498,7 @@
                             //alert(windowlength);
                             if (windowlength == 1) {
                                 window.localStorage['IndexLi'] = 2;
-                                window.location.replace(@Url.Action("RepairInterior","PhoneWeb")+'?IndexLi=2');
+                                window.location.replace('@Url.Action("RepairInterior","PhoneWeb")?IndexLi=2');
                             } else {
                                 window.localStorage['IndexLi'] = new Number(window.localStorage['IndexLi']) + 1;
                                 window.history.go(-1);
@@ -509,13 +509,6 @@
             }
 
         })
-
-
-
-        //提交
-        //$(document).on('click', '#applybtn', function () {
-
-        //})
 
 
 

@@ -73,6 +73,7 @@ a
 }
 	.tabBox .bd ul{
     background-color:#ececec;
+    padding:6px 6px;
 }
 	/*.tabBox .bd li{
 	height:33px;
@@ -147,7 +148,7 @@ body{
     background-color: white;
     transition: all 0.3s linear 0s;
     -webkit-transition: all 0.3s linear 0s;
-    box-shadow: 5px 3px 5px 0px #ddd;
+    box-shadow: 2px 2px 5px 0px #AFAFAF;
     margin-bottom: 10px;
    
 }

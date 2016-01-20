@@ -33,21 +33,21 @@
                                             @switch (r.Status)
                                             {
                                                 case DoShineMP.Models.RepairStatus.Apply:
-                                                    <ins class="check check1 pull-left">已提交</ins>;
+                                                    <ins class="check check1 pull-right">已提交</ins>;
                                                     break;
                                                 case DoShineMP.Models.RepairStatus.Accept:
-                                                    <ins class="check check2 pull-left">已受理</ins>;
+                                                    <ins class="check check2 pull-right">已受理</ins>;
                                                     break;
                                                 case DoShineMP.Models.RepairStatus.FinishHandle:
-                                                    <ins class="check check3 pull-left">待评价</ins>;
+                                                    <ins class="check check3 pull-right">待评价</ins>;
                                                     break;
                                 }
 
-                                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                            @if (r.User.Name != null)
+                                            <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                            @*@if (r.User.Name != null)
                                 {
-                                                <span class="time-l time pull-right">@r.User.Name</span>
-                                            }
+                                                <span class="time-l time pull-left">@r.User.Name</span>
+                                            }*@
                                     </div>
                                     </div>
                                     <div class="pull-right w2">
@@ -64,21 +64,21 @@
                                 @switch (r.Status)
                                 {
                                     case DoShineMP.Models.RepairStatus.Apply:
-                                        <ins class="check check1 pull-left">已提交</ins>;
+                                        <ins class="check check1 pull-right">已提交</ins>;
                                         break;
                                     case DoShineMP.Models.RepairStatus.Accept:
-                                        <ins class="check check2 pull-left">已受理</ins>;
+                                        <ins class="check check2 pull-right">已受理</ins>;
                                         break;
                                     case DoShineMP.Models.RepairStatus.FinishHandle:
-                                        <ins class="check check3 pull-left">待评价</ins>;
+                                        <ins class="check check3 pull-right">待评价</ins>;
                                         break;
                                 }
 
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                @if (r.User.Name != null)
+                                <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                @*@if (r.User.Name != null)
                                         {
-                                    <span class="time-l time pull-right">@r.User.Name</span>
-                                    }
+                                    <span class="time-l time pull-left">@r.User.Name</span>
+                                    }*@
                             </div>
                                     </div>
                                     <div class="pull-right w2">
@@ -116,8 +116,8 @@
                                     <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                      <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                         <div class="content-title-b">
-                                            <ins class="check check4 pull-left">已完成</ins>
-                                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                            <ins class="check check4 pull-right">已完成</ins>
+                                            <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
                                             @*@if (r.User.Name != null)
                                                 {
                                                     <span class="time-l time pull-right">@r.User.Name</span>
@@ -135,12 +135,12 @@
                                     <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                      <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                         <div class="content-title-b">
-                                            <ins class="check check4 pull-left">已完成</ins>
-                                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                            @if (r.User.Name != null)
+                                            <ins class="check check4 pull-right">已完成</ins>
+                                            <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                            @*@if (r.User.Name != null)
                                             {
                                                 <span class="time-l time pull-right">@r.User.Name</span>
-                                            }
+                                            }*@
                                         </div>
                                     </div>
                                     <div class="pull-right w2">
@@ -176,8 +176,8 @@
                                     <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                      <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                         <div class="content-title-b">
-                                            <ins class="check check5 pull-left">已取消</ins>
-                                            <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                            <ins class="check check5 pull-right">已取消</ins>
+                                            <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
                                             @*@if (r.User.Name != null)
                                             {
                                                 <span class="time-l time pull-right">@r.User.Name</span>
@@ -195,8 +195,8 @@
                                     <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
                                      <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                             <div class="content-title-b">
-                                <ins class="check check5 pull-left">已取消</ins>
-                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                <ins class="check check5 pull-right">已取消</ins>
+                                <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
                                             @*@if (r.User.Name != null)
                                 {
                                     <span class="time-l time pull-right">@r.User.Name</span>

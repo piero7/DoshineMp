@@ -2,39 +2,127 @@
     font-family:'Microsoft YaHei','微软雅黑';
 }
 .fadein-box{
+    display:none;
     width:100%;
     height:100%;
     position:fixed;
     top:0;
     left:0;
-    background-color:rgba(0,0,0,.6);
+    background-color:rgba(0,0,0,.8);
      box-sizing:border-box;
     -webkit-box-sizing:border-box;
-    padding:60px 35px;
+    /*padding:0px 85px;*/
 }
 .box-in,.box-in ul{
     height:100%;
 }
 .box-in ul li{
-    vertical-align:middle;
-    padding-top:5%
-    text-align:center;
-    color:#000;
+    width:205px;
+    padding:10px 0px 10px 65px;
+    color:#fff;
     font-size:18px;
-    background-color:white;
-    border-bottom:1px solid #ddd;
+    margin:10% auto 10%;
+    opacity:0.6;
+    animation-timing-function:ease-out;
+    -webkit-animation-timing-function:ease-out;
+    background:url(../Images/Gps1.png) no-repeat;
 }
-.box-in ul li:nth-child(1){
-    animation-delay:0.4s;
-}.box-in ul li:nth-child(2){
-    animation-delay:0.8s;
+.box-in ul li:nth-child(2){
+    background-image:url(../Images/Gps2.png);
 }
 .box-in ul li:nth-child(3){
-    animation-delay:1.2s;
+    background-image:url(../Images/Gps3.png);
 }
 .box-in ul li:nth-child(4){
-    animation-delay:1.6s;
+    background-image:url(../Images/Gps4.png);
+}
+.box-in ul li:nth-child(5){
+    background-image:url(../Images/Gps1.png);
+}
+
+.box-in ul li:hover{
+    opacity:0.9;
+}
+.box-in ul li:nth-child(1){
+    animation-delay:0.1s;
+    -webkit-animation-delay:0.1s;
+}.box-in ul li:nth-child(2){
+    animation-delay:0.2s;
+    -webkit-animation-delay:0.2s;
+}
+.box-in ul li:nth-child(3){
+    animation-delay:0.3s;
+    -webkit-animation-delay:0.3s;
+}
+.box-in ul li:nth-child(4){
+    animation-delay:0.4s;
+    -webkitanimation-delay:0.4s;
+}
+.box-in ul li:nth-child(5){
+    animation-delay:0.5s;
+    -webkitanimation-delay:0.5s;
 }
 .box-in ul li:hover{
-    background-colo
+    color:green;
+}
+@-webkit-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0,600%,0);
+		transform: translate3d(0,600%,0)
+	}
+	60%{
+        -webkit-transform: translate3d(0,-100%,0);
+		transform: translate3d(0,-100%,0)
+    }
+     70%{
+         -webkit-transform: translate3d(0,-80%,0);
+		transform: translate3d(0,-80%,0)
+    }
+    75%{
+         -webkit-transform: translate3d(0,-70%,0);
+		transform: translate3d(0,-70%,0)
+    }
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0,600%,0);
+		transform: translate3d(0,600%,0)
+	}
+    60%{
+        -webkit-transform: translate3d(0,-100%,0);
+		transform: translate3d(0,-100%,0)
+    }
+    70%{
+         -webkit-transform: translate3d(0,-80%,0);
+		transform: translate3d(0,-80%,0)
+    }
+    75%{
+         -webkit-transform: translate3d(0,-70%,0);
+		transform: translate3d(0,-70%,0)
+    }
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none
+	}
+}
+
+.fadeInUp {
+	-webkit-animation-name: fadeInUp;
+	animation-name: fadeInUp
+}
+
+.animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both
 }

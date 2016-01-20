@@ -5,6 +5,7 @@
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/Repair.css" rel="stylesheet" />
+    <link href="~/Styles/ceshi.css" rel="stylesheet" />
 }
 
 <div class="keep">
@@ -18,12 +19,16 @@
                         <div class="locian">
                             @*<span><img src="~/Images/location.png" /></span>*@
                         </div>
-                        <select class="housing" id="housing">
-                            @if (ViewBag.Village != null)
-                {
-                                <option value="@ViewBag.Village.VillageId">@ViewBag.Village.Name</option>
-                            }
-                        </select>
+                        @if (ViewBag.Village != null)
+                        {
+                            <input type="hidden" value="@ViewBag.Village.VillageId" id="housing" />
+                            <input class="housing" readonly="readonly" value="@ViewBag.Village.Name" />
+                        }
+                        else
+                        {
+                            <input type="hidden" value="" id="housing" />
+                            <input class="housing" readonly="readonly" placeholder="请选择小区" />
+                        }
                     </div>
                     <div class="page-name"><input type="text" placeholder="请输入姓名" id="name" value="@ViewBag.Recordid.Name" /></div>
                     <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" /></div>
@@ -83,16 +88,36 @@
                 <textarea placeholder="请描述您要报修的内容..." id="keep"></textarea>
                 @*<em class="br"></em>*@
             </div>
+
+
             <div class="col-xs-12 operate " id="imgdiv">
                 <img src="~/Images/tianjia2x.png" class="addimages" id="add-phoneimg1" />
             </div>
-            <p style="padding-left:15px; padding-bottom:10px; color:red;font-size:16px;" id="imgtext"></p>
+            <p style="padding-left:15px; padding-bottom:10px; color:red;" id="imgtext"></p>
             <div class="col-xs-12 operate " id="imgdiv">
                 <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交">
             </div>
         </div>
     </div>
 </div>
+
+@* 地址选择 HTML *@
+<div class="fadein-box">
+    <div class="box-in">
+        <ul id="locian">
+            @if (ViewBag.RepairAdress != null)
+            {
+                foreach (DoShineMP.Models.Village aa in ViewBag.RepairAdress as List<DoShineMP.Models.Village>)
+                {
+                    <li class="fadeInUp animated" Villageid="@aa.VillageId"><p>@aa.Name</p></li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+
 <input type="hidden" value="@ViewBag.openid" id="openid" />
 <input type="hidden" value="" id="serviceid" />
 <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
@@ -105,6 +130,18 @@
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/Commons.js"></script>
+    <script type="text/javascript">
+
+        $('.housing').click(function () {
+            $('.fadein-box').show();
+        })
+        $('.fadein-box li').click(function () {
+            $('.housing').val($(this).text());
+            $('#housing').val($(this).attr('Villageid'));
+            $('.fadein-box ').hide()
+        })
+
+    </script>
     <script type="text/javascript">
         var token;
         var imglength = 9;
@@ -260,8 +297,10 @@
 
             var ortext = $('#ortext').val() + keeptext; //快捷语言和其他合并
 
-
-            if (ortext == '' || ortext == null) {
+            if (housing == '' || housing == null) {
+                $('#imgtext').text('请选择小区！');
+                $('#btn').attr('disabled', false);
+            } else if (ortext == '' || ortext == null) {
                 $('#imgtext').text('报修内容不得为空！');
                 $('#btn').attr('disabled', false);
                 return false;
@@ -288,6 +327,8 @@
             console.log(ortext);
             //$('#btn').attr('disabled', false);
 
+
+            //alert(housing)
             $.post('@Url.Action("RepairJson","PhoneWeb")', { code: code, content: ortext, mediaid: serviceid, address: "", phone: phone, villageid: housing, name: name, recordid: RecordId }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg != 'N') {
@@ -381,23 +422,27 @@
         $('.service li').click(function () {
             if ($(this).hasClass('current')) {
                 $(this).removeClass('current');
-                if ($(this).text() == '其他') {
-                    return false;
-                }
-                var str = $('#ortext').val().replace($(this).text() + '\r\n', '')
-                $('#ortext').val(str);
                 if ($('.service li').find('.current').length == 0) {
                     $('#keepnei').slideUp();
                 }
+                if ($(this).text() == '其他') {
+                    return false;
+                }
+
+                var str = $('#ortext').val().replace($(this).text() + '\r\n', '')
+                $('#ortext').val(str);
+                //console.log( $('#ortext').val())
             } else {
                 $(this).addClass('current');
+                $('#keepnei').slideDown();
                 if ($(this).text() == '其他') {
                     return false;
                 }
                 $('#ortext').val($(this).text() + '\r\n' + $('#ortext').val());
-              
-                $('#keepnei').slideDown();
+                //console.log($('#ortext').val())
             }
         })
+
+
     </script>
 }

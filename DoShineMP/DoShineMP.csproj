@@ -404,6 +404,10 @@
     <Content Include="Images\dizhi.png" />
     <Content Include="Images\error.png" />
     <Content Include="Images\gonying.png" />
+    <Content Include="Images\Gps1.png" />
+    <Content Include="Images\Gps2.png" />
+    <Content Include="Images\Gps3.png" />
+    <Content Include="Images\Gps4.png" />
     <Content Include="Images\grade.png" />
     <Content Include="Images\grade3x.png" />
     <Content Include="Images\icodepic.PNG" />

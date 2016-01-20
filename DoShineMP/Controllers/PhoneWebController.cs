@@ -176,6 +176,7 @@ namespace DoShineMP.Controllers
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
                             ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
                             ViewBag.OveruseRepair = repairHelper.GetOveruseRepair();
+                            ViewBag.RepairAdress = repairHelper.GetAllVillage();
 
                         }
                         else
@@ -197,9 +198,12 @@ namespace DoShineMP.Controllers
             {
                 throw;
             }
-            //ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
-            //ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
             //ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.Recordid = RecordHelper.GetRecord("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
+            //ViewBag.OveruseRepair = repairHelper.GetOveruseRepair();
+            //ViewBag.RepairAdress = repairHelper.GetAllVillage();
             ViewBag.Title = "自助报修";
             return View();
         }
