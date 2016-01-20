@@ -32,9 +32,9 @@
                                     @if (r.ImageFiles.Count == 0)
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                            <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
-                                                <ins class="check check2 pull-left">已受理</ins>
+                                                <ins class="check check1 pull-left">已提交</ins>
                                                 <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
                                                 @if (r.User.Name != null)
                                                 {
@@ -51,21 +51,21 @@
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                           <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
+                                            <div class="content-title-b">
+                                                <ins class="check check1 pull-left">已提交</ins>
+                                                <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                                @if (r.User.Name != null)
+                                                {
+                                                    <span class="time-l time pull-right">@r.User.Name</span>
+                                                }
+                                            </div>
                                         </div>
                                         <div class="pull-right w2">
                                             <div class="img">
                                                 <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
                                             </div>
                                         </div>
-                                    }
-                                </div>
-                                <div class="content-title-b">
-                                    <ins class="check check1 pull-left">已提交</ins>
-                                    <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                    @if (r.User.Name != null)
-                                    {
-                                        <span class="time-l time pull-right">@r.User.Name</span>
                                     }
                                 </div>
                             </li>
@@ -94,7 +94,7 @@
                                     @if (r.ImageFiles.Count == 0)
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                           <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 <ins class="check check2 pull-left">已受理</ins>
                                                 <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
@@ -113,7 +113,7 @@
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                           <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 <ins class="check check2 pull-left">已受理</ins>
                                                 <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
@@ -159,9 +159,9 @@
                                         @if (r.ImageFiles.Count == 0)
                                         {
                                             <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                                <p class="wr-content">@r.Contenet</p>
+                                               <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                                 <div class="content-title-b">
-                                                    <ins class="check check2 pull-left">已受理</ins>
+                                                    <ins class="check check3 pull-left">待确认</ins>
                                                     <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
                                                     @if (r.User.Name != null)
                                                     {
@@ -178,7 +178,7 @@
                                         else
                                         {
                                             <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                                <p class="wr-content">@r.Contenet</p>
+                                               <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                                 <div class="content-title-b">
                                                     <ins class="check check3 pull-left">待确认</ins>
                                                     <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
@@ -211,9 +211,9 @@
                                         @if (r.ImageFiles.Count == 0)
                                         {
                                             <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                                <p class="wr-content">@r.Contenet</p>
+                                               <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                                 <div class="content-title-b">
-                                                    <ins class="check check2 pull-left">已受理</ins>
+                                                    <ins class="check check4 pull-left">已完成</ins>
                                                     <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
                                                     @if (r.User.Name != null)
                                                     {
@@ -230,7 +230,7 @@
                                         else
                                         {
                                             <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                                <p class="wr-content">@r.Contenet</p>
+                                               <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                                 <div class="content-title-b">
                                                     <ins class="check check4 pull-left">已完成</ins>
                                                     <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
@@ -275,9 +275,9 @@
                                     @if (r.ImageFiles.Count == 0)
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                           <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
-                                                <ins class="check check2 pull-left">已受理</ins>
+                                                <ins class="check check5 pull-left">已取消</ins>
                                                 <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>
                                                 @if (r.User.Name != null)
                                                 {
@@ -294,7 +294,7 @@
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content">@r.Contenet</p>
+                                           <p class="wr-content">@(r.Contenet.Replace("<br />","").Length>25?r.Contenet.Replace("<br />","").Substring(0,25)+"...": r.Contenet.Replace("<br />", ""))</p>
                                             <div class="content-title-b">
                                                 <ins class="check check5 pull-left">已取消</ins>
                                                 <span class="time pull-right">@r.CreateDate.ToString().Split(' ')[0]</span>

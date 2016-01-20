@@ -48,8 +48,6 @@ namespace DoShineMP.Controllers
                 {
                     if (wuser.GetUserInfo(this.openid).UserInfo != null)
                     {
-                        //Response.Write("<script language='javascript'>window.location.replace('" + WechatHelper.BackForCode("PhoneWeb", "MyMessage", "") + "')</script>");
-                        //Server.Transfer(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""), true);
                         Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MyMessage", ""));
                     }
                     else
@@ -332,10 +330,6 @@ namespace DoShineMP.Controllers
             ViewBag.RepairList20 = list20.Count() == 0 ? null : list20;
             ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
             ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
-
-
-
-
             ViewBag.Title = "报修受理";
             return View();
         }
@@ -818,6 +812,7 @@ namespace DoShineMP.Controllers
         {
             try
             {
+                content = content.Replace("\n", "<br />");
                 var user = wuser.GetUserInfo(code);
                 //user.UserInfo.Address = address;
                 //wuser.EditUserInfo(code, user.UserInfo.Name, user.UserInfo.PhoneNumber, address);
