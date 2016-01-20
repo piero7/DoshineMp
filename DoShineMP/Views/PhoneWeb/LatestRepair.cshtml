@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "最新报修";
+    ViewBag.Title = "最近报修";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
@@ -10,27 +10,24 @@
 
 <div class="keep">
     <div class="keep-in">
-            @* 新添加 模块 *@
-            <div class="demonstrate">
-                @if (ViewBag.Village != null)
-                {
-                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
-                     <p><span class="locian">上海滩花园</span></p>
-                }
-                else
-                {
-                    <img src="~/Images/xiaoqu.png" />
+        @* 新添加 模块 *@
+        <div class="demonstrate">
+            @if (ViewBag.Village != null)
+            {
+                <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                    <p><span class="locian">@ViewBag.Village.Name</span></p>
+            }
+            else
+            {
+                <img src="~/Images/xiaoqu.png" />
                     <span class="locian"></span>
-                }
-            </div>
+            }
+        </div>
         @*  id MyRepair *@
-            <div class="my-arranty" id="">
-                <a href="javascript:;" style="border-right:1px solid #e3e3e3;">我要保修</a>
-                <a href="javascript:;" >历史保修</a>
-            </div>
-           
-        
-
+        <div class="my-arranty" id="">
+            <a href="@Url.Action("Repair","PhoneWeb")" style="border-right:1px solid #e3e3e3;">我要报修</a>
+            <a href="#" id="MyRepair">历史报修</a>
+        </div>
 
         @if (ViewBag.RepairList != null)
         {
@@ -79,14 +76,14 @@
                                         </div>
                                         <div class="pull-right w2">
                                             <div class="img">
-                                                <img src="~/Images/logo.png" class="imgyulan" />
+                                                <img src="~/Images/baox.jpg" class="imgyulan" />
                                             </div>
                                         </div>
                                     }
                                     else
                                     {
                                         <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                            <p class="wr-content"> @(r.Contenet.Length>20?r.Contenet.Substring(0,20)+"...":r.Contenet)</p>
+                                            <p class="wr-content"> @(r.Contenet.Length > 20 ? r.Contenet.Substring(0, 20) + "..." : r.Contenet)</p>
                                             <div class="content-title-b">
                                                 @if (r.User.Name != null)
                                                 {
@@ -111,7 +108,7 @@
                                                         break;
                                                 }
                                                 <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                               
+
                                             </div>
                                         </div>
                                         <div class="pull-right w2">
@@ -132,19 +129,19 @@
         <div class="footer">
             <p class="serve"><a href="javascript:;">桑田智能工程技术(上海)有限公司</a></p>
             <p class="service"><a href="tel:021-66081296;">客服电话：021-66081296</a></p>
+        </div>
     </div>
-</div>
-<input type="hidden" value="@ViewBag.openid" id="openid" />
-<input type="hidden" value="" id="serviceid" />
-<input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
-<input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
+    <input type="hidden" value="@ViewBag.openid" id="openid" />
+    <input type="hidden" value="" id="serviceid" />
+    <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
+    <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
 
 
 
-@section scripts{
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="~/Scripts/Commons.js"></script>
-    <script type="text/javascript">
+    @section scripts{
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script src="~/Scripts/Commons.js"></script>
+        <script type="text/javascript">
         var token;
         var imglength = 9;
         var images = {
@@ -301,8 +298,8 @@
         })
 
 
-        
-       
 
-    </script>
-}
+
+
+        </script>
+    }

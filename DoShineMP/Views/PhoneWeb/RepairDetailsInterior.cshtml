@@ -258,7 +258,7 @@
                     <input type="text" name="appDateTime" id="appDateTime" placeholder="点击选择上门处理时间" onclick="Ch()" />
                 </div>
                 <div class="col-xs-12 operate  " style="margin-bottom:3em;">
-                    <input type="button" class="commit pull-right" id="applybtn" tag="1" value="受理">
+                    <input type="button" class="commit pull-right applybtn" id="applybtn" tag="1" value="受理" >
                     @*取消按钮*@
                     <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
                 </div>
@@ -268,7 +268,7 @@
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate ">
-                <input type="button" class="commit pull-right" id="applybtn" tag="2" value="确认完成">
+                <input type="button" class="commit pull-right applybtn" id="applybtn" tag="2" value="确认完成" >
                 @*取消按钮*@
                 <input type="button" class="commit pull-right" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
             </div>
@@ -378,7 +378,8 @@
                     localId: [],
                     serverId: []
                 };
-                document.querySelector('#add-photo').onclick = function () {
+
+                $('#add-photo').click(function () {
                     wx.chooseImage({
                         count: imglength,
                         success: function (res) {
@@ -424,7 +425,7 @@
 
                         }
                     });
-                };
+                })
 
             });
         })
@@ -448,8 +449,7 @@
             $(".rating-kv").rating();
         });
 
-        //提交
-        $(document).on('click', '#applybtn', function () {
+        $('.applybtn').click(function () {
             $(this).attr('disabled', true);
             var repaidID = $('#repairID').val();
             var exceptDate = $('#appDateTime').val();
@@ -468,10 +468,12 @@
 
                     return;
                 }
+                alert(windowlength);
                 $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
                             windowlength = window.history.length;
+                            alert(windowlength);
                             if (windowlength == 1) {
                                 window.location.reload();
                             } else {
@@ -492,6 +494,7 @@
                     if (status === 'success') {
                         if (data.msg != 'N') {
                             windowlength = window.history.length;
+                            alert(windowlength);
                             if (windowlength == 1) {
                                 window.location.reload();
                             } else {
@@ -502,7 +505,15 @@
                     }
                 })
             }
+
         })
+
+
+
+        //提交
+        //$(document).on('click', '#applybtn', function () {
+           
+        //})
 
 
 
@@ -512,9 +523,6 @@
             var r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]); return null;
         }
-
-
-
     </script>
 
 
@@ -559,7 +567,6 @@
 
         ///取消
         $('#applybtn1').click(function () {
-
             var reasontext = $('#reasontext').val();
             if (reasontext == null || reasontext == '') {
                 $('#querentext').text('请填写原因!')
@@ -572,6 +579,7 @@
                 }
             })
         })
+
 
         $('#modalquxiao').click(function () {
             $('#querentext').empty();

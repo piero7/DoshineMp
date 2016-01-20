@@ -147,7 +147,7 @@ body{
     background-color: white;
     transition: all 0.3s linear 0s;
     -webkit-transition: all 0.3s linear 0s;
-    box-shadow: -5px -2px 5px 0px #eee inset;
+    box-shadow: 5px 3px 5px 0px #ddd;
     margin-bottom: 10px;
    
 }

@@ -492,7 +492,7 @@ namespace DoShineMP.Helper
             var ret = new Dictionary<string, List<string>>();
 
             var db = new ModelContext();
-            var fList = db.OveruseRepairSet.Where(item => item.Level != 1);
+            var fList =  db.OveruseRepairSet.Where(item => item.Level != 1).ToList();
 
             foreach (var item in fList)
             {
