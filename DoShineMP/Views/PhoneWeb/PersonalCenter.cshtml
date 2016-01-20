@@ -166,16 +166,14 @@ else
             var comPhone = $('#comPhone').val();
             var email = '';
             var code = $('#openid').val();
-            var url = '@Url.Action("ReginPartnerJson", "PhoneWeb")';
+           
             if (comName == null && realName == null && phoneNumber && null) {
                 alert('没有数据修改！');
                 return false;
             }
-            if ($.getUrlParam('type') == 'update') {
-                url = '@Url.Action("EditPartnerInfoJson", "PhoneWeb")';
-            }
+          
 
-            $.post(url, { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone, email: email }, function (data, status) {
+            $.post('@Url.Action("EditPartnerInfoJson", "PhoneWeb")', { code: code, comName: comName, type: type, realName: realName, Address: comAddress, comPhone: comPhone, email: email }, function (data, status) {
                 if (status == 'success') {
                     if (data.msg == 'Y') {
                         //alert('提交成功!');

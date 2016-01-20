@@ -84,7 +84,8 @@
                 stepH = s.stepHour,
                 stepM = s.stepMinute,
                 stepS = s.stepSecond,
-                mind = s.minDate || new Date(s.startYear, 0, 1),
+                //mind = s.minDate || new Date(s.startYear, 0, 1),
+                mind = new Date();
                 maxd = s.maxDate || new Date(s.endYear, 11, 31, 23, 59, 59);
                 
             inst.settings = s;

@@ -419,6 +419,7 @@
     <Content Include="Images\location.png" />
     <Content Include="Images\location3x.png" />
     <Content Include="Images\locationcire.png" />
+    <Content Include="Images\locationg.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo22.png" />
     <Content Include="Images\more.png" />

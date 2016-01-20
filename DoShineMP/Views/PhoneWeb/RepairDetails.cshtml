@@ -6,6 +6,18 @@
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/RepairDetails.css" rel="stylesheet" />
     <link href="~/Styles/star-rating.css" rel="stylesheet" />
+<style type="text/css">
+    .demos input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+        color: #ccc;
+    }
+
+    .demos input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+        color: #ccc;
+    }
+</style>
+
 }
 <div class="keep-list">
     <div class="keep-list-in">
@@ -15,7 +27,7 @@
                     <em>@ViewBag.RepairDetail.CreateDate</em>
                 </div>*@
             <div class="top-content">
-                <p>@ViewBag.RepairDetail.Contenet</p>
+                @(new MvcHtmlString(ViewBag.RepairDetail.Contenet))
                 @if (ViewBag.RepairDetail.ImageFiles != null)
                 {
                 <div class="img-content">
@@ -369,8 +381,10 @@
             $.post('@Url.Action("RepairsponJson", "PhoneWeb")', { repairID: repairID, response: getplay, score: score }, function (data, status) {
                 if (status === 'success') {
                     if (data.msg == 'Y') {
-                        window.localStorage['IndexLi1'] = new Number(window.localStorage['IndexLi1']) + 1;
-                        window.history.go(-1);
+                        window.location.replace('@Url.Action("RepairHistory","PhoneWeb")?IndexLi1=1');
+
+                        //window.localStorage['IndexLi1'] = new Number(window.localStorage['IndexLi1']) + 1;
+                        //window.history.go(-1);
                     }
                 }
             })
