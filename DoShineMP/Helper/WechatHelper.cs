@@ -598,6 +598,17 @@ namespace DoShineMP.Helper
             WechatHelper.GetResponse(send, url);
         }
 
+        /// <summary>
+        /// 发送模板消息
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="templateId"></param>
+        /// <param name="dataStr"></param>
+        public static void SendModelMessage(string openid, string templateId, string dataStr)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 
     /// <summary>
