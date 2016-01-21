@@ -205,7 +205,7 @@ namespace DoShineMP.Helper
             db.SaveChanges();
 
             //发送模板消息
-            string content = rep.Contenet.Replace("<br />", "").Length > 7 ? rep.Contenet.Replace("<br />", "").Substring(0, 6) + "..." : rep.Contenet.Replace("<br />", "");
+            string content = rep.Contenet.Replace("<br />", ",").Length > 7 ? rep.Contenet.Replace("<br />", ",").Substring(0, 6) + "..." : rep.Contenet.Replace("<br />", ",");
             var wuser = WechatHelper.CheckWechatUser(rep.UserId ?? 0);
             if (wuser != null && !string.IsNullOrEmpty(wuser.OpenId))
             {

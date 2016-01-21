@@ -174,6 +174,10 @@ namespace DoShineMP.Controllers
                             ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
                             ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
+                            if (ViewBag.HasUnFinishedRepair != 0)
+                            {
+                                Response.Redirect(Url.Action("RepairDetails", "PhoneWeb") + "?repairid="+ViewBag.HasUnFinishedRepair);
+                            }
                             ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
                             ViewBag.OveruseRepair = repairHelper.GetOveruseRepair();
                             ViewBag.RepairAdress = repairHelper.GetAllVillage();
@@ -228,7 +232,8 @@ namespace DoShineMP.Controllers
                             ViewBag.user = user;
                             ViewBag.openid = this.openid;
                             //历史报修记录
-                            ViewBag.RepairList = repairHelper.GetHistoryRepair(this.openid);
+                            var rlist = repairHelper.GetHistoryRepair(this.openid);
+                            ViewBag.RepairList = rlist.Count() == 0 ? null : rlist;
                             ViewBag.Recordid = RecordHelper.GetRecord(this.openid);
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
                             ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
@@ -255,7 +260,9 @@ namespace DoShineMP.Controllers
             //ViewBag.user = wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             //ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
             //ViewBag.RepairList = repairHelper.GetHistoryRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
-
+            //ViewBag.Recordid = RecordHelper.GetRecord("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
+            //ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
             return View();
         }
 
@@ -282,7 +289,7 @@ namespace DoShineMP.Controllers
             ViewBag.RepairListAll = ListAll.Count() == 0 ? null : ListAll.OrderByDescending(item => item.CreateDate).ToList();
             ViewBag.RepairList99 = list99.Count() == 0 ? null : list99;
             ViewBag.RepairList_1 = list_1.Count() == 0 ? null : list_1;
-            ViewBag.Title = "报修历史";
+            ViewBag.Title = "历史纪录";
             return View();
         }
 
@@ -393,31 +400,31 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult MessagePartent(string code)
         {
-            url.urltype = "MessagePartent";
-            if (!string.IsNullOrEmpty(code))
-            {
-                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                {
-                    var uuu = wuser.GetUserInfo(this.openid);
-                    if (uuu.UserInfo != null)
-                    {
-                        ViewBag.user = wuser.GetUserInfo(this.openid);
-                        ViewBag.openid = this.openid;
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MessagePartent", ""));
-                }
-            }
-            else
-            {
-                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MessagePartent", ""));
-            }
+            //url.urltype = "MessagePartent";
+            //if (!string.IsNullOrEmpty(code))
+            //{
+            //    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //    {
+            //        var uuu = wuser.GetUserInfo(this.openid);
+            //        if (uuu.UserInfo != null)
+            //        {
+            //            ViewBag.user = wuser.GetUserInfo(this.openid);
+            //            ViewBag.openid = this.openid;
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MessagePartent", ""));
+            //    }
+            //}
+            //else
+            //{
+            //    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MessagePartent", ""));
+            //}
             return View();
         }
 

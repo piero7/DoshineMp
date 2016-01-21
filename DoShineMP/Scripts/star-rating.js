@@ -344,7 +344,7 @@
         rtl: false,
         size: 'md',
         showClear: false,
-        showCaption: true,
+        showCaption: false,
         defaultCaption: '{rating} Stars',
         starCaptions: {
             0:'请点击评星',

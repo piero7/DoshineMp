@@ -148,7 +148,8 @@
                 });
                 $(".imgBtn").click(function () {
                     if (isShowImg == false) {
-                        $(this).css('background-position', '0 -40px')
+                        //$(this).css('background-position', '0 -40px')
+                        $(this).css("background-image", " url('../../doshinemp/Images/40x40/green.png')")
                         console.log(1)
                         isShowImg = true;
                         $(this).parent().siblings().animate({ 'height': "260px" }, 300);
@@ -169,7 +170,7 @@
                         console.log(2)
 
                         isShowImg = false;
-                        $(this).css('background-position', '0 0');
+                        $(this).css("background-image", " url('../../doshinemp/Images/40x40/smile.png')")
 
                         $(this).parent().siblings().animate({ 'height': "0px" }, 300);
                     }
