@@ -280,11 +280,10 @@ namespace DoShineMP.Helper
                 WechatHelper.SendModelMessage(
                     wuser.OpenId,
                     url,
-                    "qg8GNMOl1vwqU_1ks2p5UJqkrO6eg1bqak1qANGMkNU",
-                    string.Format("\"first\":{{\"value\":\"您好，您的报修申请已完成处理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"keyword3\":{{\"value\":\"{2}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"处理结果为：{3}\",\"color\":\"#173177\"}}",
-                    rep.Village.Name,
-                    content,
-                    rep.CreateDate.ToLongDateString() + " " + rep.CreateDate.ToShortTimeString(),
+                    "bI7o_XjdW10WRf1gPvmEpddVmBahfh97Irgv4u-__Gc",
+                    string.Format("\"first\":{{\"value\":\"您好，您的报修申请已完成处理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"处理结果为：{2}\",\"color\":\"#173177\"}}",
+                    rep.InnerNumber,
+                    rep.FinishHandlendDate.Value.ToLongDateString() + " " + rep.FinishHandlendDate.Value.ToShortTimeString(),
                    EnumFormat.GetDescription(rep.FinishType)));
             }
             return rep;
