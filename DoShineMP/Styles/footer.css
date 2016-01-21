@@ -1,0 +1,29 @@
+﻿/* footer*/
+.footer {
+    width: 100%;
+    padding-top: 10px;
+    background-color: #dbdbdb;
+    color: #898989;
+    font-size: 12px;
+}
+
+    .footer p {
+        width: 260px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .footer .serve {
+        padding: 10px 0 10px;
+        text-align: center;
+        background: url(../Images/logo22.png) no-repeat;
+        /*padding:10px 0px 10px 40px;*/
+    }
+
+.content-title-b {
+    font-size: 13px;
+}
+
+.footer a {
+    color: #898989;
+}

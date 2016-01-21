@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_LayoutQiye.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
@@ -304,7 +304,7 @@
             TouchSlide({
                 slideCell: "#tabBox1",
                 endFun: function (i) { //高度自适应
-                    window.localStorage['IndexLi'] = i;
+                    window.localStorage['IndexLi1'] = i;
                     IndexLi = i;
                     var bd = document.getElementById("tabBox1-bd");
                     var bdheight = bd.children[i].children[0].offsetHeight;
@@ -385,7 +385,6 @@
 
         function repairid(e) {
             var repairid = $(this).attr('tagid');
-            window.localStorage['IndexLi'] = IndexLi;
             window.history.replaceState(null, null, '?IndexLi1=' + window.localStorage['IndexLi1'] + '&openid=' + GetQueryString('openid'));
             var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
             window.location.href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + e;

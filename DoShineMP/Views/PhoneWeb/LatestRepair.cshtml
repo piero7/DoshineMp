@@ -1,11 +1,12 @@
 ﻿
 @{
     ViewBag.Title = "最近报修";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAboutRepair.cshtml";
 }
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/Repair.css" rel="stylesheet" />
+<link href="~/Styles/footer.css" rel="stylesheet" />
 }
 
 <div class="keep">
@@ -125,22 +126,21 @@
                 </div>
             </div>
         }
-        <div class="footer">
-            <p class="serve"><a href="javascript:;">桑田智能工程技术(上海)有限公司</a></p>
-            <p class="service"><a href="tel:021-66081296;">客服电话：021-66081296</a></p>
-        </div>
+
     </div>
-    <input type="hidden" value="@ViewBag.openid" id="openid" />
-    <input type="hidden" value="" id="serviceid" />
-    <input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
-    <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
+</div>
+<input type="hidden" value="@ViewBag.openid" id="openid" />
+<input type="hidden" value="" id="serviceid" />
+<input type="hidden" value="@ViewBag.HasUnFinishedRepair" id="HasUnFinishedRepair" />
+<input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
 
 
 
-    @section scripts{
-        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-        <script src="~/Scripts/Commons.js"></script>
-        <script type="text/javascript">
+
+@section scripts{
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/Commons.js"></script>
+    <script type="text/javascript">
         var token;
         var imglength = 9;
         var images = {
@@ -300,5 +300,5 @@
 
 
 
-        </script>
-    }
+    </script>
+}

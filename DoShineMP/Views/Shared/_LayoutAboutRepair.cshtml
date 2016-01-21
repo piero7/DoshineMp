@@ -1,24 +1,26 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
 </head>
 <body>
-        @RenderBody()
+
+    @RenderBody()
 
     <div class="footer">
         <p class="serve"><a href="javascript:;">桑田智能工程技术(上海)有限公司</a></p>
         <p class="service"><a href="tel:021-66081296">客服电话：021-66081296</a></p>
     </div>
 
-
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -16,7 +16,7 @@ body {
 }
 
 .list-top {
-    padding: 20px 15px 20px;
+    padding: 10px 15px 20px;
     background-color: white;
 }
 
@@ -49,8 +49,6 @@ body {
 
 .list-bottom {
     padding: 0px 15px 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
     background-color: white;
 }
 
@@ -192,8 +190,9 @@ body {
 /*back*/
 .back {
     background-color: #fff;
-    padding: 0 15px;
-    padding-bottom: 20px;
+    padding: 0 15px 20px;
+    padding-bottom: ;
+    margin:15px 0;
 }
 
 .back-title {
@@ -211,7 +210,7 @@ body {
     }
 
 .back-content {
-    padding: 20px 0;
+    padding: 10px 0;
     color: #a8a8a8;
 }
 
@@ -233,6 +232,7 @@ body {
 .keep-content-t {
     background-color: white;
     padding: 0 15px;
+    margin:15px 0px;
 }
 
 .keep-title {
@@ -306,21 +306,81 @@ body {
     text-align: center;
 }
 
-    .demos input{
-        margin：0 auto;
-        height: 100%;
-        text-align: center;
-        border: 0;
-        font-size: 16px;
-        color: #4ca329;
-        trnasition:all .8s linear 0s;
-    }
-        .demos input.animated{
+.demos input{
+    margin：0 auto;
+    height: 100%;
+    text-align: center;
+    border: 0;
+    font-size: 16px;
+    color: #4ca329;
+    trnasition:all .8s linear 0s;
+}
+        .demos .animated{
             animation:tada 1.2s ease-out 0s;
-            -webkit-animation:tada .6s ease-out 0s 2;
-            -o-animation:tada .6s ease-out 0s 2;
+            -webkit-animation:tada .6s ease-out 0s 1;
+            -o-animation:tada .6s ease-out 0s 1;
 
         }
+        .demos .animated2{
+            animation:tada2 1.2s ease-out 0s;
+            -webkit-animation:tada2 .6s ease-out 0s 1;
+            -o-animation:tada .6s ease-out 0s 1;
+
+        }
+
+        @-webkit-keyframes tada2 {
+	        0% {
+		        -webkit-transform: scale3d(1,1,1);
+		        transform: scale3d(1,1,1)
+	        }
+
+	        10%,20% {
+		        -webkit-transform: scale3d(.9,.9,.9) rotate3d(0,0,1,-3deg);
+		        transform: scale3d(.9,.9,.9) rotate3d(0,0,1,-3deg)
+	        }
+
+	        30%,50%,70%,90% {
+		        -webkit-transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,3deg);
+		        transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,3deg)
+	        }
+
+	        40%,60%,80% {
+		        -webkit-transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,-3deg);
+		        transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,-3deg)
+	        }
+
+	        100% {
+		        -webkit-transform: scale3d(1,1,1);
+		        transform: scale3d(1,1,1)
+	        }
+        }
+
+@keyframes tada2 {
+	0% {
+		-webkit-transform: scale3d(1,1,1);
+		transform: scale3d(1,1,1)
+	}
+
+	10%,20% {
+		-webkit-transform: scale3d(.9,.9,.9) rotate3d(0,0,1,-3deg);
+		transform: scale3d(.9,.9,.9) rotate3d(0,0,1,-3deg)
+	}
+
+	30%,50%,70%,90% {
+		-webkit-transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,3deg);
+		transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,3deg)
+	}
+
+	40%,60%,80% {
+		-webkit-transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,-3deg);
+		transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,-3deg)
+	}
+
+	100% {
+		-webkit-transform: scale3d(1,1,1);
+		transform: scale3d(1,1,1)
+	}
+}
 @-webkit-keyframes tada {
 	0% {
 		-webkit-transform: scale3d(1,1,1);
@@ -387,25 +447,27 @@ body {
 /* informant css*/
 .informant {
     margin: 15px 0;
-    padding: 13px 15px;
+     padding: 0px 15px 15px;
     background-color: #fff;
 }
 
     .informant p {
         margin: 0;
         line-height: 24px;
-        color: #a8a8a8;
+        color: #333;
     }
 
         .informant p a {
-            color: #5bc084;
+            color: #333;
         }
-
+       .informant p span{
+           color:#898989;
+       }
 .choose {
     width: 100%;
     background-color: white;
     padding: 0 15px 30px;
-    .list-bottom;
+    margin:15px 0;
 }
 
 .service {

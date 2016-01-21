@@ -378,9 +378,22 @@ namespace DoShineMP.Controllers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public ActionResult Messages(string code)
+        public ActionResult Messages(string openid)
         {
-            url.urltype = "Messages";
+            ViewBag.user = wuser.GetUserInfo(openid);
+            ViewBag.welcome = ConfigurationManager.AppSettings["welcome"];
+            ViewBag.Title = "在线客服";
+            return View();
+        }
+
+        /// <summary>
+        /// 在线留言父级
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult MessagePartent(string code)
+        {
+            url.urltype = "MessagePartent";
             if (!string.IsNullOrEmpty(code))
             {
                 if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
@@ -389,6 +402,7 @@ namespace DoShineMP.Controllers
                     if (uuu.UserInfo != null)
                     {
                         ViewBag.user = wuser.GetUserInfo(this.openid);
+                        ViewBag.openid = this.openid;
                     }
                     else
                     {
@@ -397,15 +411,13 @@ namespace DoShineMP.Controllers
                 }
                 else
                 {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MessagePartent", ""));
                 }
             }
             else
             {
-                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Messages", ""));
+                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "MessagePartent", ""));
             }
-            ViewBag.welcome = ConfigurationManager.AppSettings["welcome"];
-            ViewBag.Title = "在线客服";
             return View();
         }
 

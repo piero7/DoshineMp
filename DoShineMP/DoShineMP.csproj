@@ -508,6 +508,7 @@
     <Content Include="Styles\animate.min.css" />
     <Content Include="Styles\ceshi.css" />
     <Content Include="Styles\chat.css" />
+    <Content Include="Styles\footer.css" />
     <Content Include="Styles\history.css" />
     <Content Include="Styles\invite2.css" />
     <Content Include="Styles\invite.css" />
@@ -581,6 +582,8 @@
     <Content Include="Views\PhoneWeb\Supplier.cshtml" />
     <Content Include="Views\PhoneWeb\Distributor.cshtml" />
     <Content Include="Views\PhoneWeb\LatestRepair.cshtml" />
+    <Content Include="Views\PhoneWeb\MessagePartent.cshtml" />
+    <Content Include="Views\Shared\_LayoutAboutRepair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
