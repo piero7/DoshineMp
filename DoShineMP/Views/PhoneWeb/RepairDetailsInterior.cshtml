@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_LayoutAboutRepair.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
@@ -278,7 +278,7 @@
                                 <li class="current2"></li>
                                 <li style="display:none;"></li>
                                 <li style="display:none;"></li>
-                                <li class="quxiao" style="background-image:url(../../Images/quxiao.jpg)"></li>
+                                <li class="quxiao" style="background-image:url(../../doshinemp/Images/quxiao.jpg)"></li>
                             </ul>
                             <span class="line"></span>
                             <span class="line-current left-two2"></span>
@@ -462,8 +462,6 @@
 
 <input type="hidden" value="@DateTime.Now" id="NowDateTime" />
 
-
-
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/dev/js/mobiscroll.core-2.5.2.js"></script>
@@ -472,6 +470,7 @@
     <script src="~/dev/js/mobiscroll.datetime-2.5.1-zh.js"></script>
     <script src="~/dev/js/mobiscroll.android-ics-2.5.2.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
+<script src="~/Scripts/Helper.js"></script>
     <script src="~/Scripts/sucai.js"></script>
     <script type="text/javascript">
         var token;
@@ -593,18 +592,6 @@
             });
         })
 
-        $(document).on('click', '.imgyulan', function () {
-            var imgurl = $(this).attr('src');
-            ////alert(imgurl)
-            wx.previewImage({
-                current: imgurl,
-                urls: [
-                 imgurl
-                ]
-            });
-        })
-
-
         //初始化时间控件
         $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
 
@@ -644,6 +631,8 @@
                 $.post('@Url.Action("RepairDetailJson", "PhoneWeb")', { repaidID: repaidID, exceptDate: exceptDate, innderNumber: innderNumber, type: type }, function (data, status) {
                     if (status === 'success') {
                         if (data.msg != 'N') {
+
+                            window.localStorage['oldIndexLi'] = 1;
                             windowlength = window.history.length;
                             ////alert(windowlength);
                             if (windowlength == 1) {
@@ -690,9 +679,6 @@
             if (r != null) return unescape(r[2]); return null;
         }
     </script>
-
-
-
 
     <script type="text/javascript">
         $(function () {

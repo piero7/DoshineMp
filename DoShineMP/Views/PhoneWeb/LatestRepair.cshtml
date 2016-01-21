@@ -6,7 +6,7 @@
 @section styles{
     <link href="~/Styles/rest.css" rel="stylesheet" />
     <link href="~/Styles/Repair.css" rel="stylesheet" />
-<link href="~/Styles/footer.css" rel="stylesheet" />
+    <link href="~/Styles/footer.css" rel="stylesheet" />
 }
 
 <div class="keep">
@@ -15,18 +15,22 @@
         <div class="demonstrate">
             @if (ViewBag.Village != null)
             {
-                <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                <a href="@System.Configuration.ConfigurationManager.AppSettings["titleurl"]">
+                    <img src="~/Images/Vill/@ViewBag.Village.ImagePath" />
+                </a>
                 <p><span class="locian">@ViewBag.Village.Name</span></p>
             }
             else
             {
-                <img src="~/Images/xiaoqu.png" />
+                <a href="@System.Configuration.ConfigurationManager.AppSettings["titleurl"]">
+                    <img src="~/Images/xiaoqu.png" />
+                </a>
             }
         </div>
         @*  id MyRepair *@
         <div class="my-arranty" id="">
             <a href="@Url.Action("Repair","PhoneWeb")" style="border-right:1px solid #e3e3e3;">我要报修</a>
-            <a href="#" id="MyRepair">历史报修</a>
+            <a href="#" id="MyRepair">报修历史</a>
         </div>
 
         @if (ViewBag.RepairList != null)
@@ -42,7 +46,6 @@
                         @foreach (DoShineMP.Models.Repair r in ViewBag.RepairList as List<DoShineMP.Models.Repair>)
                         {
                             <li>
-
                                 <div class="content-title-t">
                                     @if (r.ImageFiles.Count == 0)
                                     {
@@ -67,6 +70,7 @@
                                                         <ins class="check check5 pull-right">已取消</ins>;
                                                         break;
                                                 }
+
                                                 <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
                                                 @if (r.User.Name != null)
                                                 {
@@ -76,7 +80,7 @@
                                         </div>
                                         <div class="pull-right w2">
                                             <div class="img">
-                                                <img src="~/Images/baox.jpg" class="imgyulan" />
+                                                <img src="http://115.159.71.54/DoShineMP/Images/baox.jpg" class="imgyulan" />
                                             </div>
                                         </div>
                                     }
@@ -220,7 +224,7 @@
                     success: function (res) {
                         images.localId = res.localIds;
                         if (images.localId.length == 0) {
-                            alert('请先使用 chooseImage 接口选择图片');
+                            //alert('请先使用 chooseImage 接口选择图片');
                             return;
                         }
 

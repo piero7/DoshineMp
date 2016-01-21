@@ -477,6 +477,7 @@
     <Content Include="Images\xiaoqu.png" />
     <Content Include="Images\xing.png" />
     <Content Include="Images\imgs.png" />
+    <Content Include="Scripts\AndroidReload.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -487,6 +488,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Commons.js" />
     <Content Include="Scripts\cookiecode.js" />
+    <Content Include="Scripts\Helper.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

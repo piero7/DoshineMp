@@ -106,7 +106,7 @@
 
                     var dat = new Date();
                     var str = '<div id="alertmess" class="text-center">'
-                             + '<span>Hi,非常高兴为您服务~</span><br/><br/>'
+                             //+ '<span>Hi,非常高兴为您服务~</span><br/><br/>'
                              + '<span1>' + (dat.getMonth() + 1) + '-' + dat.getDate() + ' ' + (dat.getHours().toString().length < 2 ? '0' + dat.getHours() : dat.getHours()) + ':' + (dat.getMinutes().toString().length < 2 ? '0' + dat.getMinutes() : dat.getMinutes()) + '</span1>'
                              + '</div>';
                     document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + str;

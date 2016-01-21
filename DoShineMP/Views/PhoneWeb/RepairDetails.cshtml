@@ -251,7 +251,7 @@
                                 <li class="current2"></li>
                                 <li style="display:none;"></li>
                                 <li style="display:none;"></li>
-                                <li class="quxiao" style="background-image:url(../../Images/quxiao.jpg)"></li>
+                                <li class="quxiao" style="background-image:url(../../doshinemp/Images/quxiao.jpg)"></li>
                             </ul>
                             <span class="line"></span>
                             <span class="line-current left-two2"></span>
@@ -413,6 +413,7 @@
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
+    <script src="~/Scripts/Helper.js"></script>
     <script type="text/javascript">
         var token;
 
@@ -477,24 +478,12 @@
             })
         })
 
-        $(document).on('click', '.imgyulan', function () {
-            var imgurl = $(this).attr('src');
-            //alert(imgurl)
-            wx.previewImage({
-                current: imgurl,
-                urls: [
-                 imgurl
-                ]
-            });
-        })
-
-
-
-
         jQuery(document).ready(function () {
             $(".rating-kv").rating();
             // alert($('#input-21d').val());
         });
+
+
         $('#btn').click(function () {
             $(this).attr('disabled', true);
             var repairID = $('#repairID').val();
@@ -526,7 +515,6 @@
                 }
             })
         })
-
 
     </script>
 }
