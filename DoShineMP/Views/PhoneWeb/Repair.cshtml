@@ -28,7 +28,7 @@
                         else
                         {
                             <input type="hidden" value="" id="housing" />
-                            <input class="housing" readonly="readonly" placeholder="请选择小区" />
+                            <input class="housing" readonly="readonly" placeholder="请选择报修单位" />
                         }
                     </div>
                     <div class="page-tel"><input type="text" placeholder="请输入手机号" id="phone" value="@ViewBag.Recordid.PhoneNumber" /></div>
@@ -42,9 +42,18 @@
                         <div class="locian">
                             @*<span><img src="~/Images/location.png" /></span>*@
                         </div>
-                        <select class="housing" id="housing" onclick="addressxiaoqu()"></select>
+                        @if (ViewBag.Village != null)
+                        {
+                            <input type="hidden" value="@ViewBag.Village.VillageId" id="housing" />
+                            <input class="housing" readonly="readonly" value="@ViewBag.Village.Name" />
+                        }
+                        else
+                        {
+                            <input type="hidden" value="" id="housing" />
+                            <input class="housing" readonly="readonly" placeholder="请选择小区" />
+                        }
                     </div>
-                  
+
                     <div class="page-tel">
                         @if (ViewBag.Recordid.PhoneNumber != null)
                         {
@@ -97,11 +106,13 @@
             </div>
             <p style="padding-left:15px; padding-bottom:10px; color:red;" id="imgtext"></p>
             <div class="col-xs-12 operate " id="imgdiv">
-                <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交">
+                <input class="commit pull-right" type="button" id="btn" onclick="btn()" value="提交" style="margin-bottom:20px;">
             </div>
         </div>
     </div>
 </div>
+
+
 
 @* 地址选择 HTML *@
 <div class="fadein-box">
@@ -126,9 +137,6 @@
 <input type="hidden" value="@ViewBag.Recordid.RecordId" id="RecordId" />
 <input type="hidden" value="" id="ortext" />
 
-
-
-
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/Commons.js"></script>
@@ -138,11 +146,16 @@
         $('.housing').click(function () {
             $('.fadein-box').show();
         })
+        $('.fadein-box').click(function () {
+            $('.fadein-box').hide();
+        })
         $('.fadein-box li').click(function () {
             $('.housing').val($(this).text());
             $('#housing').val($(this).attr('Villageid'));
             $('.fadein-box ').hide()
         })
+
+
     </script>
     <script type="text/javascript">
         var token;
@@ -224,7 +237,7 @@
                     success: function (res) {
                         images.localId = res.localIds;
                         if (images.localId.length == 0) {
-                            alert('请先使用 chooseImage 接口选择图片');
+                            //alert('请先使用 chooseImage 接口选择图片');
                             return;
                         }
 
@@ -351,9 +364,6 @@
                 }
             })
         }
-
-
-
         function repairid(e) {
             var repairid = $(this).attr('tagid');
             var href = '@Url.Action("RepairDetails", "PhoneWeb")?repairid=' + repairid;
@@ -365,46 +375,6 @@
         })
 
 
-
-
-        //一开始没有地址，则默认拉取
-        function isaddress() {
-            if ($('#housing').text() == null || $('#housing').text() == '') {
-                addressxiaoqu();
-            } else {
-                addressxiaoqu();
-            }
-        }
-
-        ///获取附近小区
-        function addressxiaoqu() {
-            wx.getLocation({
-                type: 'gcj02', //wgs84 或 gcj02
-                success: function (res) {
-
-                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-
-                    $.post('@Url.Action("GetAllVillage", "PhoneWeb")', { x: latitude, y: longitude }, function (data, status) {
-                        var str = '';
-                        $.each(data, function (i, item) {
-                            str += ' <option value="' + item.VillageId + '">' + item.Name + '</option>';
-                        })
-                        if ($('#housing').text() == null || $('#housing').text() == '') {
-                            $('#housing').empty().append(str);
-                        } else {
-                            var housingvalue = $('#housing').val();
-                            $('#housing').empty().append(str);
-                            $('#housing').val(housingvalue);
-                        }
-
-                    })
-                },
-                fail: function (res) {
-                    alert('获取位置失败');
-                }
-            });
-        }
         document.getElementsByClassName('commit')[0].ontouchustart = function () {
             this.style.backgroundColor = '#4ca329';
             this.style.color = '#fff';

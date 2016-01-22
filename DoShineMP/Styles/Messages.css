@@ -219,12 +219,14 @@
     /*left: 18px;*/
     /*padding-top:22px;
     padding-left:18px;*/
-	background-image: url('../Images/smile.png');
+	background-image: url('../../doshinemp/Images/40x40/smile.png');
 	background-repeat: no-repeat;
 	/*background-position: 0 -13px;*/
 	height: 40px;
 	width: 40px;
-	cursor: pointer
+	cursor: pointer;
+    margin-top:2px;
+    margin-left:2px;
 }
 .imgBtn:active {
 	margin-top: 9px;

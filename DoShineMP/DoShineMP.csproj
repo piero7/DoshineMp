@@ -391,6 +391,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\36x36\lishi.png" />
+    <Content Include="Images\36x36\mybaoxiu.png" />
+    <Content Include="Images\40x40\cancle.png" />
+    <Content Include="Images\40x40\commit.png" />
+    <Content Include="Images\40x40\finish.png" />
+    <Content Include="Images\40x40\green.png" />
+    <Content Include="Images\40x40\logo40.png" />
+    <Content Include="Images\40x40\queren.png" />
+    <Content Include="Images\40x40\shouli.png" />
+    <Content Include="Images\40x40\smile.png" />
     <Content Include="Images\accept2x.png" />
     <Content Include="Images\baox.jpg" />
     <Content Include="Images\bj.png" />

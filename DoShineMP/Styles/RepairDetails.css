@@ -6,6 +6,7 @@
 */
 body {
     font-family: 'Microsoft YaHei','微软雅黑';
+        background-color: #ececec;
 }
 
 .keep-list {
@@ -18,6 +19,7 @@ body {
 .list-top {
     padding: 10px 15px 20px;
     background-color: white;
+    margin:10px 0px;
 }
 
 .keep-list-in .top-title {
@@ -28,9 +30,9 @@ body {
 }
 
 .top-content p {
-    min-height: 50px;
+    /*min-height: 50px;*/
     color: #333;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
     margin-bottom: 20px;
 }
@@ -53,8 +55,8 @@ body {
 }
 
 .bottom-title {
-    font-size: 16px;
-    color: #797979;
+    font-size: 14px;
+    color: #333;
 }
 
     .bottom-title p {
@@ -112,7 +114,7 @@ body {
     }
 
 .state-time li:nth-child(4) {
-    right: 0;
+    right: 17%;
 }
 
 .state-ul li:nth-child(4) {
@@ -142,7 +144,7 @@ body {
     top: 55px;
     z-index: 999;
     color: #a8a8a8;
-    font-size: 16px;
+    font-size: 13px;
 }
 
     .state-time li:nth-child(1) {
@@ -166,10 +168,10 @@ body {
     }
 
 .state-ul li.current:nth-child(4) {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     right: 0;
-    top: 21px;
+    top: 23px;
     background: url(../Images/wancheng.jpg) no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
@@ -192,7 +194,7 @@ body {
     background-color: #fff;
     padding: 0 15px 20px;
     padding-bottom: ;
-    margin:15px 0;
+    margin:10px 0;
 }
 
 .back-title {
@@ -211,11 +213,11 @@ body {
 
 .back-content {
     padding: 10px 0;
-    color: #a8a8a8;
+    color: #333;
 }
 
 .state-in {
-    width: 90%;
+    width: 70%;
     height: 80px;
     margin: 0px auto;
     overflow: hidden;
@@ -231,8 +233,8 @@ body {
 
 .keep-content-t {
     background-color: white;
-    padding: 0 15px;
-    margin:15px 0px;
+    padding: 0 15px 15px;
+    margin:10px 0px;
 }
 
 .keep-title {
@@ -259,6 +261,7 @@ body {
 .operate {
     padding-top: 10px;
     padding-bottom: 30px;
+    display:none;
     /*display: table;*/
 }
 
@@ -446,7 +449,7 @@ body {
 
 /* informant css*/
 .informant {
-    margin: 15px 0;
+    margin: 10px 0;
      padding: 0px 15px 15px;
     background-color: #fff;
 }
@@ -467,7 +470,7 @@ body {
     width: 100%;
     background-color: white;
     padding: 0 15px 30px;
-    margin:15px 0;
+    margin:10px 0;
 }
 
 .service {
@@ -489,9 +492,9 @@ body {
     }
 
 .choose h4 {
-    font-size: 16px;
-    padding: 12px 0px 15px 0px;
-    color: #797979;
+    font-size: 14px;
+    padding: 15px 0px 15px 0px;
+    color: #333;
 }
 
 .choose-title .choose-input {
@@ -586,4 +589,109 @@ textarea:-ms-input-placeholder {
 .demos  input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
     color: #4ca329;
+}
+
+
+/* Modal css*/
+.modal-title{
+    padding:10px 0px;
+    overflow:hidden;
+}
+.modal-left{
+    float:left;
+}
+.modal-right{
+    float:right;
+}
+.modal-left .modal-l-top{
+    color:#333;
+    font-size:16px;
+}
+ .modal-l-top img{
+     margin-right:6px;
+     width:28px;
+     height:28px;
+     position:absolute;
+ }
+  .modal-l-top p{
+      padding-left:38px;
+  }
+ .modal-tips{
+     padding-left:38px;
+     color:#a8a8a8;
+ }
+ .time-href{
+     display:block;
+     padding:10px 15px;
+     color:#59b759;
+     border:1px solid #59b759 ;
+     border-radius:6px;
+ }
+ a:link{
+text-decoration:none;
+}
+ .modal-header{
+    border-bottom: 1px solid #ddd;
+    border-radius: 6px;
+ }
+.nodal-c-title p{
+    width:50%;
+    display:inline-block;
+    font-size:14px;
+ }
+.nodal-c-title{
+    padding-bottom:15px;
+}
+.smallbr{
+    display:block;
+    border-bottom:1px solid #ddd;
+    transform:scale(1,0.5);
+    -wenkit-transform:scale(1,0.5);
+}
+.modal-center{
+    padding-bottom:20px;
+    background-color:#f9f9f9;
+    padding:15px;
+}
+.modal-c-body{
+    padding-bottom:25px;
+    transition:all .4s linear 0s;
+    -webkit-transition:all .4s linear 0s;
+}
+.modal-c-body p{
+    padding:15px 0px;
+}
+.modal-c-body-img img{
+    width:28%;
+    height:auto;
+    margin:0px 5px;
+}
+.modal-c-body-img img:nth-last-child(){
+    margin-right:0px;
+}
+.modal-inpit {
+    display:none;
+}
+.modal-inpit input{
+    padding:10px 0;
+    outline:none;
+    border:0;
+    padding-left:15px;
+}
+
+.modal-dialog{
+    margin: 30px 10px 0px;
+}
+@media screen and (max-width:320px){
+    .modal-c-body{
+        padding:0px;
+    }
+    .modal-dialog {
+    margin: 0px 10px 0px;
+}
+}
+@media screen and (min-height:500px){
+        .modal-dialog {
+    margin: 25px 10px 0px;
+}
 }
