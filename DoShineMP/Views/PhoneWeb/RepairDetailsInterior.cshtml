@@ -150,7 +150,7 @@
 
         #sitea {
             position: fixed;
-            bottom: 0;
+            bottom: 0px;
             left: 0px;
             border: 1px solid #ddd;
             padding-top: 0;
@@ -375,7 +375,7 @@
 
         }
 
-        @*取消按钮*@
+        @*确认完成*@
         @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
         {
             <div class="col-xs-12 operate " id="sitea">
@@ -383,7 +383,6 @@
                 @*取消按钮*@
                 <input type="button" class="commit pull-left" @*id="applybtn1"*@ value="取消" style="background-color:#dedede" data-toggle="modal" data-target=".bs-example-modal-sm">
             </div>
-
         }
 
         @*企业维修反馈展示*@
@@ -510,6 +509,10 @@
     </div>
 </div>
 
+<div class="footer">
+    <p><img src="~/Images/logo22.png" /></p>
+    <p class="service">Powered by 桑田智能</p>
+</div>
 
 @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
 {
@@ -519,10 +522,6 @@
 
 
 
-<div class="footer">
-    <p><img src="~/Images/logo22.png" /></p>
-    <p class="service">Powered by 桑田智能</p>
-</div>
 
 
 @section scripts{
@@ -534,6 +533,7 @@
     <script src="~/dev/js/mobiscroll.android-ics-2.5.2.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
     <script src="~/Scripts/sucai.js"></script>
+<script src="~/Scripts/Helper.js"></script>
     <script type="text/javascript">
         var token;
         var imglength = 3;
@@ -653,18 +653,6 @@
 
             });
         })
-
-        $(document).on('click', '.imgyulan', function () {
-            var imgurl = $(this).attr('src');
-            ////alert(imgurl)
-            wx.previewImage({
-                current: imgurl,
-                urls: [
-                 imgurl
-                ]
-            });
-        })
-
 
         //初始化时间控件
         $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });

@@ -108,41 +108,42 @@ namespace DoShineMP.Controllers
         /// <returns></returns>
         public ActionResult UserUpdate(string code)
         {
-            url.urltype = "MyMessage";
-            try
-            {
-                if (!string.IsNullOrEmpty(code))
-                {
-                    if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
-                    {
-                        var user = wuser.GetUserInfo(this.openid);
+            //url.urltype = "MyMessage";
+            //try
+            //{
+            //    if (!string.IsNullOrEmpty(code))
+            //    {
+            //        if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+            //        {
+            //            var user = wuser.GetUserInfo(this.openid);
 
-                        if (user.UserInfo == null)
-                        {
-                            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                        }
-                        else
-                        {
-                            ViewBag.user = user;
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
-                    }
-                }
-                else
-                {
-                    Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "UserUpdate", ""));
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            //            if (user.UserInfo == null)
+            //            {
+            //                Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //            }
+            //            else
+            //            {
+            //                ViewBag.user = user;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "Register", ""));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(WechatHelper.BackForCode("PhoneWeb", "UserUpdate", ""));
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
 
+            ViewBag.user= wuser.GetUserInfo("olQmIjjUTPHrAAAQc0aeJ5LRM3qw");
             ViewBag.Title = "个人信息";
-            ViewBag.openid = this.openid;
+            ViewBag.openid = "olQmIjjUTPHrAAAQc0aeJ5LRM3qw";
             return View();
         }
 
@@ -176,7 +177,7 @@ namespace DoShineMP.Controllers
                             ViewBag.HasUnFinishedRepair = repairHelper.HasUnFinishedRepair(this.openid);
                             if (ViewBag.HasUnFinishedRepair != 0)
                             {
-                                Response.Redirect(Url.Action("RepairDetails", "PhoneWeb") + "?repairid="+ViewBag.HasUnFinishedRepair);
+                                Response.Redirect(Url.Action("RepairDetails", "PhoneWeb") + "?typeid=my&repairid="+ViewBag.HasUnFinishedRepair);
                             }
                             ViewBag.Village = repairHelper.GetAllVillage().FirstOrDefault(item => item.Name == ViewBag.Recordid.Address);
                             ViewBag.OveruseRepair = repairHelper.GetOveruseRepair();

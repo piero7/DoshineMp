@@ -145,6 +145,7 @@
     background-color:#fff;
     vertical-align: top;
     line-height:40px;
+    overflow-x:auto;
 }
 .sendBtn{
     height:40px;
@@ -219,14 +220,15 @@
     /*left: 18px;*/
     /*padding-top:22px;
     padding-left:18px;*/
-	background-image: url('../../doshinemp/Images/40x40/smile.png');
+	background-image: url('../../doshinemp/Images/40x40/smile.png') ;
+    background-size:70%;
 	background-repeat: no-repeat;
 	/*background-position: 0 -13px;*/
 	height: 40px;
 	width: 40px;
 	cursor: pointer;
-    margin-top:2px;
-    margin-left:2px;
+    margin-top:6px;
+    margin-left:4px;
 }
 .imgBtn:active {
 	margin-top: 9px;

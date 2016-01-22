@@ -193,7 +193,7 @@
                     return;
                 }
                 wx.chooseImage({
-                    count:1,
+                    count: 1,
                     success: function (res) {
                         images.localId = res.localIds;
                         if (images.localId.length == 0) {
@@ -289,7 +289,7 @@
                     if (data.msg == 'Y') {
                         window.location.replace("@Url.Action("Partner","PhoneWeb")");
                     }
-                  
+
                 }
             })
         })

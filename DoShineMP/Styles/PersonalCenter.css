@@ -39,7 +39,8 @@ input {
 
 .panelbody {
     text-align: right;
-    width: 70%;
+    width: 60%;
+    margin-right:15px;
 }
 
     .panelbody input {

@@ -29,7 +29,7 @@
         </div>
         @*  id MyRepair *@
         <div class="my-arranty" id="">
-            <a href="@Url.Action("Repair","PhoneWeb")" style="border-right:1px solid #e3e3e3;">
+            <a href="@Url.Action("Repair","PhoneWeb")?typeid=my" style="border-right:1px solid #e3e3e3;">
                 <img src="~/Images/36x36/mybaoxiu.png" />我要报修
             </a>
             <a href="#" id="MyRepair">
@@ -53,77 +53,77 @@
                                 <div class="content-title-t">
                                     @if (r.ImageFiles.Count == 0)
                                     {
-                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@(r.Contenet.Replace("<br />",",").Length > 20 ? r.Contenet.Replace("<br />",",").Substring(0, 20) + "..." : r.Contenet.Replace("<br />",","))</p>
-                                        <div class="content-title-b">
-                                            @switch (r.Status)
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@(r.Contenet.Replace("<br />", ",").Length > 20 ? r.Contenet.Replace("<br />", ",").Substring(0, 20) + "..." : r.Contenet.Replace("<br />", ","))</p>
+                                            <div class="content-title-b">
+                                                @switch (r.Status)
                                                 {
                                                     case DoShineMP.Models.RepairStatus.Apply:
-                                                <ins class="check check1 pull-right">已提交</ins>;
+                                                        <ins class="check check1 pull-right">已提交</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.Accept:
-                                                <ins class="check check2 pull-right">已受理</ins>;
+                                                        <ins class="check check2 pull-right">已受理</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.FinishHandle:
-                                                <ins class="check check3 pull-right">待确认</ins>;
+                                                        <ins class="check check3 pull-right">待确认</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.Finish:
-                                                <ins class="check check4 pull-right">已完成</ins>;
+                                                        <ins class="check check4 pull-right">已完成</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.Cancel:
-                                                <ins class="check check5 pull-right">已取消</ins>;
+                                                        <ins class="check check5 pull-right">已取消</ins>;
                                                         break;
                                                 }
 
-                                            <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
-                                            @if (r.User.Name != null)
+                                                <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                                @if (r.User.Name != null)
                                                 {
-                                                <span class="time-l time pull-left">@r.User.Name</span>
+                                                    <span class="time-l time pull-left">@r.User.Name</span>
                                                 }
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="http://115.159.71.54/DoShineMP/Images/baox.jpg" class="imgyulan" />
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="http://115.159.71.54/DoShineMP/Images/baox.jpg" class="imgyulan" />
+                                            </div>
                                         </div>
-                                    </div>
                                     }
                                     else
                                     {
-                                    <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
-                                        <p class="wr-content">@(r.Contenet.Replace("<br />",",").Length > 20 ? r.Contenet.Replace("<br />",",").Substring(0, 20) + "..." : r.Contenet.Replace("<br />",","))</p>
-                                        <div class="content-title-b">
-                                            @if (r.User.Name != null)
+                                        <div class="pull-left w8 repaidid" tagid="@r.RepairId" onclick="repairid(@r.RepairId)">
+                                            <p class="wr-content">@(r.Contenet.Replace("<br />", ",").Length > 20 ? r.Contenet.Replace("<br />", ",").Substring(0, 20) + "..." : r.Contenet.Replace("<br />", ","))</p>
+                                            <div class="content-title-b">
+                                                @if (r.User.Name != null)
                                                 {
-                                                <span class="time-l time pull-left">@r.User.Name</span>
+                                                    <span class="time-l time pull-left">@r.User.Name</span>
                                                 }
-                                            @switch (r.Status)
+                                                @switch (r.Status)
                                                 {
                                                     case DoShineMP.Models.RepairStatus.Apply:
-                                                <ins class="check check1 pull-right">已提交</ins>;
+                                                        <ins class="check check1 pull-right">已提交</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.Accept:
-                                                <ins class="check check2 pull-right">已受理</ins>;
+                                                        <ins class="check check2 pull-right">已受理</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.FinishHandle:
-                                                <ins class="check check3 pull-right">待确认</ins>;
+                                                        <ins class="check check3 pull-right">待确认</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.Finish:
-                                                <ins class="check check4 pull-right">已完成</ins>;
+                                                        <ins class="check check4 pull-right">已完成</ins>;
                                                         break;
                                                     case DoShineMP.Models.RepairStatus.Cancel:
-                                                <ins class="check check5 pull-right">已取消</ins>;
+                                                        <ins class="check check5 pull-right">已取消</ins>;
                                                         break;
                                                 }
-                                            <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
+                                                <span class="time pull-left">@r.CreateDate.ToString().Split(' ')[0]</span>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="pull-right w2">
-                                        <div class="img">
-                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                        <div class="pull-right w2">
+                                            <div class="img">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["httpimgpath"]@r.ImageFiles[0].FileName" class="imgyulan" />
+                                            </div>
                                         </div>
-                                    </div>
                                     }
                                 </div>
 

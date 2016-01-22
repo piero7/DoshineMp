@@ -137,7 +137,7 @@
         .choose .service li {
             color: #1ec462;
             border: 0px;
-            margin-top:2px;
+            margin-top: 2px;
         }
     </style>
 
@@ -149,32 +149,32 @@
             <div class="list-bottom" style="background-color:#318fe7; margin-top:0;">
                 <div class="bg-box">
                     <div class="state-box">
-                       @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Apply)
-                       {
-                        <div class="state-box-l"><img src="~/Images/40x40/commit.png" /></div>
-                        <div class="state-box-r">
-                            <p>订单已提交</p>
-                            <p>我们会尽快处理您的订单</p>
-                        </div>
-                       }
-                       else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
-                       {
-                        <div class="state-box-l"><img src="~/Images/40x40/shouli.png" /></div>
-                        <div class="state-box-r">
-                            <p>订单已受理</p>
-                            <p>将于 @ViewBag.RepairDetail.ExceptHandleDate 前上门服务</p>
-                        </div>
-                       }
-                       else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
-                       {
-                        <div class="state-box-l"><img src="~/Images/40x40/queren.png" /></div>
-                        <div class="state-box-r">
-                            <p>订单待确认</p>
-                            <p>该订单已完成，等待用户评价</p>
-                        </div>
-                       }
-                       else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
-                       {
+                        @if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Apply)
+                        {
+                            <div class="state-box-l"><img src="~/Images/40x40/commit.png" /></div>
+                            <div class="state-box-r">
+                                <p>订单已提交</p>
+                                <p>我们会尽快处理您的订单</p>
+                            </div>
+                        }
+                        else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Accept)
+                        {
+                            <div class="state-box-l"><img src="~/Images/40x40/shouli.png" /></div>
+                            <div class="state-box-r">
+                                <p>订单已受理</p>
+                                <p>将于 @ViewBag.RepairDetail.ExceptHandleDate 前上门服务</p>
+                            </div>
+                        }
+                        else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHandle)
+                        {
+                            <div class="state-box-l"><img src="~/Images/40x40/queren.png" /></div>
+                            <div class="state-box-r">
+                                <p>订单待确认</p>
+                                <p>该订单已完成，等待用户评价</p>
+                            </div>
+                        }
+                        else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.Finish)
+                        {
                             <div class="state-box-l"><img src="~/Images/40x40/finish.png" /></div>
                             <div class="state-box-r">
                                 <p>订单已完成</p>
@@ -372,7 +372,6 @@
                 </div>
             </div>
 
-
             @*个人信息*@
             <div class="informant">
                 <div class="informant-title">
@@ -409,6 +408,7 @@ else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHand
             <div class="modal-dialog" style="display:block;position:relative;margin-top:15px;margin-bottom:15px;">
                 <div class="modal-content">
                     <div class="modal-header ">
+                        <div style="margin-bottom:15px;color:#59b759;font-size:16px;" id="weipingjia">您有未评价的订单，请先评价。</div>
                         <div class="modal-title" style="padding:0px 0px">
                             <div class="modal-left">
                                 <div class="modal-l-top"><img src="~/Images/40x40/finish.png" /><p>报修已完成</p></div>
@@ -495,10 +495,11 @@ else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHand
 @section scripts{
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="~/Scripts/star-rating.js"></script>
+    <script src="~/Scripts/Helper.js"></script>
     <script type="text/javascript">
         $('#input-21d').change(function () {
             $('.modal-inpit,.operate').slideDown();
-            $('.commiad').text('ss');
+            $('.commiad').html('&nbsp;');
             $('html, body, #myModal').animate({ scrollTop: $(document).height() }, 400);
             //$("#tv").animate({top:});
         })
@@ -511,6 +512,13 @@ else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHand
             serverId: []
         };
         $(function () {
+            //alert(GetQueryString('typeid'));
+            if (GetQueryString('typeid') != 'my') {
+                $('#weipingjia').hide();
+            }
+
+
+
             $('#modelimg').height($(window).height());
             $('#modelimg').width($(window).width());
             if ($('#input-21d').val() == 0) {
@@ -569,18 +577,6 @@ else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHand
             })
         })
 
-        $(document).on('click', '.imgyulan', function () {
-            var imgurl = $(this).attr('src');
-            //alert(imgurl)
-            wx.previewImage({
-                current: imgurl,
-                urls: [
-                 imgurl
-                ]
-            });
-        })
-
-
 
 
         jQuery(document).ready(function () {
@@ -607,18 +603,29 @@ else if (ViewBag.RepairDetail.Status == DoShineMP.Models.RepairStatus.FinishHand
                     if (data.msg == 'Y') {
                         var windowlength = window.history.length;
                         if (windowlength == 1) {
-                            alert(windowlength)
+                            //alert(windowlength)
                             window.location.replace('@Url.Action("LatestRepair", "PhoneWeb")');
-                            alert(windowlength);
+                            //alert(windowlength);
                         } else {
-                            window.localStorage['IndexLi1'] = new Number(window.localStorage['IndexLi1']) + 1;
-                            window.history.go(-1);
+                            if (GetQueryString('typeid') == 'my') {
+                                window.location.replace('@Url.Action("Repair", "PhoneWeb")');
+                            } else {
+                                window.localStorage['IndexLi1'] = new Number(window.localStorage['IndexLi1']) + 1;
+                                window.history.go(-1);
+                            }
                         }
 
                     }
                 }
             })
         })
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
 
 
     </script>
