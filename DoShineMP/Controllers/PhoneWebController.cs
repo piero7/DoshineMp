@@ -404,7 +404,7 @@ namespace DoShineMP.Controllers
             url.urltype = "MessagePartent";
             if (!string.IsNullOrEmpty(code))
             {
-                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))
+                if (!string.IsNullOrEmpty(CodeJjudgeByOpenid(code)))    
                 {
                     var uuu = wuser.GetUserInfo(this.openid);
                     if (uuu.UserInfo != null)
