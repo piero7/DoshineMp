@@ -73,7 +73,10 @@ namespace DoShineMP.Helper
 
             //发送企业号通知
             var workernamArr = System.Configuration.ConfigurationManager.AppSettings["repairworkers"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            var msg = string.Format(System.Configuration.ConfigurationManager.AppSettings["repairnoticemodelforworker"], rep.RepairId);
+            //var msg = string.Format(System.Configuration.ConfigurationManager.AppSettings["repairnoticemodelforworker"], rep.RepairId);
+            string scontent = rep.Contenet.Replace("<br />", ",").Length > 7 ? rep.Contenet.Replace("<br />", ",").Substring(0, 6) + "..." : rep.Contenet.Replace("<br />", ",");
+            var msg = $"收到新的报修申请，请尽快处理！\n报修单位：{rep.Village?.Name}\n报修人：{rep.Name}\n联系方式：{rep.PhoneNumber}\n报修内容：{scontent}\n报修时间：{rep.CreateDate.ToString("yyyy-MM-dd hh:mm")}\n\n\n<a href=\"http://mp.doshine.com/DoShineMP/PhoneWeb/RepairDetailsInterior?repairid={rep.RepairId}>点击查看</a>";
+
             WechatHelper.SendComponyMessage(workernamArr, msg);
 
             return rep;
@@ -192,6 +195,11 @@ namespace DoShineMP.Helper
             var db = new ModelContext();
             var rep = db.RepairSet.Include("Village").FirstOrDefault(item => item.RepairId == repairId);
 
+            if (rep.Status != RepairStatus.Apply)
+            {
+                return null;
+            }
+
             if (rep == null)
             {
                 return null;
@@ -281,10 +289,11 @@ namespace DoShineMP.Helper
                     wuser.OpenId,
                     url,
                     "bI7o_XjdW10WRf1gPvmEpddVmBahfh97Irgv4u-__Gc",
-                    string.Format("\"first\":{{\"value\":\"您好，您的报修申请已完成处理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"处理结果为：{2}\",\"color\":\"#173177\"}}",
+                    string.Format("\"first\":{{\"value\":\"您好，您的报修申请已完成处理\",\"color\":\"#173177\"}},\"keyword1\":{{\"value\":\"{0}\",\"color\":\"#173177\"}},\"keyword2\":{{\"value\":\"{1}\",\"color\":\"#173177\"}},\"remark\":{{\"value\":\"保修内容：{3}\\n处理结果：{2}\",\"color\":\"#173177\"}}",
                     rep.InnerNumber,
                     rep.FinishHandlendDate.Value.ToLongDateString() + " " + rep.FinishHandlendDate.Value.ToShortTimeString(),
-                   EnumFormat.GetDescription(rep.FinishType)));
+                   EnumFormat.GetDescription(rep.FinishType),
+                   content));
             }
             return rep;
         }
